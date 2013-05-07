@@ -10,6 +10,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>   
 #import <Social/Social.h>
+#import "FrameworkChecker.h"
 
 
 @implementation SettingMethod
@@ -361,10 +362,13 @@ static SettingMethod * setting;
 }
 
 
+
 // ================= CHECK WEIBO =================
 
 -(BOOL)weiboIsConnected {
-    
+    if ([FrameworkChecker isSocialAvailable] ==  NO) {
+        return NO;
+    }
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
     {
         return YES;

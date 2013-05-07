@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856FD18A1738D6D0001EED8D /* FrameworkChecker.m */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
@@ -145,6 +146,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		856FD1891738D6D0001EED8D /* FrameworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkChecker.h; path = Helpers/FrameworkChecker.h; sourceTree = "<group>"; };
+		856FD18A1738D6D0001EED8D /* FrameworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameworkChecker.m; path = Helpers/FrameworkChecker.m; sourceTree = "<group>"; };
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -328,6 +331,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		856FD18C1738D6DE001EED8D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				856FD1891738D6D0001EED8D /* FrameworkChecker.h */,
+				856FD18A1738D6D0001EED8D /* FrameworkChecker.m */,
+			);
+			name = Helpers;
+			path = Subway;
+			sourceTree = "<group>";
+		};
 		EB5F6254172A341E006E053B /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +370,7 @@
 			children = (
 				EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
+				856FD18C1738D6DE001EED8D /* Helpers */,
 				EBB4D043171FD882006DAF2F /* Settings */,
 				EBB4CFBF171FBB2E006DAF2F /* Ressources */,
 				EBB4CF9B171FADE9006DAF2F /* Frameworks */,
@@ -803,6 +817,7 @@
 				EB989138172B8BF300E75638 /* SVPulsingAnnotationView.m in Sources */,
 				EBCAA2E117320F58007F33B2 /* MBProgressHUD.m in Sources */,
 				EBAC242A1737C1A4009D8519 /* DDPageControl.m in Sources */,
+				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
