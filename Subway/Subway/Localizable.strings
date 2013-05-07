@@ -1,0 +1,80 @@
+/* 
+ Localizable.strings
+ 
+ ******************************* ENGLISH ******************************* 
+ 
+ SUBWAY
+ Created by ludo on 4/18/13.
+ Copyright (c) 2013 C3O. All rights reserved.
+ */
+
+
+
+// ------------------ Top View
+// ----------
+"weibo_login_btn_txt" = " LOGIN";
+"store_btn_txt" = " STORE";
+"locator_btn_txt" = " LOCATOR";
+"home_btn_txt" = " HOME";
+
+
+// ------------------ Bottom View
+// ----------
+"discover_menu_btn_txt" = " DISCOVER ALL OUR MENU";
+"coupon_btn_txt" = " COUPON";
+"storeList_btn_txt" = " STORE LIST";
+"catering_btn_txt" = " CATERING";
+"options_btn_txt" = " OPTIONS";
+"howTo_btn_txt" = " HOW TO";
+"order_btn_txt" = " ORDER";
+
+
+
+
+
+
+
+
+
+// ------------------ HOME
+// ----------
+
+
+
+
+
+// ------------------ STORE LOCATOR
+// ----------
+
+"kDistance" = "Distance :";
+"kMeters" = "meters";
+"kKms" = "kms";
+
+"aroundMe_btn_txt" = " AROUND ME";
+"email_btn_txt" = " EMAIL";
+
+"kNoStoresAround" = "Aucun stores de disponibles";
+
+
+// ------------------ MEAL
+// ----------
+
+//Menu
+"kMenuValue" = "Value";
+"kMenuClassic" = "Classic";
+"kMenuPremium" = "Premium";
+"kMenuDrink" = "Drink";
+"kMenuSalad" = "Salad";
+"kMenuWrap" = "Wrap";
+
+
+
+// ------------------ HUD
+// ----------
+
+"kNoConnection" = "The Internet connection appears to be offline.";
+
+
+
+
+
