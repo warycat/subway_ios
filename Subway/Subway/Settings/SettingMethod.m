@@ -366,6 +366,7 @@ static SettingMethod * setting;
 // ================= CHECK WEIBO =================
 
 -(BOOL)weiboIsConnected {
+    
     if ([FrameworkChecker isSocialAvailable] ==  NO) {
         return NO;
     }

@@ -24,6 +24,16 @@
     
     UIButton *weiboShareBtn;
     
+    // PRODUCTS BTN INFO
+    UIButton *healthShareBtn;
+    UIButton *tastyShareBtn;
+    UIButton *energyShareBtn;
+    UIButton *buildShareBtn;
+    CustomLabel *healthLbl;
+    CustomLabel *tastyLbl;
+    CustomLabel *energyLbl;
+    CustomLabel *buildLbl;
+    
 }
     
 
@@ -40,6 +50,14 @@
 
 
 @property (nonatomic, strong) UIButton *weiboShareBtn;
+@property (nonatomic, strong) UIButton *healthShareBtn;
+@property (nonatomic, strong) UIButton *tastyShareBtn;
+@property (nonatomic, strong) UIButton *energyShareBtn;
+@property (nonatomic, strong) UIButton *buildShareBtn;
+@property (nonatomic, strong)  CustomLabel *healthLbl;
+@property (nonatomic, strong)  CustomLabel *tastyLbl;
+@property (nonatomic, strong)  CustomLabel *energyLbl;
+@property (nonatomic, strong)  CustomLabel *buildLbl;
 
 
 @end

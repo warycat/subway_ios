@@ -17,8 +17,8 @@
 @implementation MenuViewController
 @synthesize menuScroll;
 @synthesize subOfTheDayView, productsView, menuArray, currentProductsArray, productsScroll, pageControl;
-@synthesize weiboShareBtn;
-
+@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn;
+@synthesize healthLbl, tastyLbl, energyLbl, buildLbl;
 
 -(void)viewWillAppear:(BOOL)animated {
 	
@@ -97,24 +97,142 @@
     pageControl.type = DDPageControlTypeOnFullOffFull; //DDPageControlTypeOnFullOffEmpty;   // ou
     pageControl.onColor = [UIColorCov colorWithHexString:YELLOW_TEXT];
     pageControl.offColor = [UIColor blackColor];
-    pageControl.indicatorDiameter = 7.0f;
-    pageControl.indicatorSpace = 6.0f;
+    pageControl.indicatorDiameter = 9.0f;
+    pageControl.indicatorSpace = 10.0f;
     
     [productsView addSubview:pageControl];
     
     
     
-    //SHARE ON WEIBO
+    //---SHARE ON WEIBO
     UIImage *shareImgON = [UIImage imageNamed:@"icon_weibo@2x"];
 
     weiboShareBtn =  [[UIButton alloc] init];
-    [weiboShareBtn  setFrame:CGRectMake(20, productsView.frame.size.height - 55, 43, 43)];
+    [weiboShareBtn  setFrame:CGRectMake(25, productsView.frame.size.height - 56, 43, 43)];
     weiboShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     weiboShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [weiboShareBtn setBackgroundImage:[shareImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
     [weiboShareBtn addTarget:self action:@selector(shareToWeibo:) forControlEvents:UIControlEventTouchDown];
     [productsView  addSubview:weiboShareBtn];
     [weiboShareBtn release];
+    
+    CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+    [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    weiboLbl.text = @"share on";
+    [weiboLbl setDrawOutline:YES];
+    [weiboLbl setOutlineSize:strokeSize];
+    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    weiboLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    weiboLbl.textAlignment = UITextAlignmentCenter;
+    weiboLbl.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:weiboLbl];
+    [weiboLbl release];
+    
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator@2x"]];
+    separator.frame = CGRectMake(weiboShareBtn.frame.size.width + weiboShareBtn.frame.origin.x + 10, productsScroll.frame.size.height + 2, 1, 47);
+    separator.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:separator];
+    [separator release];
+    
+    
+    //---HEALTH
+    UIImage *healthImgON = [UIImage imageNamed:@"icon_lowfat@2x"];
+    
+    healthShareBtn =  [[UIButton alloc] init];
+    [healthShareBtn  setFrame:CGRectMake(separator.frame.origin.x + separator.frame.size.width + 12, productsView.frame.size.height - 56, 43, 43)];
+    healthShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    healthShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [healthShareBtn setBackgroundImage:[healthImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+    [healthShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
+    [productsView  addSubview:healthShareBtn];
+    [healthShareBtn release];
+    
+    healthLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(healthShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+    [healthLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    healthLbl.text = @"low fat";
+    [healthLbl setDrawOutline:YES];
+    [healthLbl setOutlineSize:strokeSize];
+    [healthLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    healthLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    healthLbl.textAlignment = UITextAlignmentCenter;
+    healthLbl.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:healthLbl];
+    [healthLbl release];
+    
+    
+    //---TASTY
+    UIImage *tastyImgON = [UIImage imageNamed:@"icon_tasty@2x"];
+    
+    tastyShareBtn =  [[UIButton alloc] init];
+    [tastyShareBtn  setFrame:CGRectMake(healthShareBtn.frame.origin.x + healthShareBtn.frame.size.width + 12, productsView.frame.size.height - 56, 43, 43)];
+    tastyShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    tastyShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [tastyShareBtn setBackgroundImage:[tastyImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+    [tastyShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
+    [productsView  addSubview:tastyShareBtn];
+    [tastyShareBtn release];
+    
+    tastyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(tastyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+    [tastyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    tastyLbl.text = @"tasty flavor";
+    [tastyLbl setDrawOutline:YES];
+    [tastyLbl setOutlineSize:strokeSize];
+    [tastyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    tastyLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    tastyLbl.textAlignment = UITextAlignmentCenter;
+    tastyLbl.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:tastyLbl];
+    [tastyLbl release];
+    
+    
+    //---ENERGY
+    UIImage *energyImgON = [UIImage imageNamed:@"icon_energy@2x"];
+    
+    energyShareBtn =  [[UIButton alloc] init];
+    [energyShareBtn  setFrame:CGRectMake(tastyShareBtn.frame.origin.x + tastyShareBtn.frame.size.width + 12, productsView.frame.size.height - 56, 43, 43)];
+    energyShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    energyShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [energyShareBtn setBackgroundImage:[energyImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+    [energyShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
+    [productsView  addSubview:energyShareBtn];
+    [energyShareBtn release];
+    
+    energyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(energyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+    [energyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    energyLbl.text = @"energy boost";
+    [energyLbl setDrawOutline:YES];
+    [energyLbl setOutlineSize:strokeSize];
+    [energyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    energyLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    energyLbl.textAlignment = UITextAlignmentCenter;
+    energyLbl.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:energyLbl];
+    [energyLbl release];
+    
+    
+    //---BUILD
+    UIImage *buildImgON = [UIImage imageNamed:@"icon_build@2x"];
+    
+    buildShareBtn =  [[UIButton alloc] init];
+    [buildShareBtn  setFrame:CGRectMake(energyShareBtn.frame.origin.x + energyShareBtn.frame.size.width + 12, productsView.frame.size.height - 56, 43, 43)];
+    buildShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    buildShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [buildShareBtn setBackgroundImage:[buildImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+    [buildShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
+    [productsView  addSubview:buildShareBtn];
+    [buildShareBtn release];
+    
+    buildLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(buildShareBtn.frame.origin.x - 6, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 52, 10)];
+    [buildLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    buildLbl.text = @"sandwichbuild";
+    [buildLbl setDrawOutline:YES];
+    [buildLbl setOutlineSize:strokeSize];
+    [buildLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    buildLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    buildLbl.textAlignment = UITextAlignmentCenter;
+    buildLbl.backgroundColor = [UIColor clearColor];
+    [productsView addSubview:buildLbl];
+    [buildLbl release];
     
     
     // ----------------- GENERATE BOTTOM BAR
@@ -264,6 +382,10 @@
 }
 
 
+-(void)showPopupInfo:(id)sender {
+    
+    
+}
 
 #pragma mark ---------------
 #pragma mark ---------------
@@ -430,6 +552,149 @@
         XPosImage = XPosImage + productsScroll.frame.size.width;
     }
     
+    [self redrawButtonsInfo:0];
+
+}
+
+-(void)redrawButtonsInfo:(int)position {
+    
+    BOOL hasHealth = NO;
+    BOOL hasTasty = NO;
+    BOOL hasEnergy = NO;
+    BOOL hasBuild = NO;
+    
+    NSMutableArray *productFactsArray = [[currentProductsArray objectAtIndex:position] objectForKey:@"product_facts"];
+    
+    for (int i = 0; i < [productFactsArray count]; i++) {
+        
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"T"]) {
+            hasTasty = YES;
+            tastyShareBtn.tag = [[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue];
+        }
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"H"]) {
+            hasHealth = YES;
+            healthShareBtn.tag = [[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue];
+        }
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"E"]) {
+            hasEnergy = YES;
+            energyShareBtn.tag = [[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue];
+        }
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"B"]) {
+            hasBuild = YES;
+            buildShareBtn.tag = [[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue];
+        }
+        
+    }
+    
+    [UIView animateWithDuration:0.35
+                     animations:^{
+                         
+                         healthShareBtn.alpha = 0.0;
+                         tastyShareBtn.alpha = 0.0;
+                         energyShareBtn.alpha = 0.0;
+                         buildShareBtn.alpha = 0.0;
+                         healthLbl.alpha = 0.0;
+                         tastyLbl.alpha = 0.0;
+                         energyLbl.alpha = 0.0;
+                         buildLbl.alpha = 0.0;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         [UIView animateWithDuration:0.1
+                                          animations:^{
+                                              
+                                              int xPosElements = 78;
+                                              
+                                              if (hasHealth == YES) {
+                                                
+                                                  [healthShareBtn  setFrame:CGRectMake(xPosElements + 12, productsView.frame.size.height - 56, 43, 43)];
+                                                  [healthLbl  setFrame:CGRectMake(healthShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+                                                  
+                                                  xPosElements = healthShareBtn.frame.origin.x + healthShareBtn.frame.size.width;
+                                              }
+                                              
+                                              if (hasTasty == YES) {
+                                                  
+                                                  [tastyShareBtn  setFrame:CGRectMake(xPosElements + 12, productsView.frame.size.height - 56, 43, 43)];
+                                                  [tastyLbl  setFrame:CGRectMake(tastyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+                                                  
+                                                  xPosElements = tastyShareBtn.frame.origin.x + tastyShareBtn.frame.size.width;
+                                              }
+                                              
+                                              if (hasEnergy == YES) {
+                                                  
+                                                  [energyShareBtn  setFrame:CGRectMake(xPosElements + 12, productsView.frame.size.height - 56, 43, 43)];
+                                                  [energyLbl  setFrame:CGRectMake(energyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+                                                  
+                                                  xPosElements = energyShareBtn.frame.origin.x + energyShareBtn.frame.size.width;
+                                              }
+                                              
+                                              if (hasBuild == YES) {
+                                                  
+                                                  [buildShareBtn  setFrame:CGRectMake(xPosElements + 12, productsView.frame.size.height - 56, 43, 43)];
+                                                  [buildLbl  setFrame:CGRectMake(buildShareBtn.frame.origin.x - 6, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 52, 10)];
+                                                  
+                                              }
+                                              
+                                              
+                                              
+                                          }
+                                          completion:^(BOOL finished){
+                                              
+                                              [UIView animateWithDuration:0.35
+                                                               animations:^{
+                                                                   
+                                                                   if (hasHealth == YES) {
+                                                                       healthShareBtn.hidden = NO;
+                                                                       healthLbl.hidden = NO;
+                                                                       healthShareBtn.alpha = 1.0;
+                                                                       healthLbl.alpha = 1.0;
+                                                                   }else {
+                                                                       healthShareBtn.hidden = YES;
+                                                                       healthLbl.hidden = YES;
+                                                                   }
+                                                                   
+                                                                   if (hasTasty == YES) {
+                                                                       tastyShareBtn.hidden = NO;
+                                                                       tastyLbl.hidden = NO;
+                                                                       tastyShareBtn.alpha = 1.0;
+                                                                       tastyLbl.alpha = 1.0;
+                                                                   }else {
+                                                                       tastyShareBtn.hidden = YES;
+                                                                       tastyLbl.hidden = YES;
+                                                                   }
+                                                                   
+                                                                   if (hasEnergy == YES) {
+                                                                       energyShareBtn.hidden = NO;
+                                                                       energyLbl.hidden = NO;
+                                                                       energyShareBtn.alpha = 1.0;
+                                                                       energyLbl.alpha = 1.0;
+                                                                   }else {
+                                                                       energyShareBtn.hidden = YES;
+                                                                       energyLbl.hidden = YES;
+                                                                   }
+                                                                   
+                                                                   if (hasBuild == YES) {
+                                                                       buildShareBtn.hidden = NO;
+                                                                       buildLbl.hidden = NO;
+                                                                       buildShareBtn.alpha = 1.0;
+                                                                       buildLbl.alpha = 1.0;
+                                                                   }else {
+                                                                       buildShareBtn.hidden = YES;
+                                                                       buildLbl.hidden = YES;
+                                                                   }
+                                                                   
+                                                                   
+                                                               }
+                                                               completion:^(BOOL finished){
+                                                                   
+                                                               }];
+                                              
+                                          }];
+                         
+                     }];
+    
     
 }
 
@@ -455,7 +720,7 @@
             // if we are dragging, we want to update the page control directly during the drag
             if (productsScroll.dragging)
                 [pageControl updateCurrentPageDisplay];
-            
+                [self redrawButtonsInfo:nearestNumber];
         }
         
     }
@@ -466,6 +731,9 @@
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView {
 	// if we are animating (triggered by clicking on the page control), we update the page control
 	[pageControl updateCurrentPageDisplay] ;
+    
+
+    
 }
 
 
