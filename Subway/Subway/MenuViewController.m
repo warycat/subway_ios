@@ -16,8 +16,9 @@
 
 @implementation MenuViewController
 @synthesize menuScroll;
-@synthesize subOfTheDayView, productsView, menuArray, currentProductsArray, productsScroll, pageControl;
-@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn;
+@synthesize subOfTheDayView, subOfTheDayContainer, subOfTheDayViewInfo;
+@synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
+@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factDescriptionLbl;
 @synthesize healthLbl, tastyLbl, energyLbl, buildLbl;
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -33,6 +34,8 @@
     [super viewDidLoad];
 	
     firstTimeProductsViewAppear = YES;
+    tempProdFact = 0;
+    viewIsFlipped = YES;
     
     // ----------------- GENERATE BACKGROUND
     [displayMethod createBackground:self.view viewName:@""];
@@ -50,16 +53,98 @@
     [storeLocatorBtn addTarget:self action:@selector(pushStoreLocatorView) forControlEvents:UIControlEventTouchDown];
     [storeLocatorBtn release];
     
-    
+    // -----------------
+    // -----------------
     // ----------------- GENERATE SUB OF THE DAY VIEW
-    subOfTheDayView = [[UIView alloc] initWithFrame:CGRectMake(0, screenHeight - 253 - 55, screenWidth, 253)];
+    // -----------------
+    // -----------------
+    
+    subOfTheDayContainer = [[UIView alloc] initWithFrame:CGRectMake(0, screenHeight - 253 - 55, screenWidth, 253)];
+    subOfTheDayContainer.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:subOfTheDayContainer];
+    
+    
+    // Information view for the Sub Of the Day FLIPPED VIEW
+    subOfTheDayViewInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 253)];
+    subOfTheDayViewInfo.backgroundColor = [UIColor clearColor];
+    [subOfTheDayContainer addSubview:subOfTheDayViewInfo];
+    
+    UIImageView *BackgroundImgInfoSub = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"categories_bg@2x"]];
+    BackgroundImgInfoSub.frame = CGRectMake(0, 0, subOfTheDayViewInfo.frame.size.width, subOfTheDayViewInfo.frame.size.height);
+    [subOfTheDayViewInfo addSubview:BackgroundImgInfoSub];
+    [BackgroundImgInfoSub release];
+    
+    
+    // --------------- + back
+    
+    UIImage *myLocationImageOn = [[UIImage imageNamed:@"btn_red_on.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:0];
+    UIImage *myLocationImageOff = [[UIImage imageNamed:@"btn_red_off.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:0];
+    
+    UIButton *backInfobtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backInfobtn.frame = CGRectMake((screenWidth-130)/2, subOfTheDayViewInfo.frame.size.height - 55, 130, 40);
+    backInfobtn.userInteractionEnabled = YES;
+    [backInfobtn setBackgroundImage:myLocationImageOn forState:UIControlStateNormal];
+    [backInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateSelected];
+    [backInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateHighlighted];
+    [backInfobtn addTarget:self action:@selector(showMoreInfoBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    CustomLabel *backLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, backInfobtn.frame.size.width, backInfobtn.frame.size.height)];
+    [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    backLbl.text = NSLocalizedString(@"back_btn_txt", nil);
+    [backLbl setDrawOutline:YES];
+    [backLbl setOutlineSize:strokeSize];
+    [backLbl setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
+    backLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    backLbl.textAlignment = UITextAlignmentCenter;
+    backLbl.backgroundColor = [UIColor clearColor];
+    [backInfobtn addSubview:backLbl];
+    [backLbl release];
+    
+    [subOfTheDayViewInfo addSubview:backInfobtn];
+    
+    
+    
+    // the Sub Of the Day MAIN VIEW
+    subOfTheDayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 253)];
     subOfTheDayView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:subOfTheDayView];
+    [subOfTheDayContainer addSubview:subOfTheDayView];
     
     UIImageView *BackgroundImgSub = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"categories_bg@2x"]];
     BackgroundImgSub.frame = CGRectMake(0, 0, subOfTheDayView.frame.size.width, subOfTheDayView.frame.size.height);
     [subOfTheDayView addSubview:BackgroundImgSub];
     [BackgroundImgSub release];
+    
+    
+    // --------------- + informations
+        
+    UIButton *showMOreInfobtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    showMOreInfobtn.frame = CGRectMake((screenWidth-130)/2, subOfTheDayView.frame.size.height - 55, 130, 40);
+    showMOreInfobtn.userInteractionEnabled = YES;
+    [showMOreInfobtn setBackgroundImage:myLocationImageOn forState:UIControlStateNormal];
+    [showMOreInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateSelected];
+    [showMOreInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateHighlighted];
+    [showMOreInfobtn addTarget:self action:@selector(showMoreInfoBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *logoPLus = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_aroundme@2x"]];
+    logoPLus.frame = CGRectMake(15, (showMOreInfobtn.frame.size.height-25)/2, 25, 25);
+    [showMOreInfobtn addSubview:logoPLus];
+    [logoPLus release];
+    
+    
+    CustomLabel *learnLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoPLus.frame.size.width + logoPLus.frame.origin.x - 1, 3, 90, showMOreInfobtn.frame.size.height)];
+    [learnLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    learnLbl.text = NSLocalizedString(@"learnMore_btn_txt", nil);
+    [learnLbl setDrawOutline:YES];
+    [learnLbl setOutlineSize:strokeSize];
+    [learnLbl setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
+    learnLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    learnLbl.textAlignment = UITextAlignmentLeft;
+    learnLbl.backgroundColor = [UIColor clearColor];
+    [showMOreInfobtn addSubview:learnLbl];
+    [learnLbl release];
+
+    [subOfTheDayView addSubview:showMOreInfobtn];
     
     
     // ----------------- GENERATE PRODUCTS VIEW
@@ -94,7 +179,7 @@
     
     // Customisation
     pageControl.defersCurrentPageDisplay = YES;
-    pageControl.type = DDPageControlTypeOnFullOffFull; //DDPageControlTypeOnFullOffEmpty;   // ou
+    pageControl.type = DDPageControlTypeOnFullOffFull;
     pageControl.onColor = [UIColorCov colorWithHexString:YELLOW_TEXT];
     pageControl.offColor = [UIColor blackColor];
     pageControl.indicatorDiameter = 9.0f;
@@ -102,6 +187,65 @@
     
     [productsView addSubview:pageControl];
     
+    
+    //---CREATE POPUP INFO
+    popupInfo = [[UIView alloc] init];
+    [popupInfo setFrame:CGRectMake(12, 168, productsView.frame.size.width - 21, 0)];
+    popupInfo.backgroundColor = [UIColor clearColor];
+    popupInfo.clipsToBounds = YES;
+    popupInfo.userInteractionEnabled = YES;
+    [productsView addSubview:popupInfo];
+    
+    
+    //draw gradient on top
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, productsView.frame.size.width - 21, 168)] autorelease];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(0.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:0.0] CGColor], (id)[[UIColor colorWithRed:(0.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:0.6] CGColor], nil];
+    [view.layer insertSublayer:gradient atIndex:0];
+
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, productsView.frame.size.width - 21, 168)] autorelease];
+    CAGradientLayer *gradient2 = [CAGradientLayer layer];
+    gradient2.frame = view2.bounds;
+    gradient2.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(0.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:0.0] CGColor], (id)[[UIColor colorWithRed:(0.0/255.0) green:(0.0/255.0) blue:(0.0/255.0) alpha:0.6] CGColor], nil];
+    [view2.layer insertSublayer:gradient2 atIndex:0];
+
+    view.userInteractionEnabled = YES;
+    view2.userInteractionEnabled = YES;
+    
+    [popupInfo addSubview:view];
+    [popupInfo addSubview:view2];
+    
+    // Facts Description
+    factDescriptionLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 60, popupInfo.frame.size.width - 10, 100)];
+    [factDescriptionLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    factDescriptionLbl.text = @"";
+    [factDescriptionLbl setDrawOutline:YES];
+    [factDescriptionLbl setOutlineSize:strokeSize];
+    [factDescriptionLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    factDescriptionLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    factDescriptionLbl.textAlignment = UITextAlignmentCenter;
+    factDescriptionLbl.numberOfLines = 0;
+    factDescriptionLbl.backgroundColor = [UIColor clearColor];
+    [popupInfo addSubview:factDescriptionLbl];
+    
+    // --- ADD GESTURE TO HIDE INFO IS DISPLAYED
+    UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopupInfo)];
+    swipeLeftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [swipeLeftRecognizer setNumberOfTouchesRequired:1];
+    [factDescriptionLbl addGestureRecognizer:swipeLeftRecognizer];
+    [swipeLeftRecognizer release];
+    
+    
+    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopupInfo)];
+    swipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [swipeRightRecognizer setNumberOfTouchesRequired:1];
+    [factDescriptionLbl addGestureRecognizer:swipeRightRecognizer];
+    [swipeRightRecognizer release];
+    // ---
+    
+    popupInfo.alpha = 0.0;
+    popupInfo.hidden = YES;
     
     
     //---SHARE ON WEIBO
@@ -251,16 +395,15 @@
     [howToBtn release];
     
     
-    // ----------------- CREATE MENU
-
+    // ----------------- CREATE MENU & OVERALL VIEW INFO
     // -----------------
+    
     NSString *jsonMenuFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"product_all_%@", [settingMethod getUserLanguage]] ofType:@"json"];
     NSString *myJSON = [[NSString alloc] initWithContentsOfFile:jsonMenuFilePath encoding:NSUTF8StringEncoding error:NULL];
     
     NSError *error = nil;
     NSMutableDictionary *myResult = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    //menuArray = [[NSMutableArray alloc] init];
     menuArray = [myResult objectForKey:@"data"];
     [menuArray retain];
     
@@ -293,32 +436,26 @@
         if (i == 0) {
             BtnImgON = [UIImage imageNamed:@"menu_value_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_value_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuValue", nil);
         }
         else if (i == 1) {
             BtnImgON = [UIImage imageNamed:@"menu_classic_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_classic_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuClassic", nil);
         }
         else if (i == 2) {
             BtnImgON = [UIImage imageNamed:@"menu_premium_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_premium_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuPremium", nil);
         }
         else if (i == 3) {
             BtnImgON = [UIImage imageNamed:@"menu_drink_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_drink_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuDrink", nil);
         }
         else if (i == 4) {
             BtnImgON = [UIImage imageNamed:@"menu_salad_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_salad_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuSalad", nil);
         }
         else if (i == 5) {
             BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
-            //btn1Lbl.text = NSLocalizedString(@"kMenuWrap", nil);
         }
 
         
@@ -353,6 +490,65 @@
     
     
     //---------
+    //DISPLAY SUB OF THE DAY
+    //---------
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
+    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
+    
+    int today = weekdayComponents.weekday-1;
+    NSLog(@"today : %i", today);
+    
+    BOOL hasBeenDisplay = NO;
+    
+    for (int i = 0; i < [menuArray count]; i++) {
+        
+        NSMutableArray *productsArray = [[menuArray objectAtIndex:i] objectForKey:@"products"];
+        
+        for (int y = 0; y < [productsArray count]; y++) {
+            
+            int requestSOD = [[[productsArray objectAtIndex:y] objectForKey:@"sub_of_the_day"] intValue];
+            NSLog(@"requestSOD : %i", requestSOD);
+            
+            if (requestSOD == today) {
+                
+                hasBeenDisplay = YES;
+                
+                CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 10, subOfTheDayView.frame.size.width, 50)];
+                [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:29.0]];
+                titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
+                [titleProductLbl setDrawOutline:YES];
+                [titleProductLbl setOutlineSize:strokeSize];
+                [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                titleProductLbl.textAlignment = UITextAlignmentCenter;
+                titleProductLbl.backgroundColor = [UIColor clearColor];
+                [subOfTheDayView addSubview:titleProductLbl];
+                [titleProductLbl release];
+                
+                UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                test.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
+                test.contentMode = UIViewContentModeScaleToFill;
+                [subOfTheDayView addSubview:test];
+                [test release];
+                
+                break;
+            }
+            
+            if (hasBeenDisplay == YES) {
+                break;
+            }
+            
+        }
+        
+    }
+    
+    [gregorianCalendar release];
+    
+    
+    [self showMoreInfoBtn];
+    
+    //---------
     //ANIMATE THE MENU
     //---------
     #define GROW_FACTOR 1.2f
@@ -376,16 +572,11 @@
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:MOVE_ANIMATION_DURATION_SECONDS];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(finishMenu)];
-	menuScroll.transform = CGAffineTransformMakeScale(SHRINK_FACTOR, SHRINK_FACTOR);
+    menuScroll.transform = CGAffineTransformMakeScale(SHRINK_FACTOR, SHRINK_FACTOR);
 	[UIView commitAnimations];
-}
-
-
--(void)showPopupInfo:(id)sender {
-    
     
 }
+
 
 #pragma mark ---------------
 #pragma mark ---------------
@@ -425,9 +616,31 @@
 #pragma mark ---------------
 
 
+-(void)showMoreInfoBtn {
+    
+    if (viewIsFlipped == NO) {
+        [UIView transitionFromView:subOfTheDayView toView:subOfTheDayViewInfo
+                          duration:1.0
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:NULL];
+        viewIsFlipped = YES;
+    }
+    else {
+        [UIView transitionFromView:subOfTheDayViewInfo toView:subOfTheDayView
+                          duration:1.0
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:NULL];
+        viewIsFlipped = NO;
+    }
+    
+    
+}
+
 -(void)LaunchMenuAction:(id)sender {
     
     int idCategory = [sender tag];
+    
+    
     
     if (firstTimeProductsViewAppear) {
         firstTimeProductsViewAppear = NO;
@@ -437,7 +650,7 @@
         [UIView animateWithDuration:0.5
                          animations:^{
                              
-                             [subOfTheDayView setFrame:CGRectMake(0, screenHeight, screenWidth, 253)];
+                             [subOfTheDayContainer setFrame:CGRectMake(0, screenHeight, screenWidth, 253)];
                              
                              
                          }
@@ -496,7 +709,6 @@
     [productsScroll scrollRectToVisible:toVisible animated:NO];
     
     
-    
     for (int i = 0; i < [menuArray count]; i++) {
         
         if ([[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue] == idCat) {
@@ -529,7 +741,6 @@
     
     for (int i = 0; i < [currentProductsArray count]; i++) {
      
-        NSLog(@"my image = %@", [[[[currentProductsArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]);
         
         UIImageView *ImageProduct = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[currentProductsArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
         ImageProduct.frame = CGRectMake(XPosImage, productsScroll.frame.size.height - 110, 300, 105);
@@ -750,15 +961,141 @@
 }
 
 
+-(void)hidePopupInfo {
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                        if (popupInfo.alpha == 1.0) {
+                            
+                            popupInfo.alpha = 0.0;
+                            
+                            float width = popupInfo.frame.size.width;
+                            float height = 0;
+                            float newPosition = 168;
+                            CGRect toVisible = CGRectMake(12, newPosition, width, height);
+                            
+                            [popupInfo setFrame:toVisible];
+                            
+                        }
+                         
+                     }
+                     completion:^(BOOL finished){
+    
+                          }];
+    
+    tempProdFact = 0;
+    
+}
+
+-(void)showPopupInfo:(id)sender {
+    
+    int myIdTag = [sender tag];
+    NSLog(@"myIdTag : %i", myIdTag);
+    NSLog(@"tempProdFact : %i", tempProdFact);
+    
+    CGFloat pageWidth = productsScroll.bounds.size.width;
+    float fractionalPage = productsScroll.contentOffset.x / pageWidth ;
+    NSInteger nearestNumber = lround(fractionalPage) ;
+    
+    NSMutableArray *productFactsArray = [[currentProductsArray objectAtIndex:nearestNumber] objectForKey:@"product_facts"];
+    NSString *myDescription = @"";
+    
+    for (int i = 0; i < [productFactsArray count]; i++) {
+        
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue] == myIdTag) {
+            myDescription = [[productFactsArray objectAtIndex:i] objectForKey:@"description"];
+            break;
+        }
+
+    }
+    
+    
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         if (popupInfo.alpha == 0.0) {
+                             
+                             popupInfo.hidden = NO;
+                             popupInfo.alpha = 1.0;
+                             
+                             factDescriptionLbl.text = myDescription;
+                             
+                             float width = popupInfo.frame.size.width;
+                             float height = -168;
+                             float newPosition = popupInfo.frame.origin.y;
+                             CGRect toVisible = CGRectMake(12, newPosition, width, height);
+                             
+                             [popupInfo setFrame:toVisible];
+                             
+                         }else {
+                             
+                             popupInfo.alpha = 0.0;
+                             
+                             float width = popupInfo.frame.size.width;
+                             float height = 0;
+                             float newPosition = 168;
+                             CGRect toVisible = CGRectMake(12, newPosition, width, height);
+                             
+                             [popupInfo setFrame:toVisible];
+                             
+                             
+                         }
+                         
+                         
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         if (tempProdFact != myIdTag && popupInfo.alpha == 0.0) {
+                             
+                             [UIView animateWithDuration:0.2
+                                              animations:^{
+                                                  
+                                                  popupInfo.hidden = NO;
+                                                  popupInfo.alpha = 1.0;
+                                                  
+                                                  factDescriptionLbl.text = myDescription;
+                                                  
+                                                  float width = popupInfo.frame.size.width;
+                                                  float height = -168;
+                                                  float newPosition = popupInfo.frame.origin.y;
+                                                  CGRect toVisible = CGRectMake(12, newPosition, width, height);
+                                                  
+                                                  [popupInfo setFrame:toVisible];
+                                                  
+                                                  
+                                              }
+                                              completion:^(BOOL finished){
+                                                  
+                                                  tempProdFact = myIdTag;
+                                                  
+                                              }];
+                             
+                         }else {
+                             
+                             if (popupInfo.alpha == 0.0) {
+                                 popupInfo.hidden = YES;
+                             }
+                             
+                             tempProdFact = myIdTag;
+                         }
+                         
+                     }];
+    
+    
+    if (tempProdFact == 0) {
+        tempProdFact = myIdTag;
+    }
+    
+}
+
+
+
 -(void)finishMenu
 {
-    
-    UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_sub@2x"]];
-    test.frame = CGRectMake((screenWidth-236)/2, subOfTheDayView.frame.size.height - 140, 236, 105);
-    test.contentMode = UIViewContentModeScaleToFill;
-    [subOfTheDayView addSubview:test];
-    [test release];
-    
     
 	CATransition *transition = [CATransition animation];
 	transition.duration = 0.75;

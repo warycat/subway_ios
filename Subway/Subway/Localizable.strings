@@ -67,6 +67,8 @@
 "kMenuSalad" = "Salad";
 "kMenuWrap" = "Wrap";
 
+"learnMore_btn_txt" = "LEARN MORE";
+"back_btn_txt" = "BACK"; 
 
 
 // ------------------ HUD

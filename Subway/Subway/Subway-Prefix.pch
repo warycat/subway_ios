@@ -36,8 +36,8 @@
 // ---------------------
 
 #define ADRESS [NSString stringWithFormat:@"http://%@:%i/", NODE_URL, PORT]
-#define NODE_URL @"192.168.1.108"
-#define PORT 3000
+#define NODE_URL @"222.73.219.19"
+#define PORT 20114
 
 
 #define DATABASE_FILENAME @"subway.db"
