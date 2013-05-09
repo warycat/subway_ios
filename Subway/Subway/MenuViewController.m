@@ -103,6 +103,16 @@
     
     [subOfTheDayViewInfo addSubview:backInfobtn];
     
+    //Create scroll info for sub of the day
+    UIScrollView *infoScrollSubOfTheDay = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 10, subOfTheDayViewInfo.frame.size.width - 20, subOfTheDayViewInfo.frame.size.height - 80)];
+    infoScrollSubOfTheDay.clipsToBounds = YES;
+    infoScrollSubOfTheDay.hidden = NO;
+    infoScrollSubOfTheDay.backgroundColor = [UIColor clearColor];
+    infoScrollSubOfTheDay.pagingEnabled = NO;
+    infoScrollSubOfTheDay.bounces = YES;
+    infoScrollSubOfTheDay.showsHorizontalScrollIndicator = NO;
+    [subOfTheDayViewInfo addSubview:infoScrollSubOfTheDay];
+    [infoScrollSubOfTheDay release];
     
     
     // the Sub Of the Day MAIN VIEW
@@ -233,14 +243,14 @@
     UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopupInfo)];
     swipeLeftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [swipeLeftRecognizer setNumberOfTouchesRequired:1];
-    [factDescriptionLbl addGestureRecognizer:swipeLeftRecognizer];
+    [popupInfo addGestureRecognizer:swipeLeftRecognizer];
     [swipeLeftRecognizer release];
     
     
     UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopupInfo)];
     swipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [swipeRightRecognizer setNumberOfTouchesRequired:1];
-    [factDescriptionLbl addGestureRecognizer:swipeRightRecognizer];
+    [popupInfo addGestureRecognizer:swipeRightRecognizer];
     [swipeRightRecognizer release];
     // ---
     
@@ -450,12 +460,18 @@
             BtnImgOFF = [UIImage imageNamed:@"menu_drink_off@2x"];
         }
         else if (i == 4) {
+            BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
+            BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
+        }
+        else if (i == 5) {
             BtnImgON = [UIImage imageNamed:@"menu_salad_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_salad_off@2x"];
+            
         }
         else if (i == 5) {
             BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
             BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
+            
         }
 
         
@@ -508,7 +524,6 @@
         for (int y = 0; y < [productsArray count]; y++) {
             
             int requestSOD = [[[productsArray objectAtIndex:y] objectForKey:@"sub_of_the_day"] intValue];
-            NSLog(@"requestSOD : %i", requestSOD);
             
             if (requestSOD == today) {
                 
@@ -526,12 +541,86 @@
                 [subOfTheDayView addSubview:titleProductLbl];
                 [titleProductLbl release];
                 
-                UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
-                test.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
-                test.contentMode = UIViewContentModeScaleToFill;
-                [subOfTheDayView addSubview:test];
-                [test release];
+                UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
+                mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
+                [subOfTheDayView addSubview:mainImgSubOfTheDay];
+                [mainImgSubOfTheDay release];
                 
+                
+                UIImageView *logoDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_suboftheday@2x"]];
+                logoDay.frame = CGRectMake(20, 50, 103, 74);
+                logoDay.contentMode = UIViewContentModeScaleToFill;
+                [subOfTheDayView addSubview:logoDay];
+                [logoDay release];
+                
+                int yPosFacts = 0;
+                
+                for (int z = 0; z < [[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]; z++) {
+                    
+                    
+                    UIImage *myImageFact = nil;
+                    NSString *factType = [[[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] objectAtIndex:z] objectForKey:@"type"];
+                    NSString *factName = @"";
+                    
+                    
+                    if ([factType isEqualToString:@"T"]) {
+                        myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
+                        factName = @"tasty flavor";
+                    }else if ([factType isEqualToString:@"E"]) {
+                        myImageFact = [UIImage imageNamed:@"icon_energy@2x"];
+                        factName = @"energy boost";
+                    }else if ([factType isEqualToString:@"B"]) {
+                        myImageFact = [UIImage imageNamed:@"icon_build@2x"];
+                        factName = @"sandwichbuild";
+                    }else if ([factType isEqualToString:@"H"]) {
+                        myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
+                        factName = @"low fat";
+                    }
+                    
+                    UIImageView *factIconImg = [[UIImageView alloc] initWithImage:myImageFact];
+                    factIconImg.frame = CGRectMake((infoScrollSubOfTheDay.frame.size.width-43)/2, yPosFacts, 43, 43);
+                    factIconImg.contentMode = UIViewContentModeScaleToFill;
+                    [infoScrollSubOfTheDay addSubview:factIconImg];
+                    [factIconImg release];
+                    
+                    CustomLabel *factTitleImg = [[CustomLabel alloc] initWithFrame:CGRectMake(factIconImg.frame.origin.x - 6, factIconImg.frame.size.height + factIconImg.frame.origin.y - 1, 54, 10)];
+                    [factTitleImg setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+                    factTitleImg.text = factName;
+                    [factTitleImg setDrawOutline:YES];
+                    [factTitleImg setOutlineSize:strokeSize];
+                    [factTitleImg setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    factTitleImg.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    factTitleImg.textAlignment = UITextAlignmentCenter;
+                    factTitleImg.backgroundColor = [UIColor clearColor];
+                    [infoScrollSubOfTheDay addSubview:factTitleImg];
+                    [factTitleImg release];
+                    
+                    
+                    UIFont *fontSD = [UIFont fontWithName:APEX_BOLD_ITALIC size:15.0];
+                    CGSize sizeForDesc = {infoScrollSubOfTheDay.frame.size.width - 20,300.0f};
+                    
+                    NSString *myText = [[[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] objectAtIndex:z] objectForKey:@"description"];
+                    CGSize descSize = [myText sizeWithFont:fontSD
+                                          constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
+                    
+                    
+                    CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(10, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 20, descSize.height)];
+                    [factLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.0]];
+                    factLbl.text = myText;
+                    [factLbl setDrawOutline:NO];
+                    factLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    factLbl.textAlignment = UITextAlignmentCenter;
+                    factLbl.numberOfLines = 0;
+                    factLbl.backgroundColor = [UIColor clearColor];
+                    [infoScrollSubOfTheDay addSubview:factLbl];
+                    [factLbl release];
+                    
+                    yPosFacts = yPosFacts + descSize.height + 20 + 50; // (60 is the Image + the text size)
+                    
+                }
+                
+                infoScrollSubOfTheDay.contentSize = CGSizeMake(infoScrollSubOfTheDay.frame.size.height, yPosFacts);
                 break;
             }
             
@@ -640,6 +729,9 @@
     
     int idCategory = [sender tag];
     
+    if (popupInfo.alpha == 1.0) {
+        [self hidePopupInfo];
+    }
     
     
     if (firstTimeProductsViewAppear) {
@@ -739,9 +831,15 @@
 
     int XPosImage = 0;
     
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
+    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
+    
+    int today = weekdayComponents.weekday-1;
+    NSLog(@"today : %i", today);
+    
     for (int i = 0; i < [currentProductsArray count]; i++) {
      
-        
         UIImageView *ImageProduct = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[currentProductsArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
         ImageProduct.frame = CGRectMake(XPosImage, productsScroll.frame.size.height - 110, 300, 105);
         [productsScroll addSubview:ImageProduct];
@@ -759,9 +857,22 @@
         [productsScroll addSubview:titleProductLbl];
         [titleProductLbl release];
         
+        int requestSOD = [[[currentProductsArray objectAtIndex:i] objectForKey:@"sub_of_the_day"] intValue];
+        
+        if (requestSOD == today) {
+            
+            UIImageView *logoDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_suboftheday@2x"]];
+            logoDay.frame = CGRectMake(XPosImage + 10, 40, 103, 74);
+            logoDay.contentMode = UIViewContentModeScaleToFill;
+            [productsScroll addSubview:logoDay];
+            [logoDay release];
+            
+        }
         
         XPosImage = XPosImage + productsScroll.frame.size.width;
     }
+    
+    [gregorianCalendar release];
     
     [self redrawButtonsInfo:0];
 
@@ -962,6 +1073,7 @@
 
 
 -(void)hidePopupInfo {
+    
     
     [UIView animateWithDuration:0.2
                      animations:^{

@@ -8,6 +8,17 @@
 	<string>Subway</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>icon.png</string>
+				<string>icon@2x.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.c3o.subway</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -24,6 +35,23 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ApexNew-Bold.otf</string>
+		<string>ApexNew-BoldItalic.otf</string>
+		<string>ApexNew-Book.otf</string>
+		<string>ApexNew-BookItalic.otf</string>
+		<string>ApexNew-Heavy.otf</string>
+		<string>ApexNew-HeavyItalic.otf</string>
+		<string>ApexNew-Light.otf</string>
+		<string>ApexNew-LightItalic.otf</string>
+		<string>ApexNew-Medium.otf</string>
+		<string>ApexNew-MediumItalic.otf</string>
+		<string>ApexNew-Thin.otf</string>
+		<string>ApexNew-ThinItalic.otf</string>
+		<string>ApexNew-Ultra.otf</string>
+		<string>ApexNew-UltraItalic.otf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -35,22 +63,5 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-    <key>UIAppFonts</key>
-    <array>
-        <string>ApexNew-Bold.otf</string>
-        <string>ApexNew-BoldItalic.otf</string>
-        <string>ApexNew-Book.otf</string>
-        <string>ApexNew-BookItalic.otf</string>
-        <string>ApexNew-Heavy.otf</string>
-        <string>ApexNew-HeavyItalic.otf</string>
-        <string>ApexNew-Light.otf</string>
-        <string>ApexNew-LightItalic.otf</string>
-        <string>ApexNew-Medium.otf</string>
-        <string>ApexNew-MediumItalic.otf</string>
-        <string>ApexNew-Thin.otf</string>
-        <string>ApexNew-ThinItalic.otf</string>
-        <string>ApexNew-Ultra.otf</string>
-        <string>ApexNew-UltraItalic.otf</string>
-    </array>
 </dict>
 </plist>

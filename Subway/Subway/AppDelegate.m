@@ -23,6 +23,9 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
+    [TestFlight takeOff:@"9c7d0d95-9fb2-49df-9f70-601eeec1eb4b"];
+    
+    
     //Set Language For app.
     [settingMethod setLanguage];
     
@@ -62,6 +65,41 @@
     NSLog(@"--------------------------------------------------------------");
     
 }
+
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+
+    NSLog(@"deviceToken:%@",deviceToken);
+
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //    NSLog(@"didFailToRegisterForRemoteNotificationsWithError");
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    
+    if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"] != NULL ) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"APNS"
+                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                                       delegate:self
+                                              cancelButtonTitle:@" 关闭"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+}
+
+
+
+// -----------------------------
+// ---------------------------------------------------------------------------------------
+// -----------------------------
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

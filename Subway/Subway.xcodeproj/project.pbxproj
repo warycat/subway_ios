@@ -12,6 +12,13 @@
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
 		EB5F625A172A55A8006E053B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6259172A55A7006E053B /* UIViewController+KNSemiModal.m */; };
+		EB869514173B872E004C9092 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB869513173B872E004C9092 /* libz.dylib */; };
+		EB869518173B8754004C9092 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB869516173B8754004C9092 /* libTestFlight.a */; };
+		EB86951E173B91FC004C9092 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EB86951D173B91FB004C9092 /* icon.png */; };
+		EB869520173B9201004C9092 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB86951F173B9201004C9092 /* icon@2x.png */; };
+		EB869523173B93CE004C9092 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = EB869521173B93CE004C9092 /* default.png */; };
+		EB869524173B93CE004C9092 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB869522173B93CE004C9092 /* default@2x.png */; };
+		EB86952C173B94D2004C9092 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB86952B173B94D2004C9092 /* Default-568h@2x.png */; };
 		EB989131172AAF5400E75638 /* MapPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = EB98912C172AAF5400E75638 /* MapPlace.m */; };
 		EB989132172AAF5400E75638 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = EB98912E172AAF5400E75638 /* MKMapView+ZoomLevel.m */; };
 		EB989133172AAF5400E75638 /* ViewMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB989130172AAF5400E75638 /* ViewMapAnnotationView.m */; };
@@ -155,6 +162,14 @@
 		EB5F6256172A3441006E053B /* StoreLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreLocator.m; sourceTree = "<group>"; };
 		EB5F6258172A55A7006E053B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		EB5F6259172A55A7006E053B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		EB869513173B872E004C9092 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EB869516173B8754004C9092 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		EB869517173B8754004C9092 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		EB86951D173B91FB004C9092 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		EB86951F173B9201004C9092 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		EB869521173B93CE004C9092 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = Subway/Ressources/Images/default.png; sourceTree = "<group>"; };
+		EB869522173B93CE004C9092 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "Subway/Ressources/Images/default@2x.png"; sourceTree = "<group>"; };
+		EB86952B173B94D2004C9092 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EB98912B172AAF5400E75638 /* MapPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPlace.h; sourceTree = "<group>"; };
 		EB98912C172AAF5400E75638 /* MapPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPlace.m; sourceTree = "<group>"; };
 		EB98912D172AAF5400E75638 /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
@@ -312,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB869514173B872E004C9092 /* libz.dylib in Frameworks */,
 				EBCAA2E917326CA8007F33B2 /* AddressBook.framework in Frameworks */,
 				EBCAA2E7173250B0007F33B2 /* Social.framework in Frameworks */,
 				EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */,
@@ -325,6 +341,7 @@
 				EBB4CF9D171FADE9006DAF2F /* UIKit.framework in Frameworks */,
 				EBB4CF9F171FADE9006DAF2F /* Foundation.framework in Frameworks */,
 				EBB4CFA1171FADE9006DAF2F /* CoreGraphics.framework in Frameworks */,
+				EB869518173B8754004C9092 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +367,15 @@
 			path = Object;
 			sourceTree = "<group>";
 		};
+		EB869515173B8754004C9092 /* TestFlightSDK */ = {
+			isa = PBXGroup;
+			children = (
+				EB869516173B8754004C9092 /* libTestFlight.a */,
+				EB869517173B8754004C9092 /* TestFlight.h */,
+			);
+			path = TestFlightSDK;
+			sourceTree = "<group>";
+		};
 		EB98912A172AAF5400E75638 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,7 +394,11 @@
 		EBB4CF90171FADE9006DAF2F = {
 			isa = PBXGroup;
 			children = (
-				EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */,
+				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
+				EB869521173B93CE004C9092 /* default.png */,
+				EB869522173B93CE004C9092 /* default@2x.png */,
+				EB86951F173B9201004C9092 /* icon@2x.png */,
+				EB86951D173B91FB004C9092 /* icon.png */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
 				856FD18C1738D6DE001EED8D /* Helpers */,
 				EBB4D043171FD882006DAF2F /* Settings */,
@@ -389,6 +419,8 @@
 		EBB4CF9B171FADE9006DAF2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB869513173B872E004C9092 /* libz.dylib */,
+				EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */,
 				EBCAA2E817326CA8007F33B2 /* AddressBook.framework */,
 				EBCAA2E6173250B0007F33B2 /* Social.framework */,
 				EBB4D09117211207006DAF2F /* QuartzCore.framework */,
@@ -441,6 +473,7 @@
 			children = (
 				EBAC23F01733B706009D8519 /* product_all_cn.json */,
 				EBAC23F11733B706009D8519 /* product_all_en.json */,
+				EB869515173B8754004C9092 /* TestFlightSDK */,
 				EBB4D07D171FE58E006DAF2F /* Xib */,
 				EBB4D026171FD77B006DAF2F /* Fonts */,
 				EBB4CFC0171FBB48006DAF2F /* Images */,
@@ -789,6 +822,11 @@
 				EBAC24251737A60F009D8519 /* turkey_breast.png in Resources */,
 				EBAC24261737A60F009D8519 /* veggie.png in Resources */,
 				EBAC24271737A60F009D8519 /* wrap.png in Resources */,
+				EB86951E173B91FC004C9092 /* icon.png in Resources */,
+				EB869520173B9201004C9092 /* icon@2x.png in Resources */,
+				EB869523173B93CE004C9092 /* default.png in Resources */,
+				EB869524173B93CE004C9092 /* default@2x.png in Resources */,
+				EB86952C173B94D2004C9092 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +944,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
 				INFOPLIST_FILE = "Subway/Subway-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Subway/Ressources/TestFlightSDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -917,6 +959,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
 				INFOPLIST_FILE = "Subway/Subway-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Subway/Ressources/TestFlightSDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
