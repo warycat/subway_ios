@@ -114,7 +114,7 @@
     infoScrollSubOfTheDay.clipsToBounds = YES;
     infoScrollSubOfTheDay.hidden = NO;
     infoScrollSubOfTheDay.backgroundColor = [UIColor clearColor];
-    infoScrollSubOfTheDay.pagingEnabled = NO;
+    infoScrollSubOfTheDay.pagingEnabled = YES;
     infoScrollSubOfTheDay.bounces = YES;
     infoScrollSubOfTheDay.showsHorizontalScrollIndicator = NO;
     [subOfTheDayViewInfo addSubview:infoScrollSubOfTheDay];
@@ -560,7 +560,7 @@
                 [subOfTheDayView addSubview:logoDay];
                 [logoDay release];
                 
-                int yPosFacts = 0;
+                int xPosFacts = 0;
                 
                 for (int z = 0; z < [[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]; z++) {
                     
@@ -585,7 +585,7 @@
                     }
                     
                     UIImageView *factIconImg = [[UIImageView alloc] initWithImage:myImageFact];
-                    factIconImg.frame = CGRectMake((infoScrollSubOfTheDay.frame.size.width-43)/2, yPosFacts, 43, 43);
+                    factIconImg.frame = CGRectMake(xPosFacts + ((infoScrollSubOfTheDay.frame.size.width-43)/2), 5, 43, 43);
                     factIconImg.contentMode = UIViewContentModeScaleToFill;
                     [infoScrollSubOfTheDay addSubview:factIconImg];
                     [factIconImg release];
@@ -604,14 +604,14 @@
                     
                     
                     UIFont *fontSD = [UIFont fontWithName:APEX_BOLD_ITALIC size:15.0];
-                    CGSize sizeForDesc = {infoScrollSubOfTheDay.frame.size.width - 20,300.0f};
+                    CGSize sizeForDesc = {infoScrollSubOfTheDay.frame.size.width - 40,300.0f};
                     
                     NSString *myText = [[[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] objectAtIndex:z] objectForKey:@"description"];
                     CGSize descSize = [myText sizeWithFont:fontSD
                                           constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
                     
                     
-                    CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(10, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 20, descSize.height)];
+                    CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 40, descSize.height)];
                     [factLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.0]];
                     factLbl.text = myText;
                     [factLbl setDrawOutline:NO];
@@ -622,11 +622,11 @@
                     [infoScrollSubOfTheDay addSubview:factLbl];
                     [factLbl release];
                     
-                    yPosFacts = yPosFacts + descSize.height + 20 + 50; // (60 is the Image + the text size)
+                    xPosFacts = xPosFacts + infoScrollSubOfTheDay.frame.size.width; // (60 is the Image + the text size)
                     
                 }
                 
-                infoScrollSubOfTheDay.contentSize = CGSizeMake(infoScrollSubOfTheDay.frame.size.height, yPosFacts);
+                infoScrollSubOfTheDay.contentSize = CGSizeMake([[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height);
                 break;
             }
             
