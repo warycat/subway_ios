@@ -54,5 +54,8 @@
 // ----------------- CHECK WEIBO
 -(BOOL)weiboIsConnected;
 
+// ----------------- GET IMAGE PATH
+- (UIImage *)getImagePath:(NSString *)imageName ;
+
 @end
 

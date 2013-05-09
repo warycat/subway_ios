@@ -39,7 +39,7 @@
 // ------------------ HOME
 // ----------
 
-
+"allWeek_btn_txt" = " ALL WEEK";
 
 
 
@@ -67,7 +67,7 @@
 "kMenuSalad" = "Salad";
 "kMenuWrap" = "Wrap";
 
-"learnMore_btn_txt" = "LEARN MORE";
+"learnMore_btn_txt" = " LEARN MORE";
 "back_btn_txt" = "BACK"; 
 
 

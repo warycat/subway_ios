@@ -1,5 +1,5 @@
 //
-//  SettingMethod.h
+//  MenuMethod.h
 //  Subway
 //
 //  Created by ludo on 4/18/13.
@@ -7,52 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import "MBProgressHUD.h"
 
 
-@interface SettingMethod : NSObject < CLLocationManagerDelegate, MBProgressHUDDelegate>{
+@interface MenuMethod : NSObject {
 
-    
-    CLLocationManager *locationManager;
-    NSString *latitude;
-    NSString *longitude;
-    
-    
-    MBProgressHUD *HUD;
+    NSMutableArray *menuArray;
+
     
 }
 
+@property (retain, nonatomic) NSMutableArray *menuArray;
 
-+ (SettingMethod*) sharedSetting;
-@property (retain, nonatomic) NSString *latitude;
-@property (retain, nonatomic) NSString *longitude;
++ (MenuMethod*) sharedMenu;
 
+-(void)checkMeals;
 
-// ----------------- CHECK NETWORK
-- (BOOL) connectedToNetwork;
-
-// ----------------- JSON
--(id)postAndParseJson:(id)jsonDictionary action:(NSString *)action type:(NSString *)myType;
-
-// ----------------- CHECK EMAIL
--(BOOL) NSStringIsValidEmail:(NSString *)checkString;
-
-// ----------------- LANGUAGE 
--(void)setLanguage;
--(NSString *)getUserLanguage;
-
-// ----------------- LOCATION 
--(void)doLocation;
--(void)stopLocation;
--(void)startLocation;
--(NSString *)getDistanceFromMyLocation:(NSString *)placeLatitude placeLongitude:(NSString *)placeLongitude;
-
-// ----------------- HUD 
--(void)HUDMessage:(NSString *)theMessage typeOfIcon:(NSString *)myIconName delay:(int)myDelay offset:(CGPoint)myOffset;
-
-// ----------------- CHECK WEIBO
--(BOOL)weiboIsConnected;
 
 @end
 

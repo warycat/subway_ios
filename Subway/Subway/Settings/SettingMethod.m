@@ -376,9 +376,39 @@ static SettingMethod * setting;
         return NO;
     }
     
-    
 }
 
+
+// =================GET IMAGE PATH =================
+
+- (UIImage *)getImagePath:(NSString *)imageName {
+	
+	// FILE MANAGER
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	
+	// DOCUMENT PATH
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	
+	NSString* fullFileName = imageName;
+	NSString* fileName = [[fullFileName lastPathComponent] stringByDeletingPathExtension];
+	NSString* extension = [fullFileName pathExtension];
+	
+	// FILEPATH
+	NSString* filepath     = [NSString stringWithFormat:@"%@/img/%@", documentsDirectory,fullFileName];
+    
+	// CHOOSE / GET IMAGE FROM CORRECT DIRECTORY (UPDATE in Documents/img/ OR NATIVE in Bundle)
+	UIImage *image;
+	if ([fileManager fileExistsAtPath:filepath]) {
+		image = [UIImage imageWithContentsOfFile:filepath];
+	} else {
+		image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:extension]];
+	}
+    
+	[fileManager release];
+	return image;
+	
+}
 
 
 

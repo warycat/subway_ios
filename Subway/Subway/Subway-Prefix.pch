@@ -20,6 +20,7 @@
     //-- IMPORT personal Objects
     #import "DisplayMethod.h"
     #import "SettingMethod.h"
+    #import "MenuMethod.h"
     #import "StoreLocator.h"
 #endif
 
@@ -44,6 +45,7 @@
 #define settingMethod       [SettingMethod sharedSetting]
 #define displayMethod       [DisplayMethod sharedDisplay]
 #define databaseMethod      [DatabaseMethod sharedDatabase]
+#define menuMethod          [MenuMethod sharedMenu]
 
 #define storeMethod          [StoreLocator storeFunction]
 

@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomePageController : UIViewController
+@interface HomePageController : UIViewController {
+    
+    UIView *subOfTheDayContainer;
+    UIView *subOfTheDayView;
+    UIView *subOfTheDayViewInfo;
+    BOOL viewIsFlipped;
+    
+    
+}
+
+@property (nonatomic, strong) UIView *subOfTheDayContainer;
+@property (nonatomic, strong) UIView *subOfTheDayView;
+@property (nonatomic, strong) UIView *subOfTheDayViewInfo;
+
 
 @end

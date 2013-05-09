@@ -60,6 +60,12 @@
     // -----------------
     
     subOfTheDayContainer = [[UIView alloc] initWithFrame:CGRectMake(0, screenHeight - 253 - 55, screenWidth, 253)];
+    
+    if( IS_4_INCH_SCREEN ) {
+        [subOfTheDayContainer setFrame:CGRectMake(0, screenHeight - 273 - 55, screenWidth, 253)];
+    }
+    
+    
     subOfTheDayContainer.backgroundColor = [UIColor clearColor];
     [self.view addSubview:subOfTheDayContainer];
     
@@ -90,7 +96,7 @@
     
     
     CustomLabel *backLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, backInfobtn.frame.size.width, backInfobtn.frame.size.height)];
-    [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
     backLbl.text = NSLocalizedString(@"back_btn_txt", nil);
     [backLbl setDrawOutline:YES];
     [backLbl setOutlineSize:strokeSize];
@@ -129,7 +135,7 @@
     // --------------- + informations
         
     UIButton *showMOreInfobtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    showMOreInfobtn.frame = CGRectMake((screenWidth-130)/2, subOfTheDayView.frame.size.height - 55, 130, 40);
+    showMOreInfobtn.frame = CGRectMake((screenWidth-135)/2, subOfTheDayView.frame.size.height - 55, 140, 40);
     showMOreInfobtn.userInteractionEnabled = YES;
     [showMOreInfobtn setBackgroundImage:myLocationImageOn forState:UIControlStateNormal];
     [showMOreInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateSelected];
@@ -137,13 +143,13 @@
     [showMOreInfobtn addTarget:self action:@selector(showMoreInfoBtn) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *logoPLus = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_aroundme@2x"]];
-    logoPLus.frame = CGRectMake(15, (showMOreInfobtn.frame.size.height-25)/2, 25, 25);
+    logoPLus.frame = CGRectMake(10, (showMOreInfobtn.frame.size.height-25)/2, 25, 25);
     [showMOreInfobtn addSubview:logoPLus];
     [logoPLus release];
     
     
-    CustomLabel *learnLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoPLus.frame.size.width + logoPLus.frame.origin.x - 1, 3, 90, showMOreInfobtn.frame.size.height)];
-    [learnLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    CustomLabel *learnLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoPLus.frame.size.width + logoPLus.frame.origin.x - 1, 3, 100, showMOreInfobtn.frame.size.height)];
+    [learnLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
     learnLbl.text = NSLocalizedString(@"learnMore_btn_txt", nil);
     [learnLbl setDrawOutline:YES];
     [learnLbl setOutlineSize:strokeSize];
@@ -201,6 +207,7 @@
     //---CREATE POPUP INFO
     popupInfo = [[UIView alloc] init];
     [popupInfo setFrame:CGRectMake(12, 168, productsView.frame.size.width - 21, 0)];
+
     popupInfo.backgroundColor = [UIColor clearColor];
     popupInfo.clipsToBounds = YES;
     popupInfo.userInteractionEnabled = YES;
@@ -408,16 +415,15 @@
     // ----------------- CREATE MENU & OVERALL VIEW INFO
     // -----------------
     
-    NSString *jsonMenuFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"product_all_%@", [settingMethod getUserLanguage]] ofType:@"json"];
-    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:jsonMenuFilePath encoding:NSUTF8StringEncoding error:NULL];
-    
-    NSError *error = nil;
-    NSMutableDictionary *myResult = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-    
-    menuArray = [myResult objectForKey:@"data"];
+    menuArray = menuMethod.menuArray;
     [menuArray retain];
     
     menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, screenWidth - 18, 90)];
+    
+    if( IS_4_INCH_SCREEN ) {
+        [menuScroll setFrame:CGRectMake(10, 95, screenWidth - 18, 90)];
+    }
+    
     menuScroll.clipsToBounds = NO;
     menuScroll.delegate = self;
     menuScroll.hidden = NO;
@@ -751,7 +757,13 @@
                              [UIView animateWithDuration:0.5
                                               animations:^{
                                                   
-                                                  [productsView setFrame:CGRectMake(0, screenHeight - 245 - 65 , screenWidth, 230)];
+                                                  if( IS_4_INCH_SCREEN ) {
+                                                      [productsView setFrame:CGRectMake(0, screenHeight - 265 - 65 , screenWidth, 230)];
+                                                  }else {
+                                                      [productsView setFrame:CGRectMake(0, screenHeight - 245 - 65 , screenWidth, 230)];
+                                                  }
+                                                  
+                                                  
                                                   
                                               }
                                               completion:^(BOOL finished){

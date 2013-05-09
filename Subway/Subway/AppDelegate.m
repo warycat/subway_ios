@@ -32,6 +32,9 @@
     //Get User Location
     [settingMethod doLocation];
     
+    //Check Meals
+    [menuMethod checkMeals];
+    
     // Override point for customization after application launch.
     self.viewController = [[[HomePageController alloc] initWithNibName:@"HomePageController" bundle:nil] autorelease];
     UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:self.viewController] autorelease];
