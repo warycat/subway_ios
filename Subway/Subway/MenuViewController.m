@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StoreLocatorViewController.h"
+#import "HowToOrderViewController.h"
 
 @interface MenuViewController ()
 
@@ -18,7 +19,7 @@
 @synthesize menuScroll;
 @synthesize subOfTheDayView, subOfTheDayContainer, subOfTheDayViewInfo;
 @synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
-@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factDescriptionLbl;
+@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl;
 @synthesize healthLbl, tastyLbl, energyLbl, buildLbl;
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -233,6 +234,25 @@
     [popupInfo addSubview:view];
     [popupInfo addSubview:view2];
     
+    
+    // Fasts Title
+    factTitleLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 45, popupInfo.frame.size.width, 20)];
+    [factTitleLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:18.0]];
+    factTitleLbl.text = @"";
+    [factTitleLbl setDrawOutline:YES];
+    [factTitleLbl setOutlineSize:strokeSize];
+    [factTitleLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    factTitleLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    factTitleLbl.textAlignment = UITextAlignmentLeft;
+    factTitleLbl.backgroundColor = [UIColor clearColor];
+    [popupInfo addSubview:factTitleLbl];
+    
+    // Facts Image
+    factIconImgForPopup = [[UIImageView alloc] init];
+    factIconImgForPopup.frame = CGRectMake(popupInfo.frame.size.width - 38, 38, 33, 33);
+    factIconImgForPopup.contentMode = UIViewContentModeScaleToFill;
+    [popupInfo addSubview:factIconImgForPopup];
+    
     // Facts Description
     factDescriptionLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 60, popupInfo.frame.size.width - 10, 100)];
     [factDescriptionLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
@@ -310,7 +330,7 @@
     
     healthLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(healthShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [healthLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    healthLbl.text = @"low fat";
+    healthLbl.text = NSLocalizedString(@"kLowFat", nil);
     [healthLbl setDrawOutline:YES];
     [healthLbl setOutlineSize:strokeSize];
     [healthLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
@@ -319,7 +339,6 @@
     healthLbl.backgroundColor = [UIColor clearColor];
     [productsView addSubview:healthLbl];
     [healthLbl release];
-    
     
     //---TASTY
     UIImage *tastyImgON = [UIImage imageNamed:@"icon_tasty@2x"];
@@ -335,7 +354,7 @@
     
     tastyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(tastyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [tastyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    tastyLbl.text = @"tasty flavor";
+    tastyLbl.text = NSLocalizedString(@"kTastyFlavor", nil);
     [tastyLbl setDrawOutline:YES];
     [tastyLbl setOutlineSize:strokeSize];
     [tastyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
@@ -360,7 +379,7 @@
     
     energyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(energyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [energyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    energyLbl.text = @"energy boost";
+    energyLbl.text = NSLocalizedString(@"kEnergyBoost", nil);
     [energyLbl setDrawOutline:YES];
     [energyLbl setOutlineSize:strokeSize];
     [energyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
@@ -385,7 +404,7 @@
     
     buildLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(buildShareBtn.frame.origin.x - 6, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 52, 10)];
     [buildLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    buildLbl.text = @"sandwichbuild";
+    buildLbl.text = NSLocalizedString(@"kSandwichBuild", nil);
     [buildLbl setDrawOutline:YES];
     [buildLbl setOutlineSize:strokeSize];
     [buildLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
@@ -441,8 +460,8 @@
     for (int i = 0; i < [menuArray count]; i++) {
         
         
-        CustomLabel *btn1Lbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 90 - 31, 90, 25)];
-        [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12]];
+        CustomLabel *btn1Lbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 90 - 31, 80, 25)];
+        [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:11]];
         [btn1Lbl setDrawOutline:NO];
         btn1Lbl.textColor = [UIColorCov colorWithHexString:GREEN_TEXT];
         btn1Lbl.textAlignment = UITextAlignmentCenter;
@@ -488,7 +507,7 @@
         [menuBtn setBackgroundImage:[BtnImgOFF stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateHighlighted];
-        [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateReserved];
+        [menuBtn setBackgroundImage:[BtnImgOFF stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateReserved];
         [menuBtn addTarget:self action:@selector(LaunchMenuAction:) forControlEvents:UIControlEventTouchDown];
         [menuScroll  addSubview:menuBtn];
         [menuBtn release];
@@ -572,16 +591,16 @@
                     
                     if ([factType isEqualToString:@"T"]) {
                         myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
-                        factName = @"tasty flavor";
+                        factName = NSLocalizedString(@"kTastyFlavor", nil);
                     }else if ([factType isEqualToString:@"E"]) {
                         myImageFact = [UIImage imageNamed:@"icon_energy@2x"];
-                        factName = @"energy boost";
+                        factName = NSLocalizedString(@"kEnergyBoost", nil);
                     }else if ([factType isEqualToString:@"B"]) {
                         myImageFact = [UIImage imageNamed:@"icon_build@2x"];
-                        factName = @"sandwichbuild";
+                        factName = NSLocalizedString(@"kSandwichBuild", nil);
                     }else if ([factType isEqualToString:@"H"]) {
                         myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
-                        factName = @"low fat";
+                        factName = NSLocalizedString(@"kLowFat", nil);
                     }
                     
                     UIImageView *factIconImg = [[UIImageView alloc] initWithImage:myImageFact];
@@ -700,7 +719,13 @@
 
 -(void)pushOptionsView { }
 
--(void)pushHowToView { }
+-(void)pushHowToView {
+
+    HowToOrderViewController *howToOrderView = [[HowToOrderViewController alloc] init];
+    [self presentModalViewController:howToOrderView animated:YES];
+    [howToOrderView release];
+
+}
 
 
 
@@ -734,6 +759,37 @@
 -(void)LaunchMenuAction:(id)sender {
     
     int idCategory = [sender tag];
+    
+    for (UIView *sub in menuScroll.subviews) {
+        
+        if ([sub isKindOfClass:[UIButton class]]) {
+            
+            UIButton *myButton = (UIButton *)sub;
+            
+            if (sub.tag == idCategory) {
+                
+                UIImage *myImageNormal = [myButton backgroundImageForState:UIControlStateNormal];
+                UIImage *myImageSelected = [myButton backgroundImageForState:UIControlStateSelected];
+                
+                [myButton setBackgroundImage:[myImageSelected stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+                [myButton setBackgroundImage:[myImageNormal stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
+           
+            }else {
+                
+                UIImage *myImageHighlighted = [myButton backgroundImageForState:UIControlStateHighlighted];
+                UIImage *myImageReserved = [myButton backgroundImageForState:UIControlStateReserved];
+                
+                [myButton setBackgroundImage:[myImageReserved stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+                [myButton setBackgroundImage:[myImageHighlighted stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
+                
+            }
+
+            
+        }
+        
+    }
+    
+
     
     if (popupInfo.alpha == 1.0) {
         [self hidePopupInfo];
@@ -1115,8 +1171,6 @@
 -(void)showPopupInfo:(id)sender {
     
     int myIdTag = [sender tag];
-    NSLog(@"myIdTag : %i", myIdTag);
-    NSLog(@"tempProdFact : %i", tempProdFact);
     
     CGFloat pageWidth = productsScroll.bounds.size.width;
     float fractionalPage = productsScroll.contentOffset.x / pageWidth ;
@@ -1124,11 +1178,32 @@
     
     NSMutableArray *productFactsArray = [[currentProductsArray objectAtIndex:nearestNumber] objectForKey:@"product_facts"];
     NSString *myDescription = @"";
+    UIImage *myImageFact = nil;
+    NSString *factName = @"";
     
     for (int i = 0; i < [productFactsArray count]; i++) {
         
         if ([[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue] == myIdTag) {
             myDescription = [[productFactsArray objectAtIndex:i] objectForKey:@"description"];
+            
+            NSString *factType = [[productFactsArray objectAtIndex:i] objectForKey:@"type"];
+            
+
+            if ([factType isEqualToString:@"T"]) {
+                myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
+                factName = NSLocalizedString(@"kTasty", nil);
+            }else if ([factType isEqualToString:@"E"]) {
+                myImageFact = [UIImage imageNamed:@"icon_energy@2x"];
+                factName = NSLocalizedString(@"kEnergy", nil);
+            }else if ([factType isEqualToString:@"B"]) {
+                myImageFact = [UIImage imageNamed:@"icon_build@2x"];
+                factName = NSLocalizedString(@"kBuild", nil);
+            }else if ([factType isEqualToString:@"H"]) {
+                myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
+                factName = NSLocalizedString(@"kHealth", nil);
+            }
+    
+            
             break;
         }
 
@@ -1144,7 +1219,9 @@
                              popupInfo.hidden = NO;
                              popupInfo.alpha = 1.0;
                              
+                             factTitleLbl.text = factName;
                              factDescriptionLbl.text = myDescription;
+                             factIconImgForPopup.image = myImageFact;
                              
                              float width = popupInfo.frame.size.width;
                              float height = -168;
@@ -1181,6 +1258,8 @@
                                                   popupInfo.hidden = NO;
                                                   popupInfo.alpha = 1.0;
                                                   
+                                                  factTitleLbl.text = factName;
+                                                  factIconImgForPopup.image = myImageFact;
                                                   factDescriptionLbl.text = myDescription;
                                                   
                                                   float width = popupInfo.frame.size.width;

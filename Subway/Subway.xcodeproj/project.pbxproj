@@ -10,6 +10,17 @@
 		856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856FD18A1738D6D0001EED8D /* FrameworkChecker.m */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
+		EB41E05A173CD350008146B9 /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB41E059173CD350008146B9 /* HowToOrderViewController.m */; };
+		EB41E061173D025F008146B9 /* howtoorder-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E05E173D025F008146B9 /* howtoorder-bg@2x.png */; };
+		EB41E062173D025F008146B9 /* howtoorder-numbersbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E05F173D025F008146B9 /* howtoorder-numbersbg@2x.png */; };
+		EB41E063173D025F008146B9 /* howtoorder-titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E060173D025F008146B9 /* howtoorder-titlebg@2x.png */; };
+		EB41E06B173D0A3A008146B9 /* howtoorder_p1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E064173D0A3A008146B9 /* howtoorder_p1@2x.png */; };
+		EB41E06C173D0A3A008146B9 /* howtoorder_p2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E065173D0A3A008146B9 /* howtoorder_p2@2x.png */; };
+		EB41E06D173D0A3A008146B9 /* howtoorder_p3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E066173D0A3A008146B9 /* howtoorder_p3@2x.png */; };
+		EB41E06E173D0A3A008146B9 /* howtoorder_p4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E067173D0A3A008146B9 /* howtoorder_p4@2x.png */; };
+		EB41E06F173D0A3A008146B9 /* howtoorder_p5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E068173D0A3A008146B9 /* howtoorder_p5@2x.png */; };
+		EB41E070173D0A3A008146B9 /* howtoorder_p6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E069173D0A3A008146B9 /* howtoorder_p6@2x.png */; };
+		EB41E071173D0A3A008146B9 /* howtoorder_p7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB41E06A173D0A3A008146B9 /* howtoorder_p7@2x.png */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
 		EB5F625A172A55A8006E053B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6259172A55A7006E053B /* UIViewController+KNSemiModal.m */; };
 		EB869514173B872E004C9092 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB869513173B872E004C9092 /* libz.dylib */; };
@@ -157,6 +168,18 @@
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EB41E058173CD350008146B9 /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
+		EB41E059173CD350008146B9 /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
+		EB41E05E173D025F008146B9 /* howtoorder-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-bg@2x.png"; sourceTree = "<group>"; };
+		EB41E05F173D025F008146B9 /* howtoorder-numbersbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-numbersbg@2x.png"; sourceTree = "<group>"; };
+		EB41E060173D025F008146B9 /* howtoorder-titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-titlebg@2x.png"; sourceTree = "<group>"; };
+		EB41E064173D0A3A008146B9 /* howtoorder_p1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p1@2x.png"; sourceTree = "<group>"; };
+		EB41E065173D0A3A008146B9 /* howtoorder_p2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p2@2x.png"; sourceTree = "<group>"; };
+		EB41E066173D0A3A008146B9 /* howtoorder_p3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p3@2x.png"; sourceTree = "<group>"; };
+		EB41E067173D0A3A008146B9 /* howtoorder_p4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p4@2x.png"; sourceTree = "<group>"; };
+		EB41E068173D0A3A008146B9 /* howtoorder_p5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p5@2x.png"; sourceTree = "<group>"; };
+		EB41E069173D0A3A008146B9 /* howtoorder_p6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p6@2x.png"; sourceTree = "<group>"; };
+		EB41E06A173D0A3A008146B9 /* howtoorder_p7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p7@2x.png"; sourceTree = "<group>"; };
 		EB5F6255172A3441006E053B /* StoreLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreLocator.h; sourceTree = "<group>"; };
 		EB5F6256172A3441006E053B /* StoreLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreLocator.m; sourceTree = "<group>"; };
 		EB5F6258172A55A7006E053B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
@@ -357,6 +380,24 @@
 			path = Subway;
 			sourceTree = "<group>";
 		};
+		EB41E05D173D025F008146B9 /* HowTo */ = {
+			isa = PBXGroup;
+			children = (
+				EB41E064173D0A3A008146B9 /* howtoorder_p1@2x.png */,
+				EB41E065173D0A3A008146B9 /* howtoorder_p2@2x.png */,
+				EB41E066173D0A3A008146B9 /* howtoorder_p3@2x.png */,
+				EB41E067173D0A3A008146B9 /* howtoorder_p4@2x.png */,
+				EB41E068173D0A3A008146B9 /* howtoorder_p5@2x.png */,
+				EB41E069173D0A3A008146B9 /* howtoorder_p6@2x.png */,
+				EB41E06A173D0A3A008146B9 /* howtoorder_p7@2x.png */,
+				EB41E05E173D025F008146B9 /* howtoorder-bg@2x.png */,
+				EB41E05F173D025F008146B9 /* howtoorder-numbersbg@2x.png */,
+				EB41E060173D025F008146B9 /* howtoorder-titlebg@2x.png */,
+			);
+			name = HowTo;
+			path = ../HowTo;
+			sourceTree = "<group>";
+		};
 		EB5F6254172A341E006E053B /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +490,8 @@
 				EBB4D078171FE52D006DAF2F /* MenuViewController.m */,
 				EBB4D07A171FE544006DAF2F /* StoreLocatorViewController.h */,
 				EBB4D07B171FE544006DAF2F /* StoreLocatorViewController.m */,
+				EB41E058173CD350008146B9 /* HowToOrderViewController.h */,
+				EB41E059173CD350008146B9 /* HowToOrderViewController.m */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -485,6 +528,7 @@
 		EBB4CFC0171FBB48006DAF2F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EB41E05D173D025F008146B9 /* HowTo */,
 				EBB4CFC1171FBB5C006DAF2F /* general */,
 				EBB4CFE6171FBB67006DAF2F /* home */,
 				EBB4CFF3171FBB71006DAF2F /* meals */,
@@ -824,6 +868,16 @@
 				EB869523173B93CE004C9092 /* default.png in Resources */,
 				EB869524173B93CE004C9092 /* default@2x.png in Resources */,
 				EB86952C173B94D2004C9092 /* Default-568h@2x.png in Resources */,
+				EB41E061173D025F008146B9 /* howtoorder-bg@2x.png in Resources */,
+				EB41E062173D025F008146B9 /* howtoorder-numbersbg@2x.png in Resources */,
+				EB41E063173D025F008146B9 /* howtoorder-titlebg@2x.png in Resources */,
+				EB41E06B173D0A3A008146B9 /* howtoorder_p1@2x.png in Resources */,
+				EB41E06C173D0A3A008146B9 /* howtoorder_p2@2x.png in Resources */,
+				EB41E06D173D0A3A008146B9 /* howtoorder_p3@2x.png in Resources */,
+				EB41E06E173D0A3A008146B9 /* howtoorder_p4@2x.png in Resources */,
+				EB41E06F173D0A3A008146B9 /* howtoorder_p5@2x.png in Resources */,
+				EB41E070173D0A3A008146B9 /* howtoorder_p6@2x.png in Resources */,
+				EB41E071173D0A3A008146B9 /* howtoorder_p7@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +908,7 @@
 				EBAC242A1737C1A4009D8519 /* DDPageControl.m in Sources */,
 				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
+				EB41E05A173CD350008146B9 /* HowToOrderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

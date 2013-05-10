@@ -110,6 +110,19 @@
     [backInfobtn addTarget:self action:@selector(showMoreInfoBtn) forControlEvents:UIControlEventTouchUpInside];
     
     
+    //Create scroll info for sub of the day
+    UIScrollView *infoScrollSubOfTheDay = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 80, subOfTheDayViewInfo.frame.size.width - 20, subOfTheDayViewInfo.frame.size.height - 80)];
+    infoScrollSubOfTheDay.clipsToBounds = YES;
+    infoScrollSubOfTheDay.hidden = NO;
+    infoScrollSubOfTheDay.backgroundColor = [UIColor clearColor];
+    infoScrollSubOfTheDay.pagingEnabled = YES;
+    infoScrollSubOfTheDay.bounces = YES;
+    infoScrollSubOfTheDay.showsHorizontalScrollIndicator = NO;
+    [subOfTheDayViewInfo addSubview:infoScrollSubOfTheDay];
+    [infoScrollSubOfTheDay release];
+    
+    
+    
     CustomLabel *backLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, backInfobtn.frame.size.width, backInfobtn.frame.size.height)];
     [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
     backLbl.text = NSLocalizedString(@"back_btn_txt", nil);
@@ -123,17 +136,6 @@
     [backLbl release];
     
     [subOfTheDayViewInfo addSubview:backInfobtn];
-    
-    //Create scroll info for sub of the day
-    UIScrollView *infoScrollSubOfTheDay = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 10, subOfTheDayViewInfo.frame.size.width - 20, subOfTheDayViewInfo.frame.size.height - 80)];
-    infoScrollSubOfTheDay.clipsToBounds = YES;
-    infoScrollSubOfTheDay.hidden = NO;
-    infoScrollSubOfTheDay.backgroundColor = [UIColor clearColor];
-    infoScrollSubOfTheDay.pagingEnabled = NO;
-    infoScrollSubOfTheDay.bounces = YES;
-    infoScrollSubOfTheDay.showsHorizontalScrollIndicator = NO;
-    [subOfTheDayViewInfo addSubview:infoScrollSubOfTheDay];
-    [infoScrollSubOfTheDay release];
     
     
     // the Sub Of the Day MAIN VIEW
@@ -183,9 +185,7 @@
     
     int today = weekdayComponents.weekday-1;
     NSLog(@"today : %i", today);
-    
-    BOOL hasBeenDisplay = NO;
-    
+        
     for (int i = 0; i < [menuMethod.menuArray count]; i++) {
         
         NSMutableArray *productsArray = [[menuMethod.menuArray objectAtIndex:i] objectForKey:@"products"];
@@ -194,9 +194,17 @@
             
             int requestSOD = [[[productsArray objectAtIndex:y] objectForKey:@"sub_of_the_day"] intValue];
             
+            NSString *myWeekDay = @"";
+            
+            if      (requestSOD == 1)  { myWeekDay = NSLocalizedString(@"kMonday", nil); }
+            else if (requestSOD == 2)  { myWeekDay = NSLocalizedString(@"kTuesday", nil); }
+            else if (requestSOD == 3)  { myWeekDay = NSLocalizedString(@"kWednesday", nil); }
+            else if (requestSOD == 4)  { myWeekDay = NSLocalizedString(@"kThursday", nil); }
+            else if (requestSOD == 5)  { myWeekDay = NSLocalizedString(@"kFriday", nil); }
+            else if (requestSOD == 6)  { myWeekDay = NSLocalizedString(@"kSaturday", nil); }
+            else if (requestSOD == 7)  { myWeekDay = NSLocalizedString(@"kSunday", nil); }
+            
             if (requestSOD == today) {
-                
-                hasBeenDisplay = YES;
                 
                 CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, subOfTheDayView.frame.size.height - 44, subOfTheDayView.frame.size.width - 145, 40)];
                 [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:19.0]];
@@ -224,17 +232,97 @@
                 [subOfTheDayView addSubview:logoDay];
                 [logoDay release];
                 
+                //-------- Put the sub on the ALL WEEK subday
+                
+                
+                CustomLabel *titleProductForAllWeekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 20, infoScrollSubOfTheDay.frame.size.height - 44, infoScrollSubOfTheDay.frame.size.width - 145, 40)];
+                [titleProductForAllWeekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:17.0]];
+                titleProductForAllWeekLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
+                [titleProductForAllWeekLbl setDrawOutline:YES];
+                [titleProductForAllWeekLbl setOutlineSize:strokeSize];
+                [titleProductForAllWeekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                titleProductForAllWeekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                titleProductForAllWeekLbl.textAlignment = UITextAlignmentCenter;
+                titleProductForAllWeekLbl.backgroundColor = [UIColor clearColor];
+                [infoScrollSubOfTheDay addSubview:titleProductForAllWeekLbl];
+                [titleProductForAllWeekLbl release];
+                
+                UIImageView *imgMainForAllWeek = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                imgMainForAllWeek.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
+                imgMainForAllWeek.contentMode = UIViewContentModeScaleToFill;
+                [infoScrollSubOfTheDay addSubview:imgMainForAllWeek];
+                [imgMainForAllWeek release];
+                
+                UIImageView *logoDayForWeek = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_suboftheday@2x"]];
+                logoDayForWeek.frame = CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 15, 25, 103, 74);
+                logoDayForWeek.contentMode = UIViewContentModeScaleToFill;
+                [infoScrollSubOfTheDay addSubview:logoDayForWeek];
+                [logoDayForWeek release];
+                
+                CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
+                [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
+                weekLbl.text = myWeekDay;
+                [weekLbl setDrawOutline:YES];
+                [weekLbl setOutlineSize:strokeSize];
+                [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                weekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                weekLbl.textAlignment = UITextAlignmentLeft;
+                weekLbl.backgroundColor = [UIColor clearColor];
+                [infoScrollSubOfTheDay addSubview:weekLbl];
+                [weekLbl release];
+                
+                
+                //--------
 
-            }
-            
-            if (hasBeenDisplay == YES) {
-                break;
+            }else {
+                
+                if (requestSOD != 0 ) {
+                    
+                    requestSOD = requestSOD - 1;
+                                        
+                    CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake((requestSOD*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
+                    [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
+                    weekLbl.text = myWeekDay;
+                    [weekLbl setDrawOutline:YES];
+                    [weekLbl setOutlineSize:strokeSize];
+                    [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    weekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    weekLbl.textAlignment = UITextAlignmentLeft;
+                    weekLbl.backgroundColor = [UIColor clearColor];
+                    [infoScrollSubOfTheDay addSubview:weekLbl];
+                    [weekLbl release];
+                    
+                    
+                    CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake((requestSOD*infoScrollSubOfTheDay.frame.size.width) + 20, infoScrollSubOfTheDay.frame.size.height - 44, infoScrollSubOfTheDay.frame.size.width - 145, 40)];
+                    [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:17.0]];
+                    titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
+                    [titleProductLbl setDrawOutline:YES];
+                    [titleProductLbl setOutlineSize:strokeSize];
+                    [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    titleProductLbl.textAlignment = UITextAlignmentCenter;
+                    titleProductLbl.backgroundColor = [UIColor clearColor];
+                    [infoScrollSubOfTheDay addSubview:titleProductLbl];
+                    [titleProductLbl release];
+                    
+                    UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                    mainImgSubOfTheDay.frame = CGRectMake(requestSOD*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
+                    mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
+                    [infoScrollSubOfTheDay addSubview:mainImgSubOfTheDay];
+                    [mainImgSubOfTheDay release];
+                    
+                                        
+                }
+
+                
             }
             
         }
         
     }
     
+    infoScrollSubOfTheDay.contentSize = CGSizeMake(7*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height);
+
     [gregorianCalendar release];
     
     
