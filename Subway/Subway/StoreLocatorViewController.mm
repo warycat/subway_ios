@@ -16,7 +16,7 @@
 
 
 @interface StoreLocatorViewController ()
-
+@property (nonatomic, strong)BMKSearch *search;
 @end
 
 @implementation StoreLocatorViewController
@@ -38,7 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    self.search = [[BMKSearch alloc]init];
+    self.search.delegate = self;
+
     tempAnnotation = nil;
     
     
@@ -599,10 +601,16 @@
             
             ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView viewForAnnotation:anAnnotation];
             [self mapView:self.myMapView didSelectAnnotationView:(BMKAnnotationView *)annotationView];
-            
+            BMKPlanNode *start = [[BMKPlanNode alloc]init];
+            start.pt = self.myMapView.userLocation.coordinate;
+            BMKPlanNode *end = [[BMKPlanNode alloc]init];
+            end.pt = anAnnotation.coordinate;
+            NSLog(@"search walkiing");
+            BOOL flag = [self.search walkingSearch:@"上海" startNode:start endCity:@"上海" endNode:end];
+            if (!flag) {
+                NSLog(@"search failed");
+            }
         }
-        
-        
         
     }
     
@@ -703,6 +711,7 @@
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
     NSLog(@"view %d temp %d",view.tag,tempAnnotation.tag);
+
     if (view.tag != 0) {
         
         NSLog(@"tempAnnotation : %i - view: %i", tempAnnotation.tag, view.tag);
@@ -879,7 +888,66 @@
 
 
 
+- (void)onGetWalkingRouteResult:(BMKPlanResult *)result errorCode:(int)error
+{
+	NSLog(@"onGetWalkingRouteResult:error:%d", error);
+	if (error == BMKErrorOk) {
+		BMKRoutePlan* plan = (BMKRoutePlan*)[result.plans objectAtIndex:0];
+        
+//		RouteAnnotation* item = [[RouteAnnotation alloc]init];
+//		item.coordinate = result.startNode.pt;
+//		item.title = @"起点";
+//		item.type = 0;
+//		[_mapView addAnnotation:item];
+//		[item release];
+		
+		int index = 0;
+		int size = [plan.routes count];
+		for (int i = 0; i < 1; i++) {
+			BMKRoute* route = [plan.routes objectAtIndex:i];
+			for (int j = 0; j < route.pointsCount; j++) {
+				int len = [route getPointsNum:j];
+				index += len;
+			}
+		}
+		
+		BMKMapPoint* points = new BMKMapPoint[index];
+		index = 0;
+		
+		for (int i = 0; i < 1; i++) {
+			BMKRoute* route = [plan.routes objectAtIndex:i];
+			for (int j = 0; j < route.pointsCount; j++) {
+				int len = [route getPointsNum:j];
+				BMKMapPoint* pointArray = (BMKMapPoint*)[route getPoints:j];
+				memcpy(points + index, pointArray, len * sizeof(BMKMapPoint));
+				index += len;
+			}
+			size = route.steps.count;
+			for (int j = 0; j < size; j++) {
+				BMKStep* step = [route.steps objectAtIndex:j];
+//				item = [[RouteAnnotation alloc]init];
+//				item.coordinate = step.pt;
+//				item.title = step.content;
+//				item.degree = step.degree * 30;
+//				item.type = 4;
+//				[_mapView addAnnotation:item];
+//				[item release];
+			}
+			
+		}
+		
+//		item = [[RouteAnnotation alloc]init];
+//		item.coordinate = result.endNode.pt;
+//		item.type = 1;
+//		item.title = @"终点";
+//		[_mapView addAnnotation:item];
+//		[item release];
+//		BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:points count:index];
+//		[_mapView addOverlay:polyLine];
+//		delete []points;
+	}
 
+}
 
 
 

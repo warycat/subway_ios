@@ -13,7 +13,7 @@
 #import "BMapKit.h"
 
 
-@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, BMKMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, BMKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,BMKSearchDelegate> {
     
     //Map
     BMKMapView * myMapView;
