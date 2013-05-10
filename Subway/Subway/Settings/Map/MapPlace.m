@@ -28,19 +28,19 @@
 	[super dealloc];
 }
 
-- (MKMapItem*)mapItem {
-    
-    NSDictionary *addressDict = @{(NSString*)kABPersonAddressStreetKey : address};
-    
-    MKPlacemark *placemark = [[MKPlacemark alloc]
-                              initWithCoordinate:self.coordinate
-                              addressDictionary:addressDict];
-    
-    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-    mapItem.name = self.title;
-    
-    return mapItem;
-}
+//- (MKMapItem*)mapItem {
+//    
+//    NSDictionary *addressDict = @{(NSString*)kABPersonAddressStreetKey : address};
+//    
+//    MKPlacemark *placemark = [[MKPlacemark alloc]
+//                              initWithCoordinate:self.coordinate
+//                              addressDictionary:addressDict];
+//    
+//    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+//    mapItem.name = self.title;
+//    
+//    return mapItem;
+//}
 
 
 @end

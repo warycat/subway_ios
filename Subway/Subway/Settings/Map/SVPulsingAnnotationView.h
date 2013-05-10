@@ -6,8 +6,9 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "BMapKit.h"
 
-@interface SVPulsingAnnotationView : MKAnnotationView
+@interface SVPulsingAnnotationView : BMKAnnotationView
 
 @property (nonatomic, strong) UIColor *annotationColor; // default is same as MKUserLocationView
 @property (nonatomic, readwrite) NSTimeInterval pulseAnimationDuration; // default is 1s

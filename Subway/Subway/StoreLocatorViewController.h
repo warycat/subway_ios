@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
-#import <MapKit/MKAnnotationView.h>
+//#import <MapKit/MapKit.h>
+//#import <MapKit/MKAnnotationView.h>
 #import "UIViewController+KNSemiModal.h"
+#import "BMapKit.h"
 
 
-@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, BMKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,BMKSearchDelegate> {
     
     //Map
-    MKMapView * myMapView;
-    MKAnnotationView *tempAnnotation;
+    BMKMapView * myMapView;
+    BMKAnnotationView *tempAnnotation;
     NSMutableArray *allStores;
     BOOL firstLoad;
     
@@ -37,8 +38,8 @@
 }
 
 //Map
-@property (retain, nonatomic) MKMapView * myMapView;
-@property (retain, nonatomic) MKAnnotationView *tempAnnotation;
+@property (retain, nonatomic) BMKMapView * myMapView;
+@property (retain, nonatomic) BMKAnnotationView *tempAnnotation;
 @property (retain, nonatomic) NSMutableArray *allStores;
 
 //Detail

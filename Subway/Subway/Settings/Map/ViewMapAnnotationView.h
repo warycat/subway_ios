@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "BMapKit.h"
 
-@interface ViewMapAnnotationView : MKAnnotationView {
+@interface ViewMapAnnotationView : BMKAnnotationView {
 
 
 }
