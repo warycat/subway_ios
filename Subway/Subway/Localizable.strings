@@ -16,6 +16,7 @@
 "store_btn_txt" = " STORE";
 "locator_btn_txt" = " LOCATOR";
 "home_btn_txt" = " HOME";
+"back_btn_txt" = " BACK";
 
 
 // ------------------ Bottom View
@@ -33,13 +34,17 @@
 
 
 
-
-
-
 // ------------------ HOME
 // ----------
 
 "allWeek_btn_txt" = " ALL WEEK";
+"kSunday" = " Sunday";
+"kMonday" = " Monday";
+"kTuesday" = " Tuesday";
+"kWednesday" = " Wednesday";
+"kThursday" = " Thursday";
+"kFriday" = " Friday";
+"kSaturday" = " Saturday";
 
 
 
@@ -67,8 +72,19 @@
 "kMenuSalad" = "Salad";
 "kMenuWrap" = "Wrap";
 
+"kTastyFlavor" = "tasty flavor";
+"kEnergyBoost" = "energy boost";
+"kSandwichBuild" = "sandwichbuild";
+"kLowFat" = "low fat";
+
+"kTasty" = " Tasty:";
+"kEnergy" = " Energy:";
+"kBuild" = " Build:";
+"kHealth" = " Health:";
+
+
+
 "learnMore_btn_txt" = " LEARN MORE";
-"back_btn_txt" = "BACK"; 
 
 
 // ------------------ HUD

@@ -39,6 +39,8 @@
     
     UIView *popupInfo;
     int tempProdFact;
+    CustomLabel *factTitleLbl;
+    UIImageView *factIconImgForPopup;
     CustomLabel *factDescriptionLbl;
     
 }
@@ -69,6 +71,8 @@
 @property (nonatomic, strong)  CustomLabel *buildLbl;
 
 @property (nonatomic, strong) UIView *popupInfo;
+@property (nonatomic, strong) CustomLabel *factTitleLbl;
+@property (nonatomic, strong) UIImageView *factIconImgForPopup;
 @property (nonatomic, strong) CustomLabel *factDescriptionLbl;
 
 @end
