@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
-#import <MapKit/MapKit.h>
+//#import <MapKit/MapKit.h>
+#import "BMapKit.h"
 
 
-@interface MapPlace : NSObject <MKAnnotation> {
+@interface MapPlace : NSObject <BMKAnnotation> {
     
 	float latitude;
 	float longitude;
@@ -31,6 +32,6 @@
 @property (nonatomic, copy) NSString *idPlace;
 @property (nonatomic, copy) NSString *address;
 
-- (MKMapItem*)mapItem;
+//- (MKMapItem*)mapItem;
 
 @end
