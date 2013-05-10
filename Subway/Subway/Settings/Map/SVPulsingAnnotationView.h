@@ -5,7 +5,7 @@
 //  https://github.com/samvermette/SVPulsingAnnotationView
 //
 
-//#import <MapKit/MapKit.h>
+#import <MapKit/MapKit.h>
 #import "BMapKit.h"
 
 @interface SVPulsingAnnotationView : BMKAnnotationView

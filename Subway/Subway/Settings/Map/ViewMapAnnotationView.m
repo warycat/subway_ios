@@ -18,25 +18,25 @@
         
 		self.enabled = YES;
 		self.canShowCallout = NO;
-		self.multipleTouchEnabled = NO;     
-        
+//		self.multipleTouchEnabled = NO;     
+//        
 //		UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //		rightButton.tag = 101;
-//        
+////
 //		UIImage *arImage = [UIImage imageNamed:@"mark-member.png"];
 //		[rightButton setImage:arImage forState:UIControlStateNormal];
 //		CGRect rect = rightButton.frame;
 //		rect.size.width = arImage.size.width;
 //		rect.size.height = arImage.size.height;
 //		rightButton.frame = rect;
-        
-//        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//        
+////        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //        rightButton.tag = 101;
-        
-		self.rightCalloutAccessoryView = nil;
-        
-        
-		self.leftCalloutAccessoryView  = nil;
+//        
+//		self.rightCalloutAccessoryView = nil;
+//        
+//        
+//		self.leftCalloutAccessoryView  = nil;
         self.canShowCallout = NO;
         
 	}

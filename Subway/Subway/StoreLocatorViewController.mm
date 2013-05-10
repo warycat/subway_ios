@@ -12,6 +12,7 @@
 #import "ViewMapAnnotationView.h"
 #import "SVPulsingAnnotationView.h"
 #import "MapPlace.h"
+#import <MapKit/MapKit.h>
 
 
 @interface StoreLocatorViewController ()
@@ -597,7 +598,7 @@
             NSLog(@"anAnnotation.idPlace %@", anAnnotation.idPlace);
             
             ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView viewForAnnotation:anAnnotation];
-            [self mapView:self.myMapView didSelectAnnotationView:annotationView];
+            [self mapView:self.myMapView didSelectAnnotationView:(BMKAnnotationView *)annotationView];
             
         }
         
@@ -655,16 +656,16 @@
 
 
 
-
 - (void)mapView:(BMKMapView*)map regionDidChangeAnimated:(BOOL)animated
 {
-    
+    NSLog(@"regionDidChangeAnimated");
     for (NSObject *annotation in [myMapView annotations])
     {
         if ([annotation isKindOfClass:[BMKUserLocation class]])
         {
             BMKAnnotationView *view = [myMapView viewForAnnotation:(BMKUserLocation *)annotation];
-            [[view superview] bringSubviewToFront:view];
+            [view.superview sendSubviewToBack:view];
+            //[[view superview] bringSubviewToFront:view];
         }
     }
     
@@ -678,25 +679,22 @@
         
         if ([[pin annotation] isKindOfClass:[BMKUserLocation class]])
         {
-            [[pin superview] bringSubviewToFront:pin];
+            //[[pin superview] bringSubviewToFront:pin];
         }
         else
         {
             
-            pin.canShowCallout = YES;
+            pin.canShowCallout = NO;
             CGRect endFrame = pin.frame;
             pin.frame = CGRectOffset(pin.frame, 0, -230);
             
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:0.45f];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [UIView animateWithDuration:0.45f delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                pin.frame = endFrame;
+            } completion:^(BOOL finished) {
+                ;
+            }];
             
-            pin.frame = endFrame;
-            
-            [UIView commitAnimations];
-            
-            
-            [[pin superview] sendSubviewToBack:pin];
+            //[[pin superview] sendSubviewToBack:pin];
             
         }
         
@@ -704,22 +702,22 @@
 }
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
-    
-    if (view.tag != 0) {        
+    NSLog(@"view %d temp %d",view.tag,tempAnnotation.tag);
+    if (view.tag != 0) {
         
         NSLog(@"tempAnnotation : %i - view: %i", tempAnnotation.tag, view.tag);
         
-        if (tempAnnotation.tag != 0) {
-            NSLog(@"annot already selected, remove it");
-            [self mapView:self.myMapView didDeselectAnnotationView:tempAnnotation];
-        }
+//        if (tempAnnotation.tag != 0) {
+//            NSLog(@"annot already selected, remove it");
+//            [self mapView:self.myMapView didDeselectAnnotationView:tempAnnotation];
+//        }
         
         if (tempAnnotation != view) {
             tempAnnotation = view;
             [tempAnnotation retain];
             
             NSLog(@"open annot");
-            [[view superview] bringSubviewToFront:view];
+//            [[view superview] bringSubviewToFront:view];
             
             UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
             CGSize sizeForDesc = {108,50.0f};
@@ -737,7 +735,6 @@
                 [tempAdressLbl setFrame:CGRectMake(14, 30, 108, adressSize.height)];
             }
             
-            
             tempAdressLbl.text = myText;
             [tempAdressLbl setDrawOutline:NO];
             tempAdressLbl.tag = 1000 + view.tag;
@@ -748,31 +745,24 @@
             tempAdressLbl.alpha = 0.0;
             [view addSubview:tempAdressLbl];
             [tempAdressLbl release];
-            
+            CGRect startFrame = view.frame;
             CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
-            
+            view.image = [UIImage imageNamed:@"map_pin_open"];
+            [view setNeedsDisplay];
+            view.frame = startFrame;
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:0.45f];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            
             view.frame = endFrame;
-            view.image = [UIImage imageNamed:@"map_pin_open"];
             tempAdressLbl.alpha = 1.0;
-            
             [UIView commitAnimations];
-            
-//            MapPlace *location = (MapPlace*)view.annotation;
-//            NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
-//            [location.mapItem openInMapsWithLaunchOptions:launchOptions];
-            
+            view.centerOffset = CGPointMake(0, -146/2/2);
         }
-        
     }
-    
 }
 
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
-    
+    NSLog(@"didDeselectAnnotationView %@",view);
     if (view.tag != 0) {
         
         if (tempAnnotation != nil) {
@@ -787,18 +777,20 @@
                 }
                 
             }
-            
+            CGRect startFrame = view.frame;
             CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
-            
+            view.image =[UIImage imageNamed:@"map_pin"];
+            view.frame = startFrame;
+            [view setNeedsDisplay];
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:0.45f];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            
             view.frame = endFrame;
-            view.image =[UIImage imageNamed:@"map_pin"];
+            NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
             
             [UIView commitAnimations];
-            
+            view.centerOffset = CGPointMake(0, -58/2/2);
+
             
             if (tempAnnotation != view) {
                 
@@ -821,9 +813,12 @@
                 
                 tempAnnotation.frame = endFrame;
                 tempAnnotation.image =[UIImage imageNamed:@"map_pin"];
-                
+                [tempAnnotation setNeedsDisplay];
+                NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
+
                 [UIView commitAnimations];
-                
+                view.centerOffset = CGPointMake(0, -58/2/2);
+
             }
             
             tempAnnotation = nil;
@@ -839,32 +834,31 @@
 
 - (BMKAnnotationView*)mapView:(BMKMapView *)map viewForAnnotation:(id<BMKAnnotation>)annotation
 {    
-    
+
     // MY OWN PIN
     if (annotation == myMapView.userLocation) {
-        
         static NSString *identifier = @"currentLocation";
         SVPulsingAnnotationView *pulsingView = (SVPulsingAnnotationView *)[self.myMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         
         if(pulsingView == nil) {
-            pulsingView = [[SVPulsingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-            pulsingView.annotationColor = [UIColor colorWithRed:0.678431 green:0 blue:0 alpha:1];
-            pulsingView.canShowCallout = YES;
+            pulsingView = [[SVPulsingAnnotationView alloc] initWithAnnotation:(id<BMKAnnotation>)annotation reuseIdentifier:identifier];
+            //pulsingView.annotationColor = [UIColor colorWithRed:0.678431 green:0 blue:0 alpha:1];
+            pulsingView.canShowCallout = NO;
         }
-        
-        return pulsingView;
+        pulsingView.canShowCallout = NO;
+        return (SVPulsingAnnotationView *)pulsingView;
     
         
         // STORE PIN
     }else {
-        
+    
         static NSString *AnnotationViewID = @"SUBWAYID";
         ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
         
         
         if (nil == annotationView)
         {
-            annotationView = [[[ViewMapAnnotationView alloc] initWithAnnotation:annotation
+            annotationView = [[[ViewMapAnnotationView alloc] initWithAnnotation:(id<BMKAnnotation>)annotation
                                                                 reuseIdentifier:AnnotationViewID] autorelease];
             
         }
@@ -874,10 +868,11 @@
         
         [annotationView setTag:myTag];
         annotationView.image =[UIImage imageNamed:@"map_pin"];
+        annotationView.centerOffset = CGPointMake(0, -58/2/2);
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
-        
-        return annotationView;
+        annotationView.canShowCallout = NO;
+        return (BMKAnnotationView *)annotationView;
     }
     
 }
