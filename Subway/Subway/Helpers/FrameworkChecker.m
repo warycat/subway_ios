@@ -9,6 +9,7 @@
 #import "FrameworkChecker.h"
 
 @implementation FrameworkChecker
+
 +(BOOL)isTwitterAvailable {
     return NSClassFromString(@"TWTweetComposeViewController") != nil;
 }

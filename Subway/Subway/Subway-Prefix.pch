@@ -11,7 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-
+    #import "TestFlight.h"
     //--
     //-- IMPORT personal Function
     #import "CustomLabel.h"
@@ -20,6 +20,7 @@
     //-- IMPORT personal Objects
     #import "DisplayMethod.h"
     #import "SettingMethod.h"
+    #import "MenuMethod.h"
     #import "StoreLocator.h"
 #endif
 
@@ -36,14 +37,15 @@
 // ---------------------
 
 #define ADRESS [NSString stringWithFormat:@"http://%@:%i/", NODE_URL, PORT]
-#define NODE_URL @"192.168.1.121"
-#define PORT 3000
+#define NODE_URL @"222.73.219.19"
+#define PORT 20114
 
 
 #define DATABASE_FILENAME @"subway.db"
 #define settingMethod       [SettingMethod sharedSetting]
 #define displayMethod       [DisplayMethod sharedDisplay]
 #define databaseMethod      [DatabaseMethod sharedDatabase]
+#define menuMethod          [MenuMethod sharedMenu]
 
 #define storeMethod          [StoreLocator storeFunction]
 
