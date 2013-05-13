@@ -923,8 +923,8 @@
 				index += len;
 			}
 			size = route.steps.count;
-			for (int j = 0; j < size; j++) {
-				BMKStep* step = [route.steps objectAtIndex:j];
+//			for (int j = 0; j < size; j++) {
+//				BMKStep* step = [route.steps objectAtIndex:j];
 //				item = [[RouteAnnotation alloc]init];
 //				item.coordinate = step.pt;
 //				item.title = step.content;
@@ -932,7 +932,7 @@
 //				item.type = 4;
 //				[_mapView addAnnotation:item];
 //				[item release];
-			}
+//			}
 			
 		}
 		
