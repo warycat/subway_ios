@@ -152,7 +152,6 @@
 		EBCAA2E517321032007F33B2 /* no_connexion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCAA2E417321032007F33B2 /* no_connexion@2x.png */; };
 		EBCAA2E7173250B0007F33B2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCAA2E6173250B0007F33B2 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EBCAA2E917326CA8007F33B2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCAA2E817326CA8007F33B2 /* AddressBook.framework */; };
-		EBFCD949174072E900185245 /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFCD948174072E900185245 /* HowToOrderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -356,8 +355,6 @@
 		EBCAA2E417321032007F33B2 /* no_connexion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connexion@2x.png"; sourceTree = "<group>"; };
 		EBCAA2E6173250B0007F33B2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EBCAA2E817326CA8007F33B2 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		EBFCD947174072E900185245 /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
-		EBFCD948174072E900185245 /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,13 +524,8 @@
 				EBB4D078171FE52D006DAF2F /* MenuViewController.m */,
 				EBB4D07A171FE544006DAF2F /* StoreLocatorViewController.h */,
 				EBB4D07B171FE544006DAF2F /* StoreLocatorViewController.mm */,
-<<<<<<< HEAD
 				469AF6FB174085B90082CC2D /* HowToOrderViewController.h */,
 				469AF6FC174085B90082CC2D /* HowToOrderViewController.m */,
-=======
-				EBFCD947174072E900185245 /* HowToOrderViewController.h */,
-				EBFCD948174072E900185245 /* HowToOrderViewController.m */,
->>>>>>> Removing 2 warnings
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -941,11 +933,7 @@
 				EBAC242A1737C1A4009D8519 /* DDPageControl.m in Sources */,
 				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
-<<<<<<< HEAD
 				469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */,
-=======
-				EBFCD949174072E900185245 /* HowToOrderViewController.m in Sources */,
->>>>>>> Removing 2 warnings
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,18 +966,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1002,10 +989,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1013,28 +999,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1043,8 +1027,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1057,9 +1041,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				VALID_ARCHS = "armv7 armv7s";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1069,8 +1052,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1083,9 +1066,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				VALID_ARCHS = "armv7 armv7s";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
