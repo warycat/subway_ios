@@ -36,7 +36,6 @@
     
     // ----------------- GENERATE TOP BAR
     
-    
     UIButton *storeLocatorBtn =  [[UIButton alloc] init];
     
      if ([settingMethod weiboIsConnected]) {

@@ -11,6 +11,16 @@
 		469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 469AF6F9173CB8460082CC2D /* mapapi.bundle */; };
 		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
 		856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856FD18A1738D6D0001EED8D /* FrameworkChecker.m */; };
+		EB2140F51740A000009983BA /* howtoorder-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */; };
+		EB2140F61740A000009983BA /* howtoorder-numbersbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */; };
+		EB2140F71740A000009983BA /* howtoorder-titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */; };
+		EB2140F81740A000009983BA /* howtoorder_p1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EE1740A000009983BA /* howtoorder_p1@2x.png */; };
+		EB2140F91740A000009983BA /* howtoorder_p2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EF1740A000009983BA /* howtoorder_p2@2x.png */; };
+		EB2140FA1740A000009983BA /* howtoorder_p3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F01740A000009983BA /* howtoorder_p3@2x.png */; };
+		EB2140FB1740A000009983BA /* howtoorder_p4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F11740A000009983BA /* howtoorder_p4@2x.png */; };
+		EB2140FC1740A000009983BA /* howtoorder_p5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F21740A000009983BA /* howtoorder_p5@2x.png */; };
+		EB2140FD1740A000009983BA /* howtoorder_p6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F31740A000009983BA /* howtoorder_p6@2x.png */; };
+		EB2140FE1740A000009983BA /* howtoorder_p7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F41740A000009983BA /* howtoorder_p7@2x.png */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
@@ -190,6 +200,16 @@
 		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
 		856FD1891738D6D0001EED8D /* FrameworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkChecker.h; path = Helpers/FrameworkChecker.h; sourceTree = "<group>"; };
 		856FD18A1738D6D0001EED8D /* FrameworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameworkChecker.m; path = Helpers/FrameworkChecker.m; sourceTree = "<group>"; };
+		EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-bg@2x.png"; sourceTree = "<group>"; };
+		EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-numbersbg@2x.png"; sourceTree = "<group>"; };
+		EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-titlebg@2x.png"; sourceTree = "<group>"; };
+		EB2140EE1740A000009983BA /* howtoorder_p1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p1@2x.png"; sourceTree = "<group>"; };
+		EB2140EF1740A000009983BA /* howtoorder_p2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p2@2x.png"; sourceTree = "<group>"; };
+		EB2140F01740A000009983BA /* howtoorder_p3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p3@2x.png"; sourceTree = "<group>"; };
+		EB2140F11740A000009983BA /* howtoorder_p4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p4@2x.png"; sourceTree = "<group>"; };
+		EB2140F21740A000009983BA /* howtoorder_p5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p5@2x.png"; sourceTree = "<group>"; };
+		EB2140F31740A000009983BA /* howtoorder_p6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p6@2x.png"; sourceTree = "<group>"; };
+		EB2140F41740A000009983BA /* howtoorder_p7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p7@2x.png"; sourceTree = "<group>"; };
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -432,6 +452,23 @@
 			path = Subway;
 			sourceTree = "<group>";
 		};
+		EB2140EA1740A000009983BA /* HowTo */ = {
+			isa = PBXGroup;
+			children = (
+				EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */,
+				EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */,
+				EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */,
+				EB2140EE1740A000009983BA /* howtoorder_p1@2x.png */,
+				EB2140EF1740A000009983BA /* howtoorder_p2@2x.png */,
+				EB2140F01740A000009983BA /* howtoorder_p3@2x.png */,
+				EB2140F11740A000009983BA /* howtoorder_p4@2x.png */,
+				EB2140F21740A000009983BA /* howtoorder_p5@2x.png */,
+				EB2140F31740A000009983BA /* howtoorder_p6@2x.png */,
+				EB2140F41740A000009983BA /* howtoorder_p7@2x.png */,
+			);
+			path = HowTo;
+			sourceTree = "<group>";
+		};
 		EB5F6254172A341E006E053B /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +599,7 @@
 		EBB4CFC0171FBB48006DAF2F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EB2140EA1740A000009983BA /* HowTo */,
 				EBB4CFC1171FBB5C006DAF2F /* general */,
 				EBB4CFE6171FBB67006DAF2F /* home */,
 				EBB4CFF3171FBB71006DAF2F /* meals */,
@@ -903,6 +941,16 @@
 				EB869524173B93CE004C9092 /* default@2x.png in Resources */,
 				EB86952C173B94D2004C9092 /* Default-568h@2x.png in Resources */,
 				469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */,
+				EB2140F51740A000009983BA /* howtoorder-bg@2x.png in Resources */,
+				EB2140F61740A000009983BA /* howtoorder-numbersbg@2x.png in Resources */,
+				EB2140F71740A000009983BA /* howtoorder-titlebg@2x.png in Resources */,
+				EB2140F81740A000009983BA /* howtoorder_p1@2x.png in Resources */,
+				EB2140F91740A000009983BA /* howtoorder_p2@2x.png in Resources */,
+				EB2140FA1740A000009983BA /* howtoorder_p3@2x.png in Resources */,
+				EB2140FB1740A000009983BA /* howtoorder_p4@2x.png in Resources */,
+				EB2140FC1740A000009983BA /* howtoorder_p5@2x.png in Resources */,
+				EB2140FD1740A000009983BA /* howtoorder_p6@2x.png in Resources */,
+				EB2140FE1740A000009983BA /* howtoorder_p7@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
