@@ -269,6 +269,23 @@
         
     }
 
+    CustomLabel *cityLabel = [[CustomLabel alloc]initWithFrame:CGRectMake(0, -20, 300, 100)];
+    cityLabel.text = @"SUBWAY,Shanghai";
+    cityLabel.drawOutline = YES;
+    cityLabel.textColor = [UIColor whiteColor];
+    cityLabel.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+    cityLabel.font = [UIFont fontWithName:APEX_BOLD size:20.0];
+    //CustomLabel *nbLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 2, roundNumberImage.frame.size.width, roundNumberImage.frame.size.height)];
+    [cityLabel setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:21.0]];
+    //cityLabel.text = [NSString stringWithFormat:@"%i", i+1];
+    [cityLabel setDrawOutline:YES];
+    [cityLabel setOutlineSize:3];
+    [cityLabel setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+    cityLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+//    cityLabel.textAlignment = UITextAlignmentCenter;
+    cityLabel.backgroundColor = [UIColor clearColor];
+    [detailsView addSubview:cityLabel];
+    //[self.view sendSubviewToBack:cityLabel];
     
 }
 
