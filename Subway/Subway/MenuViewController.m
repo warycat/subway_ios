@@ -10,6 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StoreLocatorViewController.h"
 #import "HowToOrderViewController.h"
+#import "CateringViewController.h"
+
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @interface MenuViewController ()
 
@@ -19,8 +23,8 @@
 @synthesize menuScroll;
 @synthesize subOfTheDayView, subOfTheDayContainer, subOfTheDayViewInfo;
 @synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
-@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl;
-@synthesize healthLbl, tastyLbl, energyLbl, buildLbl;
+@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl, menuTempHolderImg;
+@synthesize healthLbl, tastyLbl, energyLbl, buildLbl, fromSubOfTheDay, productId;
 
 -(void)viewWillAppear:(BOOL)animated {
 	
@@ -326,7 +330,6 @@
     [healthShareBtn setBackgroundImage:[healthImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
     [healthShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
     [productsView  addSubview:healthShareBtn];
-    [healthShareBtn release];
     
     healthLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(healthShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [healthLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
@@ -338,7 +341,6 @@
     healthLbl.textAlignment = UITextAlignmentCenter;
     healthLbl.backgroundColor = [UIColor clearColor];
     [productsView addSubview:healthLbl];
-    [healthLbl release];
     
     //---TASTY
     UIImage *tastyImgON = [UIImage imageNamed:@"icon_tasty@2x"];
@@ -350,7 +352,6 @@
     [tastyShareBtn setBackgroundImage:[tastyImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
     [tastyShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
     [productsView  addSubview:tastyShareBtn];
-    [tastyShareBtn release];
     
     tastyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(tastyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [tastyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
@@ -362,7 +363,6 @@
     tastyLbl.textAlignment = UITextAlignmentCenter;
     tastyLbl.backgroundColor = [UIColor clearColor];
     [productsView addSubview:tastyLbl];
-    [tastyLbl release];
     
     
     //---ENERGY
@@ -375,7 +375,6 @@
     [energyShareBtn setBackgroundImage:[energyImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
     [energyShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
     [productsView  addSubview:energyShareBtn];
-    [energyShareBtn release];
     
     energyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(energyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [energyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
@@ -387,7 +386,6 @@
     energyLbl.textAlignment = UITextAlignmentCenter;
     energyLbl.backgroundColor = [UIColor clearColor];
     [productsView addSubview:energyLbl];
-    [energyLbl release];
     
     
     //---BUILD
@@ -400,7 +398,6 @@
     [buildShareBtn setBackgroundImage:[buildImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
     [buildShareBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
     [productsView  addSubview:buildShareBtn];
-    [buildShareBtn release];
     
     buildLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(buildShareBtn.frame.origin.x - 6, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 52, 10)];
     [buildLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
@@ -412,7 +409,6 @@
     buildLbl.textAlignment = UITextAlignmentCenter;
     buildLbl.backgroundColor = [UIColor clearColor];
     [productsView addSubview:buildLbl];
-    [buildLbl release];
     
     
     // ----------------- GENERATE BOTTOM BAR
@@ -452,6 +448,42 @@
     menuScroll.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:menuScroll];
     
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
+    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
+    int today = weekdayComponents.weekday-1;
+    NSLog(@"today : %i", today);
+    
+    
+    int SODId = 0;
+    
+    if (fromSubOfTheDay == YES) {
+        
+        for (int i = 0; i < [menuArray count]; i++) {
+            
+            NSMutableArray *productsArray = [[menuArray objectAtIndex:i] objectForKey:@"products"];
+            
+            for (int y = 0; y < [productsArray count]; y++) {
+                
+                int theSOD = [[[productsArray objectAtIndex:y] objectForKey:@"sub_of_the_day"] intValue];
+                
+                if (theSOD == today) {
+                    
+                    SODId = [[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue];
+                    break;
+                }
+                
+            }
+            
+            
+        }
+    }
+    
+
+    menuTempHolderImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taxo_on@2x"]];
+    menuTempHolderImg.frame = CGRectMake(0, 0, 90, 90);
+    [menuScroll addSubview:menuTempHolderImg];
+    menuTempHolderImg.hidden = YES;
     
     UIImage *BtnImgON = nil;
     UIImage *BtnImgOFF = nil;
@@ -468,42 +500,18 @@
         btn1Lbl.backgroundColor = [UIColor clearColor];
         btn1Lbl.text = [[menuArray objectAtIndex:i] objectForKey:@"title"];
         
-        if (i == 0) {
-            BtnImgON = [UIImage imageNamed:@"menu_value_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_value_off@2x"];
-        }
-        else if (i == 1) {
-            BtnImgON = [UIImage imageNamed:@"menu_classic_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_classic_off@2x"];
-        }
-        else if (i == 2) {
-            BtnImgON = [UIImage imageNamed:@"menu_premium_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_premium_off@2x"];
-        }
-        else if (i == 3) {
-            BtnImgON = [UIImage imageNamed:@"menu_drink_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_drink_off@2x"];
-        }
-        else if (i == 4) {
-            BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
-        }
-        else if (i == 5) {
-            BtnImgON = [UIImage imageNamed:@"menu_salad_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_salad_off@2x"];
+        if ([[[menuArray objectAtIndex:i] objectForKey:@"media"] count] > 0) {
+            
+            BtnImgON = [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
+            BtnImgOFF =  [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
             
         }
-        else if (i == 5) {
-            BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
-            
-        }
-
         
         UIButton *menuBtn =  [[UIButton alloc] initWithFrame:CGRectMake(XposInside, 0, 90, 90)];
         menuBtn.tag = [[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue];
         menuBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         menuBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        menuBtn.userInteractionEnabled = YES;
         [menuBtn setBackgroundImage:[BtnImgOFF stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateHighlighted];
@@ -516,6 +524,18 @@
         [menuBtn addSubview:btn1Lbl];
         [btn1Lbl release];
         
+        if (fromSubOfTheDay == YES) {
+            
+            if (SODId == [[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue]) {
+                
+                menuTempHolderImg.frame = CGRectMake(XposInside, 0, 90, 90);
+                [menuScroll addSubview:menuTempHolderImg];
+                menuTempHolderImg.hidden = NO;
+                
+            }
+            
+        }
+
         
         XposInside = XposInside + 90;
         
@@ -532,13 +552,7 @@
     
     //---------
     //DISPLAY SUB OF THE DAY
-    //---------
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
-    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
-    
-    int today = weekdayComponents.weekday-1;
-    NSLog(@"today : %i", today);
+    //---------    
     
     BOOL hasBeenDisplay = NO;
     
@@ -565,6 +579,9 @@
                 titleProductLbl.backgroundColor = [UIColor clearColor];
                 [subOfTheDayView addSubview:titleProductLbl];
                 [titleProductLbl release];
+                
+                NSLog(@"fileName : %@", [[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"])
+                ;
                 
                 UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
@@ -677,6 +694,10 @@
 	menuScroll.transform = transform;
 	[UIView commitAnimations];
     
+    if (fromSubOfTheDay == YES) {
+        [self LaunchProduct:SODId];
+        
+    }
     
 }
 
@@ -715,7 +736,13 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
--(void)pushCateringView { }
+-(void)pushCateringView {
+
+    CateringViewController *cateringView = [[CateringViewController alloc] init];
+    [self presentModalViewController:cateringView animated:YES];
+    [cateringView release];
+
+}
 
 -(void)pushOptionsView { }
 
@@ -756,6 +783,76 @@
     
 }
 
+
+-(void)LaunchProduct:(int)idCategory {
+    
+    if (popupInfo.alpha == 1.0) {
+        [self hidePopupInfo];
+    }
+    
+    
+    if (firstTimeProductsViewAppear) {
+        firstTimeProductsViewAppear = NO;
+        
+        [self changeProductsInfo:idCategory];
+        
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             
+                             [subOfTheDayContainer setFrame:CGRectMake(0, screenHeight, screenWidth, 253)];
+                             
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                             [UIView animateWithDuration:0.5
+                                              animations:^{
+                                                  
+                                                  if( IS_4_INCH_SCREEN ) {
+                                                      [productsView setFrame:CGRectMake(0, screenHeight - 265 - 65 , screenWidth, 230)];
+                                                  }else {
+                                                      [productsView setFrame:CGRectMake(0, screenHeight - 245 - 65 , screenWidth, 230)];
+                                                  }
+                                                  
+                                                  
+                                                  
+                                              }
+                                              completion:^(BOOL finished){
+                                                  
+                                              }];
+                             
+                         }];
+        
+    }else {
+        
+        
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             
+                             productsScroll.alpha = 0.0;
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                             [UIView animateWithDuration:0.5
+                                              animations:^{
+                                                  
+                                                  [self changeProductsInfo:idCategory];
+                                                  productsScroll.alpha = 1.0;
+                                                  
+                                              }
+                                              completion:^(BOOL finished){
+                                                  
+                                              }];
+                             
+                         }];
+        
+        
+    }
+
+    
+}
+
 -(void)LaunchMenuAction:(id)sender {
     
     int idCategory = [sender tag];
@@ -768,22 +865,12 @@
             
             if (sub.tag == idCategory) {
                 
-                UIImage *myImageNormal = [myButton backgroundImageForState:UIControlStateNormal];
-                UIImage *myImageSelected = [myButton backgroundImageForState:UIControlStateSelected];
+                menuTempHolderImg.frame = CGRectMake(myButton.frame.origin.x, myButton.frame.origin.y, 90, 90);
+                [menuScroll addSubview:menuTempHolderImg];
+                menuTempHolderImg.hidden = NO;
                 
-                [myButton setBackgroundImage:[myImageSelected stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-                [myButton setBackgroundImage:[myImageNormal stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
            
-            }else {
-                
-                UIImage *myImageHighlighted = [myButton backgroundImageForState:UIControlStateHighlighted];
-                UIImage *myImageReserved = [myButton backgroundImageForState:UIControlStateReserved];
-                
-                [myButton setBackgroundImage:[myImageReserved stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-                [myButton setBackgroundImage:[myImageHighlighted stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
-                
             }
-
             
         }
         
@@ -862,13 +949,14 @@
     for (UIView *sub in productsScroll.subviews) {
         [sub removeFromSuperview];
     }
-    
+
+        
     float width = productsScroll.frame.size.width;
     float height = productsScroll.frame.size.height;
     CGRect toVisible = CGRectMake(0.0, 0, width, height);
     [productsScroll scrollRectToVisible:toVisible animated:NO];
     
-    
+
     for (int i = 0; i < [menuArray count]; i++) {
         
         if ([[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue] == idCat) {
@@ -897,6 +985,7 @@
     float productScrollContentSize = productsScroll.frame.size.width * [currentProductsArray count];
     productsScroll.contentSize = CGSizeMake(productScrollContentSize, productsScroll.frame.size.height);
 
+    
     int XPosImage = 0;
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
@@ -952,6 +1041,7 @@
     BOOL hasTasty = NO;
     BOOL hasEnergy = NO;
     BOOL hasBuild = NO;
+    
     
     NSMutableArray *productFactsArray = [[currentProductsArray objectAtIndex:position] objectForKey:@"product_facts"];
     
@@ -1079,6 +1169,8 @@
                                                                }
                                                                completion:^(BOOL finished){
                                                                    
+                                                                   weiboShareBtn.tag = position;
+                                                                   
                                                                }];
                                               
                                           }];
@@ -1136,6 +1228,33 @@
 
 -(void)shareToWeibo:(id)sender {
     
+    int position = [sender tag];
+    
+    if ([settingMethod weiboIsConnected]) {
+    
+        
+        if(NSClassFromString(@"SLComposeViewController") != nil)
+        {
+            NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
+            NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];
+            
+            NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
+            
+                        
+            SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+            [mySLComposerSheet setInitialText:combineMessage];
+            [mySLComposerSheet addImage:[UIImage imageNamed:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+            [mySLComposerSheet addURL:[NSURL URLWithString:SubwayUrlLink]];
+            [self presentViewController:mySLComposerSheet animated:YES completion:nil];
+            
+            
+        }else
+        {
+            
+            
+        }
+        
+    }
     
 }
 

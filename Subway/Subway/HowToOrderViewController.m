@@ -126,44 +126,49 @@
         
         
         UIImageView *BackgroundImgSub = [[UIImageView alloc] init];
-        BackgroundImgSub.frame = CGRectMake((screenWidth-230)/2, titleLbl.frame.size.height+ titleLbl.frame.origin.y + 20, 230, 130);
+        BackgroundImgSub.frame = CGRectMake((screenWidth-235)/2, titleLbl.frame.size.height+ titleLbl.frame.origin.y + 20, 230, 130);
         BackgroundImgSub.image = [UIImage imageNamed:[NSString stringWithFormat:@"howtoorder_p%i@2x", i+1]];
         [myBackGroundView addSubview:BackgroundImgSub];
         [BackgroundImgSub release];
-        
-        
-        if (i == 0) {
-           titleLbl.text = @" Sub, salad or wrap?";
-    
-        }else if (i == 1) {
-            titleLbl.text = @" Which type of Bread?";
-        }else if (i == 2) {
-            titleLbl.text = @" Which size?";
-        }else if (i == 3) {
-            titleLbl.text = @" Which extras?";
-        }else if (i == 4) {
-            titleLbl.text = @" Which veggies?";
-        }else if (i == 5) {
-            titleLbl.text = @" Which sauce?";
-        }else if (i == 6) {
-            titleLbl.text = @" Make it a meal?";
-        }
 
         
-        
-        CustomLabel *stepLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, 190, myBackGroundView.frame.size.width - 40, 100)];
+        CustomLabel *stepLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(30, 210, myBackGroundView.frame.size.width - 70, 100)];
         [stepLbl setFont:[UIFont fontWithName:APEX_HEAVY size:13.0]];
-        stepLbl.text = @"First thing's, first. Are you feeling like a sub, a wrap, or a salad? Once you've figured out what form you want our tasty ingredients to come in, you're ready to move on.";
         [stepLbl setDrawOutline:YES];
         [stepLbl setOutlineSize:3];
         [stepLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
         stepLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-        stepLbl.textAlignment = UITextAlignmentLeft;
+        stepLbl.textAlignment = UITextAlignmentCenter;
         stepLbl.lineBreakMode = UILineBreakModeWordWrap;
         stepLbl.numberOfLines = 0;
         stepLbl.backgroundColor = [UIColor clearColor];
         [myBackGroundView addSubview:stepLbl];
         [stepLbl release];
+        
+        
+        if (i == 0) {
+            titleLbl.text = NSLocalizedString(@"kOrder1Title", nil); 
+            stepLbl.text = NSLocalizedString(@"kOrder1Desc", nil); 
+        }else if (i == 1) {
+            titleLbl.text = NSLocalizedString(@"kOrder2Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder2Desc", nil);
+        }else if (i == 2) {
+            titleLbl.text = NSLocalizedString(@"kOrder3Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder3Desc", nil);
+        }else if (i == 3) {
+            titleLbl.text = NSLocalizedString(@"kOrder4Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder4Desc", nil);
+        }else if (i == 4) {
+            titleLbl.text = NSLocalizedString(@"kOrder5Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder5Desc", nil);
+        }else if (i == 5) {
+            titleLbl.text = NSLocalizedString(@"kOrder6Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder6Desc", nil);
+        }else if (i == 6) {
+            titleLbl.text = NSLocalizedString(@"kOrder7Title", nil);
+            stepLbl.text = NSLocalizedString(@"kOrder7Desc", nil);
+        }
+        
         
         XposSlider = XposSlider +  orderScrollView.frame.size.width;
         

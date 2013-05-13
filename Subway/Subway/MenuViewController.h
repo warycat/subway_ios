@@ -19,6 +19,7 @@
     UIView *subOfTheDayViewInfo;
     BOOL viewIsFlipped;
     UIView *productsView;
+    UIImageView *menuTempHolderImg;
     
     //Product SubView
     UIScrollView *productsScroll;
@@ -37,11 +38,15 @@
     CustomLabel *energyLbl;
     CustomLabel *buildLbl;
     
+    
     UIView *popupInfo;
     int tempProdFact;
     CustomLabel *factTitleLbl;
     UIImageView *factIconImgForPopup;
     CustomLabel *factDescriptionLbl;
+    
+    BOOL fromSubOfTheDay;
+    int productId;
     
 }
     
@@ -54,6 +59,7 @@
 @property (nonatomic, strong) UIView *subOfTheDayView;
 @property (nonatomic, strong) UIView *subOfTheDayViewInfo;
 @property (nonatomic, strong) UIView *productsView;
+@property (nonatomic, strong) UIImageView *menuTempHolderImg;
 
 //Product SubView
 @property (nonatomic, strong) UIScrollView *productsScroll;
@@ -74,5 +80,11 @@
 @property (nonatomic, strong) CustomLabel *factTitleLbl;
 @property (nonatomic, strong) UIImageView *factIconImgForPopup;
 @property (nonatomic, strong) CustomLabel *factDescriptionLbl;
+
+@property (assign, nonatomic) BOOL fromSubOfTheDay;
+@property (assign, nonatomic) int productId;
+
+-(void)LaunchProduct:(int)idProduct;
+
 
 @end

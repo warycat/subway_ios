@@ -270,7 +270,7 @@ static DisplayMethod * display;
         [myRightBtn addSubview:locatorLbl];
         [locatorLbl release];
         
-    }else if ([myViewName isEqualToString:@"order"]) {
+    }else if ([myViewName isEqualToString:@"order"] || [myViewName isEqualToString:@"catering"]) {
                     
         UIImageView *logoHomeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_home@2x"]];
         logoHomeImg.frame = CGRectMake(14, (myLeftBtn.frame.size.height-22)/2 - 1, 19, 22);
