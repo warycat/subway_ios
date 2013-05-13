@@ -1,0 +1,98 @@
+/* 
+ Localizable.strings
+ 
+ ******************************* ENGLISH ******************************* 
+ 
+ SUBWAY
+ Created by ludo on 4/18/13.
+ Copyright (c) 2013 C3O. All rights reserved.
+ */
+
+
+
+// ------------------ Top View
+// ----------
+"weibo_login_btn_txt" = " LOGIN";
+"store_btn_txt" = " STORE";
+"locator_btn_txt" = " LOCATOR";
+"home_btn_txt" = " HOME";
+"back_btn_txt" = " BACK";
+
+
+// ------------------ Bottom View
+// ----------
+"discover_menu_btn_txt" = " DISCOVER ALL OUR MENU";
+"coupon_btn_txt" = " COUPON";
+"storeList_btn_txt" = " STORE LIST";
+"catering_btn_txt" = " CATERING";
+"options_btn_txt" = " OPTIONS";
+"howTo_btn_txt" = " HOW TO";
+"order_btn_txt" = " ORDER";
+
+
+
+
+
+
+// ------------------ HOME
+// ----------
+
+"allWeek_btn_txt" = " ALL WEEK";
+"kSunday" = " Sunday";
+"kMonday" = " Monday";
+"kTuesday" = " Tuesday";
+"kWednesday" = " Wednesday";
+"kThursday" = " Thursday";
+"kFriday" = " Friday";
+"kSaturday" = " Saturday";
+
+
+
+// ------------------ STORE LOCATOR
+// ----------
+
+"kDistance" = "Distance :";
+"kMeters" = "meters";
+"kKms" = "kms";
+
+"aroundMe_btn_txt" = " AROUND ME";
+"email_btn_txt" = " EMAIL";
+
+"kNoStoresAround" = "No Store Around";
+
+
+// ------------------ MEAL
+// ----------
+
+//Menu
+"kMenuValue" = "Value";
+"kMenuClassic" = "Classic";
+"kMenuPremium" = "Premium";
+"kMenuDrink" = "Drink";
+"kMenuSalad" = "Salad";
+"kMenuWrap" = "Wrap";
+
+"kTastyFlavor" = "tasty flavor";
+"kEnergyBoost" = "energy boost";
+"kSandwichBuild" = "sandwichbuild";
+"kLowFat" = "low fat";
+
+"kTasty" = " Tasty:";
+"kEnergy" = " Energy:";
+"kBuild" = " Build:";
+"kHealth" = " Health:";
+
+
+
+"learnMore_btn_txt" = " LEARN MORE";
+
+
+// ------------------ HUD
+// ----------
+
+"kNoConnection" = "The Internet connection appears to be offline.";
+
+
+
+
+
