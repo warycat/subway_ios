@@ -19,6 +19,7 @@
     UIView *subOfTheDayViewInfo;
     BOOL viewIsFlipped;
     UIView *productsView;
+    UIImageView *menuTempHolderImg;
     
     //Product SubView
     UIScrollView *productsScroll;
@@ -37,6 +38,7 @@
     CustomLabel *energyLbl;
     CustomLabel *buildLbl;
     
+    
     UIView *popupInfo;
     int tempProdFact;
     CustomLabel *factTitleLbl;
@@ -54,6 +56,7 @@
 @property (nonatomic, strong) UIView *subOfTheDayView;
 @property (nonatomic, strong) UIView *subOfTheDayViewInfo;
 @property (nonatomic, strong) UIView *productsView;
+@property (nonatomic, strong) UIImageView *menuTempHolderImg;
 
 //Product SubView
 @property (nonatomic, strong) UIScrollView *productsScroll;

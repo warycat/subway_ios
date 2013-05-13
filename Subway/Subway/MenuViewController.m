@@ -19,7 +19,7 @@
 @synthesize menuScroll;
 @synthesize subOfTheDayView, subOfTheDayContainer, subOfTheDayViewInfo;
 @synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
-@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl;
+@synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl, menuTempHolderImg;
 @synthesize healthLbl, tastyLbl, energyLbl, buildLbl;
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -453,6 +453,11 @@
     [self.view addSubview:menuScroll];
     
     
+    menuTempHolderImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taxo_on@2x"]];
+    menuTempHolderImg.frame = CGRectMake(0, 0, 90, 90);
+    [menuScroll addSubview:menuTempHolderImg];
+    menuTempHolderImg.hidden = YES;
+    
     UIImage *BtnImgON = nil;
     UIImage *BtnImgOFF = nil;
     
@@ -468,42 +473,18 @@
         btn1Lbl.backgroundColor = [UIColor clearColor];
         btn1Lbl.text = [[menuArray objectAtIndex:i] objectForKey:@"title"];
         
-        if (i == 0) {
-            BtnImgON = [UIImage imageNamed:@"menu_value_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_value_off@2x"];
-        }
-        else if (i == 1) {
-            BtnImgON = [UIImage imageNamed:@"menu_classic_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_classic_off@2x"];
-        }
-        else if (i == 2) {
-            BtnImgON = [UIImage imageNamed:@"menu_premium_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_premium_off@2x"];
-        }
-        else if (i == 3) {
-            BtnImgON = [UIImage imageNamed:@"menu_drink_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_drink_off@2x"];
-        }
-        else if (i == 4) {
-            BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
-        }
-        else if (i == 5) {
-            BtnImgON = [UIImage imageNamed:@"menu_salad_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_salad_off@2x"];
+        if ([[[menuArray objectAtIndex:i] objectForKey:@"media"] count] > 0) {
+            
+            BtnImgON = [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
+            BtnImgOFF =  [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
             
         }
-        else if (i == 5) {
-            BtnImgON = [UIImage imageNamed:@"menu_wrap_on@2x"];
-            BtnImgOFF = [UIImage imageNamed:@"menu_wrap_off@2x"];
-            
-        }
-
         
         UIButton *menuBtn =  [[UIButton alloc] initWithFrame:CGRectMake(XposInside, 0, 90, 90)];
         menuBtn.tag = [[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue];
         menuBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         menuBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        menuBtn.userInteractionEnabled = YES;
         [menuBtn setBackgroundImage:[BtnImgOFF stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
         [menuBtn setBackgroundImage:[BtnImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateHighlighted];
@@ -565,6 +546,9 @@
                 titleProductLbl.backgroundColor = [UIColor clearColor];
                 [subOfTheDayView addSubview:titleProductLbl];
                 [titleProductLbl release];
+                
+                NSLog(@"fileName : %@", [[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"])
+                ;
                 
                 UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
@@ -768,19 +752,23 @@
             
             if (sub.tag == idCategory) {
                 
-                UIImage *myImageNormal = [myButton backgroundImageForState:UIControlStateNormal];
-                UIImage *myImageSelected = [myButton backgroundImageForState:UIControlStateSelected];
+                menuTempHolderImg.frame = CGRectMake(myButton.frame.origin.x, myButton.frame.origin.y, 90, 90);
+                [menuScroll addSubview:menuTempHolderImg];
+                menuTempHolderImg.hidden = NO;
                 
-                [myButton setBackgroundImage:[myImageSelected stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-                [myButton setBackgroundImage:[myImageNormal stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
+//                UIImage *myImageNormal = [myButton backgroundImageForState:UIControlStateNormal];
+//                UIImage *myImageSelected = [myButton backgroundImageForState:UIControlStateSelected];
+//                
+//                [myButton setBackgroundImage:[myImageSelected stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+//                [myButton setBackgroundImage:[myImageNormal stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
            
             }else {
                 
-                UIImage *myImageHighlighted = [myButton backgroundImageForState:UIControlStateHighlighted];
-                UIImage *myImageReserved = [myButton backgroundImageForState:UIControlStateReserved];
-                
-                [myButton setBackgroundImage:[myImageReserved stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-                [myButton setBackgroundImage:[myImageHighlighted stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
+//                UIImage *myImageHighlighted = [myButton backgroundImageForState:UIControlStateHighlighted];
+//                UIImage *myImageReserved = [myButton backgroundImageForState:UIControlStateReserved];
+//                
+//                [myButton setBackgroundImage:[myImageReserved stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+//                [myButton setBackgroundImage:[myImageHighlighted stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateSelected];
                 
             }
 
