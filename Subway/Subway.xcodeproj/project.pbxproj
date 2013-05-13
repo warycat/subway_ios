@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		469AF6F8173CB81D0082CC2D /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469AF6F7173CB81D0082CC2D /* libbaidumapapi.a */; };
 		469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 469AF6F9173CB8460082CC2D /* mapapi.bundle */; };
+		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
 		856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856FD18A1738D6D0001EED8D /* FrameworkChecker.m */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
@@ -185,6 +186,8 @@
 		469AF6F6173CB8010082CC2D /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		469AF6F7173CB81D0082CC2D /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		469AF6F9173CB8460082CC2D /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		469AF6FB174085B90082CC2D /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
+		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
 		856FD1891738D6D0001EED8D /* FrameworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkChecker.h; path = Helpers/FrameworkChecker.h; sourceTree = "<group>"; };
 		856FD18A1738D6D0001EED8D /* FrameworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameworkChecker.m; path = Helpers/FrameworkChecker.m; sourceTree = "<group>"; };
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 				EBB4D078171FE52D006DAF2F /* MenuViewController.m */,
 				EBB4D07A171FE544006DAF2F /* StoreLocatorViewController.h */,
 				EBB4D07B171FE544006DAF2F /* StoreLocatorViewController.mm */,
+				469AF6FB174085B90082CC2D /* HowToOrderViewController.h */,
+				469AF6FC174085B90082CC2D /* HowToOrderViewController.m */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -928,6 +933,7 @@
 				EBAC242A1737C1A4009D8519 /* DDPageControl.m in Sources */,
 				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
+				469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
