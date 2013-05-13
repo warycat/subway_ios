@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		467C392D17411846005EEE76 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392517411846005EEE76 /* JSONKit.m */; };
+		467C392E17411846005EEE76 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392717411846005EEE76 /* SinaWeibo.m */; };
+		467C392F17411846005EEE76 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */; };
+		467C393017411846005EEE76 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392C17411846005EEE76 /* SinaWeiboRequest.m */; };
+		467C393517411851005EEE76 /* BlockSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393217411851005EEE76 /* BlockSinaWeibo.m */; };
+		467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */; };
 		469AF6F8173CB81D0082CC2D /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469AF6F7173CB81D0082CC2D /* libbaidumapapi.a */; };
 		469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 469AF6F9173CB8460082CC2D /* mapapi.bundle */; };
 		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
@@ -165,6 +171,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		467C392417411846005EEE76 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		467C392517411846005EEE76 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		467C392617411846005EEE76 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
+		467C392717411846005EEE76 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
+		467C392817411846005EEE76 /* SinaWeiboAuthorizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboAuthorizeView.h; sourceTree = "<group>"; };
+		467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboAuthorizeView.m; sourceTree = "<group>"; };
+		467C392A17411846005EEE76 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
+		467C392B17411846005EEE76 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
+		467C392C17411846005EEE76 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		467C393117411851005EEE76 /* BlockSinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockSinaWeibo.h; sourceTree = "<group>"; };
+		467C393217411851005EEE76 /* BlockSinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockSinaWeibo.m; sourceTree = "<group>"; };
+		467C393317411851005EEE76 /* BlockSinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockSinaWeiboRequest.h; sourceTree = "<group>"; };
+		467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockSinaWeiboRequest.m; sourceTree = "<group>"; };
 		469AF6DA173CB8010082CC2D /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		469AF6DB173CB8010082CC2D /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
 		469AF6DC173CB8010082CC2D /* BMKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotationView.h; sourceTree = "<group>"; };
@@ -512,6 +531,19 @@
 				EB869522173B93CE004C9092 /* default@2x.png */,
 				EB86951F173B9201004C9092 /* icon@2x.png */,
 				EB86951D173B91FB004C9092 /* icon.png */,
+				467C393117411851005EEE76 /* BlockSinaWeibo.h */,
+				467C393217411851005EEE76 /* BlockSinaWeibo.m */,
+				467C393317411851005EEE76 /* BlockSinaWeiboRequest.h */,
+				467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */,
+				467C392417411846005EEE76 /* JSONKit.h */,
+				467C392517411846005EEE76 /* JSONKit.m */,
+				467C392617411846005EEE76 /* SinaWeibo.h */,
+				467C392717411846005EEE76 /* SinaWeibo.m */,
+				467C392817411846005EEE76 /* SinaWeiboAuthorizeView.h */,
+				467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */,
+				467C392A17411846005EEE76 /* SinaWeiboConstants.h */,
+				467C392B17411846005EEE76 /* SinaWeiboRequest.h */,
+				467C392C17411846005EEE76 /* SinaWeiboRequest.m */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
 				856FD18C1738D6DE001EED8D /* Helpers */,
 				EBB4D043171FD882006DAF2F /* Settings */,
@@ -982,6 +1014,12 @@
 				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
 				469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */,
+				467C392D17411846005EEE76 /* JSONKit.m in Sources */,
+				467C392E17411846005EEE76 /* SinaWeibo.m in Sources */,
+				467C392F17411846005EEE76 /* SinaWeiboAuthorizeView.m in Sources */,
+				467C393017411846005EEE76 /* SinaWeiboRequest.m in Sources */,
+				467C393517411851005EEE76 /* BlockSinaWeibo.m in Sources */,
+				467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
