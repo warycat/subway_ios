@@ -601,15 +601,15 @@
             
             ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView viewForAnnotation:anAnnotation];
             [self mapView:self.myMapView didSelectAnnotationView:(BMKAnnotationView *)annotationView];
-            BMKPlanNode *start = [[BMKPlanNode alloc]init];
-            start.pt = self.myMapView.userLocation.coordinate;
-            BMKPlanNode *end = [[BMKPlanNode alloc]init];
-            end.pt = anAnnotation.coordinate;
-            NSLog(@"search walkiing");
-            BOOL flag = [self.search walkingSearch:@"上海" startNode:start endCity:@"上海" endNode:end];
-            if (!flag) {
-                NSLog(@"search failed");
-            }
+//            BMKPlanNode *start = [[BMKPlanNode alloc]init];
+//            start.pt = self.myMapView.userLocation.coordinate;
+//            BMKPlanNode *end = [[BMKPlanNode alloc]init];
+//            end.pt = anAnnotation.coordinate;
+//            NSLog(@"search walkiing");
+//            BOOL flag = [self.search walkingSearch:@"上海" startNode:start endCity:@"上海" endNode:end];
+//            if (!flag) {
+//                NSLog(@"search failed");
+//            }
         }
         
     }
@@ -830,7 +830,7 @@
 
             }
             
-            tempAnnotation = nil;
+            //tempAnnotation = nil;
             
         }
 
