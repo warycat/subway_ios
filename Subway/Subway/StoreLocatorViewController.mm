@@ -576,7 +576,7 @@
     
     //Change Adress first Line
     UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:14.0];
-    CGSize sizeForDesc = {detailsView.frame.size.width,100.0f};
+    CGSize sizeForDesc = {detailsView.frame.size.width - 100,100.0f};
     
     NSString *myText = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
     CGSize adressSize = [myText sizeWithFont:fontSD
@@ -584,14 +584,14 @@
     
     
     if (adressSize.height > 15) {
-        [adressdetailsLbl setFrame:CGRectMake(0, 55, detailsView.frame.size.width - 100, adressSize.height)];
+        [adressdetailsLbl setFrame:CGRectMake(0, 45, detailsView.frame.size.width - 100, adressSize.height)];
     }else {
         [adressdetailsLbl setFrame:CGRectMake(0, 55, detailsView.frame.size.width - 100, adressSize.height)];
     }
     
     
     adressdetailsLbl.text = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
-    
+    adressdetailsLbl.numberOfLines = 3;
     //Change Adress second Line
     [adressdetailsLblSecondLine setFrame:CGRectMake(0, adressdetailsLbl.frame.size.height + adressdetailsLbl.frame.origin.y, detailsView.frame.size.width, 20)];
     adressdetailsLblSecondLine.text = [NSString stringWithFormat:@"%@, %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"region"], [[allStores objectAtIndex:indexPath.row] objectForKey:@"zipcode"]];
