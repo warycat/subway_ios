@@ -51,6 +51,14 @@ BMKMapManager* _mapManager;
     
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([url.scheme isEqualToString:kCallbackScheme]) {
+        NSLog(@"app delegate login");
+        return [[BlockSinaWeibo sharedClient].sinaWeibo handleOpenURL:url];
+    }
+    return YES;
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {

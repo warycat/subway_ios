@@ -367,7 +367,7 @@ static SettingMethod * setting;
 -(BOOL)weiboIsConnected {
     
     if ([FrameworkChecker isSocialAvailable] ==  NO) {
-        return NO;
+        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
     }
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
     {
@@ -410,6 +410,20 @@ static SettingMethod * setting;
 	
 }
 
+- (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock
+{
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ADRESS, @"Store/share"]];
+    NSLog(@"%@",URL);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    request.HTTPMethod = @"POST";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestDict options:NSJSONWritingPrettyPrinted error:nil];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        NSNumber *status = [dict objectForKey:@"status"];
+        if(status.intValue == 1)successBlock(dict);
+    }];
+}
 
 
 

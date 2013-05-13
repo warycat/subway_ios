@@ -359,7 +359,11 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
--(void)weiboAction { }
+-(void)weiboAction {
+    [BlockSinaWeibo loginWithHandler:^{
+        NSLog(@"login");
+    }];
+}
 
 -(void)pushStoreLocatorView {
     

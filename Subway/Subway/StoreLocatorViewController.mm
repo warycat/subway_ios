@@ -13,6 +13,8 @@
 #import "SVPulsingAnnotationView.h"
 #import "MapPlace.h"
 #import <MapKit/MapKit.h>
+#import <Social/Social.h>
+#import "BlockSinaWeiboRequest.h"
 
 
 @interface StoreLocatorViewController ()
@@ -288,6 +290,44 @@
     [detailsView addSubview:cityLabel];
     //[self.view sendSubviewToBack:cityLabel];
     
+    UIButton *weiboShareBtn =  [[UIButton alloc] init];
+    [weiboShareBtn  setFrame:CGRectMake(250,25 , 43, 43)];
+    weiboShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    weiboShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [weiboShareBtn setImage:[UIImage imageNamed:@"icon_weibo"] forState:UIControlStateNormal];
+    [weiboShareBtn addTarget:self action:@selector(shareStore:) forControlEvents:UIControlEventTouchDown];
+    CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
+    [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    weiboLbl.text = @"share on";
+    [weiboLbl setDrawOutline:YES];
+    [weiboLbl setOutlineSize:strokeSize];
+    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    weiboLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    weiboLbl.textAlignment = UITextAlignmentCenter;
+    weiboLbl.backgroundColor = [UIColor clearColor];
+    [detailsView addSubview:weiboShareBtn];
+    [detailsView addSubview:weiboLbl];
+}
+
+- (void)shareStore:(id)sender
+{
+    if ([settingMethod weiboIsConnected]) {
+        if ([FrameworkChecker isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+            NSLog(@"available");
+        }else{
+            [settingMethod getShareStoreMessageWith:@{@"locale":@"en",@"sid":@6,@"weiboid":@1023} onSuccess:^(NSDictionary *responseDict) {
+                NSLog(@"%@",responseDict);
+                NSDictionary *data = [responseDict objectForKey:@"data"];
+                NSString *baidumap = [data objectForKey:@"baidumap"];
+                NSString *sharecontent = [data objectForKey:@"sharecontent"];
+                NSString *image = [data objectForKey:@"image"];
+                NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
+                [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
+                    NSLog(@"posted %@",responseDict);
+                }];
+            }];
+        }
+    }
 }
 
 -(void)callSub:(id)sender {

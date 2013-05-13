@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
+#import "BlockSinaWeibo.h"
 
 
 @interface SettingMethod : NSObject < CLLocationManagerDelegate, MBProgressHUDDelegate>{
@@ -56,6 +57,8 @@
 
 // ----------------- GET IMAGE PATH
 - (UIImage *)getImagePath:(NSString *)imageName ;
+
+- (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
 
 @end
 
