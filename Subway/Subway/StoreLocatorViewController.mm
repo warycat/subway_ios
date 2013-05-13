@@ -284,6 +284,7 @@
     cityLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
 //    cityLabel.textAlignment = UITextAlignmentCenter;
     cityLabel.backgroundColor = [UIColor clearColor];
+    self.cityLabel = cityLabel;
     [detailsView addSubview:cityLabel];
     //[self.view sendSubviewToBack:cityLabel];
     
@@ -536,18 +537,25 @@
     
     [self dismissSemiModalView];
     
+    //Change City
+    
+    if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]) {
+        self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",NSLocalizedString(@"kSubway", nil),[[allStores objectAtIndex:indexPath.row]objectForKey:@"city"]];
+    }
     
     //Change Phone
     if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]) {
         
         phoneDetailsLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]];
         [phoneDetailsBtn setTag:indexPath.row];
-        
+        phoneDetailsBtn.alpha = 1.0;
+        phoneDetailsBtn.enabled = YES;
     }else {
         
         
         phoneDetailsLbl.text = @"";
         phoneDetailsBtn.enabled = NO;
+        phoneDetailsBtn.alpha = 0.0;
         
     }
     
@@ -556,11 +564,12 @@
     if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"email"]) {
         
         mailDetailsBtn.enabled = YES;
+        mailDetailsBtn.alpha = 1.0;
         
     }else {
         
         mailDetailsBtn.enabled = NO;
-        
+        mailDetailsBtn.alpha = 0.0;
     }
     
     
@@ -575,9 +584,9 @@
     
     
     if (adressSize.height > 15) {
-        [adressdetailsLbl setFrame:CGRectMake(0, 40, detailsView.frame.size.width, adressSize.height)];
+        [adressdetailsLbl setFrame:CGRectMake(0, 55, detailsView.frame.size.width - 100, adressSize.height)];
     }else {
-        [adressdetailsLbl setFrame:CGRectMake(0, 55, detailsView.frame.size.width, adressSize.height)];
+        [adressdetailsLbl setFrame:CGRectMake(0, 55, detailsView.frame.size.width - 100, adressSize.height)];
     }
     
     

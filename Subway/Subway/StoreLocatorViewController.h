@@ -44,6 +44,7 @@
 
 //Detail
 @property (retain, nonatomic) UIView *detailsView;
+@property (retain, nonatomic) CustomLabel *cityLabel;
 @property (retain, nonatomic) CustomLabel *adressdetailsLbl;
 @property (retain, nonatomic) CustomLabel *adressdetailsLblSecondLine;
 @property (retain, nonatomic) CustomLabel *distancedetailsLbl;
