@@ -45,6 +45,9 @@
     UIImageView *factIconImgForPopup;
     CustomLabel *factDescriptionLbl;
     
+    BOOL fromSubOfTheDay;
+    int productId;
+    
 }
     
 
@@ -77,5 +80,11 @@
 @property (nonatomic, strong) CustomLabel *factTitleLbl;
 @property (nonatomic, strong) UIImageView *factIconImgForPopup;
 @property (nonatomic, strong) CustomLabel *factDescriptionLbl;
+
+@property (assign, nonatomic) BOOL fromSubOfTheDay;
+@property (assign, nonatomic) int productId;
+
+-(void)LaunchProduct:(int)idProduct;
+
 
 @end

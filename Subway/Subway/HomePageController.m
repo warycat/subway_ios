@@ -81,6 +81,7 @@
     }
     
     subOfTheDayContainer.backgroundColor = [UIColor clearColor];
+    subOfTheDayContainer.userInteractionEnabled = YES;
     [self.view addSubview:subOfTheDayContainer];
     
     
@@ -140,6 +141,7 @@
     // the Sub Of the Day MAIN VIEW
     subOfTheDayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 253)];
     subOfTheDayView.backgroundColor = [UIColor clearColor];
+    subOfTheDayView.userInteractionEnabled = YES;
     [subOfTheDayContainer addSubview:subOfTheDayView];
     
     UIImageView *BackgroundImgSub = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_sub_background@2x"]];
@@ -212,7 +214,6 @@
                 [titleProductLbl setOutlineSize:strokeSize];
                 [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
                 titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                //[titleProductLbl sizeToFit];
                 titleProductLbl.textAlignment = UITextAlignmentCenter;
                 titleProductLbl.backgroundColor = [UIColor clearColor];
                 [subOfTheDayView addSubview:titleProductLbl];
@@ -230,6 +231,14 @@
                 logoDay.contentMode = UIViewContentModeScaleToFill;
                 [subOfTheDayView addSubview:logoDay];
                 [logoDay release];
+                
+                UIButton *pushToMenuViewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                pushToMenuViewBtn.frame = CGRectMake(20, subOfTheDayView.frame.size.height - 170, 320, 125);
+                pushToMenuViewBtn.backgroundColor = [UIColor clearColor];
+                pushToMenuViewBtn.userInteractionEnabled = YES;
+                pushToMenuViewBtn.tag = y;
+                [pushToMenuViewBtn addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
+                [subOfTheDayView addSubview:pushToMenuViewBtn];
                 
                 //-------- Put the sub on the ALL WEEK subday
                 
@@ -269,6 +278,14 @@
                 weekLbl.backgroundColor = [UIColor clearColor];
                 [infoScrollSubOfTheDay addSubview:weekLbl];
                 [weekLbl release];
+                
+                UIButton *pushToMenuViewBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+                pushToMenuViewBtn2.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
+                pushToMenuViewBtn2.backgroundColor = [UIColor clearColor];
+                pushToMenuViewBtn.tag = y;
+                pushToMenuViewBtn2.userInteractionEnabled = YES;
+                [pushToMenuViewBtn2 addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
+                [infoScrollSubOfTheDay addSubview:pushToMenuViewBtn2];
                 
                 
                 //--------
@@ -376,9 +393,22 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
+-(void)pushToMenuViewFromSOD:(id)sender {
+    
+    int myTag = [sender tag];
+    
+    MenuViewController *menuViewCtrl = [[MenuViewController alloc] init];
+    menuViewCtrl.fromSubOfTheDay = YES;
+    menuViewCtrl.productId = myTag;
+    [self.navigationController pushViewController:menuViewCtrl animated:YES];
+    [menuViewCtrl release];
+    
+}
+
 -(void)pushMenuView {
     
     MenuViewController *menuViewCtrl = [[MenuViewController alloc] init];
+    menuViewCtrl.fromSubOfTheDay = NO;
     [self.navigationController pushViewController:menuViewCtrl animated:YES];
     [menuViewCtrl release];
     

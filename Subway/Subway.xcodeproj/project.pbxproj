@@ -23,6 +23,7 @@
 		EB2140FE1740A000009983BA /* howtoorder_p7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140F41740A000009983BA /* howtoorder_p7@2x.png */; };
 		EB2141001740A3FA009983BA /* taxo_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140FF1740A3FA009983BA /* taxo_on@2x.png */; };
 		EB2141021740BF9F009983BA /* icon_checkin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2141011740BF9F009983BA /* icon_checkin@2x.png */; };
+		EB2141051740E4AE009983BA /* CateringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2141041740E4AE009983BA /* CateringViewController.m */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
@@ -207,6 +208,8 @@
 		EB2140F41740A000009983BA /* howtoorder_p7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder_p7@2x.png"; sourceTree = "<group>"; };
 		EB2140FF1740A3FA009983BA /* taxo_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taxo_on@2x.png"; sourceTree = "<group>"; };
 		EB2141011740BF9F009983BA /* icon_checkin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_checkin@2x.png"; sourceTree = "<group>"; };
+		EB2141031740E4AE009983BA /* CateringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateringViewController.h; sourceTree = "<group>"; };
+		EB2141041740E4AE009983BA /* CateringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CateringViewController.m; sourceTree = "<group>"; };
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -553,6 +556,8 @@
 				EBB4D07B171FE544006DAF2F /* StoreLocatorViewController.mm */,
 				469AF6FB174085B90082CC2D /* HowToOrderViewController.h */,
 				469AF6FC174085B90082CC2D /* HowToOrderViewController.m */,
+				EB2141031740E4AE009983BA /* CateringViewController.h */,
+				EB2141041740E4AE009983BA /* CateringViewController.m */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -962,6 +967,7 @@
 				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
 				469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */,
+				EB2141051740E4AE009983BA /* CateringViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
