@@ -72,6 +72,19 @@
 
     
     
+    // EVENT BUTTON
+    
+    UIImage *eventImageOn = [[UIImage imageNamed:@"home_event@2x"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    
+    UIButton *eventBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    eventBtn.frame = CGRectMake(0, 70, 320, 165);
+    eventBtn.userInteractionEnabled = YES;
+    [eventBtn setBackgroundImage:eventImageOn forState:UIControlStateNormal];
+    [eventBtn setBackgroundImage:eventImageOn forState:UIControlStateSelected];
+    [eventBtn setBackgroundImage:eventImageOn forState:UIControlStateHighlighted];
+    [eventBtn addTarget:self action:@selector(launchEventAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:eventBtn];
+    
     
     subOfTheDayContainer = [[UIView alloc] initWithFrame:CGRectMake(0, screenHeight - 253 - 55, screenWidth, 253)];
     
@@ -376,10 +389,19 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
+
+-(void)launchEventAction {
+    
+    [settingMethod HUDMessage:@"kNoEventAvailable" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
+    
+}
+
 -(void)weiboAction {
+    
     [BlockSinaWeibo loginWithHandler:^{
         NSLog(@"login");
     }];
+    
 }
 
 -(void)pushStoreLocatorView {

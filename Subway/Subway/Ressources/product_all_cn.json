@@ -7,9 +7,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/value.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_value.png",
                        "screen_size": "640",
-                       "filename": "value.png",
+                       "filename": "menu_value.png",
                        "mid": 109
                        }
                        ],
@@ -253,9 +253,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/classic.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_classic.png",
                        "screen_size": "640",
-                       "filename": "classic.png",
+                       "filename": "menu_classic.png",
                        "mid": 113
                        }
                        ],
@@ -499,9 +499,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/premium.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_premium.png",
                        "screen_size": "640",
-                       "filename": "premium.png",
+                       "filename": "menu_premium.png",
                        "mid": 117
                        }
                        ],
@@ -745,9 +745,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/drink.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_drink.png",
                        "screen_size": "640",
-                       "filename": "drink.png",
+                       "filename": "menu_drink.png",
                        "mid": 121
                        }
                        ],
@@ -800,7 +800,7 @@
                           },
                           {
                           "pid": 16,
-                          "title": "drinks",
+                          "title": "Drinks",
                           "product_ref": "drinks",
                           "highlight": 0,
                           "sub_of_the_day": 0,
@@ -824,22 +824,22 @@
                           "product_facts": [
                                             {
                                             "type": "T",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
                                             "pfid": 16
                                             },
                                             {
                                             "type": "H",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
                                             "pfid": 71
                                             },
                                             {
                                             "type": "E",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
                                             "pfid": 72
                                             },
                                             {
                                             "type": "B",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
                                             "pfid": 73
                                             }
                                             ]
@@ -945,9 +945,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/breakfast.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_breakfast.png",
                        "screen_size": "640",
-                       "filename": "breakfast.png",
+                       "filename": "menu_breakfast.png",
                        "mid": 125
                        }
                        ],
@@ -1145,9 +1145,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/salad.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_salad.png",
                        "screen_size": "640",
-                       "filename": "salad.png",
+                       "filename": "menu_salad.png",
                        "mid": 129
                        }
                        ],
@@ -1207,9 +1207,9 @@
              "media": [
                        {
                        "size": null,
-                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/wrap.png",
+                       "path": "http://222.73.219.19:20115/medias/uploads/taxonomies/640/menu_wrap.png",
                        "screen_size": "640",
-                       "filename": "wrap.png",
+                       "filename": "menu_wrap.png",
                        "mid": 133
                        }
                        ],

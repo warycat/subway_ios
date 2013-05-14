@@ -66,7 +66,6 @@
     [adressdetailsLbl setDrawOutline:NO];
     adressdetailsLbl.numberOfLines = 0;
     adressdetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    adressdetailsLbl.textAlignment = UITextAlignmentLeft;
     adressdetailsLbl.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:adressdetailsLbl];
     
@@ -75,7 +74,6 @@
     adressdetailsLblSecondLine.text = @"";
     [adressdetailsLblSecondLine setDrawOutline:NO];
     adressdetailsLblSecondLine.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    adressdetailsLblSecondLine.textAlignment = UITextAlignmentLeft;
     adressdetailsLblSecondLine.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:adressdetailsLblSecondLine];
     
@@ -84,7 +82,6 @@
     distancedetailsLbl.text = @"";
     [distancedetailsLbl setDrawOutline:NO];
     distancedetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    distancedetailsLbl.textAlignment = UITextAlignmentLeft;
     distancedetailsLbl.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:distancedetailsLbl];
     
@@ -296,9 +293,10 @@
     weiboShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [weiboShareBtn setImage:[UIImage imageNamed:@"icon_weibo"] forState:UIControlStateNormal];
     [weiboShareBtn addTarget:self action:@selector(shareStore:) forControlEvents:UIControlEventTouchDown];
+    
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    weiboLbl.text = @"share on";
+    weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
     [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
@@ -312,6 +310,7 @@
 - (void)shareStore:(id)sender
 {
     if ([settingMethod weiboIsConnected]) {
+        
         if ([FrameworkChecker isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
             NSLog(@"available");
         }else{
@@ -536,7 +535,6 @@
     adressLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
     [adressLbl setDrawOutline:NO];
     adressLbl.textColor = [UIColorCov colorWithHexString:GREEN_TEXT];
-//    adressLbl.textAlignment = UITextAlignmentLeft;
     adressLbl.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:adressLbl];
     [adressLbl release];
@@ -555,7 +553,6 @@
     
     [distanceLbl setDrawOutline:NO];
     distanceLbl.textColor = [UIColor grayColor];
-//    distanceLbl.textAlignment = UITextAlignmentLeft;
     distanceLbl.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:distanceLbl];
     [distanceLbl release];

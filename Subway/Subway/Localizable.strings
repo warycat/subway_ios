@@ -82,7 +82,7 @@
 "kBuild" = " Build:";
 "kHealth" = " Health:";
 
-
+"kShareOnWeibo" = "share on";
 
 "learnMore_btn_txt" = " LEARN MORE";
 
@@ -119,7 +119,7 @@
 // ----------
 
 "kNoConnection" = "The Internet connection appears to be offline.";
-
+"kNoEventAvailable" = "No events available yet!!";
 
 "kSubway" = "SUBWAY";
 

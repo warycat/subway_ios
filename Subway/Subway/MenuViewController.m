@@ -303,7 +303,7 @@
     
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
     [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
-    weiboLbl.text = @"share on";
+    weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
     [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];

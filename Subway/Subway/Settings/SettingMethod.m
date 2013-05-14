@@ -10,6 +10,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>   
 #import <Social/Social.h>
+#import <Accounts/Accounts.h>
 #import "FrameworkChecker.h"
 
 
@@ -369,6 +370,7 @@ static SettingMethod * setting;
     if ([FrameworkChecker isSocialAvailable] ==  NO) {
         return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
     }
+    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
     {
         return YES;
