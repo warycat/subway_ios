@@ -977,11 +977,8 @@
 				EB2140FE1740A000009983BA /* howtoorder_p7@2x.png in Resources */,
 				EB2141001740A3FA009983BA /* taxo_on@2x.png in Resources */,
 				EB2141021740BF9F009983BA /* icon_checkin@2x.png in Resources */,
-<<<<<<< HEAD
 				EB2141071741DDAD009983BA /* home_event@2x.png in Resources */,
-=======
 				467C393A1741EDCD005EEE76 /* WeiboSDK.bundle in Resources */,
->>>>>>> origin/larry
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

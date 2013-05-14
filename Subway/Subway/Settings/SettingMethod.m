@@ -366,19 +366,6 @@ static SettingMethod * setting;
 // ================= CHECK WEIBO =================
 
 -(BOOL)weiboIsConnected {
-<<<<<<< HEAD
-    
-    if ([FrameworkChecker isSocialAvailable] ==  NO) {
-        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
-    }
-    
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
-    {
-        return YES;
-    }else {
-        return NO;
-    }
-=======
     return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
 //    if ([FrameworkChecker isSocialAvailable] ==  NO) {
 //        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
@@ -389,7 +376,6 @@ static SettingMethod * setting;
 //    }else {
 //        return NO;
 //    }
->>>>>>> origin/larry
     
 }
 
