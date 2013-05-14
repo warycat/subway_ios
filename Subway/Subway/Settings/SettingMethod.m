@@ -366,17 +366,16 @@ static SettingMethod * setting;
 // ================= CHECK WEIBO =================
 
 -(BOOL)weiboIsConnected {
-    
-    if ([FrameworkChecker isSocialAvailable] ==  NO) {
-        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
-    }
-    
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
-    {
-        return YES;
-    }else {
-        return NO;
-    }
+    return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
+//    if ([FrameworkChecker isSocialAvailable] ==  NO) {
+//        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
+//    }
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
+//    {
+//        return YES;
+//    }else {
+//        return NO;
+//    }
     
 }
 
@@ -424,6 +423,7 @@ static SettingMethod * setting;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSNumber *status = [dict objectForKey:@"status"];
         if(status.intValue == 1)successBlock(dict);
+        else NSLog(@"status error %d",status.intValue);
     }];
 }
 

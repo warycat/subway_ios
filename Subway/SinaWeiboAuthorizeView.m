@@ -141,7 +141,7 @@ static CGFloat kBorderWidth = 10;
         [self addSubview:webView];
         [webView release];
         
-        UIImage* closeImage = [UIImage imageNamed:@"SinaWeibo.bundle/images/close.png"];
+        UIImage* closeImage = [UIImage imageNamed:@"WeiboSDK.bundle/images/close.png"];
         UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
         closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeButton setImage:closeImage forState:UIControlStateNormal];
@@ -356,7 +356,7 @@ static CGFloat kBorderWidth = 10;
     {	
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];	
     }	
-    modalBackgroundView.frame = window.frame;	
+    modalBackgroundView.frame = window.frame;
     [modalBackgroundView addSubview:self];	
     [window addSubview:modalBackgroundView];	
     
