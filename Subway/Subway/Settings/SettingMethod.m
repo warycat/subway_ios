@@ -437,6 +437,7 @@ static SettingMethod * setting;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSNumber *status = [dict objectForKey:@"status"];
         if(status.intValue == 1)successBlock(dict);
+        else NSLog(@"status error %d",status.intValue);
     }];
 }
 

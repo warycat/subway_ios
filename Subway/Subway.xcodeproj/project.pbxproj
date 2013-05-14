@@ -13,7 +13,6 @@
 		467C393017411846005EEE76 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392C17411846005EEE76 /* SinaWeiboRequest.m */; };
 		467C393517411851005EEE76 /* BlockSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393217411851005EEE76 /* BlockSinaWeibo.m */; };
 		467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */; };
-		467C39381741E69D005EEE76 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467C39371741E69D005EEE76 /* Accounts.framework */; };
 		467C393A1741EDCD005EEE76 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 467C39391741EDCD005EEE76 /* WeiboSDK.bundle */; };
 		469AF6F8173CB81D0082CC2D /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469AF6F7173CB81D0082CC2D /* libbaidumapapi.a */; };
 		469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 469AF6F9173CB8460082CC2D /* mapapi.bundle */; };
@@ -184,7 +183,6 @@
 		467C393217411851005EEE76 /* BlockSinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockSinaWeibo.m; sourceTree = "<group>"; };
 		467C393317411851005EEE76 /* BlockSinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockSinaWeiboRequest.h; sourceTree = "<group>"; };
 		467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockSinaWeiboRequest.m; sourceTree = "<group>"; };
-		467C39371741E69D005EEE76 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		467C39391741EDCD005EEE76 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		469AF6DA173CB8010082CC2D /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		469AF6DB173CB8010082CC2D /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -402,11 +400,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				EB2141091741E465009983BA /* Accounts.framework in Frameworks */,
-=======
-				467C39381741E69D005EEE76 /* Accounts.framework in Frameworks */,
->>>>>>> origin/larry
 				EB869514173B872E004C9092 /* libz.dylib in Frameworks */,
 				EBCAA2E917326CA8007F33B2 /* AddressBook.framework in Frameworks */,
 				EBCAA2E7173250B0007F33B2 /* Social.framework in Frameworks */,
@@ -532,7 +525,6 @@
 		EBB4CF90171FADE9006DAF2F = {
 			isa = PBXGroup;
 			children = (
-				467C39371741E69D005EEE76 /* Accounts.framework */,
 				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
 				EB869521173B93CE004C9092 /* default.png */,
 				EB869522173B93CE004C9092 /* default@2x.png */,
