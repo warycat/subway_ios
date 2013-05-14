@@ -543,11 +543,11 @@
     
     menuScroll.contentSize = CGSizeMake(XposInside, 90);
     
-    float width = menuScroll.frame.size.width;
-    float height = menuScroll.frame.size.height;
-    float newPosition = menuScroll.contentOffset.x + 165;
-    CGRect toVisible = CGRectMake(newPosition, 0, width, height);
-    [menuScroll scrollRectToVisible:toVisible animated:NO];
+//    float width = menuScroll.frame.size.width;
+//    float height = menuScroll.frame.size.height;
+//    float newPosition = menuScroll.contentOffset.x + 165;
+//    CGRect toVisible = CGRectMake(newPosition, 0, width, height);
+//    [menuScroll scrollRectToVisible:toVisible animated:NO];
     
     
     //---------
@@ -722,6 +722,7 @@
 -(void)pushStoreLocatorView {
     
     StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
+    storeViewCtrl.fromOtherView = YES;
     [self.navigationController pushViewController:storeViewCtrl animated:YES];
     [storeViewCtrl release];
     
@@ -959,6 +960,8 @@
     CGRect toVisible = CGRectMake(0.0, 0, width, height);
     [productsScroll scrollRectToVisible:toVisible animated:NO];
     
+    int positionOfTheScroll = 0;
+    
 
     for (int i = 0; i < [menuArray count]; i++) {
         
@@ -975,6 +978,16 @@
                 
             for (int y = 0; y < [[[menuArray objectAtIndex:i] objectForKey:@"products"] count]; y++) {
                 [currentProductsArray addObject:[[[menuArray objectAtIndex:i] objectForKey:@"products"] objectAtIndex:y]];
+                
+                if (fromSubOfTheDay == YES) {
+                    
+                    if ([[[[[menuArray objectAtIndex:i] objectForKey:@"products"] objectAtIndex:y] objectForKey:@"pid"] intValue] == productId) {
+                        
+                        positionOfTheScroll = y;
+                        
+                    }
+                    
+                }
             }
             break;
             
@@ -987,7 +1000,17 @@
     
     float productScrollContentSize = productsScroll.frame.size.width * [currentProductsArray count];
     productsScroll.contentSize = CGSizeMake(productScrollContentSize, productsScroll.frame.size.height);
-
+    
+    if (fromSubOfTheDay == YES) {
+        
+        float width = productsScroll.frame.size.width;
+        float height = productsScroll.frame.size.height;
+        CGRect toVisible = CGRectMake(positionOfTheScroll*productsScroll.frame.size.width, 0, width, height);
+        [productsScroll scrollRectToVisible:toVisible animated:NO];
+        
+        pageControl.currentPage = positionOfTheScroll;
+        
+    }
     
     int XPosImage = 0;
     
@@ -1034,7 +1057,13 @@
     
     [gregorianCalendar release];
     
-    [self redrawButtonsInfo:0];
+    if (fromSubOfTheDay == YES) {
+        fromSubOfTheDay = NO;
+        [self redrawButtonsInfo:positionOfTheScroll];
+    }else {
+        [self redrawButtonsInfo:0];
+    }
+    
 
 }
 

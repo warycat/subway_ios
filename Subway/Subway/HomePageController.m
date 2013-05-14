@@ -10,6 +10,7 @@
 #import "MenuViewController.h"
 #import "StoreLocatorViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BlockSinaWeiboRequest.h"
 
 @interface HomePageController ()
 
@@ -17,12 +18,25 @@
 
 @implementation HomePageController
 @synthesize subOfTheDayContainer, subOfTheDayView, subOfTheDayViewInfo;
+@synthesize weiboBtn;
 
 -(void)viewWillAppear:(BOOL)animated {
-	
+    
 	self.navigationController.navigationBar.hidden = YES;
 	[super viewWillAppear:YES];
 	
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+    if ([settingMethod weiboIsConnected]) {
+        
+        weiboBtn.alpha = 0.0;
+        weiboBtn.hidden = YES;
+        weiboBtn.enabled = NO;
+        
+    }
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -44,12 +58,11 @@
          
      }else {
          
-         UIButton *weiboBtn =  [[UIButton alloc] init];
+         weiboBtn =  [[UIButton alloc] init];
          
          [displayMethod createTopBar:self.view viewName:@"home" leftBtn:weiboBtn rightBtn:storeLocatorBtn otherBtn:nil];
          
          [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
-         [weiboBtn release];
          
      }
     
@@ -207,6 +220,7 @@
         for (int y = 0; y < [productsArray count]; y++) {
             
             int requestSOD = [[[productsArray objectAtIndex:y] objectForKey:@"sub_of_the_day"] intValue];
+            int SODId = [[[productsArray objectAtIndex:y] objectForKey:@"pid"] intValue];
             
             NSString *myWeekDay = @"";
             
@@ -249,7 +263,7 @@
                 pushToMenuViewBtn.frame = CGRectMake(20, subOfTheDayView.frame.size.height - 170, 320, 125);
                 pushToMenuViewBtn.backgroundColor = [UIColor clearColor];
                 pushToMenuViewBtn.userInteractionEnabled = YES;
-                pushToMenuViewBtn.tag = y;
+                pushToMenuViewBtn.tag = SODId;
                 [pushToMenuViewBtn addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
                 [subOfTheDayView addSubview:pushToMenuViewBtn];
                 
@@ -295,7 +309,7 @@
                 UIButton *pushToMenuViewBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
                 pushToMenuViewBtn2.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
                 pushToMenuViewBtn2.backgroundColor = [UIColor clearColor];
-                pushToMenuViewBtn.tag = y;
+                pushToMenuViewBtn2.tag = SODId;
                 pushToMenuViewBtn2.userInteractionEnabled = YES;
                 [pushToMenuViewBtn2 addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
                 [infoScrollSubOfTheDay addSubview:pushToMenuViewBtn2];
@@ -340,7 +354,15 @@
                     [infoScrollSubOfTheDay addSubview:mainImgSubOfTheDay];
                     [mainImgSubOfTheDay release];
                     
-                                        
+                    
+//                    UIButton *pushToMenuViewBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//                    pushToMenuViewBtn2.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
+//                    pushToMenuViewBtn2.backgroundColor = [UIColor clearColor];
+//                    pushToMenuViewBtn2.tag = SODId;
+//                    pushToMenuViewBtn2.userInteractionEnabled = YES;
+//                    [pushToMenuViewBtn2 addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
+//                    [infoScrollSubOfTheDay addSubview:pushToMenuViewBtn2];
+                    
                 }
 
                 
@@ -399,7 +421,9 @@
 -(void)weiboAction {
     
     [BlockSinaWeibo loginWithHandler:^{
-        NSLog(@"login");
+        weiboBtn.alpha = 0.0;
+        weiboBtn.hidden = YES;
+        weiboBtn.enabled = NO;
     }];
     
 }
@@ -407,6 +431,7 @@
 -(void)pushStoreLocatorView {
     
     StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
+    storeViewCtrl.fromOtherView = NO;
     [self.navigationController pushViewController:storeViewCtrl animated:YES];
     [storeViewCtrl release];
     

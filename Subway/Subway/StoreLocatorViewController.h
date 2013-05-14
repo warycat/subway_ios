@@ -15,6 +15,9 @@
 
 @interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, BMKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,BMKSearchDelegate> {
     
+    //Weibo Btn
+    UIButton *weiboBtn;
+    
     //Map
     BMKMapView * myMapView;
     BMKAnnotationView *tempAnnotation;
@@ -35,7 +38,13 @@
     
     //SemiModal
     UIView *bottomView;
+    
+    //From Catering / How To Order / Menu View
+    BOOL fromOtherView;
 }
+
+//Weibo Btn
+@property (retain, nonatomic) UIButton *weiboBtn;
 
 //Map
 @property (retain, nonatomic) BMKMapView * myMapView;
@@ -59,5 +68,8 @@
 @property (retain, nonatomic) UIView *bottomView;
 
 @property (retain, nonatomic) NSDictionary *currentStore;
+
+//From Catering or How To Order
+@property (nonatomic, assign) BOOL fromOtherView;
 
 @end

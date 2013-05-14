@@ -11,6 +11,9 @@
 
 @interface HomePageController : UIViewController {
     
+    //Weibo Btn
+    UIButton *weiboBtn;
+    
     UIView *subOfTheDayContainer;
     UIView *subOfTheDayView;
     UIView *subOfTheDayViewInfo;
@@ -18,6 +21,8 @@
     
     
 }
+//Weibo Btn
+@property (nonatomic, strong) UIButton *weiboBtn;
 
 @property (nonatomic, strong) UIView *subOfTheDayContainer;
 @property (nonatomic, strong) UIView *subOfTheDayView;

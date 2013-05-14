@@ -367,6 +367,7 @@ static SettingMethod * setting;
 
 -(BOOL)weiboIsConnected {
     return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
+    
 //    if ([FrameworkChecker isSocialAvailable] ==  NO) {
 //        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
 //    }

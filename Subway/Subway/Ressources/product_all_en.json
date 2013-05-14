@@ -15,6 +15,52 @@
                        ],
              "products": [
                           {
+                          "pid": 4,
+                          "title": "B.L.T",
+                          "product_ref": "blt",
+                          "highlight": 0,
+                          "sub_of_the_day": 0,
+                          "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there's no scientific way of proving it, this BLT might be the most perfect sub in existence.",
+                          "taxonomies": [
+                                         {
+                                         "tid": 1,
+                                         "title": "Value",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/blt.png",
+                                    "screen_size": "640",
+                                    "filename": "blt.png",
+                                    "mid": 15
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there's no scientific way of proving it, this BLT might be the most perfect sub in existence.",
+                                            "pfid": 4
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there's no scientific way of proving it, this BLT might be the most perfect sub in existence.",
+                                            "pfid": 35
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there's no scientific way of proving it, this BLT might be the most perfect sub in existence.",
+                                            "pfid": 36
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there's no scientific way of proving it, this BLT might be the most perfect sub in existence.",
+                                            "pfid": 37
+                                            }
+                                            ]
+                          },
+                          {
                           "pid": 5,
                           "title": "Veggie Delite",
                           "product_ref": "veggie",
@@ -158,7 +204,7 @@
                           "product_ref": "ham",
                           "highlight": 1,
                           "sub_of_the_day": 1,
-                          "description": "With succulent slices of ham, you can\\\\\\'t beat this favorite.",
+                          "description": "With succulent slices of ham, you can't beat this favorite.",
                           "taxonomies": [
                                          {
                                          "tid": 1,
@@ -197,52 +243,6 @@
                                             "pfid": 107
                                             }
                                             ]
-                          },
-                          {
-                          "pid": 4,
-                          "title": "B.L.T",
-                          "product_ref": "blt",
-                          "highlight": 0,
-                          "sub_of_the_day": 0,
-                          "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there\\\\\\\\\\\\\\'s no scientific way of proving it, this BLT might be the most perfect sub in existence.\r\n",
-                          "taxonomies": [
-                                         {
-                                         "tid": 1,
-                                         "title": "Value",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/blt.png",
-                                    "screen_size": "640",
-                                    "filename": "blt.png",
-                                    "mid": 15
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there\\\\\\\\\\\\\\'s no scientific way of proving it, this BLT might be the most perfect sub in existence.\r\n",
-                                            "pfid": 4
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there\\\\\\\\\\\\\\'s no scientific way of proving it, this BLT might be the most perfect sub in existence.\r\n",
-                                            "pfid": 35
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there\\\\\\\\\\\\\\'s no scientific way of proving it, this BLT might be the most perfect sub in existence.\r\n",
-                                            "pfid": 36
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "The sub that proves great things come in threes. In this case, those three things happen to be crisp bacon, lettuce and juicy tomato. While there\\\\\\\\\\\\\\'s no scientific way of proving it, this BLT might be the most perfect sub in existence.\r\n",
-                                            "pfid": 37
-                                            }
-                                            ]
                           }
                           ]
              },
@@ -260,6 +260,52 @@
                        }
                        ],
              "products": [
+                          {
+                          "pid": 9,
+                          "title": "Roasted Chicken",
+                          "product_ref": "roasted_chicken",
+                          "highlight": 0,
+                          "sub_of_the_day": 5,
+                          "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
+                          "taxonomies": [
+                                         {
+                                         "tid": 2,
+                                         "title": "Classics",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/roasted_chicken.png",
+                                    "screen_size": "640",
+                                    "filename": "roasted_chicken.png",
+                                    "mid": 35
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
+                                            "pfid": 9
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
+                                            "pfid": 50
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
+                                            "pfid": 51
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
+                                            "pfid": 52
+                                            }
+                                            ]
+                          },
                           {
                           "pid": 10,
                           "title": "Roast Beef",
@@ -441,52 +487,6 @@
                                             "type": "B",
                                             "description": "The SUBWAY",
                                             "pfid": 49
-                                            }
-                                            ]
-                          },
-                          {
-                          "pid": 9,
-                          "title": "Roasted Chicken",
-                          "product_ref": "roasted_chicken",
-                          "highlight": 0,
-                          "sub_of_the_day": 5,
-                          "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
-                          "taxonomies": [
-                                         {
-                                         "tid": 2,
-                                         "title": "Classics",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/roasted_chicken.png",
-                                    "screen_size": "640",
-                                    "filename": "roasted_chicken.png",
-                                    "mid": 35
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
-                                            "pfid": 9
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
-                                            "pfid": 50
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
-                                            "pfid": 51
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "Feel peckish for chicken? Then try our Roasted Chicken sandwich. A tender, boneless chicken breast patty roasted to perfection, with your choice of fresh vegetables and condiments is served on freshly baked bread. Just like mom used to make.",
-                                            "pfid": 52
                                             }
                                             ]
                           }
@@ -753,150 +753,12 @@
                        ],
              "products": [
                           {
-                          "pid": 19,
-                          "title": "COOKIES",
-                          "product_ref": "cookies",
-                          "highlight": 0,
-                          "sub_of_the_day": 0,
-                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                          "taxonomies": [
-                                         {
-                                         "tid": 4,
-                                         "title": "Drinks & Sides",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/cookies.png",
-                                    "screen_size": "640",
-                                    "filename": "cookies.png",
-                                    "mid": 75
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 19
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 80
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 81
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 82
-                                            }
-                                            ]
-                          },
-                          {
-                          "pid": 16,
-                          "title": "Drinks",
-                          "product_ref": "drinks",
-                          "highlight": 0,
-                          "sub_of_the_day": 0,
-                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
-                          "taxonomies": [
-                                         {
-                                         "tid": 4,
-                                         "title": "Drinks & Sides",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/drinks.png",
-                                    "screen_size": "640",
-                                    "filename": "drinks.png",
-                                    "mid": 63
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 16
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 71
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 72
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 73
-                                            }
-                                            ]
-                          },
-                          {
-                          "pid": 17,
-                          "title": "CHIPS-LAYS",
-                          "product_ref": "chips",
-                          "highlight": 0,
-                          "sub_of_the_day": 0,
-                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                          "taxonomies": [
-                                         {
-                                         "tid": 4,
-                                         "title": "Drinks & Sides",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/chips.png",
-                                    "screen_size": "640",
-                                    "filename": "chips.png",
-                                    "mid": 67
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 17
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 74
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 75
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\\\\\\\\\'s truly something for every taste.",
-                                            "pfid": 76
-                                            }
-                                            ]
-                          },
-                          {
                           "pid": 18,
                           "title": "SOUP",
                           "product_ref": "soup",
                           "highlight": 0,
                           "sub_of_the_day": 0,
-                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\'s truly something for every taste.",
+                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
                           "taxonomies": [
                                          {
                                          "tid": 4,
@@ -916,23 +778,161 @@
                           "product_facts": [
                                             {
                                             "type": "T",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
                                             "pfid": 18
                                             },
                                             {
                                             "type": "H",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
                                             "pfid": 77
                                             },
                                             {
                                             "type": "E",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
                                             "pfid": 78
                                             },
                                             {
                                             "type": "B",
-                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there\\\\\\'s truly something for every taste.",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
                                             "pfid": 79
+                                            }
+                                            ]
+                          },
+                          {
+                          "pid": 19,
+                          "title": "COOKIES",
+                          "product_ref": "cookies",
+                          "highlight": 0,
+                          "sub_of_the_day": 0,
+                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                          "taxonomies": [
+                                         {
+                                         "tid": 4,
+                                         "title": "Drinks & Sides",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/cookies.png",
+                                    "screen_size": "640",
+                                    "filename": "cookies.png",
+                                    "mid": 75
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 19
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 80
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 81
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 82
+                                            }
+                                            ]
+                          },
+                          {
+                          "pid": 16,
+                          "title": "Drinks",
+                          "product_ref": "drinks",
+                          "highlight": 0,
+                          "sub_of_the_day": 0,
+                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                          "taxonomies": [
+                                         {
+                                         "tid": 4,
+                                         "title": "Drinks & Sides",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/drinks.png",
+                                    "screen_size": "640",
+                                    "filename": "drinks.png",
+                                    "mid": 63
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 16
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 71
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 72
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 73
+                                            }
+                                            ]
+                          },
+                          {
+                          "pid": 17,
+                          "title": "CHIPS-LAYS",
+                          "product_ref": "chips",
+                          "highlight": 0,
+                          "sub_of_the_day": 0,
+                          "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                          "taxonomies": [
+                                         {
+                                         "tid": 4,
+                                         "title": "Drinks & Sides",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/chips.png",
+                                    "screen_size": "640",
+                                    "filename": "chips.png",
+                                    "mid": 67
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 17
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 74
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 75
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "As delicious as our sandwiches are, they are even better when paired with the perfect side and drink. Our sides run from salty to sweet and from fit to indulgent. With such a variety of drinks to choose from, there's truly something for every taste.",
+                                            "pfid": 76
                                             }
                                             ]
                           }
@@ -952,6 +952,52 @@
                        }
                        ],
              "products": [
+                          {
+                          "pid": 23,
+                          "title": "Steak & Egg",
+                          "product_ref": " breakfast4",
+                          "highlight": 0,
+                          "sub_of_the_day": 0,
+                          "description": "Breakfast shown is applicable to participating markets only",
+                          "taxonomies": [
+                                         {
+                                         "tid": 5,
+                                         "title": "Breakfast",
+                                         "weight": 0
+                                         }
+                                         ],
+                          "media": [
+                                    {
+                                    "size": "0",
+                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/breakfast.png",
+                                    "screen_size": "640",
+                                    "filename": "breakfast.png",
+                                    "mid": 91
+                                    }
+                                    ],
+                          "product_facts": [
+                                            {
+                                            "type": "T",
+                                            "description": "Breakfast shown is applicable to participating markets only",
+                                            "pfid": 23
+                                            },
+                                            {
+                                            "type": "H",
+                                            "description": "Breakfast shown is applicable to participating markets only",
+                                            "pfid": 92
+                                            },
+                                            {
+                                            "type": "E",
+                                            "description": "Breakfast shown is applicable to participating markets only",
+                                            "pfid": 93
+                                            },
+                                            {
+                                            "type": "B",
+                                            "description": "Breakfast shown is applicable to participating markets only",
+                                            "pfid": 94
+                                            }
+                                            ]
+                          },
                           {
                           "pid": 20,
                           "title": "Ham & Egg",
@@ -1089,52 +1135,6 @@
                                             "pfid": 91
                                             }
                                             ]
-                          },
-                          {
-                          "pid": 23,
-                          "title": "Steak & Egg",
-                          "product_ref": " breakfast4",
-                          "highlight": 0,
-                          "sub_of_the_day": 0,
-                          "description": "Breakfast shown is applicable to participating markets only",
-                          "taxonomies": [
-                                         {
-                                         "tid": 5,
-                                         "title": "Breakfast",
-                                         "weight": 0
-                                         }
-                                         ],
-                          "media": [
-                                    {
-                                    "size": "0",
-                                    "path": "http://222.73.219.19:20115/medias/uploads/products/640/breakfast.png",
-                                    "screen_size": "640",
-                                    "filename": "breakfast.png",
-                                    "mid": 91
-                                    }
-                                    ],
-                          "product_facts": [
-                                            {
-                                            "type": "T",
-                                            "description": "Breakfast shown is applicable to participating markets only",
-                                            "pfid": 23
-                                            },
-                                            {
-                                            "type": "H",
-                                            "description": "Breakfast shown is applicable to participating markets only",
-                                            "pfid": 92
-                                            },
-                                            {
-                                            "type": "E",
-                                            "description": "Breakfast shown is applicable to participating markets only",
-                                            "pfid": 93
-                                            },
-                                            {
-                                            "type": "B",
-                                            "description": "Breakfast shown is applicable to participating markets only",
-                                            "pfid": 94
-                                            }
-                                            ]
                           }
                           ]
              },
@@ -1154,7 +1154,7 @@
              "products": [
                           {
                           "pid": 24,
-                          "title": "MAKE ANY 6\\\"SUB A SALAD",
+                          "title": "MAKE ANY 6\"SUB A SALAD",
                           "product_ref": "ham_salad",
                           "highlight": 0,
                           "sub_of_the_day": 0,
@@ -1216,7 +1216,7 @@
              "products": [
                           {
                           "pid": 25,
-                          "title": "MAKE ANY 6\\\"SUB A WRAP",
+                          "title": "MAKE ANY 6\"SUB A WRAP",
                           "product_ref": "wrap",
                           "highlight": 0,
                           "sub_of_the_day": 0,

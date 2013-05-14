@@ -272,13 +272,13 @@ static DisplayMethod * display;
         
     }else if ([myViewName isEqualToString:@"order"] || [myViewName isEqualToString:@"catering"]) {
                     
-        UIImageView *logoHomeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_home@2x"]];
-        logoHomeImg.frame = CGRectMake(14, (myLeftBtn.frame.size.height-22)/2 - 1, 19, 22);
+        UIImageView *logoHomeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
+        logoHomeImg.frame = CGRectMake(15, (myLeftBtn.frame.size.height-16)/2, 12, 15);
         [myLeftBtn addSubview:logoHomeImg];
         [logoHomeImg release];
         
         
-        CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x - 1, 1, 48, myLeftBtn.frame.size.height)];
+        CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 0, 48, myLeftBtn.frame.size.height)];
         [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
         homeLbl.text = NSLocalizedString(@"back_btn_txt", nil);
         [homeLbl setDrawOutline:YES];

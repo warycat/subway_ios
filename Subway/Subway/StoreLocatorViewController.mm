@@ -28,7 +28,8 @@
 @synthesize allStores;
 @synthesize myTableView;
 @synthesize adressdetailsLbl, distancedetailsLbl, adressdetailsLblSecondLine;
-@synthesize phoneDetailsBtn, phoneDetailsLbl, mailDetailsBtn;
+@synthesize weiboBtn;
+@synthesize phoneDetailsBtn, phoneDetailsLbl, mailDetailsBtn, fromOtherView;
 
 -(void)viewWillAppear:(BOOL)animated {
 	
@@ -162,12 +163,11 @@
         
     }else {
         
-        UIButton *weiboBtn =  [[UIButton alloc] init];
+        weiboBtn =  [[UIButton alloc] init];
         
         [displayMethod createTopBar:self.view viewName:@"storeLocator" leftBtn:weiboBtn rightBtn:homeBtn otherBtn:nil];
         
         [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
-        [weiboBtn release];
         
     }
 
@@ -463,12 +463,30 @@
 
 -(void)weiboAction {
     [BlockSinaWeibo loginWithHandler:^{
-        [[[UIAlertView alloc]initWithTitle:@"login" message:@"you have login" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+        weiboBtn.alpha = 0.0;
+        weiboBtn.hidden = YES;
+        weiboBtn.enabled = NO;
+        
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
+        //[[[UIAlertView alloc]initWithTitle:@"Login" message:@"You have login on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
     }];
 
 }
 
--(void)backAction { [self.navigationController popViewControllerAnimated:YES]; }
+-(void)backAction {
+    
+    if (fromOtherView == YES) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+
+}
 
 
 #pragma mark ---------------
