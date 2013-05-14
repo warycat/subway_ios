@@ -58,5 +58,6 @@
 //SemiModal
 @property (retain, nonatomic) UIView *bottomView;
 
+@property (retain, nonatomic) NSDictionary *currentStore;
 
 @end

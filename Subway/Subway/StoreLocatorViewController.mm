@@ -313,28 +313,32 @@
 - (void)shareStore:(id)sender
 {
     if ([settingMethod weiboIsConnected]) {
-        if ([FrameworkChecker isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
-            ACAccountStore *store = [[ACAccountStore alloc]init];
-            ACAccountType *type = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierSinaWeibo];
-            [store requestAccessToAccountsWithType:type options:nil completion:^(BOOL granted, NSError *error) {
-                ACAccount *account = [[ACAccount alloc]initWithAccountType:type];
-                NSLog(@"%@ %@ %@",account.identifier, account.username, account);
-            }];
-            NSLog(@"available");
-        }else{
-            [settingMethod getShareStoreMessageWith:@{@"locale":@"en",@"sid":@6,@"weiboid":@1023} onSuccess:^(NSDictionary *responseDict) {
-                NSLog(@"%@",responseDict);
-                NSDictionary *data = [responseDict objectForKey:@"data"];
-                NSString *baidumap = [data objectForKey:@"baidumap"];
-                NSString *sharecontent = [data objectForKey:@"sharecontent"];
-                NSString *image = [data objectForKey:@"image"];
-                NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
-                [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
-                    NSLog(@"posted %@",responseDict);
-                }];
-            }];
-        }
+        [self sendToSina];
+    }else{
+        [BlockSinaWeibo loginWithHandler:^{
+            [self sendToSina];
+        }];
     }
+}
+
+- (void)sendToSina
+{
+    NSString *local = [settingMethod getUserLanguage];
+    NSString *sid = [self.currentStore objectForKey:@"sid"];
+    NSString *weiboid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+    NSLog(@"%@%@%@",local,sid,weiboid);
+    [settingMethod getShareStoreMessageWith:@{@"locale":local,@"sid":sid,@"weiboid":weiboid} onSuccess:^(NSDictionary *responseDict) {
+        NSLog(@"%@",responseDict);
+        NSDictionary *data = [responseDict objectForKey:@"data"];
+        NSString *baidumap = [data objectForKey:@"baidumap"];
+        NSString *sharecontent = [data objectForKey:@"sharecontent"];
+        NSString *image = [data objectForKey:@"image"];
+        NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
+        [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
+            [[[UIAlertView alloc]initWithTitle:@"Shared" message:sharecontent delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+        }];
+    }];
+    
 }
 
 -(void)callSub:(id)sender {
@@ -459,7 +463,12 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
--(void)weiboAction { }
+-(void)weiboAction {
+    [BlockSinaWeibo loginWithHandler:^{
+        [[[UIAlertView alloc]initWithTitle:@"login" message:@"you have login" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+    }];
+
+}
 
 -(void)backAction { [self.navigationController popViewControllerAnimated:YES]; }
 
@@ -585,6 +594,8 @@
     [self dismissSemiModalView];
     
     //Change City
+    
+    self.currentStore = allStores[indexPath.row];
     
     if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]) {
         self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",NSLocalizedString(@"kSubway", nil),[[allStores objectAtIndex:indexPath.row]objectForKey:@"city"]];
