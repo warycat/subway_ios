@@ -738,10 +738,12 @@
 
 -(void)pushCateringView {
 
-    CateringViewController *cateringView = [[CateringViewController alloc] init];
-    [self presentModalViewController:cateringView animated:YES];
-    [cateringView release];
 
+    CateringViewController *cateringView = [[CateringViewController alloc] init];
+    UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:cateringView] autorelease];
+    [self presentModalViewController:myNavigationController animated:YES];
+    [cateringView release];
+    
 }
 
 -(void)pushOptionsView { }
@@ -749,7 +751,8 @@
 -(void)pushHowToView {
 
     HowToOrderViewController *howToOrderView = [[HowToOrderViewController alloc] init];
-    [self presentModalViewController:howToOrderView animated:YES];
+    UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:howToOrderView] autorelease];
+    [self presentModalViewController:myNavigationController animated:YES];
     [howToOrderView release];
 
 }

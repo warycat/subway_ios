@@ -7,6 +7,7 @@
 //
 
 #import "CateringViewController.h"
+#import "StoreLocatorViewController.h"
 
 @interface CateringViewController ()
 
@@ -36,11 +37,16 @@
     // ----------------- GENERATE TOP BAR
     
     UIButton *backBtn =  [[UIButton alloc] init];
+    UIButton *storeLocatorBtn =  [[UIButton alloc] init];
     
-    [displayMethod createTopBar:self.view viewName:@"catering" leftBtn:backBtn rightBtn:nil otherBtn:nil];
+    [displayMethod createTopBar:self.view viewName:@"catering" leftBtn:backBtn rightBtn:storeLocatorBtn otherBtn:nil];
     
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     [backBtn release];
+    
+    [storeLocatorBtn addTarget:self action:@selector(pushStoreLocatorView) forControlEvents:UIControlEventTouchDown];
+    [storeLocatorBtn release];
+    
     
     UIImageView *BackgroundImgSub = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"howtoorder-titlebg@2x"]];
     BackgroundImgSub.frame = CGRectMake(0, 75, screenWidth, 45);
@@ -228,7 +234,13 @@
 
 -(void)backAction { [self dismissModalViewControllerAnimated:YES]; }
 
-
+-(void)pushStoreLocatorView {
+    
+    StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
+    [self.navigationController pushViewController:storeViewCtrl animated:YES];
+    [storeViewCtrl release];
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
