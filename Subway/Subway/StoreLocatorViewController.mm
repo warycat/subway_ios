@@ -15,6 +15,7 @@
 #import <MapKit/MapKit.h>
 #import <Social/Social.h>
 #import "BlockSinaWeiboRequest.h"
+#import <Accounts/Accounts.h>
 
 
 @interface StoreLocatorViewController ()
@@ -312,6 +313,12 @@
     if ([settingMethod weiboIsConnected]) {
         
         if ([FrameworkChecker isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+            ACAccountStore *store = [[ACAccountStore alloc]init];
+            ACAccountType *type = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierSinaWeibo];
+            [store requestAccessToAccountsWithType:type options:nil completion:^(BOOL granted, NSError *error) {
+                ACAccount *account = [[ACAccount alloc]initWithAccountType:type];
+                NSLog(@"%@ %@ %@",account.identifier, account.username, account);
+            }];
             NSLog(@"available");
         }else{
             [settingMethod getShareStoreMessageWith:@{@"locale":@"en",@"sid":@6,@"weiboid":@1023} onSuccess:^(NSDictionary *responseDict) {
