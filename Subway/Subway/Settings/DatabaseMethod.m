@@ -15,7 +15,7 @@
 
 static DatabaseMethod * DBmethod;
 //Get the singleton object
-+ (DatabaseMethod*) sharedSetting
++ (DatabaseMethod*) sharedDatabase
 {
 	if (nil == DBmethod)
 	{
@@ -57,7 +57,7 @@ static DatabaseMethod * DBmethod;
 //------------------------------------------------------------
 
 
-#define QUERY
+#define GET_VERSION_QUERY @"SELECT * FROM versioning WHERE locale='cn' ORDER BY timestamp DESC limit 0,1"
 #define QUERY1
 #define QUERY2
 
@@ -68,7 +68,11 @@ static DatabaseMethod * DBmethod;
 
 
 
-
+-(NSArray *)getVersions
+{
+    NSArray *results = [self executeSql:GET_VERSION_QUERY];
+    return results;
+}
 
 
 

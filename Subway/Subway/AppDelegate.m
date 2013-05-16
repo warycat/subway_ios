@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "BMapKit.h"
-
 #import "HomePageController.h"
+#import "LoadingViewController.h"
 BMKMapManager* _mapManager;
 
 @implementation AppDelegate
@@ -21,8 +21,10 @@ BMKMapManager* _mapManager;
     [super dealloc];
 }
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"%s",_cmd);
     _mapManager = [[BMKMapManager alloc]init];
 	BOOL ret = [_mapManager start:@"这里输入key" generalDelegate:self];
 	if (!ret) {
@@ -43,8 +45,10 @@ BMKMapManager* _mapManager;
     [menuMethod checkMeals];
     
     // Override point for customization after application launch.
-    self.viewController = [[[HomePageController alloc] initWithNibName:@"HomePageController" bundle:nil] autorelease];
-    UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:self.viewController] autorelease];
+    LoadingViewController *lvc = [[[LoadingViewController alloc]initWithNibName:@"LoadingViewController" bundle:nil] autorelease];
+    //self.viewController = [[[HomePageController alloc] initWithNibName:@"HomePageController" bundle:nil] autorelease];
+    UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];
+    myNavigationController.navigationBarHidden = YES;
     self.window.rootViewController = myNavigationController;
     [self.window makeKeyAndVisible];
     return YES;

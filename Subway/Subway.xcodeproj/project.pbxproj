@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4634B28C1744AE1F00402239 /* subway.db in Resources */ = {isa = PBXBuildFile; fileRef = 4634B28B1744AE1F00402239 /* subway.db */; };
+		4634B2921744BEBE00402239 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4634B2901744BEBE00402239 /* LoadingViewController.m */; };
+		4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2911744BEBE00402239 /* LoadingViewController.xib */; };
+		4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2961744DE2000402239 /* icon-video-loading@2x.png */; };
 		467C392D17411846005EEE76 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392517411846005EEE76 /* JSONKit.m */; };
 		467C392E17411846005EEE76 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392717411846005EEE76 /* SinaWeibo.m */; };
 		467C392F17411846005EEE76 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */; };
@@ -32,7 +36,6 @@
 		EB2141021740BF9F009983BA /* icon_checkin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2141011740BF9F009983BA /* icon_checkin@2x.png */; };
 		EB2141051740E4AE009983BA /* CateringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2141041740E4AE009983BA /* CateringViewController.m */; };
 		EB2141071741DDAD009983BA /* home_event@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2141061741DDAD009983BA /* home_event@2x.png */; };
-		EB2141091741E465009983BA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2141081741E464009983BA /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
@@ -170,6 +173,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4634B28B1744AE1F00402239 /* subway.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = subway.db; sourceTree = "<group>"; };
+		4634B28F1744BEBE00402239 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		4634B2901744BEBE00402239 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		4634B2911744BEBE00402239 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		4634B2961744DE2000402239 /* icon-video-loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-video-loading@2x.png"; sourceTree = "<group>"; };
 		467C392417411846005EEE76 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		467C392517411846005EEE76 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		467C392617411846005EEE76 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
@@ -422,6 +430,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4634B28D1744BE1C00402239 /* weibo */ = {
+			isa = PBXGroup;
+			children = (
+				467C39391741EDCD005EEE76 /* WeiboSDK.bundle */,
+				467C393117411851005EEE76 /* BlockSinaWeibo.h */,
+				467C393217411851005EEE76 /* BlockSinaWeibo.m */,
+				467C393317411851005EEE76 /* BlockSinaWeiboRequest.h */,
+				467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */,
+				467C392417411846005EEE76 /* JSONKit.h */,
+				467C392517411846005EEE76 /* JSONKit.m */,
+				467C392617411846005EEE76 /* SinaWeibo.h */,
+				467C392717411846005EEE76 /* SinaWeibo.m */,
+				467C392817411846005EEE76 /* SinaWeiboAuthorizeView.h */,
+				467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */,
+				467C392A17411846005EEE76 /* SinaWeiboConstants.h */,
+				467C392B17411846005EEE76 /* SinaWeiboRequest.h */,
+				467C392C17411846005EEE76 /* SinaWeiboRequest.m */,
+			);
+			name = weibo;
+			sourceTree = "<group>";
+		};
+		4634B28E1744BE3F00402239 /* artworks */ = {
+			isa = PBXGroup;
+			children = (
+				4634B2961744DE2000402239 /* icon-video-loading@2x.png */,
+				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
+				EB869521173B93CE004C9092 /* default.png */,
+				EB869522173B93CE004C9092 /* default@2x.png */,
+				EB86951F173B9201004C9092 /* icon@2x.png */,
+				EB86951D173B91FB004C9092 /* icon.png */,
+			);
+			name = artworks;
+			sourceTree = "<group>";
+		};
 		469AF6D9173CB7D60082CC2D /* BaiduMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,25 +567,8 @@
 		EBB4CF90171FADE9006DAF2F = {
 			isa = PBXGroup;
 			children = (
-				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
-				EB869521173B93CE004C9092 /* default.png */,
-				EB869522173B93CE004C9092 /* default@2x.png */,
-				EB86951F173B9201004C9092 /* icon@2x.png */,
-				EB86951D173B91FB004C9092 /* icon.png */,
-				467C393117411851005EEE76 /* BlockSinaWeibo.h */,
-				467C393217411851005EEE76 /* BlockSinaWeibo.m */,
-				467C393317411851005EEE76 /* BlockSinaWeiboRequest.h */,
-				467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */,
-				467C392417411846005EEE76 /* JSONKit.h */,
-				467C392517411846005EEE76 /* JSONKit.m */,
-				467C392617411846005EEE76 /* SinaWeibo.h */,
-				467C392717411846005EEE76 /* SinaWeibo.m */,
-				467C392817411846005EEE76 /* SinaWeiboAuthorizeView.h */,
-				467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */,
-				467C392A17411846005EEE76 /* SinaWeiboConstants.h */,
-				467C392B17411846005EEE76 /* SinaWeiboRequest.h */,
-				467C392C17411846005EEE76 /* SinaWeiboRequest.m */,
-				467C39391741EDCD005EEE76 /* WeiboSDK.bundle */,
+				4634B28E1744BE3F00402239 /* artworks */,
+				4634B28D1744BE1C00402239 /* weibo */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
 				856FD18C1738D6DE001EED8D /* Helpers */,
 				EBB4D043171FD882006DAF2F /* Settings */,
@@ -599,6 +624,9 @@
 				EB2141031740E4AE009983BA /* CateringViewController.h */,
 				EB2141041740E4AE009983BA /* CateringViewController.m */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
+				4634B28F1744BEBE00402239 /* LoadingViewController.h */,
+				4634B2901744BEBE00402239 /* LoadingViewController.m */,
+				4634B2911744BEBE00402239 /* LoadingViewController.xib */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -620,6 +648,7 @@
 		EBB4CFBF171FBB2E006DAF2F /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				4634B28B1744AE1F00402239 /* subway.db */,
 				EBAC23F01733B706009D8519 /* product_all_cn.json */,
 				EBAC23F11733B706009D8519 /* product_all_en.json */,
 				EB869515173B8754004C9092 /* TestFlightSDK */,
@@ -979,6 +1008,9 @@
 				EB2141021740BF9F009983BA /* icon_checkin@2x.png in Resources */,
 				EB2141071741DDAD009983BA /* home_event@2x.png in Resources */,
 				467C393A1741EDCD005EEE76 /* WeiboSDK.bundle in Resources */,
+				4634B28C1744AE1F00402239 /* subway.db in Resources */,
+				4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */,
+				4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1049,7 @@
 				467C393517411851005EEE76 /* BlockSinaWeibo.m in Sources */,
 				467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */,
 				EB2141051740E4AE009983BA /* CateringViewController.m in Sources */,
+				4634B2921744BEBE00402239 /* LoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,8 +1143,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1124,8 +1157,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1135,7 +1168,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1149,7 +1182,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
 				WRAPPER_EXTENSION = app;
 			};

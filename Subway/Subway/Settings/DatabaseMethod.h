@@ -17,13 +17,14 @@
 
 @property (nonatomic, retain) NSString *databasePath;
 
-+ (DatabaseMethod*) sharedSetting;
++ (DatabaseMethod*) sharedDatabase;
 
 
 
 
 
 
+- (NSArray *)getVersions;
 
 
 
