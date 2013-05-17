@@ -11,6 +11,7 @@
 #import "StoreLocatorViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BlockSinaWeiboRequest.h"
+#import "CouponViewController.h"
 
 @interface HomePageController ()
 
@@ -464,7 +465,11 @@
     
 }
 
--(void)pushCouponView { }
+-(void)pushCouponView {
+    CouponViewController *cvc = [[CouponViewController alloc]initWithNibName:@"CouponViewController" bundle:nil];
+    [self.navigationController pushViewController:cvc animated:YES];
+
+}
 
 
 - (void)didReceiveMemoryWarning

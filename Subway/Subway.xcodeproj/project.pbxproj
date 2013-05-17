@@ -11,6 +11,8 @@
 		4634B2921744BEBE00402239 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4634B2901744BEBE00402239 /* LoadingViewController.m */; };
 		4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2911744BEBE00402239 /* LoadingViewController.xib */; };
 		4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2961744DE2000402239 /* icon-video-loading@2x.png */; };
+		4634B2A11746247000402239 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4634B29F1746247000402239 /* CouponViewController.m */; };
+		4634B2A21746247000402239 /* CouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2A01746247000402239 /* CouponViewController.xib */; };
 		467C392D17411846005EEE76 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392517411846005EEE76 /* JSONKit.m */; };
 		467C392E17411846005EEE76 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392717411846005EEE76 /* SinaWeibo.m */; };
 		467C392F17411846005EEE76 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */; };
@@ -178,6 +180,9 @@
 		4634B2901744BEBE00402239 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		4634B2911744BEBE00402239 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		4634B2961744DE2000402239 /* icon-video-loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-video-loading@2x.png"; sourceTree = "<group>"; };
+		4634B29E1746247000402239 /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
+		4634B29F1746247000402239 /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
+		4634B2A01746247000402239 /* CouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponViewController.xib; sourceTree = "<group>"; };
 		467C392417411846005EEE76 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		467C392517411846005EEE76 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		467C392617411846005EEE76 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
@@ -626,6 +631,9 @@
 				4634B28F1744BEBE00402239 /* LoadingViewController.h */,
 				4634B2901744BEBE00402239 /* LoadingViewController.m */,
 				4634B2911744BEBE00402239 /* LoadingViewController.xib */,
+				4634B29E1746247000402239 /* CouponViewController.h */,
+				4634B29F1746247000402239 /* CouponViewController.m */,
+				4634B2A01746247000402239 /* CouponViewController.xib */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -1011,6 +1019,7 @@
 				4634B28C1744AE1F00402239 /* subway.db in Resources */,
 				4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */,
 				4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */,
+				4634B2A21746247000402239 /* CouponViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,6 +1059,7 @@
 				467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */,
 				EB2141051740E4AE009983BA /* CateringViewController.m in Sources */,
 				4634B2921744BEBE00402239 /* LoadingViewController.m in Sources */,
+				4634B2A11746247000402239 /* CouponViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,8 +1153,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1157,8 +1167,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1168,8 +1178,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1182,8 +1192,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

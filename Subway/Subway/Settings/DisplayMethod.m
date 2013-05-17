@@ -178,7 +178,7 @@ static DisplayMethod * display;
         
         
         
-    }else if ([myViewName isEqualToString:@"storeLocator"]) {
+    }else if ([myViewName isEqualToString:@"storeLocator"]||[myViewName isEqualToString:@"coupon"]) {
         
         if (myLeftBtn != nil) {
             
