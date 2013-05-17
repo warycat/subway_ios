@@ -321,20 +321,24 @@
 
 - (void)sendToSina
 {
-    NSString *local = [settingMethod getUserLanguage];
-    NSString *sid = [self.currentStore objectForKey:@"sid"];
-    NSString *weiboid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
-    NSLog(@"%@%@%@",local,sid,weiboid);
-    [settingMethod getShareStoreMessageWith:@{@"locale":local,@"sid":sid,@"weiboid":weiboid} onSuccess:^(NSDictionary *responseDict) {
+
+
+    [settingMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
+        
         NSLog(@"%@",responseDict);
+        
         NSDictionary *data = [responseDict objectForKey:@"data"];
         NSString *baidumap = [data objectForKey:@"baidumap"];
         NSString *sharecontent = [data objectForKey:@"sharecontent"];
         NSString *image = [data objectForKey:@"image"];
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
+        
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
+            
             [[[UIAlertView alloc]initWithTitle:@"Shared" message:sharecontent delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+            
         }];
+        
     }];
     
 }
@@ -351,10 +355,7 @@
 
 -(void)loadData {
     
-//    CLLocationCoordinate2D location = myMapView.userLocation.location.coordinate;
-//    NSString *latitude = [NSString stringWithFormat:@"%f",location.latitude];
-//    NSString *longitude = [NSString stringWithFormat:@"%f",location.longitude];
-//    NSMutableArray *storesFromServer = [storeMethod getAllStores:latitude longitude:longitude radius:@"4"];
+    
     NSMutableArray *storesFromServer = [storeMethod getAllStores:settingMethod.latitude longitude:settingMethod.longitude radius:@"4"];
     allStores = [[NSMutableArray alloc] init];
     

@@ -30,17 +30,22 @@
 - (id)init
 {
     if (self = [super init]) {
+        
         _requests = [NSMutableArray array];
         _sinaWeibo = [[SinaWeibo alloc]initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI ssoCallbackScheme:kCallbackScheme andDelegate:self];
-        NSLog(@"init %@",_sinaWeibo);
+
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
+        
         if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
         {
             _sinaWeibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
             _sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:@"ExpirationDateKey"];
             _sinaWeibo.userID = [sinaweiboInfo objectForKey:@"UserIDKey"];
-        }    }
+        }
+    
+    }
+    
     return self;
 }
 
@@ -73,6 +78,7 @@
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
 {
     NSLog(@"sinaweiboDidLogIn userID = %@ accesstoken = %@ expirationDate = %@ refresh_token = %@", sinaweibo.userID, sinaweibo.accessToken, sinaweibo.expirationDate,sinaweibo.refreshToken);
+    
     [self storeAuthData];
     [BlockSinaWeibo sharedClient].simpleCompletionBlock();
 }

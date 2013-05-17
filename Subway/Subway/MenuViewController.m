@@ -452,7 +452,6 @@
     unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
     NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
     int today = weekdayComponents.weekday-1;
-    NSLog(@"today : %i", today);
     
     
     int SODId = 0;
@@ -1019,7 +1018,6 @@
     NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
     
     int today = weekdayComponents.weekday-1;
-    NSLog(@"today : %i", today);
     
     for (int i = 0; i < [currentProductsArray count]; i++) {
      

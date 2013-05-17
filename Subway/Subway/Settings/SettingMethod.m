@@ -55,7 +55,6 @@ static SettingMethod * setting;
 
 -(id)postAndParseJson:(id)jsonDictionary action:(NSString *)action type:(NSString *)myType {
     
-    
     NSURL *myUrl = nil;
     
     if ([action isEqualToString:@""]) 
@@ -326,9 +325,7 @@ static SettingMethod * setting;
     float Longitude = newLocation.coordinate.longitude;
     longitude = [NSString stringWithFormat:@"%f", Longitude];
     [longitude retain];
-    
-    NSLog(@"my Latitude: %@", latitude);
-    NSLog(@"my Longitude: %@", longitude);
+
 }
 
 -(void)stopLocation {
@@ -366,17 +363,8 @@ static SettingMethod * setting;
 // ================= CHECK WEIBO =================
 
 -(BOOL)weiboIsConnected {
-    return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
     
-//    if ([FrameworkChecker isSocialAvailable] ==  NO) {
-//        return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
-//    }
-//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
-//    {
-//        return YES;
-//    }else {
-//        return NO;
-//    }
+    return [BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid;
     
 }
 
@@ -414,17 +402,23 @@ static SettingMethod * setting;
 
 - (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock
 {
+    
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ADRESS, @"Store/share"]];
-    NSLog(@"%@",URL);
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestDict options:NSJSONWritingPrettyPrinted error:nil];
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        
         NSNumber *status = [dict objectForKey:@"status"];
+        
         if(status.intValue == 1)successBlock(dict);
         else NSLog(@"status error %d",status.intValue);
+        
     }];
 }
 

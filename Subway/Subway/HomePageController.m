@@ -211,7 +211,6 @@
     NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
     
     int today = weekdayComponents.weekday-1;
-    NSLog(@"today : %i", today);
         
     for (int i = 0; i < [menuMethod.menuArray count]; i++) {
         
