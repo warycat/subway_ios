@@ -673,8 +673,6 @@
         
     }
     
-    [gregorianCalendar release];
-    
     
     [self showMoreInfoBtn];
     
@@ -1013,11 +1011,16 @@
     
     int XPosImage = 0;
     
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
-    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
+    NSCalendar *gregorianCalendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+    [gregorianCalendar setFirstWeekday:2]; // Sunday == 1, Saturday == 7
+    NSUInteger adjustedWeekdayOrdinal = [gregorianCalendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
+    NSLog(@"Adjusted weekday ordinal: %d", adjustedWeekdayOrdinal);
     
-    int today = weekdayComponents.weekday-1;
+//    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+//    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
+//    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
+    
+    int today = adjustedWeekdayOrdinal;
     
     for (int i = 0; i < [currentProductsArray count]; i++) {
      
@@ -1052,8 +1055,6 @@
         
         XPosImage = XPosImage + productsScroll.frame.size.width;
     }
-    
-    [gregorianCalendar release];
     
     if (fromSubOfTheDay == YES) {
         fromSubOfTheDay = NO;
