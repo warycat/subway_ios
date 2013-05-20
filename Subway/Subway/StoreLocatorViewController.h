@@ -48,7 +48,7 @@
 //Map
 @property (retain, nonatomic) MKMapView * myMapView;
 @property (retain, nonatomic) MKAnnotationView *tempAnnotation;
-@property (retain, nonatomic) NSMutableArray *allStores;
+@property (retain, nonatomic) NSArray *allStores;
 
 //Detail
 @property (retain, nonatomic) UIView *detailsView;

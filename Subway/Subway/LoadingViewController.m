@@ -43,9 +43,12 @@
     self.progressLabel.hidden = YES;
     
     // Update the files if the timestamp is updated
-    if (currentTimestamp - lastTimestamp > delta) {
-        [self updateWith:now.stringValue and:[settingMethod getUserLanguage]];
-    }
+//    if (currentTimestamp - lastTimestamp > delta) {
+//        //[self updateWith:now.stringValue and:[settingMethod getUserLanguage]];
+//    }else{
+        HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
+        [self.navigationController setViewControllers:@[hvc] animated:YES];
+//    }
     
 }
 

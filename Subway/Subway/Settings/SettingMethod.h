@@ -64,6 +64,9 @@
 
 
 - (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
+- (void)getStoreLocationsWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
+
+- (CLLocation *)myLocation;
 
 @end
 

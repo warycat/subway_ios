@@ -18,9 +18,11 @@
 
 
 @interface StoreLocatorViewController ()
+@property (strong, nonatomic)NSArray *allAnnotations;
 @end
 
 @implementation StoreLocatorViewController
+
 @synthesize myMapView, tempAnnotation;
 @synthesize detailsView, bottomView;
 @synthesize allStores;
@@ -257,7 +259,8 @@
     
     
     if ([settingMethod connectedToNetwork]) {
-        [self performSelectorInBackground:@selector(loadData) withObject:nil];
+        //[self performSelectorInBackground:@selector(loadData) withObject:nil];
+        [self loadData];
     }else {
         
         CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(31, 121);
@@ -320,7 +323,6 @@
 - (void)sendToSina
 {
 
-
     [settingMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
         
         NSLog(@"%@",responseDict);
@@ -349,72 +351,41 @@
     
 }
 
-
-
 -(void)loadData {
-    
-    
-    NSMutableArray *storesFromServer = [storeMethod getAllStores:settingMethod.latitude longitude:settingMethod.longitude radius:@"4"];
-    allStores = [[NSMutableArray alloc] init];
-    
-    if (storesFromServer != nil) {
-        
-        for (int i = 0; i < [storesFromServer count]; i++) {
+    NSString *locale = [settingMethod getUserLanguage];
+    CLLocation *myLocation = [settingMethod myLocation];
+    [self zoomTo:myLocation.coordinate];
+    [settingMethod getStoreLocationsWith:@{@"locale":locale} onSuccess:^(NSDictionary *responseDict) {
+//        NSLog(@"%@",responseDict);
+        NSArray *stores = responseDict[@"data"];
+        self.allStores = [stores sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString *latitude1 = obj1[@"latitude"];
+            NSString *longitude1 = obj1[@"longitude"];
+            CLLocation *location1 = [[CLLocation alloc]initWithLatitude:latitude1.floatValue longitude:longitude1.floatValue];
+            NSString *latitude2 = obj2[@"latitude"];
+            NSString *longitude2 = obj2[@"longitude"];
+            CLLocation *location2 = [[CLLocation alloc]initWithLatitude:latitude2.floatValue longitude:longitude2.floatValue];
+            CLLocationDistance distance1 = [myLocation distanceFromLocation:location1];
+            CLLocationDistance distance2 = [myLocation distanceFromLocation:location2];
+            if (distance1 < distance2)
+                return NSOrderedAscending;
+            else
+                return NSOrderedDescending;
             
-            NSMutableDictionary *myDico = [[NSMutableDictionary alloc] initWithDictionary:[storesFromServer objectAtIndex:i]];
-            NSString *distance = [settingMethod getDistanceFromMyLocation:[myDico objectForKey:@"latitude"] placeLongitude:[myDico objectForKey:@"longitude"]];
-            [myDico setObject:distance forKey:@"distance"];
-            [allStores addObject:myDico];
-            
+        }];
+        NSMutableArray *annotations = [NSMutableArray array];
+        for (NSDictionary *store in self.allStores) {
+            MapPlace * newMapAnnotation = [[MapPlace alloc] init];
+            CLLocationCoordinate2D tempCoordinate;
+            tempCoordinate.latitude  = [store[@"latitude"] floatValue];
+            tempCoordinate.longitude = [store[@"longitude"] floatValue];
+            newMapAnnotation.coordinate = tempCoordinate;
+            newMapAnnotation.title = store[@"address"];
+            [myMapView addAnnotation:newMapAnnotation];
+            [annotations addObject:newMapAnnotation];
         }
-        [allStores retain];
-        
-        NSSortDescriptor * descriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
-        [allStores sortUsingDescriptors:[NSArray arrayWithObject:descriptor]];
-        
-        
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (![settingMethod.latitude isEqualToString:@""]) {
-                    
-                    if (!firstLoad) {
-                        [self moveToUserLocation];
-                    }
-                
-                }
-                
-                for (int i = 0; i < [allStores count]; i++) {
-                    
-                        MapPlace * newMapAnnotation = [[MapPlace alloc] init];
-                        CLLocationCoordinate2D tempCoordinate;
-                        tempCoordinate.latitude  = [[[allStores objectAtIndex:i] objectForKey:@"latitude"] floatValue];
-                        tempCoordinate.longitude = [[[allStores objectAtIndex:i] objectForKey:@"longitude"] floatValue]; 
-                        newMapAnnotation.coordinate = tempCoordinate;
-                        newMapAnnotation.title = @"-";
-                    newMapAnnotation.address = [[allStores objectAtIndex:i] objectForKey:@"address"];
-                        newMapAnnotation.idPlace = [NSString stringWithFormat:@"%i", i+1];
-                        [myMapView addAnnotation:newMapAnnotation];
-                        [newMapAnnotation release];
-                        
-                }
-                
-                [self.myTableView reloadData];
-                
-            });
-        
-    }else {
-        
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             [settingMethod HUDMessage:@"kNoStoresAround" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
-             
-             CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(31.236856, 110.447227);
-             MKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 5000000, 150)];
-             [self.myMapView  setRegion:adjustedRegion animated:YES];
-             
-        });
-    }
-    
+        self.allAnnotations = annotations;
+    }];
 }
 
 -(void)moveToUserLocation {
@@ -679,39 +650,8 @@
         distancedetailsLbl.text = [NSString stringWithFormat:@"%@ %.1f%@", NSLocalizedString(@"kDistance", nil), myKmDistance, NSLocalizedString(@"kKms", nil)];
     }
     
-    
-    // Remove Pin Description if already exist
-    if (tempAnnotation != nil) {
-        NSLog(@"tempAnnot is not nil");
-        NSLog(@"tempAnnotation : %i", tempAnnotation.tag);
-        [self mapView:self.myMapView didDeselectAnnotationView:tempAnnotation];
-        
-        
-    }
-    
-    // Force Pin Description
-    
-    for (MapPlace *anAnnotation in [NSArray arrayWithArray:self.myMapView.annotations]) {
-        
-        if (![anAnnotation isKindOfClass:[MKUserLocation class]] && [anAnnotation.idPlace intValue] == indexPath.row+1) {
-            NSLog(@"anAnnotation.idPlace %@", anAnnotation.idPlace);
-            
-            ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView viewForAnnotation:anAnnotation];
-            [self mapView:self.myMapView didSelectAnnotationView:(MKAnnotationView *)annotationView];
-//            BMKPlanNode *start = [[BMKPlanNode alloc]init];
-//            start.pt = self.myMapView.userLocation.coordinate;
-//            BMKPlanNode *end = [[BMKPlanNode alloc]init];
-//            end.pt = anAnnotation.coordinate;
-//            NSLog(@"search walkiing");
-//            BOOL flag = [self.search walkingSearch:@"上海" startNode:start endCity:@"上海" endNode:end];
-//            if (!flag) {
-//                NSLog(@"search failed");
-//            }
-        }
-        
-    }
-    
-    
+    MapPlace *place = self.allAnnotations[indexPath.row];
+    [self.myMapView selectAnnotation:place animated:YES];
     
     [NSTimer scheduledTimerWithTimeInterval:0.5
                                      target:self selector:@selector(redrawFrame:) userInfo:[allStores objectAtIndex:indexPath.row] repeats:NO];
@@ -760,31 +700,13 @@
 }
 
 
-
-- (void)mapView:(MKMapView*)map regionDidChangeAnimated:(BOOL)animated
-{
-    NSLog(@"regionDidChangeAnimated");
-    for (NSObject *annotation in [myMapView annotations])
-    {
-        if ([annotation isKindOfClass:[MKUserLocation class]])
-        {
-            MKAnnotationView *view = [myMapView viewForAnnotation:(MKUserLocation *)annotation];
-            [view.superview sendSubviewToBack:view];
-            //[[view superview] bringSubviewToFront:view];
-        }
-    }
-    
-    
-}
-
-
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     
     for (MKAnnotationView *pin in views) {
         
         if ([[pin annotation] isKindOfClass:[MKUserLocation class]])
         {
-            //[[pin superview] bringSubviewToFront:pin];
+            [[pin superview] bringSubviewToFront:pin];
         }
         else
         {
@@ -799,142 +721,89 @@
                 ;
             }];
             
-            //[[pin superview] sendSubviewToBack:pin];
-            
+            [[pin superview] sendSubviewToBack:pin];
+        
         }
         
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSLog(@"view %d temp %d",view.tag,tempAnnotation.tag);
 
-    if (view.tag != 0) {
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
+        NSLog(@"select pin");
+        return;
+    }
+    if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
+        NSLog(@"select store");
+        UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
+        CGSize sizeForDesc = {108,50.0f};
+        NSString *myText = [NSString stringWithFormat:@"%@",view.annotation.title];
+        CGSize adressSize = [myText sizeWithFont:fontSD
+                               constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
         
-        NSLog(@"tempAnnotation : %i - view: %i", tempAnnotation.tag, view.tag);
         
-//        if (tempAnnotation.tag != 0) {
-//            NSLog(@"annot already selected, remove it");
-//            [self mapView:self.myMapView didDeselectAnnotationView:tempAnnotation];
-//        }
+        CustomLabel *tempAdressLbl = [[CustomLabel alloc] init];
+        [tempAdressLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:10.0]];
         
-        if (tempAnnotation != view) {
-            tempAnnotation = view;
-            [tempAnnotation retain];
-            
-            NSLog(@"open annot");
-//            [[view superview] bringSubviewToFront:view];
-            
-            UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
-            CGSize sizeForDesc = {108,50.0f};
-            NSString *myText = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:view.tag-1] objectForKey:@"address"]];
-            CGSize adressSize = [myText sizeWithFont:fontSD
-                                   constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
-            
-            
-            CustomLabel *tempAdressLbl = [[CustomLabel alloc] init];
-            [tempAdressLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:10.0]];
-            
-            if (adressSize.height > 22) {
-                [tempAdressLbl setFrame:CGRectMake(14, 25, 108, adressSize.height)];
-            }else {
-                [tempAdressLbl setFrame:CGRectMake(14, 30, 108, adressSize.height)];
-            }
-            
-            tempAdressLbl.text = myText;
-            [tempAdressLbl setDrawOutline:NO];
-            tempAdressLbl.tag = 1000 + view.tag;
-            tempAdressLbl.numberOfLines = 0;
-            tempAdressLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-            tempAdressLbl.textAlignment = UITextAlignmentCenter;
-            tempAdressLbl.backgroundColor = [UIColor clearColor];
-            tempAdressLbl.alpha = 0.0;
-            [view addSubview:tempAdressLbl];
-            [tempAdressLbl release];
-            CGRect startFrame = view.frame;
-            CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
-            view.image = [UIImage imageNamed:@"map_pin_open"];
-            [view setNeedsDisplay];
-            view.frame = startFrame;
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:0.45f];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            view.frame = endFrame;
-            tempAdressLbl.alpha = 1.0;
-            [UIView commitAnimations];
-            view.centerOffset = CGPointMake(0, -146/2/2);
+        if (adressSize.height > 22) {
+            [tempAdressLbl setFrame:CGRectMake(14, 25, 108, adressSize.height)];
+        }else {
+            [tempAdressLbl setFrame:CGRectMake(14, 30, 108, adressSize.height)];
         }
+        
+        tempAdressLbl.text = myText;
+        [tempAdressLbl setDrawOutline:NO];
+        tempAdressLbl.tag = 1000 + view.tag;
+        tempAdressLbl.numberOfLines = 0;
+        tempAdressLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        tempAdressLbl.textAlignment = UITextAlignmentCenter;
+        tempAdressLbl.backgroundColor = [UIColor clearColor];
+        tempAdressLbl.alpha = 0.0;
+        [view addSubview:tempAdressLbl];
+        [tempAdressLbl release];
+        CGRect startFrame = view.frame;
+        CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
+        view.image = [UIImage imageNamed:@"map_pin_open"];
+        [view setNeedsDisplay];
+        view.frame = startFrame;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.45f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        view.frame = endFrame;
+        tempAdressLbl.alpha = 1.0;
+        [UIView commitAnimations];
+        view.centerOffset = CGPointMake(0, -146/2/2);
+        return;
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    NSLog(@"didDeselectAnnotationView %@",view);
-    if (view.tag != 0) {
-        
-        if (tempAnnotation != nil) {
-            
-            NSLog(@"close annot");
-            
-            for (UIView *sub in [view subviews]) {
-                
-                if ([sub isKindOfClass:[CustomLabel class]] && sub.tag == view.tag+1000) {
-                    [sub removeFromSuperview];
-                    
-                }
-                
-            }
-            CGRect startFrame = view.frame;
-            CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
-            view.image =[UIImage imageNamed:@"map_pin"];
-            view.frame = startFrame;
-            [view setNeedsDisplay];
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:0.45f];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            view.frame = endFrame;
-            NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
-            
-            [UIView commitAnimations];
-            view.centerOffset = CGPointMake(0, -58/2/2);
-
-            
-            if (tempAnnotation != view) {
-                
-                NSLog(@"inside temp");
-                
-                for (UIView *sub in [tempAnnotation subviews]) {
-                    
-                    if ([sub isKindOfClass:[CustomLabel class]] && sub.tag == tempAnnotation.tag+1000) {
-                        [sub removeFromSuperview];
-                        
-                    }
-                    
-                }
-                
-                CGRect endFrame = CGRectMake(tempAnnotation.frame.origin.x + 40, tempAnnotation.frame.origin.y + 44, 58, 29);
-                
-                [UIView beginAnimations:nil context:nil];
-                [UIView setAnimationDuration:0.45f];
-                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                
-                tempAnnotation.frame = endFrame;
-                tempAnnotation.image =[UIImage imageNamed:@"map_pin"];
-                [tempAnnotation setNeedsDisplay];
-                NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
-
-                [UIView commitAnimations];
-                view.centerOffset = CGPointMake(0, -58/2/2);
-
-            }
-            
-            //tempAnnotation = nil;
-            
-        }
-
-        
+    if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
+        NSLog(@"deselect pin");
+        return;
     }
-
-    
+    if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
+        for (UIView *sub in [view subviews]) {
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                [sub removeFromSuperview];
+            }
+        }
+        NSLog(@"deselect store");
+        CGRect startFrame = view.frame;
+        CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
+        view.image =[UIImage imageNamed:@"map_pin"];
+        view.frame = startFrame;
+        [view setNeedsDisplay];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.45f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        view.frame = endFrame;
+        NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
+        [UIView commitAnimations];
+        view.centerOffset = CGPointMake(0, -58/2/2);
+        return;
+    }
 }
 
 
@@ -948,12 +817,11 @@
         
         if(pulsingView == nil) {
             pulsingView = [[SVPulsingAnnotationView alloc] initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:identifier];
-            //pulsingView.annotationColor = [UIColor colorWithRed:0.678431 green:0 blue:0 alpha:1];
+            pulsingView.annotationColor = [UIColor colorWithRed:0.678431 green:0 blue:0 alpha:1];
             pulsingView.canShowCallout = NO;
         }
         pulsingView.canShowCallout = NO;
         return (SVPulsingAnnotationView *)pulsingView;
-    
         
         // STORE PIN
     }else {
@@ -978,74 +846,27 @@
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+        [annotationView addGestureRecognizer:tap];
         return (MKAnnotationView *)annotationView;
     }
     
 }
 
-
-
-//- (void)onGetWalkingRouteResult:(MKPlanResult *)result errorCode:(int)error
-//{
-//	NSLog(@"onGetWalkingRouteResult:error:%d", error);
-//	if (error == BMKErrorOk) {
-//		BMKRoutePlan* plan = (BMKRoutePlan*)[result.plans objectAtIndex:0];
-//        
-////		RouteAnnotation* item = [[RouteAnnotation alloc]init];
-////		item.coordinate = result.startNode.pt;
-////		item.title = @"起点";
-////		item.type = 0;
-////		[_mapView addAnnotation:item];
-////		[item release];
-//		
-//		int index = 0;
-//		int size = [plan.routes count];
-//		for (int i = 0; i < 1; i++) {
-//			BMKRoute* route = [plan.routes objectAtIndex:i];
-//			for (int j = 0; j < route.pointsCount; j++) {
-//				int len = [route getPointsNum:j];
-//				index += len;
-//			}
-//		}
-//		
-//		BMKMapPoint* points = new BMKMapPoint[index];
-//		index = 0;
-//		
-//		for (int i = 0; i < 1; i++) {
-//			BMKRoute* route = [plan.routes objectAtIndex:i];
-//			for (int j = 0; j < route.pointsCount; j++) {
-//				int len = [route getPointsNum:j];
-//				BMKMapPoint* pointArray = (BMKMapPoint*)[route getPoints:j];
-//				memcpy(points + index, pointArray, len * sizeof(BMKMapPoint));
-//				index += len;
-//			}
-//			size = route.steps.count;
-//			for (int j = 0; j < size; j++) {
-//				BMKStep* step = [route.steps objectAtIndex:j];
-////				item = [[RouteAnnotation alloc]init];
-////				item.coordinate = step.pt;
-////				item.title = step.content;
-////				item.degree = step.degree * 30;
-////				item.type = 4;
-////				[_mapView addAnnotation:item];
-////				[item release];
-//			}
-//			
-//		}
-//		
-////		item = [[RouteAnnotation alloc]init];
-////		item.coordinate = result.endNode.pt;
-////		item.type = 1;
-////		item.title = @"终点";
-////		[_mapView addAnnotation:item];
-////		[item release];
-////		BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:points count:index];
-////		[_mapView addOverlay:polyLine];
-////		delete []points;
-//	}
-//
-//}
-
+- (void)tap:(UITapGestureRecognizer *)sender
+{
+    ViewMapAnnotationView *view = (ViewMapAnnotationView *)sender.view;
+    NSLog(@"%@",view);
+    MapPlace *selectedAnnotation = self.myMapView.selectedAnnotations.lastObject;
+    if (!selectedAnnotation) {
+        [self.myMapView selectAnnotation:view.annotation animated:YES];
+    }else{
+        [self.myMapView deselectAnnotation:selectedAnnotation animated:YES];
+        if (view.annotation != selectedAnnotation) {
+            [self.myMapView deselectAnnotation:view.annotation animated:YES];
+        }
+    }
+}
 
 
 - (void)didReceiveMemoryWarning
