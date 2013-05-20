@@ -390,7 +390,7 @@ static DisplayMethod * display;
              btn1Lbl.frame = CGRectMake(0, 5.5,  110, myBtn1.frame.size.height);
              btn1Lbl.text = NSLocalizedString(@"catering_btn_txt", nil);
              
-         }else if ([myViewName isEqualToString:@"home"]) {
+         }else if ([myViewName isEqualToString:@"home"] || [myViewName isEqualToString:@"coupon"]) {
              
              bt1IconImg.frame = CGRectMake(13, 18, 17, 17);
              btn1Lbl.frame = CGRectMake(bt1IconImg.frame.size.width + bt1IconImg.frame.origin.x + 1, 5.5,  myBtn1.frame.size.width, myBtn1.frame.size.height);
@@ -448,6 +448,30 @@ static DisplayMethod * display;
             bt2IconImg.frame = CGRectMake(10, 18, 17, 17);
             btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x + 1, 5.5,  myBtn2.frame.size.width, myBtn2.frame.size.height);
             btn2Lbl.text = NSLocalizedString(@"coupon_btn_txt", nil);
+            
+            
+        }else if ([myViewName isEqualToString:@"coupon"]) {
+            
+            bt2IconImg.image = [UIImage imageNamed:@"logo_storelocator@2x"];
+            bt2IconImg.frame = CGRectMake(19, 17, 19, 22);
+            
+            [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, 16.0,  48, 15.0);
+            btn2Lbl.text = NSLocalizedString(@"store_btn_txt", nil);
+            
+            
+            CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, btn2Lbl.frame.size.height + bt2IconImg.frame.origin.y - 3.5, 48, 11.0)];
+            [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+            locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
+            [locatorLbl setDrawOutline:YES];
+            [locatorLbl setOutlineSize:strokeSize];
+            [locatorLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+            locatorLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            locatorLbl.textAlignment = UITextAlignmentLeft;
+            locatorLbl.backgroundColor = [UIColor clearColor];
+            [myBtn2 addSubview:locatorLbl];
+            [locatorLbl release];
+
             
             
         }

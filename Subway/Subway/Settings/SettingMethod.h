@@ -26,6 +26,10 @@
 
 
 + (SettingMethod*) sharedSetting;
++(BOOL)isTwitterAvailable;
++(BOOL)isSocialAvailable;
+
+
 @property (retain, nonatomic) NSString *latitude;
 @property (retain, nonatomic) NSString *longitude;
 
@@ -57,6 +61,7 @@
 
 // ----------------- GET IMAGE PATH
 - (UIImage *)getImagePath:(NSString *)imageName ;
+
 
 - (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
 

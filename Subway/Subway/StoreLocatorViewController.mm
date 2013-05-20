@@ -466,7 +466,7 @@
         weiboBtn.hidden = YES;
         weiboBtn.enabled = NO;
         
-        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
         //[[[UIAlertView alloc]initWithTitle:@"Login" message:@"You have login on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
     }];
 

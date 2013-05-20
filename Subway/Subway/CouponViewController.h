@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DDPageControl.h"
 
-@interface CouponViewController : UIViewController
+@interface CouponViewController : UIViewController < UIScrollViewDelegate> 
 
 @end

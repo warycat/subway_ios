@@ -8,6 +8,8 @@
 
 #import "CouponViewController.h"
 #import "DDPageControl.h"
+#import "MenuViewController.h"
+#import "StoreLocatorViewController.h"
 
 @interface CouponViewController ()
 @property (nonatomic, strong) UIButton *weiboBtn;
@@ -17,24 +19,19 @@
 @end
 
 @implementation CouponViewController
+@synthesize pageControl;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+-(void)backAction {  [self.navigationController popViewControllerAnimated:YES]; }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // ----------------- GENERATE BACKGROUND
     [displayMethod createBackground:self.view viewName:@""];
     
-    
-    // ----------------- GENERATE TOP BAR
-        
+            
     // ----------------- GENERATE TOP BAR
     
     UIButton *homeBtn =  [[UIButton alloc] init];
@@ -52,9 +49,27 @@
         [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
         
     }
+    
     [homeBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     [homeBtn release];
     
+    
+    // ----------------- GENERATE BOTTOM BAR
+    
+    UIButton *menuBtn =  [[UIButton alloc] init];
+    UIButton *locatorBtn =  [[UIButton alloc] init];;
+    
+    [displayMethod createBottomBar:self.view viewName:@"coupon" myBtn1:menuBtn myBtn2:locatorBtn myBtn3:nil];
+    
+    [menuBtn addTarget:self action:@selector(pushMenuView) forControlEvents:UIControlEventTouchDown];
+    [menuBtn release];
+    [locatorBtn addTarget:self action:@selector(pushStoreLocatorView) forControlEvents:UIControlEventTouchDown];
+    [locatorBtn release];
+    
+    
+    
+    // ---------------- Share Coupon on Weibo
+    // ----
     UIImage *shareImgON = [UIImage imageNamed:@"icon_weibo@2x"];
 
     UIButton *weiboShareBtn =  [[UIButton alloc] init];
@@ -79,6 +94,9 @@
     [self.view addSubview:weiboLbl];
     [weiboLbl release];
     
+    
+    // ---------------- Checkin Coupon
+    // ----
     UIImage *checkIn = [UIImage imageNamed:@"icon_checkin@2x"];
     
     UIButton *checkInBtn =  [[UIButton alloc] init];
@@ -102,7 +120,7 @@
     checkInLbl.backgroundColor = [UIColor clearColor];
     [self.view addSubview:checkInLbl];
     [checkInLbl release];
-    // Do any additional setup after loading the view from its nib.
+
     
     CustomLabel *specialOffers = [[CustomLabel alloc]initWithFrame:CGRectMake(100, 70, 100, 70)];
     specialOffers.text = @"SPECIAL\nOFFERS";
@@ -117,7 +135,9 @@
     specialOffers.backgroundColor = [UIColor clearColor];
     [self.view addSubview:specialOffers];
     
-    DDPageControl *pageControl;
+    
+    // ----------------- PAGE CONTROL
+    
     pageControl = [[DDPageControl alloc] init];
     pageControl.center = CGPointMake(self.view.center.x, 420 );
     pageControl.numberOfPages = 1;
@@ -136,6 +156,7 @@
     
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 150, 320, 250)];
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
@@ -143,13 +164,17 @@
     [self loadCoupon];
 }
 
+
 - (void)loadCoupon
 {
     NSString *locale = [settingMethod getUserLanguage];
     NSString *coupon_url = [NSString stringWithFormat:@"%@coupon/all?locale=%@&screen_size=%@",ADRESS,locale, @"640"];
     NSLog(@"%@",coupon_url);
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:coupon_url]];
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSArray *coupons = [dict objectForKey:@"data"];
         NSLog(@"%@",coupons);
@@ -157,37 +182,94 @@
         self.scrollView.contentSize = CGSizeMake(coupons.count *320, 250);
         int i = 0;
         self.pageControl.numberOfPages = coupons.count;
+        
         for (NSDictionary *coupon in self.coupons) {
+            
             NSDictionary *media = [[coupon objectForKey:@"media"] lastObject];
             NSString *url = [media objectForKey:@"path"];
+            
             NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+            
             [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                
                 UIImage *image = [UIImage imageWithData:data];
                 UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
                 imageView.contentMode = UIViewContentModeScaleAspectFit;
                 imageView.frame = CGRectMake(i * 320, 0, 320, 250);
                 [self.scrollView addSubview:imageView];
+                
             }];
+            
             i++;
         }
     }];
 
 }
 
--(void)backAction {
-        [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 -(void)weiboAction {
+    
     [BlockSinaWeibo loginWithHandler:^{
+        
         self.weiboBtn.alpha = 0.0;
         self.weiboBtn.hidden = YES;
         self.weiboBtn.enabled = NO;
         
-        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
-        //[[[UIAlertView alloc]initWithTitle:@"Login" message:@"You have login on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
+
     }];
 }
+
+
+
+// ========================== SCROLL VIEW METHODS ============================
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+    
+	CGFloat pageWidth = self.scrollView.bounds.size.width;
+    float fractionalPage = self.scrollView.contentOffset.x / pageWidth ;
+	NSInteger nearestNumber = lround(fractionalPage) ;
+	
+	if (pageControl.currentPage != nearestNumber)
+	{
+		pageControl.currentPage = nearestNumber ;
+		
+		// if we are dragging, we want to update the page control directly during the drag
+		if (aScrollView.dragging)
+			[pageControl updateCurrentPageDisplay] ;
+	}
+}
+
+
+#pragma mark ---------------
+#pragma mark ---------------
+#pragma mark --------------- BOTTOM PART
+#pragma mark ---------------
+#pragma mark ---------------
+
+
+-(void)pushMenuView {
+    
+    MenuViewController *menuViewCtrl = [[MenuViewController alloc] init];
+    menuViewCtrl.fromSubOfTheDay = NO;
+    [self.navigationController pushViewController:menuViewCtrl animated:YES];
+    [menuViewCtrl release];
+    
+}
+
+-(void)pushStoreLocatorView {
+    
+
+    StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
+    storeViewCtrl.fromOtherView = YES;
+    [self.navigationController pushViewController:storeViewCtrl animated:YES];
+    [storeViewCtrl release];
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

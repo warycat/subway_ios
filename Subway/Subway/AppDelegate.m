@@ -37,11 +37,12 @@
     [menuMethod checkMeals];
     
 
-    LoadingViewController *lvc = [[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil] autorelease];
+    LoadingViewController *lvc = [[[LoadingViewController alloc] init] autorelease];
     UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];
     myNavigationController.navigationBarHidden = YES;
     self.window.rootViewController = myNavigationController;
     [self.window makeKeyAndVisible];
+    
     return YES;
     
 }

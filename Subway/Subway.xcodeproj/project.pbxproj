@@ -12,7 +12,6 @@
 		4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2911744BEBE00402239 /* LoadingViewController.xib */; };
 		4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2961744DE2000402239 /* icon-video-loading@2x.png */; };
 		4634B2A11746247000402239 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4634B29F1746247000402239 /* CouponViewController.m */; };
-		4634B2A21746247000402239 /* CouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2A01746247000402239 /* CouponViewController.xib */; };
 		467C392D17411846005EEE76 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392517411846005EEE76 /* JSONKit.m */; };
 		467C392E17411846005EEE76 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392717411846005EEE76 /* SinaWeibo.m */; };
 		467C392F17411846005EEE76 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C392917411846005EEE76 /* SinaWeiboAuthorizeView.m */; };
@@ -23,7 +22,6 @@
 		469AF6F8173CB81D0082CC2D /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469AF6F7173CB81D0082CC2D /* libbaidumapapi.a */; };
 		469AF6FA173CB8460082CC2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 469AF6F9173CB8460082CC2D /* mapapi.bundle */; };
 		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
-		856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856FD18A1738D6D0001EED8D /* FrameworkChecker.m */; };
 		EB2140F51740A000009983BA /* howtoorder-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */; };
 		EB2140F61740A000009983BA /* howtoorder-numbersbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */; };
 		EB2140F71740A000009983BA /* howtoorder-titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */; };
@@ -182,7 +180,6 @@
 		4634B2961744DE2000402239 /* icon-video-loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-video-loading@2x.png"; sourceTree = "<group>"; };
 		4634B29E1746247000402239 /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
 		4634B29F1746247000402239 /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
-		4634B2A01746247000402239 /* CouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponViewController.xib; sourceTree = "<group>"; };
 		467C392417411846005EEE76 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		467C392517411846005EEE76 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		467C392617411846005EEE76 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
@@ -230,8 +227,6 @@
 		469AF6F9173CB8460082CC2D /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		469AF6FB174085B90082CC2D /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
 		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
-		856FD1891738D6D0001EED8D /* FrameworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkChecker.h; path = Helpers/FrameworkChecker.h; sourceTree = "<group>"; };
-		856FD18A1738D6D0001EED8D /* FrameworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameworkChecker.m; path = Helpers/FrameworkChecker.m; sourceTree = "<group>"; };
 		EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-bg@2x.png"; sourceTree = "<group>"; };
 		EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-numbersbg@2x.png"; sourceTree = "<group>"; };
 		EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-titlebg@2x.png"; sourceTree = "<group>"; };
@@ -507,16 +502,6 @@
 			name = BaiduMap;
 			sourceTree = "<group>";
 		};
-		856FD18C1738D6DE001EED8D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				856FD1891738D6D0001EED8D /* FrameworkChecker.h */,
-				856FD18A1738D6D0001EED8D /* FrameworkChecker.m */,
-			);
-			name = Helpers;
-			path = Subway;
-			sourceTree = "<group>";
-		};
 		EB2140EA1740A000009983BA /* HowTo */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,7 +560,6 @@
 				4634B28E1744BE3F00402239 /* artworks */,
 				4634B28D1744BE1C00402239 /* weibo */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
-				856FD18C1738D6DE001EED8D /* Helpers */,
 				EBB4D043171FD882006DAF2F /* Settings */,
 				EBB4CFBF171FBB2E006DAF2F /* Ressources */,
 				EBB4CF9B171FADE9006DAF2F /* Frameworks */,
@@ -628,12 +612,11 @@
 				469AF6FC174085B90082CC2D /* HowToOrderViewController.m */,
 				EB2141031740E4AE009983BA /* CateringViewController.h */,
 				EB2141041740E4AE009983BA /* CateringViewController.m */,
+				4634B29E1746247000402239 /* CouponViewController.h */,
+				4634B29F1746247000402239 /* CouponViewController.m */,
 				4634B28F1744BEBE00402239 /* LoadingViewController.h */,
 				4634B2901744BEBE00402239 /* LoadingViewController.m */,
 				4634B2911744BEBE00402239 /* LoadingViewController.xib */,
-				4634B29E1746247000402239 /* CouponViewController.h */,
-				4634B29F1746247000402239 /* CouponViewController.m */,
-				4634B2A01746247000402239 /* CouponViewController.xib */,
 				EBB4CFA3171FADE9006DAF2F /* Supporting Files */,
 			);
 			path = Subway;
@@ -1019,7 +1002,6 @@
 				4634B28C1744AE1F00402239 /* subway.db in Resources */,
 				4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */,
 				4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */,
-				4634B2A21746247000402239 /* CouponViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1030,6 @@
 				EB989138172B8BF300E75638 /* SVPulsingAnnotationView.m in Sources */,
 				EBCAA2E117320F58007F33B2 /* MBProgressHUD.m in Sources */,
 				EBAC242A1737C1A4009D8519 /* DDPageControl.m in Sources */,
-				856FD18B1738D6D0001EED8D /* FrameworkChecker.m in Sources */,
 				EB86952F173B9612004C9092 /* MenuMethod.m in Sources */,
 				469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */,
 				467C392D17411846005EEE76 /* JSONKit.m in Sources */,
@@ -1153,8 +1134,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1167,8 +1148,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1178,8 +1159,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1192,8 +1173,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				PROVISIONING_PROFILE = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28ABED4B-47F2-4C86-AD5F-9C16958C007A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
