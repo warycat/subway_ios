@@ -6,10 +6,9 @@
 //  Copyright 2010 DigiBee. All rights reserved.
 //
 
-//#import <MapKit/MapKit.h>
-#import "BMapKit.h"
+#import <MapKit/MapKit.h>
 
-@interface BMKMapView (ZoomLevel)
+@interface MKMapView (ZoomLevel)
 
 - (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate
 				  zoomLevel:(NSUInteger)zoomLevel

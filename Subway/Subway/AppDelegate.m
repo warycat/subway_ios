@@ -7,10 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "BMapKit.h"
 #import "HomePageController.h"
 #import "LoadingViewController.h"
-BMKMapManager* _mapManager;
 
 @implementation AppDelegate
 
@@ -24,12 +22,6 @@ BMKMapManager* _mapManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    _mapManager = [[BMKMapManager alloc]init];
-	BOOL ret = [_mapManager start:@"这里输入key" generalDelegate:self];
-	if (!ret) {
-		NSLog(@"manager start failed!");
-	}
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     //Test Flight
