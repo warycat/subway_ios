@@ -82,7 +82,7 @@
     [NSURLConnection sendAsynchronousRequest:upgradeRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *upgradeResponse, NSData *upgradeData, NSError *upgradeError) {
         
         self.progressLabel.hidden = NO;
-        self.progressLabel.text = @"0%%";
+        self.progressLabel.text = @"0%";
         
         if (upgradeData) {
             

@@ -65,7 +65,6 @@
 
 - (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"%s", (char *)_cmd);
     NSLog(@"%@",error);
     //[[BlockSinaWeibo sharedClient].requests removeObject:self];
     //    [self resetButtons];
@@ -73,7 +72,6 @@
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    NSLog(@"%s", (char *)_cmd);
 
      //    [self resetButtons];
     self.simpleCompletionBlock(result);
@@ -83,18 +81,17 @@
 
 - (void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
-    NSLog(@"%s", (char *)_cmd);
 
 }
 - (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data
 {
-    NSLog(@"%s", (char *)_cmd);
 
 }
 
 - (void)dealloc
 {
     NSLog(@"dealloc");
+    [super dealloc];
 }
 
 @end

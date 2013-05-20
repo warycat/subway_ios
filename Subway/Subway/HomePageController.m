@@ -466,9 +466,10 @@
 }
 
 -(void)pushCouponView {
-    CouponViewController *cvc = [[CouponViewController alloc]initWithNibName:@"CouponViewController" bundle:nil];
+    
+    CouponViewController *cvc = [[CouponViewController alloc] init];
     [self.navigationController pushViewController:cvc animated:YES];
-
+    [cvc release];
 }
 
 

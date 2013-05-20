@@ -468,7 +468,7 @@
         weiboBtn.hidden = YES;
         weiboBtn.enabled = NO;
         
-        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
         //[[[UIAlertView alloc]initWithTitle:@"Login" message:@"You have login on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
     }];
 
@@ -1023,7 +1023,7 @@
 			}
 			size = route.steps.count;
 			for (int j = 0; j < size; j++) {
-				BMKStep* step = [route.steps objectAtIndex:j];
+//				BMKStep* step = [route.steps objectAtIndex:j];
 //				item = [[RouteAnnotation alloc]init];
 //				item.coordinate = step.pt;
 //				item.title = step.content;

@@ -11,7 +11,6 @@
 #import <netinet/in.h>   
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
-#import "FrameworkChecker.h"
 
 
 @implementation SettingMethod
@@ -31,6 +30,7 @@ static SettingMethod * setting;
 }
 
 
+
 -(void)dealloc{
 	
 	[super dealloc];
@@ -45,12 +45,21 @@ static SettingMethod * setting;
 }
 
 
+// =================        =================
+// ================= FRAMEWORK CHECKER =================
+// =================        =================
+
++(BOOL)isTwitterAvailable {
+    return NSClassFromString(@"TWTweetComposeViewController") != nil;
+}
+
++(BOOL)isSocialAvailable {
+    return NSClassFromString(@"SLComposeViewController") != nil;
+}
 
 
 
-// =================      =================
 // ================= JSON =================
-// =================      =================
 
 
 -(id)postAndParseJson:(id)jsonDictionary action:(NSString *)action type:(NSString *)myType {
