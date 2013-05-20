@@ -122,8 +122,8 @@
                     if (sum == files.count) {
                         
                         HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
-                        [self.navigationController pushViewController:hvc animated:NO];
-                        
+                        //[self.navigationController pushViewController:hvc animated:NO];
+                        [self.navigationController setViewControllers:@[hvc] animated:YES];
                         
                     }
                     
