@@ -7,20 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <MapKit/MapKit.h>
-//#import <MapKit/MKAnnotationView.h>
+#import <MapKit/MapKit.h>
+#import <MapKit/MKAnnotationView.h>
 #import "UIViewController+KNSemiModal.h"
-#import "BMapKit.h"
 
 
-@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, BMKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,BMKSearchDelegate> {
+@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     //Weibo Btn
     UIButton *weiboBtn;
     
     //Map
-    BMKMapView * myMapView;
-    BMKAnnotationView *tempAnnotation;
+    MKMapView * myMapView;
+    MKAnnotationView *tempAnnotation;
     NSMutableArray *allStores;
     BOOL firstLoad;
     
@@ -47,8 +46,8 @@
 @property (retain, nonatomic) UIButton *weiboBtn;
 
 //Map
-@property (retain, nonatomic) BMKMapView * myMapView;
-@property (retain, nonatomic) BMKAnnotationView *tempAnnotation;
+@property (retain, nonatomic) MKMapView * myMapView;
+@property (retain, nonatomic) MKAnnotationView *tempAnnotation;
 @property (retain, nonatomic) NSMutableArray *allStores;
 
 //Detail

@@ -11,7 +11,7 @@
 #define MERCATOR_OFFSET 268435456
 #define MERCATOR_RADIUS 85445659.44705395
 
-@implementation BMKMapView (ZoomLevel)
+@implementation MKMapView (ZoomLevel)
 
 #pragma mark -
 #pragma mark Map conversion methods
@@ -39,7 +39,7 @@
 #pragma mark -
 #pragma mark Helper methods
 
-- (BMKCoordinateSpan)coordinateSpanWithMapView:(BMKMapView *)mapView
+- (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
 							 centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
 								 andZoomLevel:(NSUInteger)zoomLevel
 {
@@ -71,7 +71,7 @@
     CLLocationDegrees latitudeDelta = -1 * (maxLat - minLat);
     
     // create and return the lat/lng span
-    BMKCoordinateSpan span = BMKCoordinateSpanMake(latitudeDelta, longitudeDelta);
+    MKCoordinateSpan span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta);
     return span;
 }
 
@@ -86,8 +86,8 @@
     zoomLevel = MIN(zoomLevel, 28);
     
     // use the zoom level to compute the region
-    BMKCoordinateSpan span = [self coordinateSpanWithMapView:self centerCoordinate:centerCoordinate andZoomLevel:zoomLevel];
-    BMKCoordinateRegion region = BMKCoordinateRegionMake(centerCoordinate, span);
+    MKCoordinateSpan span = [self coordinateSpanWithMapView:self centerCoordinate:centerCoordinate andZoomLevel:zoomLevel];
+    MKCoordinateRegion region = MKCoordinateRegionMake(centerCoordinate, span);
     
     // set the region like normal
     [self setRegion:region animated:animated];

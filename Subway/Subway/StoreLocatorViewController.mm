@@ -12,14 +12,12 @@
 #import "ViewMapAnnotationView.h"
 #import "SVPulsingAnnotationView.h"
 #import "MapPlace.h"
-#import <MapKit/MapKit.h>
 #import <Social/Social.h>
 #import "BlockSinaWeiboRequest.h"
 #import <Accounts/Accounts.h>
 
 
 @interface StoreLocatorViewController ()
-@property (nonatomic, strong)BMKSearch *search;
 @end
 
 @implementation StoreLocatorViewController
@@ -42,8 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.search = [[BMKSearch alloc]init];
-    self.search.delegate = self;
+//    self.search = [[BMKSearch alloc]init];
+//    self.search.delegate = self;
 
     tempAnnotation = nil;
     
@@ -186,7 +184,7 @@
     [storeListBtn release];
     
     
-    self.myMapView = [[[BMKMapView alloc] initWithFrame:CGRectMake(15, 70, screenWidth-30, screenHeight - 120)] autorelease];
+    self.myMapView = [[[MKMapView alloc] initWithFrame:CGRectMake(15, 70, screenWidth-30, screenHeight - 120)] autorelease];
     [self.view addSubview:self.myMapView];
     self.myMapView.showsUserLocation = YES;
     self.myMapView.layer.cornerRadius = 5;
@@ -263,7 +261,7 @@
     }else {
         
         CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(31, 121);
-        BMKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:BMKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
+        MKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
         [self.myMapView  setRegion:adjustedRegion animated:YES];
         
         
@@ -411,7 +409,7 @@
              [settingMethod HUDMessage:@"kNoStoresAround" typeOfIcon:nil delay:2.0 offset:CGPointMake(0, 0)];
              
              CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(31.236856, 110.447227);
-             BMKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:BMKCoordinateRegionMakeWithDistance(startCoord, 5000000, 150)];
+             MKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 5000000, 150)];
              [self.myMapView  setRegion:adjustedRegion animated:YES];
              
         });
@@ -695,11 +693,11 @@
     
     for (MapPlace *anAnnotation in [NSArray arrayWithArray:self.myMapView.annotations]) {
         
-        if (![anAnnotation isKindOfClass:[BMKUserLocation class]] && [anAnnotation.idPlace intValue] == indexPath.row+1) {
+        if (![anAnnotation isKindOfClass:[MKUserLocation class]] && [anAnnotation.idPlace intValue] == indexPath.row+1) {
             NSLog(@"anAnnotation.idPlace %@", anAnnotation.idPlace);
             
             ViewMapAnnotationView *annotationView = (ViewMapAnnotationView*)[self.myMapView viewForAnnotation:anAnnotation];
-            [self mapView:self.myMapView didSelectAnnotationView:(BMKAnnotationView *)annotationView];
+            [self mapView:self.myMapView didSelectAnnotationView:(MKAnnotationView *)annotationView];
 //            BMKPlanNode *start = [[BMKPlanNode alloc]init];
 //            start.pt = self.myMapView.userLocation.coordinate;
 //            BMKPlanNode *end = [[BMKPlanNode alloc]init];
@@ -763,14 +761,14 @@
 
 
 
-- (void)mapView:(BMKMapView*)map regionDidChangeAnimated:(BOOL)animated
+- (void)mapView:(MKMapView*)map regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"regionDidChangeAnimated");
     for (NSObject *annotation in [myMapView annotations])
     {
-        if ([annotation isKindOfClass:[BMKUserLocation class]])
+        if ([annotation isKindOfClass:[MKUserLocation class]])
         {
-            BMKAnnotationView *view = [myMapView viewForAnnotation:(BMKUserLocation *)annotation];
+            MKAnnotationView *view = [myMapView viewForAnnotation:(MKUserLocation *)annotation];
             [view.superview sendSubviewToBack:view];
             //[[view superview] bringSubviewToFront:view];
         }
@@ -780,11 +778,11 @@
 }
 
 
-- (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     
-    for (BMKAnnotationView *pin in views) {
+    for (MKAnnotationView *pin in views) {
         
-        if ([[pin annotation] isKindOfClass:[BMKUserLocation class]])
+        if ([[pin annotation] isKindOfClass:[MKUserLocation class]])
         {
             //[[pin superview] bringSubviewToFront:pin];
         }
@@ -808,7 +806,7 @@
     }
 }
 
-- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSLog(@"view %d temp %d",view.tag,tempAnnotation.tag);
 
     if (view.tag != 0) {
@@ -869,7 +867,7 @@
     }
 }
 
-- (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     NSLog(@"didDeselectAnnotationView %@",view);
     if (view.tag != 0) {
         
@@ -940,7 +938,7 @@
 }
 
 
-- (BMKAnnotationView*)mapView:(BMKMapView *)map viewForAnnotation:(id<BMKAnnotation>)annotation
+- (MKAnnotationView*)mapView:(MKMapView *)map viewForAnnotation:(id<MKAnnotation>)annotation
 {    
 
     // MY OWN PIN
@@ -949,7 +947,7 @@
         SVPulsingAnnotationView *pulsingView = (SVPulsingAnnotationView *)[self.myMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         
         if(pulsingView == nil) {
-            pulsingView = [[SVPulsingAnnotationView alloc] initWithAnnotation:(id<BMKAnnotation>)annotation reuseIdentifier:identifier];
+            pulsingView = [[SVPulsingAnnotationView alloc] initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:identifier];
             //pulsingView.annotationColor = [UIColor colorWithRed:0.678431 green:0 blue:0 alpha:1];
             pulsingView.canShowCallout = NO;
         }
@@ -966,7 +964,7 @@
         
         if (nil == annotationView)
         {
-            annotationView = [[[ViewMapAnnotationView alloc] initWithAnnotation:(id<BMKAnnotation>)annotation
+            annotationView = [[[ViewMapAnnotationView alloc] initWithAnnotation:(id<MKAnnotation>)annotation
                                                                 reuseIdentifier:AnnotationViewID] autorelease];
             
         }
@@ -980,73 +978,73 @@
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
-        return (BMKAnnotationView *)annotationView;
+        return (MKAnnotationView *)annotationView;
     }
     
 }
 
 
 
-- (void)onGetWalkingRouteResult:(BMKPlanResult *)result errorCode:(int)error
-{
-	NSLog(@"onGetWalkingRouteResult:error:%d", error);
-	if (error == BMKErrorOk) {
-		BMKRoutePlan* plan = (BMKRoutePlan*)[result.plans objectAtIndex:0];
-        
-//		RouteAnnotation* item = [[RouteAnnotation alloc]init];
-//		item.coordinate = result.startNode.pt;
-//		item.title = @"起点";
-//		item.type = 0;
-//		[_mapView addAnnotation:item];
-//		[item release];
-		
-		int index = 0;
-		int size = [plan.routes count];
-		for (int i = 0; i < 1; i++) {
-			BMKRoute* route = [plan.routes objectAtIndex:i];
-			for (int j = 0; j < route.pointsCount; j++) {
-				int len = [route getPointsNum:j];
-				index += len;
-			}
-		}
-		
-		BMKMapPoint* points = new BMKMapPoint[index];
-		index = 0;
-		
-		for (int i = 0; i < 1; i++) {
-			BMKRoute* route = [plan.routes objectAtIndex:i];
-			for (int j = 0; j < route.pointsCount; j++) {
-				int len = [route getPointsNum:j];
-				BMKMapPoint* pointArray = (BMKMapPoint*)[route getPoints:j];
-				memcpy(points + index, pointArray, len * sizeof(BMKMapPoint));
-				index += len;
-			}
-			size = route.steps.count;
-			for (int j = 0; j < size; j++) {
-				BMKStep* step = [route.steps objectAtIndex:j];
-//				item = [[RouteAnnotation alloc]init];
-//				item.coordinate = step.pt;
-//				item.title = step.content;
-//				item.degree = step.degree * 30;
-//				item.type = 4;
-//				[_mapView addAnnotation:item];
-//				[item release];
-			}
-			
-		}
-		
-//		item = [[RouteAnnotation alloc]init];
-//		item.coordinate = result.endNode.pt;
-//		item.type = 1;
-//		item.title = @"终点";
-//		[_mapView addAnnotation:item];
-//		[item release];
-//		BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:points count:index];
-//		[_mapView addOverlay:polyLine];
-//		delete []points;
-	}
-
-}
+//- (void)onGetWalkingRouteResult:(MKPlanResult *)result errorCode:(int)error
+//{
+//	NSLog(@"onGetWalkingRouteResult:error:%d", error);
+//	if (error == BMKErrorOk) {
+//		BMKRoutePlan* plan = (BMKRoutePlan*)[result.plans objectAtIndex:0];
+//        
+////		RouteAnnotation* item = [[RouteAnnotation alloc]init];
+////		item.coordinate = result.startNode.pt;
+////		item.title = @"起点";
+////		item.type = 0;
+////		[_mapView addAnnotation:item];
+////		[item release];
+//		
+//		int index = 0;
+//		int size = [plan.routes count];
+//		for (int i = 0; i < 1; i++) {
+//			BMKRoute* route = [plan.routes objectAtIndex:i];
+//			for (int j = 0; j < route.pointsCount; j++) {
+//				int len = [route getPointsNum:j];
+//				index += len;
+//			}
+//		}
+//		
+//		BMKMapPoint* points = new BMKMapPoint[index];
+//		index = 0;
+//		
+//		for (int i = 0; i < 1; i++) {
+//			BMKRoute* route = [plan.routes objectAtIndex:i];
+//			for (int j = 0; j < route.pointsCount; j++) {
+//				int len = [route getPointsNum:j];
+//				BMKMapPoint* pointArray = (BMKMapPoint*)[route getPoints:j];
+//				memcpy(points + index, pointArray, len * sizeof(BMKMapPoint));
+//				index += len;
+//			}
+//			size = route.steps.count;
+//			for (int j = 0; j < size; j++) {
+//				BMKStep* step = [route.steps objectAtIndex:j];
+////				item = [[RouteAnnotation alloc]init];
+////				item.coordinate = step.pt;
+////				item.title = step.content;
+////				item.degree = step.degree * 30;
+////				item.type = 4;
+////				[_mapView addAnnotation:item];
+////				[item release];
+//			}
+//			
+//		}
+//		
+////		item = [[RouteAnnotation alloc]init];
+////		item.coordinate = result.endNode.pt;
+////		item.type = 1;
+////		item.title = @"终点";
+////		[_mapView addAnnotation:item];
+////		[item release];
+////		BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:points count:index];
+////		[_mapView addOverlay:polyLine];
+////		delete []points;
+//	}
+//
+//}
 
 
 
