@@ -571,25 +571,21 @@
     
 }
 
+- (void)displayStore:(NSInteger)index
+{
+    
+    
+    self.currentStore = allStores[index];
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self dismissSemiModalView];
-    
-    //Change City
-    
-    self.currentStore = allStores[indexPath.row];
-    
-    if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]) {
-        self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",NSLocalizedString(@"kSubway", nil),[[allStores objectAtIndex:indexPath.row]objectForKey:@"city"]];
+    if ([[allStores objectAtIndex:index] objectForKey:@"phone"]) {
+        self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",NSLocalizedString(@"kSubway", nil),[[allStores objectAtIndex:index]objectForKey:@"city"]];
     }
     
     //Change Phone
-    if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]) {
+    if ([[allStores objectAtIndex:index] objectForKey:@"phone"]) {
         
-        phoneDetailsLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"phone"]];
-        [phoneDetailsBtn setTag:indexPath.row];
+        phoneDetailsLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:index] objectForKey:@"phone"]];
+        [phoneDetailsBtn setTag:index];
         phoneDetailsBtn.alpha = 1.0;
         phoneDetailsBtn.enabled = YES;
     }else {
@@ -603,7 +599,7 @@
     
     //Change Mail
     
-    if ([[allStores objectAtIndex:indexPath.row] objectForKey:@"email"]) {
+    if ([[allStores objectAtIndex:index] objectForKey:@"email"]) {
         
         mailDetailsBtn.enabled = YES;
         mailDetailsBtn.alpha = 1.0;
@@ -620,7 +616,7 @@
     UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:14.0];
     CGSize sizeForDesc = {detailsView.frame.size.width - 100,100.0f};
     
-    NSString *myText = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
+    NSString *myText = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:index] objectForKey:@"address"]];
     CGSize adressSize = [myText sizeWithFont:fontSD
                            constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
     
@@ -632,17 +628,17 @@
     }
     
     
-    adressdetailsLbl.text = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
+    adressdetailsLbl.text = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:index] objectForKey:@"address"]];
     adressdetailsLbl.numberOfLines = 3;
     //Change Adress second Line
     [adressdetailsLblSecondLine setFrame:CGRectMake(0, adressdetailsLbl.frame.size.height + adressdetailsLbl.frame.origin.y, detailsView.frame.size.width, 20)];
-    adressdetailsLblSecondLine.text = [NSString stringWithFormat:@"%@, %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"region"], [[allStores objectAtIndex:indexPath.row] objectForKey:@"zipcode"]];
+    adressdetailsLblSecondLine.text = [NSString stringWithFormat:@"%@, %@",[[allStores objectAtIndex:index] objectForKey:@"region"], [[allStores objectAtIndex:index] objectForKey:@"zipcode"]];
     
     
     //Change Distance
     [distancedetailsLbl setFrame:CGRectMake(0, adressdetailsLblSecondLine.frame.size.height + adressdetailsLblSecondLine.frame.origin.y + 5, detailsView.frame.size.width, 20)];
     
-    float myKmDistance = [[settingMethod getDistanceFromMyLocation:[[allStores objectAtIndex:indexPath.row] objectForKey:@"latitude"] placeLongitude:[[allStores objectAtIndex:indexPath.row] objectForKey:@"longitude"]] floatValue];
+    float myKmDistance = [[settingMethod getDistanceFromMyLocation:[[allStores objectAtIndex:index] objectForKey:@"latitude"] placeLongitude:[[allStores objectAtIndex:index] objectForKey:@"longitude"]] floatValue];
     
     if (myKmDistance < 0.999) {
         distancedetailsLbl.text = [NSString stringWithFormat:@"%@ %.0f%@", NSLocalizedString(@"kDistance", nil), myKmDistance*1000, NSLocalizedString(@"kMeters", nil)];;
@@ -650,14 +646,31 @@
         distancedetailsLbl.text = [NSString stringWithFormat:@"%@ %.1f%@", NSLocalizedString(@"kDistance", nil), myKmDistance, NSLocalizedString(@"kKms", nil)];
     }
     
-    MapPlace *place = self.allAnnotations[indexPath.row];
+    MapPlace *place = self.allAnnotations[index];
+    MapPlace *selectedAnnotation = self.myMapView.selectedAnnotations.lastObject;
+    if (!selectedAnnotation) {
+        [self.myMapView selectAnnotation:place animated:YES];
+    }else{
+        NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:place];
+        //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
+//        [self displayStore:index];
+        if (place != selectedAnnotation) {
+            [self.myMapView deselectAnnotation:place animated:YES];
+        }
+    }
     [self.myMapView selectAnnotation:place animated:YES];
     
     [NSTimer scheduledTimerWithTimeInterval:0.5
-                                     target:self selector:@selector(redrawFrame:) userInfo:[allStores objectAtIndex:indexPath.row] repeats:NO];
+                                     target:self selector:@selector(redrawFrame:) userInfo:[allStores objectAtIndex:index] repeats:NO];
+}
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self dismissSemiModalView];
     
+    //Change City
+    [self displayStore:indexPath.row];    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     
@@ -765,7 +778,7 @@
         CGRect startFrame = view.frame;
         CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
         view.image = [UIImage imageNamed:@"map_pin_open"];
-        [view setNeedsDisplay];
+//        [view setNeedsDisplay];
         view.frame = startFrame;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.45f];
@@ -794,7 +807,7 @@
         CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
         view.image =[UIImage imageNamed:@"map_pin"];
         view.frame = startFrame;
-        [view setNeedsDisplay];
+//        [view setNeedsDisplay];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.45f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -861,9 +874,11 @@
     if (!selectedAnnotation) {
         [self.myMapView selectAnnotation:view.annotation animated:YES];
     }else{
-        [self.myMapView deselectAnnotation:selectedAnnotation animated:YES];
+        NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
+        //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
+        [self displayStore:index];
         if (view.annotation != selectedAnnotation) {
-            [self.myMapView deselectAnnotation:view.annotation animated:YES];
+            //[self.myMapView deselectAnnotation:view.annotation animated:YES];
         }
     }
 }
