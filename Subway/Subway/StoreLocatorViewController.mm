@@ -859,8 +859,11 @@
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        [annotationView addGestureRecognizer:tap];
+        NSString *version = [UIDevice currentDevice].systemVersion;
+        if ([version compare:@"6.0"] == NSOrderedAscending) {
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+            [annotationView addGestureRecognizer:tap];        
+        }
         return (MKAnnotationView *)annotationView;
     }
     
