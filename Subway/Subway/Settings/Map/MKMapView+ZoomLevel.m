@@ -87,7 +87,8 @@
     
     // use the zoom level to compute the region
     MKCoordinateSpan span = [self coordinateSpanWithMapView:self centerCoordinate:centerCoordinate andZoomLevel:zoomLevel];
-    MKCoordinateRegion region = MKCoordinateRegionMake(centerCoordinate, span);
+    CLLocationCoordinate2D offsetcenter = CLLocationCoordinate2DMake(centerCoordinate.latitude + 0.002,centerCoordinate.longitude);
+    MKCoordinateRegion region = MKCoordinateRegionMake(offsetcenter, span);
     
     // set the region like normal
     [self setRegion:region animated:animated];
