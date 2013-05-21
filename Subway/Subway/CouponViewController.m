@@ -194,19 +194,97 @@
                 
                 UIImage *image = [UIImage imageWithData:data];
                 UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-                imageView.contentMode = UIViewContentModeScaleAspectFit;
                 imageView.frame = CGRectMake(i * 320, 0, 320, 250);
+                imageView.contentMode = UIViewContentModeScaleAspectFit;
+                imageView.userInteractionEnabled = YES;
+                [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipRight:)]];
+                imageView.tag = 2 * (i+1);
                 [self.scrollView addSubview:imageView];
+
+                UIImage *back = [UIImage imageNamed:@"coupon_reversed-640"];
+                UIImageView *backView = [[UIImageView alloc]initWithImage:back];
+                backView.contentMode = UIViewContentModeScaleAspectFit;
+                backView.frame = CGRectMake(i * 320, 0, 320, 250);
+                backView.userInteractionEnabled = YES;
+                backView.tag = 2 * (i+1) + 1;
+                backView.hidden = YES;
+                [backView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipLeft:)]];
+                [self.scrollView addSubview:backView];
+
+                UIImageView *subway = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"logo_subway"]];
+                subway.frame = CGRectMake(0, 0, 100, 20);
+                subway.center = CGPointMake(160, 39);
+                [backView addSubview:subway];
                 
+                CustomLabel *title = [[CustomLabel alloc]init];
+                title.drawOutline = YES;
+                title.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+                title.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                title.outlineSize = 3;
+                title.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:18.0];
+                title.textAlignment = UITextAlignmentCenter;
+                title.text = coupon[@"title"];
+                title.frame = CGRectMake(0, 0, 120, 20);
+                title.center = CGPointMake(160, 70);
+                [backView addSubview:title];
+                
+                CustomLabel *description = [[CustomLabel alloc]init];
+                description.drawOutline = YES;
+                description.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+                description.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                description.outlineSize = 3;
+                description.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                description.numberOfLines = 6;
+                description.textAlignment = UITextAlignmentCenter;
+                description.text = coupon[@"description"];
+                description.frame = CGRectMake(0, 0, 120, 100);
+                description.center = CGPointMake(160, 130);
+                [backView addSubview:description];
+                
+                CustomLabel *dates = [[CustomLabel alloc]init];
+                dates.drawOutline = YES;
+                dates.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                dates.outlineSize = 3;
+                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                dates.numberOfLines = 1;
+                dates.textAlignment = UITextAlignmentCenter;
+                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
+//                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+//                NSDate *sdate = [dateFormatter dateFromString:coupon[@"sdate"]];
+//                
+                dates.frame = CGRectMake(0, 0, 120, 20);
+                dates.center = CGPointMake(160, 170);
+                [backView addSubview:dates];
             }];
-            
             i++;
         }
     }];
 
 }
 
+- (void)flipRight:(UIGestureRecognizer *)gr
+{
+    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        gr.view.hidden = !gr.view.hidden;
+        UIView *backView = [self.scrollView viewWithTag:(gr.view.tag + 1)];
+        backView.hidden = !backView.hidden;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
 
+- (void)flipLeft:(UIGestureRecognizer *)gr
+{
+    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        gr.view.hidden = !gr.view.hidden;
+        UIView *frontView = [self.scrollView viewWithTag:(gr.view.tag - 1)];
+        frontView.hidden = !frontView.hidden;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
 
 -(void)weiboAction {
     
