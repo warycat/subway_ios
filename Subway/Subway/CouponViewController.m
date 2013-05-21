@@ -104,7 +104,7 @@
     checkInBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     checkInBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [checkInBtn setBackgroundImage:[checkIn stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-//    [checkInBtn addTarget:self action:@selector(shareToWeibo:) forControlEvents:UIControlEventTouchDown];
+    [checkInBtn addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchDown];
     [self.view  addSubview:checkInBtn];
     [checkInBtn release];
     
@@ -221,6 +221,15 @@
     }];
 }
 
+- (void)checkIn
+{
+    if (![settingMethod weiboIsConnected]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"xxxx";
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.customView = nil;
+    }
+}
 
 
 // ========================== SCROLL VIEW METHODS ============================

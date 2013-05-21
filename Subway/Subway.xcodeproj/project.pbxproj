@@ -83,7 +83,6 @@
 		EBB4CF9D171FADE9006DAF2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB4CF9C171FADE9006DAF2F /* UIKit.framework */; };
 		EBB4CF9F171FADE9006DAF2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB4CF9E171FADE9006DAF2F /* Foundation.framework */; };
 		EBB4CFA1171FADE9006DAF2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB4CFA0171FADE9006DAF2F /* CoreGraphics.framework */; };
-		EBB4CFA7171FADE9006DAF2F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFA5171FADE9006DAF2F /* InfoPlist.strings */; };
 		EBB4CFA9171FADE9006DAF2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB4CFA8171FADE9006DAF2F /* main.m */; };
 		EBB4CFAD171FADE9006DAF2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB4CFAC171FADE9006DAF2F /* AppDelegate.m */; };
 		EBB4CFAF171FADE9006DAF2F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFAE171FADE9006DAF2F /* Default.png */; };
@@ -271,7 +270,6 @@
 		EBB4CF9E171FADE9006DAF2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBB4CFA0171FADE9006DAF2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Subway-Info.plist"; sourceTree = "<group>"; };
-		EBB4CFA6171FADE9006DAF2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EBB4CFA8171FADE9006DAF2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Subway-Prefix.pch"; sourceTree = "<group>"; };
 		EBB4CFAB171FADE9006DAF2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 		EBB4D044171FD89A006DAF2F /* DisplayMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayMethod.h; sourceTree = "<group>"; };
 		EBB4D045171FD89A006DAF2F /* DisplayMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayMethod.m; sourceTree = "<group>"; };
 		EBB4D047171FDC34006DAF2F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/HomePageController.xib"; sourceTree = "<group>"; };
-		EBB4D048171FDC34006DAF2F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EBB4D049171FDEB0006DAF2F /* footer_catering_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footer_catering_off@2x.png"; sourceTree = "<group>"; };
 		EBB4D04A171FDEB0006DAF2F /* footer_catering_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footer_catering_on@2x.png"; sourceTree = "<group>"; };
 		EBB4D04B171FDEB0006DAF2F /* footer_options_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footer_options_off@2x.png"; sourceTree = "<group>"; };
@@ -554,7 +551,6 @@
 			isa = PBXGroup;
 			children = (
 				EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */,
-				EBB4CFA5171FADE9006DAF2F /* InfoPlist.strings */,
 				EBB4D096172120F3006DAF2F /* Localizable.strings */,
 				EBB4CFA8171FADE9006DAF2F /* main.m */,
 				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
@@ -811,7 +807,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB4CFA7171FADE9006DAF2F /* InfoPlist.strings in Resources */,
 				EBB4CFAF171FADE9006DAF2F /* Default.png in Resources */,
 				EBB4CFB1171FADE9006DAF2F /* Default@2x.png in Resources */,
 				EBB4CFB9171FADE9006DAF2F /* HomePageController.xib in Resources */,
@@ -973,15 +968,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EBB4CFA5171FADE9006DAF2F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EBB4CFA6171FADE9006DAF2F /* en */,
-				EBB4D048171FDC34006DAF2F /* zh-Hans */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		EBB4CFB7171FADE9006DAF2F /* HomePageController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
