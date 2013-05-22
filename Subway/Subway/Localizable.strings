@@ -122,6 +122,7 @@
 "kNoConnection" = "The Internet connection appears to be offline.";
 "kNoEventAvailable" = "No events available yet!!";
 "kConnectedToWeibo" = " You are now connected to weibo";
+"kNoConnectedToWeibo" = "You need weibo connection";
 
 "kSubway" = "SUBWAY";
 
