@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DDPageControl.h"
 
-@interface CouponViewController : UIViewController < UIScrollViewDelegate> 
+@interface CouponViewController : UIViewController < UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @end
