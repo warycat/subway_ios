@@ -20,7 +20,6 @@
 		467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */; };
 		467C393A1741EDCD005EEE76 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 467C39391741EDCD005EEE76 /* WeiboSDK.bundle */; };
 		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
-		46D05F60174B4CA6009A8754 /* coupon_reversed-640.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D05F5F174B4CA6009A8754 /* coupon_reversed-640.png */; };
 		EB2140F51740A000009983BA /* howtoorder-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */; };
 		EB2140F61740A000009983BA /* howtoorder-numbersbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */; };
 		EB2140F71740A000009983BA /* howtoorder-titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */; };
@@ -37,6 +36,10 @@
 		EB2141071741DDAD009983BA /* home_event@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2141061741DDAD009983BA /* home_event@2x.png */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
+		EB5E7C65174DC66800EF328D /* background_iphone5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C64174DC66800EF328D /* background_iphone5@2x.jpg */; };
+		EB5E7C67174DC67700EF328D /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C66174DC67700EF328D /* background@2x.jpg */; };
+		EB5E7C6B174DC74600EF328D /* coupon_reversed-640.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C69174DC74600EF328D /* coupon_reversed-640.png */; };
+		EB5E7C6C174DC74600EF328D /* coupon_reversed-720.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C6A174DC74600EF328D /* coupon_reversed-720.png */; };
 		EB5F6257172A3441006E053B /* StoreLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6256172A3441006E053B /* StoreLocator.m */; };
 		EB5F625A172A55A8006E053B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5F6259172A55A7006E053B /* UIViewController+KNSemiModal.m */; };
 		EB869514173B872E004C9092 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB869513173B872E004C9092 /* libz.dylib */; };
@@ -90,8 +93,6 @@
 		EBB4CFB1171FADE9006DAF2F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFB0171FADE9006DAF2F /* Default@2x.png */; };
 		EBB4CFB6171FADE9006DAF2F /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB4CFB5171FADE9006DAF2F /* HomePageController.m */; };
 		EBB4CFB9171FADE9006DAF2F /* HomePageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFB7171FADE9006DAF2F /* HomePageController.xib */; };
-		EBB4CFD4171FBB5C006DAF2F /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFC2171FBB5C006DAF2F /* background@2x.png */; };
-		EBB4CFD5171FBB5C006DAF2F /* background_iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFC3171FBB5C006DAF2F /* background_iphone5@2x.png */; };
 		EBB4CFD6171FBB5C006DAF2F /* btn_red_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFC4171FBB5C006DAF2F /* btn_red_off@2x.png */; };
 		EBB4CFD7171FBB5C006DAF2F /* btn_red_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFC5171FBB5C006DAF2F /* btn_red_on@2x.png */; };
 		EBB4CFD8171FBB5C006DAF2F /* btn_yellow_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB4CFC6171FBB5C006DAF2F /* btn_yellow_off@2x.png */; };
@@ -175,7 +176,7 @@
 		4634B28F1744BEBE00402239 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		4634B2901744BEBE00402239 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		4634B2911744BEBE00402239 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
-		4634B2961744DE2000402239 /* icon-video-loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-video-loading@2x.png"; sourceTree = "<group>"; };
+		4634B2961744DE2000402239 /* icon-video-loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-video-loading@2x.png"; path = "../../../../icon-video-loading@2x.png"; sourceTree = "<group>"; };
 		4634B29E1746247000402239 /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
 		4634B29F1746247000402239 /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
 		467C392417411846005EEE76 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -194,7 +195,6 @@
 		467C39391741EDCD005EEE76 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		469AF6FB174085B90082CC2D /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
 		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
-		46D05F5F174B4CA6009A8754 /* coupon_reversed-640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_reversed-640.png"; sourceTree = "<group>"; };
 		EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-bg@2x.png"; sourceTree = "<group>"; };
 		EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-numbersbg@2x.png"; sourceTree = "<group>"; };
 		EB2140ED1740A000009983BA /* howtoorder-titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-titlebg@2x.png"; sourceTree = "<group>"; };
@@ -214,6 +214,10 @@
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EB5E7C64174DC66800EF328D /* background_iphone5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background_iphone5@2x.jpg"; sourceTree = "<group>"; };
+		EB5E7C66174DC67700EF328D /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
+		EB5E7C69174DC74600EF328D /* coupon_reversed-640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_reversed-640.png"; sourceTree = "<group>"; };
+		EB5E7C6A174DC74600EF328D /* coupon_reversed-720.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_reversed-720.png"; sourceTree = "<group>"; };
 		EB5F6255172A3441006E053B /* StoreLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreLocator.h; sourceTree = "<group>"; };
 		EB5F6256172A3441006E053B /* StoreLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreLocator.m; sourceTree = "<group>"; };
 		EB5F6258172A55A7006E053B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
@@ -281,8 +285,6 @@
 		EBB4CFB4171FADE9006DAF2F /* HomePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
 		EBB4CFB5171FADE9006DAF2F /* HomePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
 		EBB4CFB8171FADE9006DAF2F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomePageController.xib; sourceTree = "<group>"; };
-		EBB4CFC2171FBB5C006DAF2F /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
-		EBB4CFC3171FBB5C006DAF2F /* background_iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_iphone5@2x.png"; sourceTree = "<group>"; };
 		EBB4CFC4171FBB5C006DAF2F /* btn_red_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_red_off@2x.png"; sourceTree = "<group>"; };
 		EBB4CFC5171FBB5C006DAF2F /* btn_red_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_red_on@2x.png"; sourceTree = "<group>"; };
 		EBB4CFC6171FBB5C006DAF2F /* btn_yellow_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_yellow_off@2x.png"; sourceTree = "<group>"; };
@@ -419,8 +421,6 @@
 		4634B28E1744BE3F00402239 /* artworks */ = {
 			isa = PBXGroup;
 			children = (
-				46D05F5F174B4CA6009A8754 /* coupon_reversed-640.png */,
-				4634B2961744DE2000402239 /* icon-video-loading@2x.png */,
 				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
 				EB869521173B93CE004C9092 /* default.png */,
 				EB869522173B93CE004C9092 /* default@2x.png */,
@@ -445,6 +445,15 @@
 				EB2140F41740A000009983BA /* howtoorder_p7@2x.png */,
 			);
 			path = HowTo;
+			sourceTree = "<group>";
+		};
+		EB5E7C68174DC70D00EF328D /* coupons */ = {
+			isa = PBXGroup;
+			children = (
+				EB5E7C69174DC74600EF328D /* coupon_reversed-640.png */,
+				EB5E7C6A174DC74600EF328D /* coupon_reversed-720.png */,
+			);
+			name = coupons;
 			sourceTree = "<group>";
 		};
 		EB5F6254172A341E006E053B /* Object */ = {
@@ -584,6 +593,7 @@
 				EB2140EA1740A000009983BA /* HowTo */,
 				EBB4CFC1171FBB5C006DAF2F /* general */,
 				EBB4CFE6171FBB67006DAF2F /* home */,
+				EB5E7C68174DC70D00EF328D /* coupons */,
 				EBB4CFF3171FBB71006DAF2F /* meals */,
 				EBB4CFFE171FBB86006DAF2F /* store */,
 			);
@@ -593,9 +603,10 @@
 		EBB4CFC1171FBB5C006DAF2F /* general */ = {
 			isa = PBXGroup;
 			children = (
+				4634B2961744DE2000402239 /* icon-video-loading@2x.png */,
+				EB5E7C64174DC66800EF328D /* background_iphone5@2x.jpg */,
+				EB5E7C66174DC67700EF328D /* background@2x.jpg */,
 				EBCAA2E417321032007F33B2 /* no_connexion@2x.png */,
-				EBB4CFC2171FBB5C006DAF2F /* background@2x.png */,
-				EBB4CFC3171FBB5C006DAF2F /* background_iphone5@2x.png */,
 				EBB4CFC4171FBB5C006DAF2F /* btn_red_off@2x.png */,
 				EBB4CFC5171FBB5C006DAF2F /* btn_red_on@2x.png */,
 				EBB4CFC6171FBB5C006DAF2F /* btn_yellow_off@2x.png */,
@@ -813,8 +824,6 @@
 				EBB4CFAF171FADE9006DAF2F /* Default.png in Resources */,
 				EBB4CFB1171FADE9006DAF2F /* Default@2x.png in Resources */,
 				EBB4CFB9171FADE9006DAF2F /* HomePageController.xib in Resources */,
-				EBB4CFD4171FBB5C006DAF2F /* background@2x.png in Resources */,
-				EBB4CFD5171FBB5C006DAF2F /* background_iphone5@2x.png in Resources */,
 				EBB4CFD6171FBB5C006DAF2F /* btn_red_off@2x.png in Resources */,
 				EBB4CFD7171FBB5C006DAF2F /* btn_red_on@2x.png in Resources */,
 				EBB4CFD8171FBB5C006DAF2F /* btn_yellow_off@2x.png in Resources */,
@@ -926,7 +935,10 @@
 				4634B28C1744AE1F00402239 /* subway.db in Resources */,
 				4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */,
 				4634B2971744DE2000402239 /* icon-video-loading@2x.png in Resources */,
-				46D05F60174B4CA6009A8754 /* coupon_reversed-640.png in Resources */,
+				EB5E7C65174DC66800EF328D /* background_iphone5@2x.jpg in Resources */,
+				EB5E7C67174DC67700EF328D /* background@2x.jpg in Resources */,
+				EB5E7C6B174DC74600EF328D /* coupon_reversed-640.png in Resources */,
+				EB5E7C6C174DC74600EF328D /* coupon_reversed-720.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,32 +1062,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (6P2HDNY932)";
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
-				INFOPLIST_FILE = "Subway/Subway-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Subway/Ressources/TestFlightSDK\"",
-					"\"$(SRCROOT)/Subway/Settings\"",
-				);
-				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		EBB4CFBE171FADE9006DAF2F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1089,7 +1076,32 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9D7EDFE9-82D5-4D2B-A68F-75037086F999";
+				PROVISIONING_PROFILE = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EBB4CFBE171FADE9006DAF2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
+				INFOPLIST_FILE = "Subway/Subway-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Subway/Ressources/TestFlightSDK\"",
+					"\"$(SRCROOT)/Subway/Settings\"",
+				);
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
 				WRAPPER_EXTENSION = app;
 			};

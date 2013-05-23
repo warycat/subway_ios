@@ -57,7 +57,7 @@
     titleLblView.text = @" HOW TO ORDER";
     [titleLblView setDrawOutline:YES];
     [titleLblView setOutlineSize:3];
-    [titleLblView setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+    [titleLblView setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     titleLblView.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     titleLblView.textAlignment = UITextAlignmentCenter;
     titleLblView.backgroundColor = [UIColor clearColor];
@@ -110,7 +110,7 @@
         nbLbl.text = [NSString stringWithFormat:@"%i", i+1];
         [nbLbl setDrawOutline:YES];
         [nbLbl setOutlineSize:3];
-        [nbLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+        [nbLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
         nbLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
         nbLbl.textAlignment = UITextAlignmentCenter;
         nbLbl.backgroundColor = [UIColor clearColor];
@@ -122,7 +122,7 @@
         [titleLbl setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:20.0]];
         [titleLbl setDrawOutline:YES];
         [titleLbl setOutlineSize:3];
-        [titleLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+        [titleLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
         titleLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
         titleLbl.textAlignment = UITextAlignmentCenter;
         titleLbl.backgroundColor = [UIColor clearColor];
@@ -141,7 +141,7 @@
         [stepLbl setFont:[UIFont fontWithName:APEX_HEAVY size:13.0]];
         [stepLbl setDrawOutline:YES];
         [stepLbl setOutlineSize:3];
-        [stepLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+        [stepLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
         stepLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
         stepLbl.textAlignment = UITextAlignmentCenter;
         stepLbl.lineBreakMode = UILineBreakModeWordWrap;
@@ -159,7 +159,7 @@
         [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:9.0]];
         [btn1Lbl setDrawOutline:YES];
         [btn1Lbl setOutlineSize:strokeSize];
-        [btn1Lbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+        [btn1Lbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
         btn1Lbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
         btn1Lbl.textAlignment = UITextAlignmentRight;
         btn1Lbl.backgroundColor = [UIColor clearColor];

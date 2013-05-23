@@ -32,6 +32,7 @@
     rotation.repeatCount = HUGE_VALF; // Repeat forever. Can be a finite number.
     [self.cicle.layer addAnimation:rotation forKey:@"Spin"];
     
+    
     // GET VERSION
     NSArray *versions = [databaseMethod getVersions];
     NSDictionary *version = [versions lastObject];
@@ -43,12 +44,16 @@
     self.progressLabel.hidden = YES;
     
     // Update the files if the timestamp is updated
-//    if (currentTimestamp - lastTimestamp > delta) {
-//        //[self updateWith:now.stringValue and:[settingMethod getUserLanguage]];
-//    }else{
+    if (currentTimestamp - lastTimestamp > delta) {
+        
+        [self updateWith:now.stringValue and:[settingMethod getUserLanguage]];
+        
+    }else{
+        
         HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
         [self.navigationController setViewControllers:@[hvc] animated:YES];
-//    }
+        
+    }
     
 }
 
@@ -125,7 +130,6 @@
                     if (sum == files.count) {
                         
                         HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
-                        //[self.navigationController pushViewController:hvc animated:NO];
                         [self.navigationController setViewControllers:@[hvc] animated:YES];
                         
                     }

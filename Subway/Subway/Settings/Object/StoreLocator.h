@@ -14,7 +14,10 @@
 }
 
 + (StoreLocator *) storeFunction;
+
 -(id)getAllStores:(NSString *)gpsx longitude:(NSString *)gpsy radius:(NSString *)radius;
+- (void)getShareStoreMessageWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
+- (void)getStoreLocationsWith:(NSDictionary *)requestDict onSuccess:(void (^)(NSDictionary *responseDict))successBlock;
 
 
 

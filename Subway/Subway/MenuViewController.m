@@ -245,7 +245,7 @@
     factTitleLbl.text = @"";
     [factTitleLbl setDrawOutline:YES];
     [factTitleLbl setOutlineSize:strokeSize];
-    [factTitleLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [factTitleLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     factTitleLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     factTitleLbl.textAlignment = UITextAlignmentLeft;
     factTitleLbl.backgroundColor = [UIColor clearColor];
@@ -263,7 +263,7 @@
     factDescriptionLbl.text = @"";
     [factDescriptionLbl setDrawOutline:YES];
     [factDescriptionLbl setOutlineSize:strokeSize];
-    [factDescriptionLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [factDescriptionLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     factDescriptionLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     factDescriptionLbl.textAlignment = UITextAlignmentCenter;
     factDescriptionLbl.numberOfLines = 0;
@@ -306,7 +306,7 @@
     weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
-    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     weiboLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     weiboLbl.textAlignment = UITextAlignmentCenter;
     weiboLbl.backgroundColor = [UIColor clearColor];
@@ -336,7 +336,7 @@
     healthLbl.text = NSLocalizedString(@"kLowFat", nil);
     [healthLbl setDrawOutline:YES];
     [healthLbl setOutlineSize:strokeSize];
-    [healthLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [healthLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     healthLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     healthLbl.textAlignment = UITextAlignmentCenter;
     healthLbl.backgroundColor = [UIColor clearColor];
@@ -358,7 +358,7 @@
     tastyLbl.text = NSLocalizedString(@"kTastyFlavor", nil);
     [tastyLbl setDrawOutline:YES];
     [tastyLbl setOutlineSize:strokeSize];
-    [tastyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [tastyLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     tastyLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     tastyLbl.textAlignment = UITextAlignmentCenter;
     tastyLbl.backgroundColor = [UIColor clearColor];
@@ -381,7 +381,7 @@
     energyLbl.text = NSLocalizedString(@"kEnergyBoost", nil);
     [energyLbl setDrawOutline:YES];
     [energyLbl setOutlineSize:strokeSize];
-    [energyLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [energyLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     energyLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     energyLbl.textAlignment = UITextAlignmentCenter;
     energyLbl.backgroundColor = [UIColor clearColor];
@@ -404,7 +404,7 @@
     buildLbl.text = NSLocalizedString(@"kSandwichBuild", nil);
     [buildLbl setDrawOutline:YES];
     [buildLbl setOutlineSize:strokeSize];
-    [buildLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [buildLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     buildLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     buildLbl.textAlignment = UITextAlignmentCenter;
     buildLbl.backgroundColor = [UIColor clearColor];
@@ -572,7 +572,7 @@
                 titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductLbl setDrawOutline:YES];
                 [titleProductLbl setOutlineSize:strokeSize];
-                [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                 titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                 titleProductLbl.textAlignment = UITextAlignmentCenter;
                 titleProductLbl.backgroundColor = [UIColor clearColor];
@@ -630,7 +630,7 @@
                     factTitleImg.text = factName;
                     [factTitleImg setDrawOutline:YES];
                     [factTitleImg setOutlineSize:strokeSize];
-                    [factTitleImg setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    [factTitleImg setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                     factTitleImg.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                     factTitleImg.textAlignment = UITextAlignmentCenter;
                     factTitleImg.backgroundColor = [UIColor clearColor];
@@ -1014,12 +1014,7 @@
     NSCalendar *gregorianCalendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
     [gregorianCalendar setFirstWeekday:2]; // Sunday == 1, Saturday == 7
     NSUInteger adjustedWeekdayOrdinal = [gregorianCalendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
-    NSLog(@"Adjusted weekday ordinal: %d", adjustedWeekdayOrdinal);
-    
-//    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-//    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
-//    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
-    
+ 
     int today = adjustedWeekdayOrdinal;
     
     for (int i = 0; i < [currentProductsArray count]; i++) {
@@ -1034,7 +1029,7 @@
         titleProductLbl.text = [[currentProductsArray objectAtIndex:i] objectForKey:@"title"];
         [titleProductLbl setDrawOutline:YES];
         [titleProductLbl setOutlineSize:strokeSize];
-        [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+        [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
         titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
         titleProductLbl.textAlignment = UITextAlignmentCenter;
         titleProductLbl.backgroundColor = [UIColor clearColor];

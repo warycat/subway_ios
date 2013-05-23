@@ -42,8 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.search = [[BMKSearch alloc]init];
-//    self.search.delegate = self;
 
     tempAnnotation = nil;
     
@@ -67,7 +65,7 @@
     adressdetailsLbl.text = @"";
     [adressdetailsLbl setDrawOutline:NO];
     adressdetailsLbl.numberOfLines = 0;
-    adressdetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    adressdetailsLbl.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
     adressdetailsLbl.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:adressdetailsLbl];
     
@@ -75,7 +73,7 @@
     [adressdetailsLblSecondLine setFont:[UIFont fontWithName:APEX_MEDIUM size:14.0]];
     adressdetailsLblSecondLine.text = @"";
     [adressdetailsLblSecondLine setDrawOutline:NO];
-    adressdetailsLblSecondLine.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    adressdetailsLblSecondLine.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
     adressdetailsLblSecondLine.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:adressdetailsLblSecondLine];
     
@@ -83,7 +81,7 @@
     [distancedetailsLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:12.0]];
     distancedetailsLbl.text = @"";
     [distancedetailsLbl setDrawOutline:NO];
-    distancedetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    distancedetailsLbl.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
     distancedetailsLbl.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:distancedetailsLbl];
     
@@ -92,7 +90,6 @@
     UIImage *myLocationImageOff = [[UIImage imageNamed:@"btn_red_off.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:0];
     
     // PHONE
-    
     phoneDetailsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     phoneDetailsBtn.frame = CGRectMake(-5, detailsView.frame.size.height - 40, 150, 40);
     phoneDetailsBtn.userInteractionEnabled = YES;
@@ -116,13 +113,11 @@
     [phoneDetailsLbl setOutlineSize:strokeSize];
     [phoneDetailsLbl setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
     phoneDetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    phoneDetailsLbl.textAlignment = UITextAlignmentLeft;
     phoneDetailsLbl.backgroundColor = [UIColor clearColor];
     [phoneDetailsBtn addSubview:phoneDetailsLbl];
     
     
     // MAIL
-    
     mailDetailsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     mailDetailsBtn.frame = CGRectMake(detailsView.frame.size.width - 94, detailsView.frame.size.height - 40, 100, 40);
     mailDetailsBtn.userInteractionEnabled = YES;
@@ -146,7 +141,6 @@
     [mailDetailsLbl setOutlineSize:strokeSize];
     [mailDetailsLbl setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
     mailDetailsLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    mailDetailsLbl.textAlignment = UITextAlignmentLeft;
     mailDetailsLbl.backgroundColor = [UIColor clearColor];
     [mailDetailsBtn addSubview:mailDetailsLbl];
     
@@ -218,7 +212,6 @@
     [homeLbl setOutlineSize:strokeSize];
     [homeLbl setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
     homeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    homeLbl.textAlignment = UITextAlignmentLeft;
     homeLbl.backgroundColor = [UIColor clearColor];
     [actualiserbutton addSubview:homeLbl];
     [homeLbl release];
@@ -259,7 +252,6 @@
     
     
     if ([settingMethod connectedToNetwork]) {
-        //[self performSelectorInBackground:@selector(loadData) withObject:nil];
         [self loadData];
     }else {
         
@@ -271,29 +263,22 @@
     }
 
     CustomLabel *cityLabel = [[CustomLabel alloc]initWithFrame:CGRectMake(0, -20, 300, 100)];
-    cityLabel.text = @"SUBWAY,Shanghai";
-    cityLabel.drawOutline = YES;
-    cityLabel.textColor = [UIColor whiteColor];
-    cityLabel.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
-    cityLabel.font = [UIFont fontWithName:APEX_BOLD size:20.0];
-    //CustomLabel *nbLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 2, roundNumberImage.frame.size.width, roundNumberImage.frame.size.height)];
+    cityLabel.text = @" SUBWAY,Shanghai";
     [cityLabel setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:21.0]];
-    //cityLabel.text = [NSString stringWithFormat:@"%i", i+1];
     [cityLabel setDrawOutline:YES];
     [cityLabel setOutlineSize:3];
-    [cityLabel setOutlineColor:[UIColorCov colorWithHexString:GREEN_TEXT]];
+    [cityLabel setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     cityLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//    cityLabel.textAlignment = UITextAlignmentCenter;
     cityLabel.backgroundColor = [UIColor clearColor];
     self.cityLabel = cityLabel;
     [detailsView addSubview:cityLabel];
-    //[self.view sendSubviewToBack:cityLabel];
+
     
     UIButton *weiboShareBtn =  [[UIButton alloc] init];
-    [weiboShareBtn  setFrame:CGRectMake(250,25 , 43, 43)];
+    [weiboShareBtn  setFrame:CGRectMake(250, 25 , 43, 43)];
     weiboShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     weiboShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [weiboShareBtn setImage:[UIImage imageNamed:@"icon_weibo"] forState:UIControlStateNormal];
+    [weiboShareBtn setImage:[UIImage imageNamed:@"icon_weibo@2x"] forState:UIControlStateNormal];
     [weiboShareBtn addTarget:self action:@selector(shareStore:) forControlEvents:UIControlEventTouchDown];
     
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
@@ -301,7 +286,7 @@
     weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
-    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+    [weiboLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
     weiboLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
     weiboLbl.textAlignment = UITextAlignmentCenter;
     weiboLbl.backgroundColor = [UIColor clearColor];
@@ -323,7 +308,7 @@
 - (void)sendToSina
 {
 
-    [settingMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
+    [storeMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
         
         NSLog(@"%@",responseDict);
         
@@ -352,29 +337,38 @@
 }
 
 -(void)loadData {
-    NSString *locale = [settingMethod getUserLanguage];
+    
     CLLocation *myLocation = [settingMethod myLocation];
     [self zoomTo:myLocation.coordinate];
-    [settingMethod getStoreLocationsWith:@{@"locale":locale} onSuccess:^(NSDictionary *responseDict) {
-//        NSLog(@"%@",responseDict);
+    
+    [storeMethod getStoreLocationsWith:@{@"locale":[settingMethod getUserLanguage]} onSuccess:^(NSDictionary *responseDict) {
+
         NSArray *stores = responseDict[@"data"];
+        
         self.allStores = [stores sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            
             NSString *latitude1 = obj1[@"latitude"];
             NSString *longitude1 = obj1[@"longitude"];
             CLLocation *location1 = [[CLLocation alloc]initWithLatitude:latitude1.floatValue longitude:longitude1.floatValue];
+            
             NSString *latitude2 = obj2[@"latitude"];
             NSString *longitude2 = obj2[@"longitude"];
             CLLocation *location2 = [[CLLocation alloc]initWithLatitude:latitude2.floatValue longitude:longitude2.floatValue];
+            
             CLLocationDistance distance1 = [myLocation distanceFromLocation:location1];
             CLLocationDistance distance2 = [myLocation distanceFromLocation:location2];
+            
             if (distance1 < distance2)
                 return NSOrderedAscending;
             else
                 return NSOrderedDescending;
             
         }];
+        
         NSMutableArray *annotations = [NSMutableArray array];
+        
         for (NSDictionary *store in self.allStores) {
+            
             MapPlace * newMapAnnotation = [[MapPlace alloc] init];
             CLLocationCoordinate2D tempCoordinate;
             tempCoordinate.latitude  = [store[@"latitude"] floatValue];
@@ -383,6 +377,7 @@
             newMapAnnotation.title = store[@"address"];
             [myMapView addAnnotation:newMapAnnotation];
             [annotations addObject:newMapAnnotation];
+            
         }
         self.allAnnotations = annotations;
     }];
@@ -431,14 +426,17 @@
 #pragma mark ---------------
 #pragma mark ---------------
 
+
 -(void)weiboAction {
+    
     [BlockSinaWeibo loginWithHandler:^{
+        
         weiboBtn.alpha = 0.0;
         weiboBtn.hidden = YES;
         weiboBtn.enabled = NO;
         
         [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
-        //[[[UIAlertView alloc]initWithTitle:@"Login" message:@"You have login on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+        
     }];
 
 }
@@ -598,7 +596,6 @@
     }
     
     //Change Mail
-    
     if ([[allStores objectAtIndex:index] objectForKey:@"email"]) {
         
         mailDetailsBtn.enabled = YES;
@@ -630,6 +627,7 @@
     
     adressdetailsLbl.text = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:index] objectForKey:@"address"]];
     adressdetailsLbl.numberOfLines = 3;
+    
     //Change Adress second Line
     [adressdetailsLblSecondLine setFrame:CGRectMake(0, adressdetailsLbl.frame.size.height + adressdetailsLbl.frame.origin.y, detailsView.frame.size.width, 20)];
     adressdetailsLblSecondLine.text = [NSString stringWithFormat:@"%@, %@",[[allStores objectAtIndex:index] objectForKey:@"region"], [[allStores objectAtIndex:index] objectForKey:@"zipcode"]];
@@ -646,17 +644,18 @@
         distancedetailsLbl.text = [NSString stringWithFormat:@"%@ %.1f%@", NSLocalizedString(@"kDistance", nil), myKmDistance, NSLocalizedString(@"kKms", nil)];
     }
     
+    
     MapPlace *place = self.allAnnotations[index];
     MapPlace *selectedAnnotation = self.myMapView.selectedAnnotations.lastObject;
+    
     if (!selectedAnnotation) {
         [self.myMapView selectAnnotation:place animated:YES];
     }else{
-        NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:place];
-        //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
-//        [self displayStore:index];
+
         if (place != selectedAnnotation) {
             [self.myMapView deselectAnnotation:place animated:YES];
         }
+        
     }
     [self.myMapView selectAnnotation:place animated:YES];
     
@@ -743,6 +742,7 @@
 
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    
     if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
         NSLog(@"select pin");
         return;
@@ -775,46 +775,54 @@
         tempAdressLbl.alpha = 0.0;
         [view addSubview:tempAdressLbl];
         [tempAdressLbl release];
+        
         CGRect startFrame = view.frame;
         CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
         view.image = [UIImage imageNamed:@"map_pin_open"];
-//        [view setNeedsDisplay];
         view.frame = startFrame;
+        
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.45f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         view.frame = endFrame;
         tempAdressLbl.alpha = 1.0;
         [UIView commitAnimations];
+        
         view.centerOffset = CGPointMake(0, -146/2/2);
+        
         return;
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
     if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
         NSLog(@"deselect pin");
         return;
     }
+    
     if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
         for (UIView *sub in [view subviews]) {
             if ([sub isKindOfClass:[CustomLabel class]]) {
                 [sub removeFromSuperview];
             }
         }
+        
         NSLog(@"deselect store");
         CGRect startFrame = view.frame;
         CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
         view.image =[UIImage imageNamed:@"map_pin"];
         view.frame = startFrame;
-//        [view setNeedsDisplay];
+        
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.45f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         view.frame = endFrame;
         NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
         [UIView commitAnimations];
+        
         view.centerOffset = CGPointMake(0, -58/2/2);
+        
         return;
     }
 }

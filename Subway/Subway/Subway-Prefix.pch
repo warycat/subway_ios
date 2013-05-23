@@ -98,13 +98,14 @@
 
 #define strokeSize 4
 
-#define GREEN_STROKE @"064a44" 
+#define GRAY_STROKE @"565656"
+#define GREEN_STROKE @"064a44"
 #define RED_STROKE @"930911"
 
 #define YELLOW_TEXT @"faf000"
 #define WHITE_TEXT @"ffffff"
 #define GREEN_TEXT @"064a44"
-
+#define GRAY_TEXT @"565656"
 
 
 

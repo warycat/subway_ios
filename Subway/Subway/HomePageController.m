@@ -212,12 +212,6 @@
     NSCalendar *gregorianCalendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
     [gregorianCalendar setFirstWeekday:2]; // Sunday == 1, Saturday == 7
     NSUInteger adjustedWeekdayOrdinal = [gregorianCalendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
-    NSLog(@"Adjusted weekday ordinal: %d", adjustedWeekdayOrdinal);
-    
-    
-//    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-//    unsigned int compFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSYearCalendarUnit;
-//    NSDateComponents *weekdayComponents = [gregorianCalendar components:compFlags fromDate:[NSDate date]];
     
     int today = adjustedWeekdayOrdinal;
         
@@ -247,7 +241,7 @@
                 titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductLbl setDrawOutline:YES];
                 [titleProductLbl setOutlineSize:strokeSize];
-                [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                 titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                 titleProductLbl.textAlignment = UITextAlignmentCenter;
                 titleProductLbl.backgroundColor = [UIColor clearColor];
@@ -275,15 +269,15 @@
                 [pushToMenuViewBtn addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
                 [subOfTheDayView addSubview:pushToMenuViewBtn];
                 
-                //-------- Put the sub on the ALL WEEK subday
                 
+                //-------- Put the sub on the ALL WEEK subday
                 
                 CustomLabel *titleProductForAllWeekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 20, infoScrollSubOfTheDay.frame.size.height - 44, infoScrollSubOfTheDay.frame.size.width - 145, 40)];
                 [titleProductForAllWeekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:17.0]];
                 titleProductForAllWeekLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductForAllWeekLbl setDrawOutline:YES];
                 [titleProductForAllWeekLbl setOutlineSize:strokeSize];
-                [titleProductForAllWeekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                [titleProductForAllWeekLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                 titleProductForAllWeekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                 titleProductForAllWeekLbl.textAlignment = UITextAlignmentCenter;
                 titleProductForAllWeekLbl.backgroundColor = [UIColor clearColor];
@@ -307,7 +301,7 @@
                 weekLbl.text = myWeekDay;
                 [weekLbl setDrawOutline:YES];
                 [weekLbl setOutlineSize:strokeSize];
-                [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                 weekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                 weekLbl.textAlignment = UITextAlignmentLeft;
                 weekLbl.backgroundColor = [UIColor clearColor];
@@ -336,7 +330,7 @@
                     weekLbl.text = myWeekDay;
                     [weekLbl setDrawOutline:YES];
                     [weekLbl setOutlineSize:strokeSize];
-                    [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    [weekLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                     weekLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                     weekLbl.textAlignment = UITextAlignmentLeft;
                     weekLbl.backgroundColor = [UIColor clearColor];
@@ -349,7 +343,7 @@
                     titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                     [titleProductLbl setDrawOutline:YES];
                     [titleProductLbl setOutlineSize:strokeSize];
-                    [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GREEN_STROKE]];
+                    [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
                     titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                     titleProductLbl.textAlignment = UITextAlignmentCenter;
                     titleProductLbl.backgroundColor = [UIColor clearColor];
@@ -362,14 +356,6 @@
                     [infoScrollSubOfTheDay addSubview:mainImgSubOfTheDay];
                     [mainImgSubOfTheDay release];
                     
-                    
-//                    UIButton *pushToMenuViewBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//                    pushToMenuViewBtn2.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
-//                    pushToMenuViewBtn2.backgroundColor = [UIColor clearColor];
-//                    pushToMenuViewBtn2.tag = SODId;
-//                    pushToMenuViewBtn2.userInteractionEnabled = YES;
-//                    [pushToMenuViewBtn2 addTarget:self action:@selector(pushToMenuViewFromSOD:) forControlEvents:UIControlEventTouchUpInside];
-//                    [infoScrollSubOfTheDay addSubview:pushToMenuViewBtn2];
                     
                 }
 
