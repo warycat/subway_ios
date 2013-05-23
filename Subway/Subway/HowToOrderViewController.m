@@ -82,10 +82,13 @@
     
     myNumberOfSlides = 7;
     int XposSlider = 0;
+    int YposElements = 0;
+    if (IS_4_INCH_SCREEN) { YposElements = 20; }
+    
     
     for (int i = 0; i < myNumberOfSlides; i++) {
         
-        UIView *myBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(XposSlider + 5, 0, orderScrollView.frame.size.width-10, orderScrollView.frame.size.height)];
+        UIView *myBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(XposSlider + 5, YposElements, orderScrollView.frame.size.width-10, orderScrollView.frame.size.height)];
         myBackGroundView.backgroundColor = [UIColor clearColor];
         [orderScrollView addSubview:myBackGroundView];
         [myBackGroundView release];
@@ -100,7 +103,7 @@
         [BackgroundImgInfoSub release];
         
         UIImageView *roundNumberImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"howtoorder-numbersbg"]];
-        roundNumberImage.frame = CGRectMake(20, 15, 37, 37);
+        roundNumberImage.frame = CGRectMake(20, 15 + YposElements, 37, 37);
         [myBackGroundView addSubview:roundNumberImage];
         [roundNumberImage release];
         
@@ -118,7 +121,7 @@
         [nbLbl release];
         
         // TITLE ORDER
-        CustomLabel *titleLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(roundNumberImage.frame.size.width + roundNumberImage.frame.origin.x, 10, 220, 50)];
+        CustomLabel *titleLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(roundNumberImage.frame.size.width + roundNumberImage.frame.origin.x, 10 + YposElements, 220, 50)];
         [titleLbl setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:20.0]];
         [titleLbl setDrawOutline:YES];
         [titleLbl setOutlineSize:3];
@@ -137,7 +140,7 @@
         [BackgroundImgSub release];
 
         
-        CustomLabel *stepLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(30, 205, myBackGroundView.frame.size.width - 70, 100)];
+        CustomLabel *stepLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(30, 205 + YposElements, myBackGroundView.frame.size.width - 70, 100)];
         [stepLbl setFont:[UIFont fontWithName:APEX_HEAVY size:13.0]];
         [stepLbl setDrawOutline:YES];
         [stepLbl setOutlineSize:3];

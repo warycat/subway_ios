@@ -139,7 +139,7 @@
     // ----------------- PAGE CONTROL
     
     pageControl = [[DDPageControl alloc] init];
-    pageControl.center = CGPointMake(self.view.center.x, 420 );
+    pageControl.center = CGPointMake(self.view.center.x, screenHeight - 60);
     pageControl.numberOfPages = 1;
     pageControl.currentPage = 0;
     pageControl.backgroundColor = [UIColor clearColor];
@@ -154,7 +154,7 @@
     self.pageControl = pageControl;
     [self.view addSubview:pageControl];
     
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 150, 320, 250)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 150, 320, screenHeight- 230)];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -185,7 +185,7 @@
         NSLog(@"%@",coupons);
         
         self.coupons = coupons;
-        self.scrollView.contentSize = CGSizeMake(coupons.count *320, 250);
+        self.scrollView.contentSize = CGSizeMake(coupons.count *320, screenHeight- 230);
         int i = 0;
         self.pageControl.numberOfPages = coupons.count;
         
@@ -211,7 +211,7 @@
                 if (IS_4_INCH_SCREEN) { backgroundCouponSize = @"720"; }
                 
                 UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"coupon_reversed-%@", backgroundCouponSize]];
-                UIImageView *backView = [[UIImageView alloc]initWithImage:back];
+                UIImageView *backView = [[UIImageView alloc] initWithImage:back];
                 backView.contentMode = UIViewContentModeScaleAspectFit;
                 backView.frame = CGRectMake(i * 320, 0, 320, 250);
                 backView.userInteractionEnabled = YES;
@@ -223,7 +223,7 @@
                 [self.scrollView addSubview:backView];
 
                 UIImageView *subway = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"logo_subway"]];
-                subway.frame = CGRectMake(0, 0, 100, 20);
+                subway.frame = CGRectMake(0, 0, 100, 25);
                 subway.center = CGPointMake(160, 35);
                 [backView addSubview:subway];
                 
