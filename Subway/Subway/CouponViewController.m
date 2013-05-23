@@ -208,12 +208,14 @@
                 backView.userInteractionEnabled = YES;
                 backView.tag = 2 * (i+1) + 1;
                 backView.hidden = YES;
-                [backView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipLeft:)]];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipLeft:)];
+                tap.delegate = self;
+                [backView addGestureRecognizer:tap];
                 [self.scrollView addSubview:backView];
 
                 UIImageView *subway = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"logo_subway"]];
                 subway.frame = CGRectMake(0, 0, 100, 20);
-                subway.center = CGPointMake(160, 39);
+                subway.center = CGPointMake(160, 35);
                 [backView addSubview:subway];
                 
                 CustomLabel *title = [[CustomLabel alloc]init];
@@ -225,7 +227,7 @@
                 title.textAlignment = UITextAlignmentCenter;
                 title.text = coupon[@"title"];
                 title.frame = CGRectMake(0, 0, 120, 20);
-                title.center = CGPointMake(160, 70);
+                title.center = CGPointMake(160, 60);
                 [backView addSubview:title];
                 
                 CustomLabel *description = [[CustomLabel alloc]init];
@@ -238,30 +240,129 @@
                 description.textAlignment = UITextAlignmentCenter;
                 description.text = coupon[@"description"];
                 description.frame = CGRectMake(0, 0, 120, 100);
-                description.center = CGPointMake(160, 130);
+                description.center = CGPointMake(160, 110);
                 [backView addSubview:description];
                 
-                CustomLabel *dates = [[CustomLabel alloc]init];
-                dates.drawOutline = YES;
-                dates.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
-                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                dates.outlineSize = 3;
-                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                dates.numberOfLines = 1;
-                dates.textAlignment = UITextAlignmentCenter;
-                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
-//                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-//                NSDate *sdate = [dateFormatter dateFromString:coupon[@"sdate"]];
+                CustomLabel *avaliableLabel = [[CustomLabel alloc]init];
+                avaliableLabel.drawOutline = YES;
+                avaliableLabel.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+                avaliableLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                avaliableLabel.outlineSize = 3;
+                avaliableLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                avaliableLabel.numberOfLines = 1;
+                avaliableLabel.textAlignment = UITextAlignmentCenter;
+                avaliableLabel.text = NSLocalizedString(@"kAvailable", nil);
+                
+//                CustomLabel *dates = [[CustomLabel alloc]init];
+//                dates.drawOutline = YES;
+//                dates.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+//                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+//                dates.outlineSize = 3;
+//                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+//                dates.numberOfLines = 1;
+//                dates.textAlignment = UITextAlignmentCenter;
+//                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
 //                
-                dates.frame = CGRectMake(0, 0, 120, 20);
-                dates.center = CGPointMake(160, 170);
-                [backView addSubview:dates];
+//                CustomLabel *dates = [[CustomLabel alloc]init];
+//                dates.drawOutline = YES;
+//                dates.outlineColor = [UIColorCov colorWithHexString:GREEN_STROKE];
+//                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+//                dates.outlineSize = 3;
+//                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+//                dates.numberOfLines = 1;
+//                dates.textAlignment = UITextAlignmentCenter;
+//                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                NSDate *sdate = [dateFormatter dateFromString:coupon[@"sdate"]];
+                NSDate *edate = [dateFormatter dateFromString:coupon[@"edate"]];
+                
+                NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                
+                
+                NSLog(@"%@ %@",sdateString,edateString);
+                
+                avaliableLabel.frame = CGRectMake(0, 0, 120, 20);
+                avaliableLabel.center = CGPointMake(160, 170);
+                [backView addSubview:avaliableLabel];
+                
+                
+                UIButton *viewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                viewButton.frame = CGRectMake(0,0 , 100, 30);
+                viewButton.center = CGPointMake(160, 210);
+                viewButton.userInteractionEnabled = YES;
+                UIImage *buttonImage = [UIImage imageNamed:@"btn_red_on"];
+                [viewButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+                [viewButton addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
+                [backView addSubview:viewButton];
+                
+                CustomLabel *viewLabel = [[CustomLabel alloc] init];
+                viewLabel.textAlignment = UITextAlignmentCenter;
+                viewLabel.frame = CGRectMake(0, 0, 100, 15);
+                viewLabel.center = CGPointMake(160 , 212);
+                [viewLabel setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+                viewLabel.text = NSLocalizedString(@"kView", nil);
+                [viewLabel setDrawOutline:YES];
+                [viewLabel setOutlineSize:strokeSize];
+                [viewLabel setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
+                viewLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                //    homeLbl.textAlignment = UITextAlignmentLeft;
+                viewLabel.backgroundColor = [UIColor clearColor];
+                [backView addSubview:viewLabel];
             }];
             i++;
         }
     }];
 
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        // we touched a button, slider, or other UIControl
+        return NO; // ignore the touch
+    }
+    return YES; // handle the touch
+}
+
+- (void)view:(UIButton *)sender
+{
+    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        UIView *view = sender.superview;
+        view.hidden = !view.hidden;
+        UIView *frontView = [self.scrollView viewWithTag:(view.tag - 1)];
+        frontView.hidden = !frontView.hidden;
+    } completion:^(BOOL finished) {
+        UIView *view = sender.superview;
+        UIImageView *frontView = (UIImageView *) [self.scrollView viewWithTag:(view.tag - 1)];
+        UIImage *image = frontView.image;
+        UIImageView *bigImageView = [[UIImageView alloc]initWithImage:image];
+        CGRect frame = [self.scrollView convertRect:frontView.frame toView:self.view ];
+        bigImageView.frame = frame;
+        bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+        bigImageView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:bigImageView];
+        [UIView animateWithDuration:0.3 animations:^{
+            bigImageView.frame = self.view.bounds;
+            bigImageView.backgroundColor = [UIColor blackColor];
+        } completion:^(BOOL finished) {
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fade:)];
+            [bigImageView addGestureRecognizer:tap];
+            bigImageView.userInteractionEnabled = YES;
+        }];
+    }];
+    
+}
+
+- (void)fade:(UIGestureRecognizer *)gr
+{
+    UIView *view = gr.view;
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
 
 - (void)flipRight:(UIGestureRecognizer *)gr
