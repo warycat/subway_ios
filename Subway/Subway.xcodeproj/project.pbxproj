@@ -1062,8 +1062,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1076,8 +1076,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73A209ED-8450-4CAA-B806-7582BD95FAE7";
+				PROVISIONING_PROFILE = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
