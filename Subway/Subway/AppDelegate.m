@@ -22,6 +22,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeNewsstandContentAvailability|
+     UIRemoteNotificationTypeSound
+     ];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     //Test Flight
@@ -42,6 +49,30 @@
     
     return YES;
     
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSString* tokenString = [deviceToken description];
+    tokenString = [tokenString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    tokenString = [tokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"%@",tokenString);
+    
+    NSString *token_url = [NSString stringWithFormat:@"%@device/add?device=ios&token=%@",ADRESS, tokenString];
+    
+    NSLog(@"%@",token_url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:token_url]];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"%@",dict);
+    }];
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+    //abort();
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -73,19 +104,6 @@
     
     NSLog(@"------------------------- TERMINATE -------------------------");
     NSLog(@"--------------------------------------------------------------");
-    
-}
-
-
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-
-    NSLog(@"deviceToken:%@",deviceToken);
-
-}
-
-- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    
-    NSLog(@"didFailToRegisterForRemoteNotificationsWithError");
     
 }
 
