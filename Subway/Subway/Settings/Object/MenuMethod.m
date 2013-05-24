@@ -41,46 +41,6 @@ static MenuMethod * menu;
 
 
 
-// ----------------- CREATE MENU
-// -----------------
-
-
--(void)checkMeals {
-    
-//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDir = [documentPaths objectAtIndex:0];
-//    NSString *allProductsPath = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"product_all_%@.json", [settingMethod getUserLanguage]]];
-//    
-//    // check if the db is already installed
-//    NSFileManager *manager = [NSFileManager defaultManager];
-//    
-//    if(![manager fileExistsAtPath:allProductsPath]) {
-//        
-//        NSString *appPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"product_all_%@", [settingMethod getUserLanguage]] ofType:@".json"];
-//        [manager copyItemAtPath:appPath toPath:allProductsPath error:NULL];
-//        
-//        NSLog(@"file do not exist \n%@\n%@", appPath, allProductsPath);
-//    
-//    }
-    
-    
-    NSString *jsonMenuFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"product_all_%@", [settingMethod getUserLanguage]] ofType:@"json"];
-    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:jsonMenuFilePath encoding:NSUTF8StringEncoding error:NULL];
-    
-    NSError *error = nil;
-    NSMutableDictionary *myResult = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-    
-    self.menuArray = [myResult objectForKey:@"data"];
-    
-    
-}
-
-
-
-
-
-
-
 
 
 

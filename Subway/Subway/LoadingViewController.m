@@ -89,9 +89,9 @@
     NSURLRequest *upgradeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:upgrade_url]];
     [NSURLConnection sendAsynchronousRequest:upgradeRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *upgradeResponse, NSData *upgradeData, NSError *upgradeError) {
         
-        self.progressLabel.hidden = NO;
         self.progressLabel.text = @"0%";
-        
+        self.progressLabel.hidden = NO;
+    
         if (upgradeData) {
             
             NSDictionary *upgrade = [NSJSONSerialization JSONObjectWithData:upgradeData options:NSJSONReadingMutableLeaves error:nil];

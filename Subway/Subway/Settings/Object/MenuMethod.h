@@ -20,8 +20,6 @@
 
 + (MenuMethod*) sharedMenu;
 
--(void)checkMeals;
-
 
 @end
 

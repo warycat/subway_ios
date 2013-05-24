@@ -33,9 +33,6 @@
     //Get User Location
     [settingMethod doLocation];
     
-    //Check Meals
-    [menuMethod checkMeals];
-    
 
     LoadingViewController *lvc = [[[LoadingViewController alloc] init] autorelease];
     UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];

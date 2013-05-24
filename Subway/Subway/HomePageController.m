@@ -49,6 +49,7 @@
     // ----------------- GENERATE BACKGROUND
     [displayMethod createBackground:self.view viewName:@""];
     
+    
     // ----------------- GENERATE TOP BAR
     
     UIButton *storeLocatorBtn =  [[UIButton alloc] init];
@@ -83,11 +84,10 @@
     [menuBtn release];
     [couponBtn addTarget:self action:@selector(pushCouponView) forControlEvents:UIControlEventTouchDown];
     [couponBtn release];
-
+    
     
     
     // EVENT BUTTON
-    
     UIImage *eventImageOn = [[UIImage imageNamed:@"home_event@2x"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     
     UIButton *eventBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -214,10 +214,13 @@
     NSUInteger adjustedWeekdayOrdinal = [gregorianCalendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
     
     int today = adjustedWeekdayOrdinal;
+    
+    NSData *menuFromSetting = [[NSUserDefaults standardUserDefaults] objectForKey:@"products"];
+    NSMutableArray *menuArray = [NSKeyedUnarchiver unarchiveObjectWithData:menuFromSetting];
+    
+    for (int i = 0; i < [menuArray count]; i++) {
         
-    for (int i = 0; i < [menuMethod.menuArray count]; i++) {
-        
-        NSMutableArray *productsArray = [[menuMethod.menuArray objectAtIndex:i] objectForKey:@"products"];
+        NSMutableArray *productsArray = [[menuArray objectAtIndex:i] objectForKey:@"products"];
         
         for (int y = 0; y < [productsArray count]; y++) {
             
@@ -248,7 +251,7 @@
                 [subOfTheDayView addSubview:titleProductLbl];
                 [titleProductLbl release];
                 
-                UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 170, 320, 125);
                 mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
                 [subOfTheDayView addSubview:mainImgSubOfTheDay];
@@ -284,7 +287,7 @@
                 [infoScrollSubOfTheDay addSubview:titleProductForAllWeekLbl];
                 [titleProductForAllWeekLbl release];
                 
-                UIImageView *imgMainForAllWeek = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                UIImageView *imgMainForAllWeek = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 imgMainForAllWeek.frame = CGRectMake((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
                 imgMainForAllWeek.contentMode = UIViewContentModeScaleToFill;
                 [infoScrollSubOfTheDay addSubview:imgMainForAllWeek];
@@ -350,7 +353,7 @@
                     [infoScrollSubOfTheDay addSubview:titleProductLbl];
                     [titleProductLbl release];
                     
-                    UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                    UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                     mainImgSubOfTheDay.frame = CGRectMake(requestSOD*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
                     mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
                     [infoScrollSubOfTheDay addSubview:mainImgSubOfTheDay];
