@@ -22,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //Register device for notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeBadge|
@@ -47,41 +49,88 @@
     self.window.rootViewController = myNavigationController;
     [self.window makeKeyAndVisible];
     
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    
     return YES;
     
 }
 
+
+
+/*
+ * ------------------------------------------------------------------------------------------
+ *  BEGIN APNS CODE
+ * ------------------------------------------------------------------------------------------
+ */
+
+/**
+ * Fetch and Format Device Token and Register Important Information to Remote Server
+ */
+
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    NSString* tokenString = [deviceToken description];
-    tokenString = [tokenString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    tokenString = [tokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // Prepare the Device Token for Registration (remove spaces and < >)
+	NSString *tokenString = [[[[deviceToken description]
+                               stringByReplacingOccurrencesOfString:@"<"withString:@""]
+                              stringByReplacingOccurrencesOfString:@">" withString:@""]
+                             stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
     NSLog(@"%@",tokenString);
-    
     NSString *token_url = [NSString stringWithFormat:@"%@device/add?device=ios&token=%@",ADRESS, tokenString];
-    
     NSLog(@"%@",token_url);
+    
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:token_url]];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"%@",dict);
     }];
+    
 }
+
+
+/*
+ * Failed to Register for Remote Notifications
+ */
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
-    //abort();
+
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if ([url.scheme isEqualToString:kCallbackScheme]) {
-        return [[BlockSinaWeibo sharedClient].sinaWeibo handleOpenURL:url];
+    
+    
+    if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"] != NULL ) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"APNS"
+                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                                       delegate:self
+                                              cancelButtonTitle:@" 关闭"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
     }
-    return YES;
+    
 }
+
+
+
+/*
+ * ------------------------------------------------------------------------------------------
+ *  END APNS CODE
+ * ------------------------------------------------------------------------------------------
+ */
+
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -107,21 +156,14 @@
     
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    
-    
-    if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"] != NULL ) {
-        
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"APNS"
-                                                        message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-                                                       delegate:self
-                                              cancelButtonTitle:@" 关闭"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+    if ([url.scheme isEqualToString:kCallbackScheme]) {
+        return [[BlockSinaWeibo sharedClient].sinaWeibo handleOpenURL:url];
     }
-    
+    return YES;
 }
 
 

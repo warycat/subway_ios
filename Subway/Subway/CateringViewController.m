@@ -8,13 +8,14 @@
 
 #import "CateringViewController.h"
 #import "StoreLocatorViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CateringViewController ()
 
 @end
 
 @implementation CateringViewController
-
+@synthesize cateringScrollView;
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -50,12 +51,13 @@
     
     // ----------------- SCROLL VIEW
     
-    UIScrollView *cateringScrollView = [[UIScrollView alloc] init ];
-    cateringScrollView.frame = CGRectMake(0, 115, screenWidth, screenHeight - 155);
+    cateringScrollView = [[UIScrollView alloc] init ];
+    cateringScrollView.frame = CGRectMake(0, 115, screenWidth, screenHeight - 130);
     cateringScrollView.backgroundColor = [UIColor clearColor];
     cateringScrollView.maximumZoomScale = 1.0;
     cateringScrollView.minimumZoomScale = 1.0;
     cateringScrollView.clipsToBounds = YES;
+    cateringScrollView.delegate = self;
     cateringScrollView.backgroundColor = [UIColor clearColor];
     cateringScrollView.showsHorizontalScrollIndicator = NO;
     cateringScrollView.pagingEnabled = NO;
@@ -178,10 +180,8 @@
     [cateringScrollView addSubview:text5];
     [text5 release];
     
-    
-    cateringScrollView.contentSize = CGSizeMake(cateringScrollView.frame.size.width, text5.frame.origin.y + text5.frame.size.height + 30);
-    
-    
+
+    cateringScrollView.contentSize = CGSizeMake(cateringScrollView.frame.size.width, text5.frame.origin.y + text5.frame.size.height + 30);    
     
     UIImageView *BackgroundImgSub = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"howtoorder-titlebg@2x"]];
     BackgroundImgSub.frame = CGRectMake(0, 75, screenWidth, 45);
@@ -200,7 +200,39 @@
     [BackgroundImgSub addSubview:titleLblView];
     [titleLblView release];
     
-
+    
+    CAGradientLayer *mask = [CAGradientLayer layer];
+    mask.locations = [NSArray arrayWithObjects:
+                      [NSNumber numberWithFloat:0.0],
+                      [NSNumber numberWithFloat:0.1],
+                      [NSNumber numberWithFloat:0.9],
+                      [NSNumber numberWithFloat:1.0],
+                      nil];
+    
+    mask.colors = [NSArray arrayWithObjects:
+                   ( id)[UIColor clearColor].CGColor,
+                   ( id)[UIColor whiteColor].CGColor,
+                   ( id)[UIColor whiteColor].CGColor,
+                   ( id)[UIColor clearColor].CGColor,
+                   nil];
+    
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    
+    // Set the frame
+    mask.frame = cateringScrollView.bounds;
+    
+    // vertical direction
+    mask.startPoint = CGPointMake(0, 0);
+    mask.endPoint = CGPointMake(0, 1);
+    
+    cateringScrollView.layer.mask = mask;
+    
+    [CATransaction commit];
+    
+    
+    
 //    UIWebView *webContainer = [[UIWebView alloc] initWithFrame:CGRectMake(20, 125, screenWidth - 40, screenHeight - 145)];
 //    webContainer.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight );
 //    [webContainer setBackgroundColor:[UIColor clearColor]];
@@ -213,9 +245,6 @@
 //     [self.view addSubview:webContainer];
 //    
 //    
-//    
-//
-//    
 //    for (UIView* shadowView in [webContainer.scrollView subviews])
 //    {
 //        if ([shadowView isKindOfClass:[UIImageView class]]) {
@@ -224,6 +253,50 @@
 //    }
 //    
 //    [webContainer release];
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    [self layoutSubviews];
+    
+}
+
+-(void)layoutSubviews {
+    
+    [cateringScrollView layoutSubviews];
+    [cateringScrollView.layer.mask removeFromSuperlayer];
+    
+    CAGradientLayer *mask = [CAGradientLayer layer];
+    mask.locations = [NSArray arrayWithObjects:
+                      [NSNumber numberWithFloat:0.0],
+                      [NSNumber numberWithFloat:0.1],
+                      [NSNumber numberWithFloat:0.9],
+                      [NSNumber numberWithFloat:1.0],
+                      nil];
+    
+    mask.colors = [NSArray arrayWithObjects:
+                   ( id)[UIColor clearColor].CGColor,
+                   ( id)[UIColor whiteColor].CGColor,
+                   ( id)[UIColor whiteColor].CGColor,
+                   ( id)[UIColor clearColor].CGColor,
+                   nil];
+    
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    
+    // Set the frame
+    mask.frame = cateringScrollView.bounds;
+    
+    // vertical direction
+    mask.startPoint = CGPointMake(0, 0);
+    mask.endPoint = CGPointMake(0, 1);
+    
+    cateringScrollView.layer.mask = mask;
+    
+    [CATransaction commit];
+    
     
 }
 

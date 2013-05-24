@@ -278,7 +278,7 @@ static DisplayMethod * display;
         [logoHomeImg release];
         
         
-        CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 0, 48, myLeftBtn.frame.size.height)];
+        CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 1, 48, myLeftBtn.frame.size.height)];
         [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
         homeLbl.text = NSLocalizedString(@"back_btn_txt", nil);
         [homeLbl setDrawOutline:YES];

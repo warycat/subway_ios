@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CateringViewController : UIViewController
+@interface CateringViewController : UIViewController <UIScrollViewDelegate> {
+    
+    UIScrollView *cateringScrollView;
+    
+}
+
+@property (assign, nonatomic) UIScrollView *cateringScrollView;
 
 @end
