@@ -276,8 +276,6 @@
 		EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Subway-Prefix.pch"; sourceTree = "<group>"; };
 		EBB4CFAB171FADE9006DAF2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EBB4CFAC171FADE9006DAF2F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EBB4CFAE171FADE9006DAF2F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EBB4CFB0171FADE9006DAF2F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EBB4CFB4171FADE9006DAF2F /* HomePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
 		EBB4CFB5171FADE9006DAF2F /* HomePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
 		EBB4CFB8171FADE9006DAF2F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomePageController.xib; sourceTree = "<group>"; };
@@ -360,8 +358,6 @@
 		EBB4D09917212F47006DAF2F /* UIColorCov.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorCov.m; sourceTree = "<group>"; };
 		EBB4D09B17212F7F006DAF2F /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
 		EBB4D09C17212F7F006DAF2F /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
-		EBCAA2DF17320F58007F33B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		EBCAA2E017320F58007F33B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EBCAA2E417321032007F33B2 /* no_connexion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connexion@2x.png"; sourceTree = "<group>"; };
 		EBCAA2E6173250B0007F33B2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EBCAA2E817326CA8007F33B2 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -562,8 +558,6 @@
 				EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */,
 				EBB4CFA8171FADE9006DAF2F /* main.m */,
 				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
-				EBB4CFAE171FADE9006DAF2F /* Default.png */,
-				EBB4CFB0171FADE9006DAF2F /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -726,7 +720,6 @@
 		EBB4D043171FD882006DAF2F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				EBCAA2DE17320F3D007F33B2 /* MBProgressHUD */,
 				EB98912A172AAF5400E75638 /* Map */,
 				EB5F6254172A341E006E053B /* Object */,
 				EBB4D0861720F5B4006DAF2F /* SettingMethod.h */,
@@ -754,15 +747,6 @@
 				EBB4CFB7171FADE9006DAF2F /* HomePageController.xib */,
 			);
 			path = Xib;
-			sourceTree = "<group>";
-		};
-		EBCAA2DE17320F3D007F33B2 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				EBCAA2DF17320F58007F33B2 /* MBProgressHUD.h */,
-				EBCAA2E017320F58007F33B2 /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

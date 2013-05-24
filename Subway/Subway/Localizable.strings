@@ -126,4 +126,7 @@
 
 "kSubway" = "SUBWAY";
 "kView" = "VIEW";
-
+"kAvailable" = "AVAILABLE";
+"kNow" = "NOW";
+"kFrom" = "FROM";
+"kUntil" = "UNTIL";
