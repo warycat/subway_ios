@@ -429,8 +429,9 @@
     
     // ----------------- CREATE MENU & OVERALL VIEW INFO
     // -----------------
-    
-    menuArray = menuMethod.menuArray;
+        
+    NSData *menuFromSetting = [[NSUserDefaults standardUserDefaults] objectForKey:@"products"];
+    menuArray = [NSKeyedUnarchiver unarchiveObjectWithData:menuFromSetting];
     [menuArray retain];
     
     menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, screenWidth - 18, 90)];
@@ -501,8 +502,11 @@
         
         if ([[[menuArray objectAtIndex:i] objectForKey:@"media"] count] > 0) {
             
-            BtnImgON = [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
-            BtnImgOFF =  [UIImage imageNamed:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
+            BtnImgON = [settingMethod getImagePath:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
+            BtnImgOFF =  [settingMethod getImagePath:[[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]];
+            
+            NSLog(@" ON : %@", [[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]);
+            NSLog(@" OFF : %@", [[[[menuArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]);
             
         }
         
@@ -579,10 +583,12 @@
                 [subOfTheDayView addSubview:titleProductLbl];
                 [titleProductLbl release];
                 
+                
+                
                 NSLog(@"fileName : %@", [[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"])
                 ;
                 
-                UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+                UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 180, 320, 125);
                 mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
                 [subOfTheDayView addSubview:mainImgSubOfTheDay];
@@ -1019,7 +1025,7 @@
     
     for (int i = 0; i < [currentProductsArray count]; i++) {
      
-        UIImageView *ImageProduct = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[[[currentProductsArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+        UIImageView *ImageProduct = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[currentProductsArray objectAtIndex:i] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
         ImageProduct.frame = CGRectMake(XPosImage, productsScroll.frame.size.height - 110, 300, 105);
         [productsScroll addSubview:ImageProduct];
         [ImageProduct release];
@@ -1269,7 +1275,7 @@
                         
             SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
             [mySLComposerSheet setInitialText:combineMessage];
-            [mySLComposerSheet addImage:[UIImage imageNamed:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+            [mySLComposerSheet addImage:[settingMethod getImagePath:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
             [mySLComposerSheet addURL:[NSURL URLWithString:SubwayUrlLink]];
             [self presentViewController:mySLComposerSheet animated:YES completion:nil];
             
