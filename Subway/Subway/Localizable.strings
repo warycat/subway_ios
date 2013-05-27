@@ -82,10 +82,23 @@
 "kBuild" = " Build:";
 "kHealth" = " Health:";
 
+
 "kShareOnWeibo" = "share on";
 "kCheckIn" = "check in";
 
 "learnMore_btn_txt" = " LEARN MORE";
+
+
+
+// ------------------ COUPONS
+// ----------
+
+"kSubway" = "SUBWAY";
+"kView" = "VIEW";
+"kAvailable" = "AVAILABLE";
+"kNow" = "NOW";
+"kFrom" = "FROM";
+"kUntil" = "UNTIL";
 
 
 // ------------------ HOW TO ORDER
@@ -124,9 +137,5 @@
 "kConnectedToWeibo" = " You are now connected to weibo";
 "kNoConnectedToWeibo" = "You need weibo connection";
 
-"kSubway" = "SUBWAY";
-"kView" = "VIEW";
-"kAvailable" = "AVAILABLE";
-"kNow" = "NOW";
-"kFrom" = "FROM";
-"kUntil" = "UNTIL";
+
+

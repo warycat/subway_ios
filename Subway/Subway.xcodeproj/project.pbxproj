@@ -353,7 +353,7 @@
 		EBB4D08D1720F6B2006DAF2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EBB4D08F1720F6B8006DAF2F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EBB4D09117211207006DAF2F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EBB4D096172120F3006DAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Subway/Localizable.strings; sourceTree = "<group>"; };
+		EBB4D096172120F3006DAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EBB4D09817212F47006DAF2F /* UIColorCov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorCov.h; sourceTree = "<group>"; };
 		EBB4D09917212F47006DAF2F /* UIColorCov.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorCov.m; sourceTree = "<group>"; };
 		EBB4D09B17212F7F006DAF2F /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -486,7 +486,6 @@
 			children = (
 				4690D948174F528C009B9B17 /* MBProgressHUD.h */,
 				4690D949174F528C009B9B17 /* MBProgressHUD.m */,
-				EBB4D096172120F3006DAF2F /* Localizable.strings */,
 				4634B28E1744BE3F00402239 /* artworks */,
 				4634B28D1744BE1C00402239 /* weibo */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
@@ -557,6 +556,7 @@
 			children = (
 				EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */,
 				EBB4CFA8171FADE9006DAF2F /* main.m */,
+				EBB4D096172120F3006DAF2F /* Localizable.strings */,
 				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
 			);
 			name = "Supporting Files";
