@@ -440,8 +440,23 @@ static DisplayMethod * display;
             rightBtnImgOFF = [UIImage imageNamed:@"footer_options_off@2x"];
             
             btn2Lbl.textAlignment = UITextAlignmentCenter;
-            btn2Lbl.frame = CGRectMake(0, 5.5,  110, myBtn2.frame.size.height);
-            btn2Lbl.text = NSLocalizedString(@"options_btn_txt", nil);
+            btn2Lbl.frame = CGRectMake(0, 15, myBtn2.frame.size.width, 13.0);
+            btn2Lbl.text = NSLocalizedString(@"howTo_btn_txt", nil);
+            [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+            
+            CustomLabel *btn3LblBottom = [[CustomLabel alloc] initWithFrame:CGRectMake(0, btn2Lbl.frame.size.height + btn2Lbl.frame.origin.y - 3.5, myBtn2.frame.size.width, 15.0)];
+            [btn3LblBottom setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            btn3LblBottom.text = NSLocalizedString(@"order_btn_txt", nil);
+            [btn3LblBottom setDrawOutline:YES];
+            [btn3LblBottom setOutlineSize:strokeSize];
+            [btn3LblBottom setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+            btn3LblBottom.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            btn3LblBottom.textAlignment = UITextAlignmentCenter;
+            btn3LblBottom.backgroundColor = [UIColor clearColor];
+            [myBtn2 addSubview:btn3LblBottom];
+            [btn3LblBottom release];
+            
+            
             
         }else if ([myViewName isEqualToString:@"home"]) {
             
@@ -492,7 +507,8 @@ static DisplayMethod * display;
         UIImage *otherBtnImgON = [UIImage imageNamed:@"footer_order_on@2x"];
         UIImage *otherBtnImgOFF = [UIImage imageNamed:@"footer_order_off@2x"];
         
-        [myBtn3  setFrame:CGRectMake(screenWidth - 100, 0, 100, 45)];  
+        
+        [myBtn3  setFrame:CGRectMake(screenWidth - 100, 0, 100, 45)];
         myBtn3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         myBtn3.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [myBtn3 setBackgroundImage:[otherBtnImgOFF stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
@@ -501,30 +517,25 @@ static DisplayMethod * display;
         [bottomView  addSubview:myBtn3];
         
         
-        CustomLabel *btn3LblTop = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 15, myBtn3.frame.size.width, 13.0)];
-        [btn3LblTop setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
-        btn3LblTop.text = NSLocalizedString(@"howTo_btn_txt", nil);
-        [btn3LblTop setDrawOutline:YES];
-        [btn3LblTop setOutlineSize:strokeSize];
-        [btn3LblTop setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-        btn3LblTop.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-        btn3LblTop.textAlignment = UITextAlignmentCenter;
-        btn3LblTop.backgroundColor = [UIColor clearColor];
-        [myBtn3 addSubview:btn3LblTop];
-        [btn3LblTop release];
+        UIImageView *bt3IconImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"store_footer_icon@2x"]];
+        [myBtn3 addSubview:bt3IconImg];
+        [bt3IconImg release];
         
-        CustomLabel *btn3LblBottom = [[CustomLabel alloc] initWithFrame:CGRectMake(0, btn3LblTop.frame.size.height + btn3LblTop.frame.origin.y - 3.5, myBtn3.frame.size.width, 15.0)];
-        [btn3LblBottom setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-        btn3LblBottom.text = NSLocalizedString(@"order_btn_txt", nil);
-        [btn3LblBottom setDrawOutline:YES];
-        [btn3LblBottom setOutlineSize:strokeSize];
-        [btn3LblBottom setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-        btn3LblBottom.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-        btn3LblBottom.textAlignment = UITextAlignmentCenter;
-        btn3LblBottom.backgroundColor = [UIColor clearColor];
-        [myBtn3 addSubview:btn3LblBottom];
-        [btn3LblBottom release];
+        bt3IconImg.frame = CGRectMake(10, 18, 17, 17);
         
+        CustomLabel *btn3Lbl = [[CustomLabel alloc] init];
+        [btn3Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+        btn3Lbl.frame = CGRectMake(bt3IconImg.frame.size.width + bt3IconImg.frame.origin.x + 1, 5.5,  myBtn3.frame.size.width, myBtn3.frame.size.height);
+        btn3Lbl.text = NSLocalizedString(@"coupon_btn_txt", nil);
+        [btn3Lbl setDrawOutline:YES];
+        [btn3Lbl setOutlineSize:strokeSize];
+        [btn3Lbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+        btn3Lbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        btn3Lbl.textAlignment = UITextAlignmentLeft;
+        btn3Lbl.backgroundColor = [UIColor clearColor];
+        [myBtn3 addSubview:btn3Lbl];
+        [btn3Lbl release];
+    
         
 
     }

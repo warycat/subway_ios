@@ -248,13 +248,13 @@
                 titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
                 titleProductLbl.textAlignment = UITextAlignmentCenter;
                 titleProductLbl.backgroundColor = [UIColor clearColor];
-                [subOfTheDayView addSubview:titleProductLbl];
+                [subOfTheDayView addSubview:titleProductLbl]; 
                 [titleProductLbl release];
                 
                 UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                 mainImgSubOfTheDay.frame = CGRectMake(0, subOfTheDayView.frame.size.height - 170, 320, 125);
                 mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
-                [subOfTheDayView addSubview:mainImgSubOfTheDay];
+                [subOfTheDayView addSubview:mainImgSubOfTheDay]; 
                 [mainImgSubOfTheDay release];
                 
                 
@@ -263,6 +263,29 @@
                 logoDay.contentMode = UIViewContentModeScaleToFill;
                 [subOfTheDayView addSubview:logoDay];
                 [logoDay release];
+                
+                // yuan Label
+                CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
+                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+                yuanLbl.text = @"¥";
+                [yuanLbl setDrawOutline:NO];
+                yuanLbl.textColor = [UIColor blackColor];
+                yuanLbl.textAlignment = UITextAlignmentCenter;
+                yuanLbl.backgroundColor = [UIColor clearColor];
+                [logoDay addSubview:yuanLbl];
+                [yuanLbl release];
+                
+                // price label
+                CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+                [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+                priceLbl.text = @"15" ;
+                [priceLbl setDrawOutline:NO];
+                priceLbl.textColor = [UIColor blackColor];
+                priceLbl.textAlignment = UITextAlignmentCenter;
+                priceLbl.backgroundColor = [UIColor clearColor];
+                [logoDay addSubview:priceLbl];
+                [priceLbl release];
+                
                 
                 UIButton *pushToMenuViewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 pushToMenuViewBtn.frame = CGRectMake(20, subOfTheDayView.frame.size.height - 170, 320, 125);
@@ -298,6 +321,31 @@
                 logoDayForWeek.contentMode = UIViewContentModeScaleToFill;
                 [infoScrollSubOfTheDay addSubview:logoDayForWeek];
                 [logoDayForWeek release];
+                
+                
+                // yuan Label
+                CustomLabel *yuanLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
+                [yuanLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+                yuanLbl1.text = @"¥";
+                [yuanLbl1 setDrawOutline:NO];
+                yuanLbl1.textColor = [UIColor blackColor];
+                yuanLbl1.textAlignment = UITextAlignmentCenter;
+                yuanLbl1.backgroundColor = [UIColor clearColor];
+                [logoDayForWeek addSubview:yuanLbl1];
+                [yuanLbl1 release];
+                
+                // price label
+                CustomLabel *priceLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+                [priceLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+                priceLbl1.text = @"15" ;
+                [priceLbl1 setDrawOutline:NO];
+                priceLbl1.textColor = [UIColor blackColor];
+                priceLbl1.textAlignment = UITextAlignmentCenter;
+                priceLbl1.backgroundColor = [UIColor clearColor];
+                [logoDayForWeek addSubview:priceLbl1];
+                [priceLbl1 release];
+                
+                
                 
                 CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
                 [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];

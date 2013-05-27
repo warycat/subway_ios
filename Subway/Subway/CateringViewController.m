@@ -52,7 +52,7 @@
     // ----------------- SCROLL VIEW
     
     cateringScrollView = [[UIScrollView alloc] init ];
-    cateringScrollView.frame = CGRectMake(0, 115, screenWidth, screenHeight - 130);
+    cateringScrollView.frame = CGRectMake(0, 119, screenWidth, screenHeight - 131);
     cateringScrollView.backgroundColor = [UIColor clearColor];
     cateringScrollView.maximumZoomScale = 1.0;
     cateringScrollView.minimumZoomScale = 1.0;
