@@ -20,6 +20,8 @@
 		467C393617411851005EEE76 /* BlockSinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467C393417411851005EEE76 /* BlockSinaWeiboRequest.m */; };
 		467C393A1741EDCD005EEE76 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 467C39391741EDCD005EEE76 /* WeiboSDK.bundle */; };
 		4690D94A174F528C009B9B17 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4690D949174F528C009B9B17 /* MBProgressHUD.m */; };
+		46958A8317535F000008B9FB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 46958A8217535F000008B9FB /* Default.png */; };
+		46958A8517535F0B0008B9FB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46958A8417535F0B0008B9FB /* Default@2x.png */; };
 		469AF6FD174085B90082CC2D /* HowToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469AF6FC174085B90082CC2D /* HowToOrderViewController.m */; };
 		EB2140F51740A000009983BA /* howtoorder-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */; };
 		EB2140F61740A000009983BA /* howtoorder-numbersbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2140EC1740A000009983BA /* howtoorder-numbersbg@2x.png */; };
@@ -191,6 +193,8 @@
 		467C39391741EDCD005EEE76 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		4690D948174F528C009B9B17 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4690D949174F528C009B9B17 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		46958A8217535F000008B9FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		46958A8417535F0B0008B9FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		469AF6FB174085B90082CC2D /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
 		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
 		EB2140EB1740A000009983BA /* howtoorder-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoorder-bg@2x.png"; sourceTree = "<group>"; };
@@ -484,6 +488,8 @@
 		EBB4CF90171FADE9006DAF2F = {
 			isa = PBXGroup;
 			children = (
+				46958A8417535F0B0008B9FB /* Default@2x.png */,
+				46958A8217535F000008B9FB /* Default.png */,
 				4690D948174F528C009B9B17 /* MBProgressHUD.h */,
 				4690D949174F528C009B9B17 /* MBProgressHUD.m */,
 				4634B28E1744BE3F00402239 /* artworks */,
@@ -915,6 +921,8 @@
 				EB5E7C67174DC67700EF328D /* background@2x.jpg in Resources */,
 				EB5E7C6B174DC74600EF328D /* coupon_reversed-640.png in Resources */,
 				EB5E7C6C174DC74600EF328D /* coupon_reversed-720.png in Resources */,
+				46958A8317535F000008B9FB /* Default.png in Resources */,
+				46958A8517535F0B0008B9FB /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,8 +992,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1017,8 +1025,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1038,8 +1046,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1063,8 +1071,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1077,7 +1085,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
+				PROVISIONING_PROFILE = "74B46EAA-6AE8-4842-A332-BE216830737F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
 				WRAPPER_EXTENSION = app;
 			};
