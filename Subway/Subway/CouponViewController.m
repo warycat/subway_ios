@@ -261,46 +261,92 @@
                 avaliableLabel.numberOfLines = 1;
                 avaliableLabel.textAlignment = UITextAlignmentCenter;
                 avaliableLabel.text = NSLocalizedString(@"kAvailable", nil);
-                
-//                CustomLabel *dates = [[CustomLabel alloc]init];
-//                dates.drawOutline = YES;
-//                dates.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-//                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//                dates.outlineSize = 3;
-//                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-//                dates.numberOfLines = 1;
-//                dates.textAlignment = UITextAlignmentCenter;
-//                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
-//                
-//                CustomLabel *dates = [[CustomLabel alloc]init];
-//                dates.drawOutline = YES;
-//                dates.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-//                dates.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//                dates.outlineSize = 3;
-//                dates.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-//                dates.numberOfLines = 1;
-//                dates.textAlignment = UITextAlignmentCenter;
-//                dates.text = [NSString stringWithFormat:@"2013/05/10 - 2013/05/20"];
-                
-                if (coupon[@"sdate"] != [NSNull null] && coupon[@"edate"] != [NSNull null]) {
-                    
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-                    NSDate *sdate = [dateFormatter dateFromString:coupon[@"sdate"]];
-                    NSDate *edate = [dateFormatter dateFromString:coupon[@"edate"]];
-                    
+                avaliableLabel.frame = CGRectMake(0, 0, 120, 20);
+                avaliableLabel.center = CGPointMake(160, 160);
+                [backView addSubview:avaliableLabel];
+
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                NSDate *sdate = (coupon[@"sdate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"sdate"]]:nil;
+                NSDate *edate = (coupon[@"edate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"edate"]]:nil;
+                if (sdate && edate) {
                     NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                    sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
+                    CustomLabel *sdateLabel = [[CustomLabel alloc]init];
+                    sdateLabel.drawOutline = YES;
+                    sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+                    sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    sdateLabel.outlineSize = 3;
+                    sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                    sdateLabel.numberOfLines = 1;
+                    sdateLabel.textAlignment = UITextAlignmentCenter;
+                    sdateLabel.text = sdateString;
+                    sdateLabel.frame = CGRectMake(0, 0, 120, 20);
+                    sdateLabel.center = CGPointMake(160, 170);
+                    [backView addSubview:sdateLabel];
+                    
                     NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-                    
-                    
-                    NSLog(@"%@ %@",sdateString,edateString);
+                    edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
+                    CustomLabel *edateLabel = [[CustomLabel alloc]init];
+                    edateLabel.drawOutline = YES;
+                    edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+                    edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    edateLabel.outlineSize = 3;
+                    edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                    edateLabel.numberOfLines = 1;
+                    edateLabel.textAlignment = UITextAlignmentCenter;
+                    edateLabel.text = edateString;
+                    edateLabel.frame = CGRectMake(0, 0, 120, 20);
+                    edateLabel.center = CGPointMake(160, 190);
+                    [backView addSubview:edateLabel];
+                }else if (sdate) {
+                    NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                    sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
+                    CustomLabel *sdateLabel = [[CustomLabel alloc]init];
+                    sdateLabel.drawOutline = YES;
+                    sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+                    sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    sdateLabel.outlineSize = 3;
+                    sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                    sdateLabel.numberOfLines = 1;
+                    sdateLabel.textAlignment = UITextAlignmentCenter;
+                    sdateLabel.text = sdateString;
+                    sdateLabel.frame = CGRectMake(0, 0, 120, 20);
+                    sdateLabel.center = CGPointMake(160, 180);
+                    [backView addSubview:sdateLabel];
+                }else if (edate){
+                    NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                    edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
+                    CustomLabel *edateLabel = [[CustomLabel alloc]init];
+                    edateLabel.drawOutline = YES;
+                    edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+                    edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    edateLabel.outlineSize = 3;
+                    edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                    edateLabel.numberOfLines = 1;
+                    edateLabel.textAlignment = UITextAlignmentCenter;
+                    edateLabel.text = edateString;
+                    edateLabel.frame = CGRectMake(0, 0, 120, 20);
+                    edateLabel.center = CGPointMake(160, 180);
+                    [backView addSubview:edateLabel];
+                }else{
+                    NSString *nowString = NSLocalizedString(@"kNow", nil);
+                    CustomLabel *nowLabel = [[CustomLabel alloc]init];
+                    nowLabel.drawOutline = YES;
+                    nowLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+                    nowLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                    nowLabel.outlineSize = 3;
+                    nowLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+                    nowLabel.numberOfLines = 1;
+                    nowLabel.textAlignment = UITextAlignmentCenter;
+                    nowLabel.text = nowString;
+                    nowLabel.frame = CGRectMake(0, 0, 120, 20);
+                    nowLabel.center = CGPointMake(160, 180);
+                    [backView addSubview:nowLabel];
                 }
-                
 
                 
-                avaliableLabel.frame = CGRectMake(0, 0, 120, 20);
-                avaliableLabel.center = CGPointMake(160, 170);
-                [backView addSubview:avaliableLabel];
+
                 
                 
                 UIButton *viewButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -422,9 +468,16 @@
         self.weiboBtn.alpha = 0.0;
         self.weiboBtn.hidden = YES;
         self.weiboBtn.enabled = NO;
-        
-        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
-
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = NSLocalizedString(@"kConnectedToWeibo", nil);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            // Do something...
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        });
     }];
 }
 
@@ -432,9 +485,15 @@
 {
     if (![settingMethod weiboIsConnected]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"xxxx";
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.customView = nil;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = NSLocalizedString(@"kNoConnectedToWeibo", nil);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            // Do something...
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        });
     }
 }
 
