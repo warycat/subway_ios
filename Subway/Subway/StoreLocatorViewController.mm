@@ -535,7 +535,7 @@
     [adressLbl setFont:[UIFont fontWithName:APEX_BOLD size:12.0]];
     adressLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
     [adressLbl setDrawOutline:NO];
-    adressLbl.textColor = [UIColorCov colorWithHexString:GREEN_TEXT];
+    adressLbl.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
     adressLbl.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:adressLbl];
     [adressLbl release];
@@ -867,24 +867,34 @@
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
-        NSString *version = [UIDevice currentDevice].systemVersion;
-        if ([version compare:@"6.0"] == NSOrderedAscending) {
+//        NSString *version = [UIDevice currentDevice].systemVersion;
+//        if ([version compare:@"6.0"] == NSOrderedAscending) {
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-            [annotationView addGestureRecognizer:tap];        
-        }
+            [annotationView addGestureRecognizer:tap];
+        tap.delegate = self;
+
+//        }
         return (MKAnnotationView *)annotationView;
     }
     
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
+}
+
 - (void)tap:(UITapGestureRecognizer *)sender
 {
     ViewMapAnnotationView *view = (ViewMapAnnotationView *)sender.view;
-    NSLog(@"%@",view);
+    NSLog(@"tap %@",view);
     MapPlace *selectedAnnotation = self.myMapView.selectedAnnotations.lastObject;
     if (!selectedAnnotation) {
+        NSLog(@"not selectedAnnotation");
         [self.myMapView selectAnnotation:view.annotation animated:YES];
     }else{
+        NSLog(@"did selectedAnnotation");
         NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
         //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
         [self displayStore:index];
