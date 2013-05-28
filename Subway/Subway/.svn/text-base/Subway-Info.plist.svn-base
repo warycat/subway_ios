@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Subway</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.c3o.subway</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+    <key>UIAppFonts</key>
+    <array>
+        <string>ApexNew-Bold.otf</string>
+        <string>ApexNew-BoldItalic.otf</string>
+        <string>ApexNew-Book.otf</string>
+        <string>ApexNew-BookItalic.otf</string>
+        <string>ApexNew-Heavy.otf</string>
+        <string>ApexNew-HeavyItalic.otf</string>
+        <string>ApexNew-Light.otf</string>
+        <string>ApexNew-LightItalic.otf</string>
+        <string>ApexNew-Medium.otf</string>
+        <string>ApexNew-MediumItalic.otf</string>
+        <string>ApexNew-Thin.otf</string>
+        <string>ApexNew-ThinItalic.otf</string>
+        <string>ApexNew-Ultra.otf</string>
+        <string>ApexNew-UltraItalic.otf</string>
+    </array>
+</dict>
+</plist>

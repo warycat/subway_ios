@@ -1,0 +1,131 @@
+//
+// Prefix header for all source files of the 'Subway' target in the 'Subway' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "TestFlight.h"
+    //--
+    //-- IMPORT personal Function
+    #import "CustomLabel.h"
+    #import "UIColorCov.h"
+    //--
+    //-- IMPORT personal Objects
+    #import "DisplayMethod.h"
+    #import "SettingMethod.h"
+    #import "MenuMethod.h"
+    #import "StoreLocator.h"
+#endif
+
+
+// SCREEN
+#define IS_4_INCH_SCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define screenHeight [UIScreen mainScreen].bounds.size.height
+#define screenWidth [UIScreen mainScreen].bounds.size.width
+
+
+// ------------------------------------------------------------------------------------
+// ---------------------
+// ---------------------
+// ---------------------
+
+#define ADRESS [NSString stringWithFormat:@"http://%@:%i/", NODE_URL, PORT]
+#define NODE_URL @"222.73.219.19"
+#define PORT 20114
+
+#define SubwayUrlLink @"http://www.subway.com.cn"
+
+#define DATABASE_FILENAME @"subway.db"
+#define settingMethod       [SettingMethod sharedSetting]
+#define displayMethod       [DisplayMethod sharedDisplay]
+#define databaseMethod      [DatabaseMethod sharedDatabase]
+#define menuMethod          [MenuMethod sharedMenu]
+
+#define storeMethod          [StoreLocator storeFunction]
+
+
+// ---------------------
+// --------------------- WEIBO
+// ---------------------
+
+#define kAppKey             @"2825629998"
+#define kAppSecret          @"513efff2e9d8cd60d2bb2d568ae8cda3"
+#define kAppRedirectURI     @"http://aws.warycat.com/rank/"
+#define kCallbackScheme     @"subway"
+
+// ---------------------
+// --------------------- MODULE
+// ---------------------
+
+#define MODULE_STORE @"store/"
+
+// ---------------------
+// --------------------- FONT
+// ---------------------
+
+#define APEX_BOLD @"ApexNew-Bold"
+#define APEX_BOLD_ITALIC @"ApexNew-BoldItalic"
+
+#define APEX_BOOK @"ApexNew-Book"
+#define APEX_BOOK_ITALIC @"ApexNew-BookItalic"
+
+#define APEX_HEAVY @"ApexNew-Heavy"
+#define APEX_HEAVY_ITALIC @"ApexNew-HeavyItalic"
+
+#define APEX_LIGHT @"ApexNew-Light"
+#define APEX_LIGHT_ITALIC @"ApexNew-LightItalic"
+
+#define APEX_MEDIUM @"ApexNew-Medium"
+#define APEX_MEDIUM_ITALIC @"ApexNew-MediumItalic"
+
+#define APEX_THIN @"ApexNew-Thin"
+#define APEX_THIN_ITALIC @"ApexNew-ThinItalic"
+
+#define APEX_ULTRA @"ApexNew-Ultra"
+#define APEX_UTRA_ITALIC @"ApexNew-UltraItalic"
+
+
+// ---------------------
+// --------------------- COLOR
+// ---------------------
+
+#define strokeSize 4
+
+#define GRAY_STROKE @"565656"
+#define GREEN_STROKE @"064a44"
+#define RED_STROKE @"930911"
+
+#define YELLOW_TEXT @"faf000"
+#define WHITE_TEXT @"ffffff"
+#define GREEN_TEXT @"064a44"
+#define GRAY_TEXT @"565656"
+
+
+
+// ============= HUD INFOBOX LAYOUT =============
+
+// Fonts & size
+#define FONT_HUD_BIG_LABEL @"ApexNew-Medium"
+#define FONT_SIZE_HUD_BIG_LABEL 15.0f
+#define FONT_HUD_DETAILS_LABEL @"ApexNew-Medium"
+#define FONT_SIZE_HUD_DETAILS_LABEL 12.0f
+
+// HUD settings
+#define HUD_MARGIN 20.0f
+#define HUD_OPACITY 0.8f
+#define HUD_INTERSPACE 10.0f
+
+#define HUD_ICON_NO_CONNEXION @"no_connexion.png"
+
+
+
+
+
+
