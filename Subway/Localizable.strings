@@ -1,0 +1,148 @@
+/* 
+ Localizable.strings
+ 
+ ******************************* ENGLISH ******************************* 
+ 
+ SUBWAY
+ Created by ludo on 4/18/13.
+ Copyright (c) 2013 C3O. All rights reserved.
+ */
+
+
+
+// ------------------ Top View
+// ----------
+"weibo_login_btn_txt" = " LOGIN";
+"store_btn_txt" = " STORE";
+"locator_btn_txt" = " LOCATOR";
+"home_btn_txt" = " HOME";
+"back_btn_txt" = " BACK";
+
+
+// ------------------ Bottom View
+// ----------
+"discover_menu_btn_txt" = " DISCOVER ALL OUR MENU";
+"coupon_btn_txt" = " COUPON";
+"storeList_btn_txt" = " STORE LIST";
+"catering_btn_txt" = " CATERING";
+"options_btn_txt" = " OPTIONS";
+"howTo_btn_txt" = " HOW TO";
+"order_btn_txt" = " ORDER";
+
+
+
+
+
+
+// ------------------ HOME
+// ----------
+
+"allWeek_btn_txt" = " ALL WEEK";
+"kSunday" = " Sunday";
+"kMonday" = " Monday";
+"kTuesday" = " Tuesday";
+"kWednesday" = " Wednesday";
+"kThursday" = " Thursday";
+"kFriday" = " Friday";
+"kSaturday" = " Saturday";
+
+
+
+// ------------------ STORE LOCATOR
+// ----------
+
+"kDistance" = "Distance :";
+"kMeters" = "meters";
+"kKms" = "kms";
+
+"aroundMe_btn_txt" = " AROUND ME";
+"email_btn_txt" = " EMAIL";
+
+"kNoStoresAround" = "No Store Around";
+
+
+// ------------------ MEAL
+// ----------
+
+//Menu
+"kMenuValue" = "Value";
+"kMenuClassic" = "Classic";
+"kMenuPremium" = "Premium";
+"kMenuDrink" = "Drink";
+"kMenuSalad" = "Salad";
+"kMenuWrap" = "Wrap";
+
+"kTastyFlavor" = "tasty flavor";
+"kEnergyBoost" = "energy boost";
+"kSandwichBuild" = "sandwichbuild";
+"kLowFat" = "low fat";
+
+"kTasty" = " Tasty:";
+"kEnergy" = " Energy:";
+"kBuild" = " Build:";
+"kHealth" = " Health:";
+"kOptions" = " Options:";
+"kOptionsTxt" = " Options";
+
+
+"kShareOnWeibo" = "share on";
+"kCheckIn" = "check in";
+
+"learnMore_btn_txt" = " LEARN MORE";
+
+
+
+// ------------------ COUPONS
+// ----------
+
+"kSubway" = "SUBWAY";
+"kView" = "VIEW";
+"kAvailable" = "AVAILABLE";
+"kNow" = "NOW";
+"kFrom" = "FROM";
+"kUntil" = "UNTIL";
+
+
+// ------------------ HOW TO ORDER
+// ----------
+
+"kOrder1Title" = " Sub, salad or wrap?";
+"kOrder1Desc" = "First thing's, first. Are you feeling like a sub, a wrap, or a salad? Once you've figured out what form you want our tasty ingredients to come in, you're ready to move on.";
+
+"kOrder2Title" = " Which type of Bread?";
+"kOrder2Desc" = "This is a though one. You're going to have to choose from a variety of gourmet breads - all baked fresh daily, including italian, Wheat, Parmesan Oregano, and Honey Oat.";
+
+"kOrder3Title" = " Which size?";
+"kOrder3Desc" = "How hungry are you feeling? You eating on your own or with friends? All important questions to ask when deciding between a 6-inch sub or one of our famous footlongs.";
+
+"kOrder4Title" = " Which extras?";
+"kOrder4Desc" = "Now the fun part. Make your sub exactly how you want it. Here is where you can double up on meat, add cheese or make your sub that much more delicious with strips of crispy bacon. Looking to mix it up even more? Try your favorite sub fresh toasted.";
+
+"kOrder5Title" = " Which veggies?";
+"kOrder5Desc" = "Load up on veggies. Pile your sub high with all kinds of crips veggies. From the classics, like lettuce, tomatoes and pickles, to the more exotic. The more the better.";
+
+"kOrder6Title" = " Which sauce?";
+"kOrder6Desc" = "When it comes to ingredients, last is certainly not least. Add your favorite sauce, like Sweet Onion, Honey Mustard or Chipotle Shouthwest to kick the flavor up a notch.";
+
+"kOrder7Title" = " Make it a meal?";
+"kOrder7Desc" = "The only thing better than a sub, salad or wrap made exactly how you like it is one paired with your favorite combination of sub, side and drink.";
+
+
+
+
+
+// ------------------ HUD
+// ----------
+
+"kNoConnection" = "The Internet connection appears to be offline.";
+"kNoEventAvailable" = "No events available yet!!";
+"kConnectedToWeibo" = " You are now connected to weibo";
+"kNoConnectedToWeibo" = "You need weibo connection";
+
+"kSubway" = "SUBWAY";
+"kView" = "VIEW";
+"kAvailable" = "AVAILABLE";
+"kNow" = "NOW";
+"kFrom" = "FROM";
+"kUntil" = "UNTIL";
+"kShareCoupon" = "Check out this great Promotion on the Subway Application : ";
