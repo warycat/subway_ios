@@ -10,6 +10,7 @@
 #import "DDPageControl.h"
 #import "MenuViewController.h"
 #import "StoreLocatorViewController.h"
+#import "BlockSinaWeiboRequest.h"
 
 @interface CouponViewController ()
 @property (nonatomic, strong) UIButton *weiboBtn;
@@ -77,7 +78,7 @@
     weiboShareBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     weiboShareBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [weiboShareBtn setBackgroundImage:[shareImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-//    [weiboShareBtn addTarget:self action:@selector(shareToWeibo:) forControlEvents:UIControlEventTouchDown];
+    [weiboShareBtn addTarget:self action:@selector(shareCouponToWeibo) forControlEvents:UIControlEventTouchDown];
     [self.view  addSubview:weiboShareBtn];
     [weiboShareBtn release];
     
@@ -160,10 +161,257 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
-    
-    [self loadCoupon];
+    if ([settingMethod weiboIsConnected]) {
+        NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+        [self loadCouponWith:wid];
+    }else{
+        [self loadCoupon];
+    }
 }
 
+- (void) clearView:(UIView *)view
+{
+    for (UIView *subview in view.subviews) {
+        [self clearView:subview];
+        [subview removeFromSuperview];
+    }
+}
+
+- (void)loadScrollView
+{
+    self.scrollView.contentSize = CGSizeMake(self.coupons.count *320, screenHeight- 230);
+    int i = 0;
+    self.pageControl.numberOfPages = self.coupons.count;
+    [self clearView:self.scrollView];
+    
+    for (NSMutableDictionary *coupon in self.coupons) {
+        
+        NSDictionary *media = [[coupon objectForKey:@"media"] lastObject];
+        NSString *url = [media objectForKey:@"path"];
+        
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        UIImageView *imageView = [[UIImageView alloc]init];
+        imageView.frame = CGRectMake(i * 320, 0, 320, 250);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.userInteractionEnabled = YES;
+        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipRight:)]];
+        imageView.tag = 2 * (i+1);
+        [self.scrollView addSubview:imageView];
+        
+        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+        stamped.drawOutline = YES;
+        stamped.outlineSize = 3;
+        stamped.outlineColor = [UIColorCov colorWithHexString:GRAY_TEXT];
+        stamped.textColor = [UIColor redColor];
+        stamped.text = @"STAMPED";
+        stamped.backgroundColor = [UIColor clearColor];
+        stamped.center = CGPointMake(imageView.center.x + 20, imageView.center.y + 20);
+        stamped.transform = CGAffineTransformMakeRotation(- M_PI_4 * 0.5);
+        [self.scrollView addSubview:stamped];
+        
+        
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [indicator startAnimating];
+        indicator.center = imageView.center;
+        [self.scrollView addSubview:indicator];
+        
+        
+        NSString *backgroundCouponSize = @"640";
+        if (IS_4_INCH_SCREEN) { backgroundCouponSize = @"720"; }
+        
+        UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"coupon_reversed-%@", backgroundCouponSize]];
+        UIImageView *backView = [[UIImageView alloc] initWithImage:back];
+        backView.contentMode = UIViewContentModeScaleAspectFit;
+        backView.frame = CGRectMake(i * 320, 0, 320, 250);
+        backView.userInteractionEnabled = YES;
+        backView.tag = 2 * (i+1) + 1;
+        backView.hidden = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipLeft:)];
+        tap.delegate = self;
+        [backView addGestureRecognizer:tap];
+        [self.scrollView addSubview:backView];
+        
+        UIImageView *subway = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"logo_subway"]];
+        subway.frame = CGRectMake(0, 0, 100, 25);
+        subway.center = CGPointMake(160, 35);
+        [backView addSubview:subway];
+        
+        CustomLabel *title = [[CustomLabel alloc]init];
+        title.drawOutline = YES;
+        title.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+        title.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        title.outlineSize = 3;
+        title.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:18.0];
+        title.textAlignment = UITextAlignmentCenter;
+        title.text = coupon[@"title"];
+        title.frame = CGRectMake(0, 0, 120, 20);
+        title.center = CGPointMake(160, 60);
+        [backView addSubview:title];
+        
+        CustomLabel *description = [[CustomLabel alloc]init];
+        description.drawOutline = YES;
+        description.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+        description.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        description.outlineSize = 3;
+        description.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+        description.numberOfLines = 6;
+        description.textAlignment = UITextAlignmentCenter;
+        description.text = coupon[@"description"];
+        description.frame = CGRectMake(0, 0, 120, 100);
+        description.center = CGPointMake(160, 110);
+        [backView addSubview:description];
+        
+        CustomLabel *avaliableLabel = [[CustomLabel alloc]init];
+        avaliableLabel.drawOutline = YES;
+        avaliableLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+        avaliableLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        avaliableLabel.outlineSize = 3;
+        avaliableLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+        avaliableLabel.numberOfLines = 1;
+        avaliableLabel.textAlignment = UITextAlignmentCenter;
+        avaliableLabel.text = NSLocalizedString(@"kAvailable", nil);
+        avaliableLabel.frame = CGRectMake(0, 0, 120, 20);
+        avaliableLabel.center = CGPointMake(160, 160);
+        [backView addSubview:avaliableLabel];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        NSDate *sdate = (coupon[@"sdate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"sdate"]]:nil;
+        NSDate *edate = (coupon[@"edate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"edate"]]:nil;
+        if (sdate && edate) {
+            NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
+            CustomLabel *sdateLabel = [[CustomLabel alloc]init];
+            sdateLabel.drawOutline = YES;
+            sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+            sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            sdateLabel.outlineSize = 3;
+            sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+            sdateLabel.numberOfLines = 1;
+            sdateLabel.textAlignment = UITextAlignmentCenter;
+            sdateLabel.text = sdateString;
+            sdateLabel.frame = CGRectMake(0, 0, 120, 20);
+            sdateLabel.center = CGPointMake(160, 170);
+            [backView addSubview:sdateLabel];
+            
+            NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
+            CustomLabel *edateLabel = [[CustomLabel alloc]init];
+            edateLabel.drawOutline = YES;
+            edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+            edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            edateLabel.outlineSize = 3;
+            edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+            edateLabel.numberOfLines = 1;
+            edateLabel.textAlignment = UITextAlignmentCenter;
+            edateLabel.text = edateString;
+            edateLabel.frame = CGRectMake(0, 0, 120, 20);
+            edateLabel.center = CGPointMake(160, 190);
+            [backView addSubview:edateLabel];
+        }else if (sdate) {
+            NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
+            CustomLabel *sdateLabel = [[CustomLabel alloc]init];
+            sdateLabel.drawOutline = YES;
+            sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+            sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            sdateLabel.outlineSize = 3;
+            sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+            sdateLabel.numberOfLines = 1;
+            sdateLabel.textAlignment = UITextAlignmentCenter;
+            sdateLabel.text = sdateString;
+            sdateLabel.frame = CGRectMake(0, 0, 120, 20);
+            sdateLabel.center = CGPointMake(160, 180);
+            [backView addSubview:sdateLabel];
+        }else if (edate){
+            NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
+            CustomLabel *edateLabel = [[CustomLabel alloc]init];
+            edateLabel.drawOutline = YES;
+            edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+            edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            edateLabel.outlineSize = 3;
+            edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+            edateLabel.numberOfLines = 1;
+            edateLabel.textAlignment = UITextAlignmentCenter;
+            edateLabel.text = edateString;
+            edateLabel.frame = CGRectMake(0, 0, 120, 20);
+            edateLabel.center = CGPointMake(160, 180);
+            [backView addSubview:edateLabel];
+        }else{
+            NSString *nowString = NSLocalizedString(@"kNow", nil);
+            CustomLabel *nowLabel = [[CustomLabel alloc]init];
+            nowLabel.drawOutline = YES;
+            nowLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
+            nowLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            nowLabel.outlineSize = 3;
+            nowLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
+            nowLabel.numberOfLines = 1;
+            nowLabel.textAlignment = UITextAlignmentCenter;
+            nowLabel.text = nowString;
+            nowLabel.frame = CGRectMake(0, 0, 120, 20);
+            nowLabel.center = CGPointMake(160, 180);
+            [backView addSubview:nowLabel];
+        }
+        
+        UIButton *viewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        viewButton.frame = CGRectMake(0,0 , 100, 30);
+        viewButton.center = CGPointMake(160, 210);
+        viewButton.userInteractionEnabled = YES;
+        UIImage *buttonImage = [UIImage imageNamed:@"btn_red_on"];
+        [viewButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+        [viewButton addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
+        [backView addSubview:viewButton];
+        
+        CustomLabel *viewLabel = [[CustomLabel alloc] init];
+        viewLabel.textAlignment = UITextAlignmentCenter;
+        viewLabel.frame = CGRectMake(0, 0, 100, 15);
+        viewLabel.center = CGPointMake(160 , 212);
+        [viewLabel setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+        viewLabel.text = NSLocalizedString(@"kView", nil);
+        [viewLabel setDrawOutline:YES];
+        [viewLabel setOutlineSize:strokeSize];
+        [viewLabel setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
+        viewLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+        viewLabel.backgroundColor = [UIColor clearColor];
+        [backView addSubview:viewLabel];
+        
+        if (!coupon[@"data"]) {
+            [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                [coupon setObject:data forKey:@"data"];
+                UIImage *image = [UIImage imageWithData:data];
+                imageView.image = image;
+                [indicator stopAnimating];
+            }];
+        }
+        i++;
+    }
+    
+}
+
+- (void)loadCouponWith:(NSString *)wid
+{
+    
+    NSString *locale = [settingMethod getUserLanguage];
+    NSString *CouponSize = @"640";
+    
+    if( IS_4_INCH_SCREEN ) { CouponSize = @"720"; };
+    
+    NSString *coupon_url = [NSString stringWithFormat:@"%@coupon/all?locale=%@&screen_size=%@&weiboid=%@",ADRESS, locale, CouponSize,wid];
+    NSLog(@"%@",coupon_url);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:coupon_url]];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSArray *coupons = [dict objectForKey:@"data"];
+        NSLog(@"%@",coupons);
+        self.coupons = coupons;
+        [self loadScrollView];
+    }];
+    
+}
 
 - (void)loadCoupon
 {
@@ -180,200 +428,12 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSArray *coupons = [dict objectForKey:@"data"];
         NSLog(@"%@",coupons);
         
         self.coupons = coupons;
-        self.scrollView.contentSize = CGSizeMake(coupons.count *320, screenHeight- 230);
-        int i = 0;
-        self.pageControl.numberOfPages = coupons.count;
-        
-        for (NSDictionary *coupon in self.coupons) {
-            
-            NSDictionary *media = [[coupon objectForKey:@"media"] lastObject];
-            NSString *url = [media objectForKey:@"path"];
-            
-            NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-            
-            [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                
-                UIImage *image = [UIImage imageWithData:data];
-                UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-                imageView.frame = CGRectMake(i * 320, 0, 320, 250);
-                imageView.contentMode = UIViewContentModeScaleAspectFit;
-                imageView.userInteractionEnabled = YES;
-                [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipRight:)]];
-                imageView.tag = 2 * (i+1);
-                [self.scrollView addSubview:imageView];
-
-                NSString *backgroundCouponSize = @"640";
-                if (IS_4_INCH_SCREEN) { backgroundCouponSize = @"720"; }
-                
-                UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"coupon_reversed-%@", backgroundCouponSize]];
-                UIImageView *backView = [[UIImageView alloc] initWithImage:back];
-                backView.contentMode = UIViewContentModeScaleAspectFit;
-                backView.frame = CGRectMake(i * 320, 0, 320, 250);
-                backView.userInteractionEnabled = YES;
-                backView.tag = 2 * (i+1) + 1;
-                backView.hidden = YES;
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipLeft:)];
-                tap.delegate = self;
-                [backView addGestureRecognizer:tap];
-                [self.scrollView addSubview:backView];
-
-                UIImageView *subway = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"logo_subway"]];
-                subway.frame = CGRectMake(0, 0, 100, 25);
-                subway.center = CGPointMake(160, 35);
-                [backView addSubview:subway];
-                
-                CustomLabel *title = [[CustomLabel alloc]init];
-                title.drawOutline = YES;
-                title.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                title.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                title.outlineSize = 3;
-                title.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:18.0];
-                title.textAlignment = UITextAlignmentCenter;
-                title.text = coupon[@"title"];
-                title.frame = CGRectMake(0, 0, 120, 20);
-                title.center = CGPointMake(160, 60);
-                [backView addSubview:title];
-                
-                CustomLabel *description = [[CustomLabel alloc]init];
-                description.drawOutline = YES;
-                description.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                description.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                description.outlineSize = 3;
-                description.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                description.numberOfLines = 6;
-                description.textAlignment = UITextAlignmentCenter;
-                description.text = coupon[@"description"];
-                description.frame = CGRectMake(0, 0, 120, 100);
-                description.center = CGPointMake(160, 110);
-                [backView addSubview:description];
-                
-                CustomLabel *avaliableLabel = [[CustomLabel alloc]init];
-                avaliableLabel.drawOutline = YES;
-                avaliableLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                avaliableLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                avaliableLabel.outlineSize = 3;
-                avaliableLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                avaliableLabel.numberOfLines = 1;
-                avaliableLabel.textAlignment = UITextAlignmentCenter;
-                avaliableLabel.text = NSLocalizedString(@"kAvailable", nil);
-                avaliableLabel.frame = CGRectMake(0, 0, 120, 20);
-                avaliableLabel.center = CGPointMake(160, 160);
-                [backView addSubview:avaliableLabel];
-
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-                NSDate *sdate = (coupon[@"sdate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"sdate"]]:nil;
-                NSDate *edate = (coupon[@"edate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"edate"]]:nil;
-                if (sdate && edate) {
-                    NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-                    sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
-                    CustomLabel *sdateLabel = [[CustomLabel alloc]init];
-                    sdateLabel.drawOutline = YES;
-                    sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                    sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                    sdateLabel.outlineSize = 3;
-                    sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                    sdateLabel.numberOfLines = 1;
-                    sdateLabel.textAlignment = UITextAlignmentCenter;
-                    sdateLabel.text = sdateString;
-                    sdateLabel.frame = CGRectMake(0, 0, 120, 20);
-                    sdateLabel.center = CGPointMake(160, 170);
-                    [backView addSubview:sdateLabel];
-                    
-                    NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-                    edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
-                    CustomLabel *edateLabel = [[CustomLabel alloc]init];
-                    edateLabel.drawOutline = YES;
-                    edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                    edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                    edateLabel.outlineSize = 3;
-                    edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                    edateLabel.numberOfLines = 1;
-                    edateLabel.textAlignment = UITextAlignmentCenter;
-                    edateLabel.text = edateString;
-                    edateLabel.frame = CGRectMake(0, 0, 120, 20);
-                    edateLabel.center = CGPointMake(160, 190);
-                    [backView addSubview:edateLabel];
-                }else if (sdate) {
-                    NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-                    sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
-                    CustomLabel *sdateLabel = [[CustomLabel alloc]init];
-                    sdateLabel.drawOutline = YES;
-                    sdateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                    sdateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                    sdateLabel.outlineSize = 3;
-                    sdateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                    sdateLabel.numberOfLines = 1;
-                    sdateLabel.textAlignment = UITextAlignmentCenter;
-                    sdateLabel.text = sdateString;
-                    sdateLabel.frame = CGRectMake(0, 0, 120, 20);
-                    sdateLabel.center = CGPointMake(160, 180);
-                    [backView addSubview:sdateLabel];
-                }else if (edate){
-                    NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-                    edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
-                    CustomLabel *edateLabel = [[CustomLabel alloc]init];
-                    edateLabel.drawOutline = YES;
-                    edateLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                    edateLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                    edateLabel.outlineSize = 3;
-                    edateLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                    edateLabel.numberOfLines = 1;
-                    edateLabel.textAlignment = UITextAlignmentCenter;
-                    edateLabel.text = edateString;
-                    edateLabel.frame = CGRectMake(0, 0, 120, 20);
-                    edateLabel.center = CGPointMake(160, 180);
-                    [backView addSubview:edateLabel];
-                }else{
-                    NSString *nowString = NSLocalizedString(@"kNow", nil);
-                    CustomLabel *nowLabel = [[CustomLabel alloc]init];
-                    nowLabel.drawOutline = YES;
-                    nowLabel.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
-                    nowLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                    nowLabel.outlineSize = 3;
-                    nowLabel.font =  [UIFont fontWithName:APEX_HEAVY_ITALIC size:10.0];
-                    nowLabel.numberOfLines = 1;
-                    nowLabel.textAlignment = UITextAlignmentCenter;
-                    nowLabel.text = nowString;
-                    nowLabel.frame = CGRectMake(0, 0, 120, 20);
-                    nowLabel.center = CGPointMake(160, 180);
-                    [backView addSubview:nowLabel];
-                }
-
-                
-
-                
-                
-                UIButton *viewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                viewButton.frame = CGRectMake(0,0 , 100, 30);
-                viewButton.center = CGPointMake(160, 210);
-                viewButton.userInteractionEnabled = YES;
-                UIImage *buttonImage = [UIImage imageNamed:@"btn_red_on"];
-                [viewButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-                [viewButton addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
-                [backView addSubview:viewButton];
-                
-                CustomLabel *viewLabel = [[CustomLabel alloc] init];
-                viewLabel.textAlignment = UITextAlignmentCenter;
-                viewLabel.frame = CGRectMake(0, 0, 100, 15);
-                viewLabel.center = CGPointMake(160 , 212);
-                [viewLabel setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
-                viewLabel.text = NSLocalizedString(@"kView", nil);
-                [viewLabel setDrawOutline:YES];
-                [viewLabel setOutlineSize:strokeSize];
-                [viewLabel setOutlineColor:[UIColorCov colorWithHexString:RED_STROKE]];
-                viewLabel.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-                viewLabel.backgroundColor = [UIColor clearColor];
-                [backView addSubview:viewLabel];
-                
-            }];
-            i++;
-        }
+        [self loadScrollView];
     }];
 
 }
@@ -389,7 +449,7 @@
 - (void)view:(UIButton *)sender
 {
     
-    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+    [UIView transitionWithView:self.scrollView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
         
         UIView *view = sender.superview;
         view.hidden = !view.hidden;
@@ -440,7 +500,7 @@
 - (void)flipRight:(UIGestureRecognizer *)gr
 {
     
-    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+    [UIView transitionWithView:self.scrollView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
         
         gr.view.hidden = !gr.view.hidden;
         UIView *backView = [self.scrollView viewWithTag:(gr.view.tag + 1)];
@@ -452,7 +512,7 @@
 
 - (void)flipLeft:(UIGestureRecognizer *)gr
 {
-    [UIView transitionWithView:self.scrollView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+    [UIView transitionWithView:self.scrollView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
         
         gr.view.hidden = !gr.view.hidden;
         UIView *frontView = [self.scrollView viewWithTag:(gr.view.tag - 1)];
@@ -478,6 +538,8 @@
             // Do something...
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+                [self loadCouponWith:wid];
             });
         });
     }];
@@ -496,9 +558,72 @@
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         });
+    }else{
+        NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+        NSInteger currentCoupon = self.pageControl.currentPage;
+        NSMutableDictionary *coupon = self.coupons[currentCoupon];
+        NSString *cid = coupon[@"cid"];
+        NSString *lat = [settingMethod latitude];
+        NSString *lon = [settingMethod longitude];
+        NSString *checkin_url = [NSString stringWithFormat:@"%@coupon/checkin?cid=%@&lat=%@&lon=%@&map=google&weiboid=%@",ADRESS,cid, lat,lon,wid];
+        NSLog(@"%@",checkin_url);
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:checkin_url]];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"%@",dict);
+
+        }];
+
     }
 }
 
+- (void)shareCouponToWeibo
+{
+    if ([settingMethod weiboIsConnected]) {
+        NSInteger currentCoupon = self.pageControl.currentPage;
+        NSMutableDictionary *coupon = self.coupons[currentCoupon];
+        NSData *data = coupon[@"data"];
+        UIImage *pic = [UIImage imageWithData:data];
+        NSString *title = coupon[@"title"];
+        NSString *status = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"kShareCoupon", nil),title];
+        if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
+            NSLog(@"%@",pic);
+        [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
+                                   withParams:@{@"status":status,@"pic":pic}
+                                  withHandler:^(id result) {
+            NSLog(@"%@",result);
+            if (result[@"error"]) {
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = NSLocalizedString(result[@"error"], nil);
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    // Do something...
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                });
+            }else if(result[@"text"]) {
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(title, nil)];
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        // Do something...
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                });
+            }
+            }];
+        }
+    }else{
+        [self weiboAction];
+    }
+}
 
 // ========================== SCROLL VIEW METHODS ============================
 
