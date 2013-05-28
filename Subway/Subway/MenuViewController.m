@@ -12,7 +12,7 @@
 #import "HowToOrderViewController.h"
 #import "CateringViewController.h"
 #import "CouponViewController.h"
-
+#import "BlockSinaWeiboRequest.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
@@ -26,6 +26,8 @@
 @synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
 @synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl, menuTempHolderImg;
 @synthesize healthLbl, tastyLbl, energyLbl, buildLbl, fromSubOfTheDay, productId;
+@synthesize optionsProductBtn, optionsDesc;
+
 
 -(void)viewWillAppear:(BOOL)animated {
 	
@@ -412,6 +414,21 @@
     [productsView addSubview:buildLbl];
     
     
+    // ----------------- OPTIONS btn
+    UIImage *optionImgON = [UIImage imageNamed:@"logo_plus@2x"];
+    
+    hasOptions = NO;
+    
+    optionsProductBtn =  [[UIButton alloc] init];
+    optionsProductBtn.tag = 999;
+    [optionsProductBtn  setFrame:CGRectMake(productsView.frame.size.width - 35, 11, 25, 25)];
+    optionsProductBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    optionsProductBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [optionsProductBtn setBackgroundImage:[optionImgON stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+    [optionsProductBtn addTarget:self action:@selector(showPopupInfo:) forControlEvents:UIControlEventTouchDown];
+    [productsView  addSubview:optionsProductBtn];
+    
+    
     // ----------------- GENERATE BOTTOM BAR
     
     UIButton *cateringBtn =  [[UIButton alloc] init];
@@ -628,9 +645,7 @@
                     UIImage *myImageFact = nil;
                     NSString *factType = [[[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] objectAtIndex:z] objectForKey:@"type"];
                     NSString *factName = @"";
-                    
-                    if (![factType isEqualToString:@"O"]) {
-                        
+                                            
                         if ([factType isEqualToString:@"T"]) {
                             myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
                             factName = NSLocalizedString(@"kTastyFlavor", nil);
@@ -643,8 +658,11 @@
                         }else if ([factType isEqualToString:@"H"]) {
                             myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
                             factName = NSLocalizedString(@"kLowFat", nil);
+                        }else if ([factType isEqualToString:@"O"]) {
+                            myImageFact = nil;
+                            factName = nil;
                         }
-                        
+
                         UIImageView *factIconImg = [[UIImageView alloc] initWithImage:myImageFact];
                         factIconImg.frame = CGRectMake(xPosFacts + ((infoScrollSubOfTheDay.frame.size.width-43)/2), 5, 43, 43);
                         factIconImg.contentMode = UIViewContentModeScaleToFill;
@@ -682,16 +700,63 @@
                         factLbl.backgroundColor = [UIColor clearColor];
                         [infoScrollSubOfTheDay addSubview:factLbl];
                         [factLbl release];
+                    
+                    
+                    // DISPLAY ARROW
+                    if (z == 0) {
                         
+                        UIImageView *indicatorPushImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_push@2x"]];
+                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        [infoScrollSubOfTheDay addSubview:indicatorPushImg];
+                        [indicatorPushImg release];
+                        
+                    }else if (z == [[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]-1) {
+                        
+                        UIImageView *indicatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
+                        indicatorImg.frame = CGRectMake(10 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        [infoScrollSubOfTheDay addSubview:indicatorImg];
+                        [indicatorImg release];
+                        
+                    }else {
+                        
+                        UIImageView *indicatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
+                        indicatorImg.frame = CGRectMake(10 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        [infoScrollSubOfTheDay addSubview:indicatorImg];
+                        [indicatorImg release];
+                        
+                        UIImageView *indicatorPushImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_push@2x"]];
+                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        [infoScrollSubOfTheDay addSubview:indicatorPushImg];
+                        [indicatorPushImg release];
+                    }
+                    
+                    
+                        if ([factType isEqualToString:@"O"]) {
+                            
+                            CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, 20, infoScrollSubOfTheDay.frame.size.width - 40, 37)];
+                            [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:29.0]];
+                            titleProductLbl.text = NSLocalizedString(@"kOptionsTxt", nil);
+                            [titleProductLbl setDrawOutline:YES];
+                            [titleProductLbl setOutlineSize:strokeSize];
+                            [titleProductLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+                            titleProductLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+                            titleProductLbl.textAlignment = UITextAlignmentCenter;
+                            titleProductLbl.backgroundColor = [UIColor clearColor];
+                            [infoScrollSubOfTheDay addSubview:titleProductLbl];
+                            [titleProductLbl release];
+                            
+                            [factIconImg removeFromSuperview];
+                            [factTitleImg removeFromSuperview];
+                            [factLbl setFrame:CGRectMake(20+ xPosFacts, titleProductLbl.frame.origin.y + titleProductLbl.frame.size.height + 10, infoScrollSubOfTheDay.frame.size.width - 40, descSize.height)];
+                        }
+                    
                         xPosFacts = xPosFacts + infoScrollSubOfTheDay.frame.size.width; // (60 is the Image + the text size)
                         
-                        
-                    }
                     
                     
                 }
                 
-                infoScrollSubOfTheDay.contentSize = CGSizeMake(([[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]-1)*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height);
+                infoScrollSubOfTheDay.contentSize = CGSizeMake([[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height);
                 break;
             }
             
@@ -738,6 +803,8 @@
 	[UIView commitAnimations];
     
 }
+
+
 
 
 #pragma mark ---------------
@@ -1127,7 +1194,7 @@
     BOOL hasTasty = NO;
     BOOL hasEnergy = NO;
     BOOL hasBuild = NO;
-    
+    hasOptions = NO;
     
     NSMutableArray *productFactsArray = [[currentProductsArray objectAtIndex:position] objectForKey:@"product_facts"];
     
@@ -1149,6 +1216,12 @@
             hasBuild = YES;
             buildShareBtn.tag = [[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue];
         }
+        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"O"]) {
+            
+            NSLog(@"has Options");
+            hasOptions = YES;
+            optionsDesc = [[productFactsArray objectAtIndex:i] objectForKey:@"description"];
+        }
         
     }
     
@@ -1163,6 +1236,7 @@
                          tastyLbl.alpha = 0.0;
                          energyLbl.alpha = 0.0;
                          buildLbl.alpha = 0.0;
+                         optionsProductBtn.alpha = 0.0;
                          
                      }
                      completion:^(BOOL finished){
@@ -1251,6 +1325,19 @@
                                                                        buildLbl.hidden = YES;
                                                                    }
                                                                    
+                                                                   if (hasOptions == YES) {
+                                                                      
+                                                                       NSLog(@"optionsProductBtn");
+                                                                       
+                                                                       optionsProductBtn.hidden = NO;
+                                                                       optionsProductBtn.alpha = 1.0;
+                                                                       [[optionsProductBtn superview] bringSubviewToFront:optionsProductBtn];
+                                                                       
+                                                                   }else {
+                                                                       optionsProductBtn.hidden = YES;
+                                                                       optionsProductBtn.alpha = 0.0;
+                                                                   }
+                                                                   
                                                                    
                                                                }
                                                                completion:^(BOOL finished){
@@ -1315,9 +1402,7 @@
 -(void)shareToWeibo:(id)sender {
     
     int position = [sender tag];
-    
-    if ([settingMethod weiboIsConnected]) {
-    
+
         
         if(NSClassFromString(@"SLComposeViewController") != nil)
         {
@@ -1338,11 +1423,43 @@
         {
             
             
+//            if ([settingMethod weiboIsConnected]) {
+//                
+//                [self sendToSina:position];
+//                
+//                
+//            }else {
+//                
+//                
+//                [BlockSinaWeibo loginWithHandler:^{
+//
+//                    [self sendToSina:position];
+//                    
+//                }];
+//                
+//            }
+            
         }
-        
-    }
     
 }
+
+
+- (void)sendToSina:(int)position 
+{
+    NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
+    NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];
+    
+    NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
+
+        [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":combineMessage,@"url":[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]} withHandler:^(id responseDict) {
+            
+            [[[UIAlertView alloc] initWithTitle:@"Shared Menu" message:@"You just shared your menu on your weibo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+            
+        }];
+        
+    
+}
+
 
 
 -(void)hidePopupInfo {
@@ -1386,33 +1503,48 @@
     UIImage *myImageFact = nil;
     NSString *factName = @"";
     
-    for (int i = 0; i < [productFactsArray count]; i++) {
-        
-        if ([[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue] == myIdTag) {
-            myDescription = [[productFactsArray objectAtIndex:i] objectForKey:@"description"];
-            
-            NSString *factType = [[productFactsArray objectAtIndex:i] objectForKey:@"type"];
-            
-
-            if ([factType isEqualToString:@"T"]) {
-                myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
-                factName = NSLocalizedString(@"kTasty", nil);
-            }else if ([factType isEqualToString:@"E"]) {
-                myImageFact = [UIImage imageNamed:@"icon_energy@2x"];
-                factName = NSLocalizedString(@"kEnergy", nil);
-            }else if ([factType isEqualToString:@"B"]) {
-                myImageFact = [UIImage imageNamed:@"icon_build@2x"];
-                factName = NSLocalizedString(@"kBuild", nil);
-            }else if ([factType isEqualToString:@"H"]) {
-                myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
-                factName = NSLocalizedString(@"kHealth", nil);
-            }
     
+    
+    if (myIdTag == 999) {
+        
+        factName = NSLocalizedString(@"kOptions", nil);
+        myDescription = optionsDesc;
+        myImageFact = nil;
+        
+    }else {
+        
+        for (int i = 0; i < [productFactsArray count]; i++) {
             
-            break;
+            if ([[[productFactsArray objectAtIndex:i] objectForKey:@"pfid"] intValue] == myIdTag) {
+                myDescription = [[productFactsArray objectAtIndex:i] objectForKey:@"description"];
+                
+                NSString *factType = [[productFactsArray objectAtIndex:i] objectForKey:@"type"];
+                
+                
+                if ([factType isEqualToString:@"T"]) {
+                    myImageFact = [UIImage imageNamed:@"icon_tasty@2x"];
+                    factName = NSLocalizedString(@"kTasty", nil);
+                }else if ([factType isEqualToString:@"E"]) {
+                    myImageFact = [UIImage imageNamed:@"icon_energy@2x"];
+                    factName = NSLocalizedString(@"kEnergy", nil);
+                }else if ([factType isEqualToString:@"B"]) {
+                    myImageFact = [UIImage imageNamed:@"icon_build@2x"];
+                    factName = NSLocalizedString(@"kBuild", nil);
+                }else if ([factType isEqualToString:@"H"]) {
+                    myImageFact = [UIImage imageNamed:@"icon_lowfat@2x"];
+                    factName = NSLocalizedString(@"kHealth", nil);
+                }
+                
+                
+                break;
+            }
+            
         }
-
+        
     }
+    
+    
+ 
     
     
     

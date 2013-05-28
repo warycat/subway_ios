@@ -38,6 +38,11 @@
     CustomLabel *energyLbl;
     CustomLabel *buildLbl;
     
+    // OPTIONS
+    BOOL hasOptions;
+    UIButton *optionsProductBtn;
+    NSString *optionsDesc;
+    
     
     UIView *popupInfo;
     int tempProdFact;
@@ -75,6 +80,10 @@
 @property (nonatomic, strong)  CustomLabel *tastyLbl;
 @property (nonatomic, strong)  CustomLabel *energyLbl;
 @property (nonatomic, strong)  CustomLabel *buildLbl;
+
+// OPTIONS
+@property (nonatomic, strong) UIButton *optionsProductBtn;
+@property (nonatomic, strong) NSString *optionsDesc;
 
 @property (nonatomic, strong) UIView *popupInfo;
 @property (nonatomic, strong) CustomLabel *factTitleLbl;

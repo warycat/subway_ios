@@ -468,9 +468,11 @@
         self.weiboBtn.alpha = 0.0;
         self.weiboBtn.hidden = YES;
         self.weiboBtn.enabled = NO;
+        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = NSLocalizedString(@"kConnectedToWeibo", nil);
+        
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             // Do something...

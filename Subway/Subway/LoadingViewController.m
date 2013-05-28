@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 
+//#define delta 1296000
 #define delta 100
 
 @interface LoadingViewController ()

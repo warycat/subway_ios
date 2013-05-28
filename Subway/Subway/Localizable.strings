@@ -81,6 +81,8 @@
 "kEnergy" = " Energy:";
 "kBuild" = " Build:";
 "kHealth" = " Health:";
+"kOptions" = " Options:";
+"kOptionsTxt" = " Options";
 
 
 "kShareOnWeibo" = "share on";
