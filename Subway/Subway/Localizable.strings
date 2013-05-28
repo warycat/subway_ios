@@ -139,5 +139,10 @@
 "kConnectedToWeibo" = " You are now connected to weibo";
 "kNoConnectedToWeibo" = "You need weibo connection";
 
-
-
+"kSubway" = "SUBWAY";
+"kView" = "VIEW";
+"kAvailable" = "AVAILABLE";
+"kNow" = "NOW";
+"kFrom" = "FROM";
+"kUntil" = "UNTIL";
+"kShareCoupon" = "Check out this great Promotion on the Subway Application : ";
