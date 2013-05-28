@@ -12,7 +12,7 @@
 #import "UIViewController+KNSemiModal.h"
 
 
-@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate> {
     
     //Weibo Btn
     UIButton *weiboBtn;

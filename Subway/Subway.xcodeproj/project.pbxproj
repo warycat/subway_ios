@@ -277,7 +277,7 @@
 		EBB4CFA0171FADE9006DAF2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Subway-Info.plist"; sourceTree = "<group>"; };
 		EBB4CFA8171FADE9006DAF2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Subway-Prefix.pch"; sourceTree = "<group>"; };
+		EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Subway-Prefix.pch"; path = "Subway/Subway-Prefix.pch"; sourceTree = "<group>"; };
 		EBB4CFAB171FADE9006DAF2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EBB4CFAC171FADE9006DAF2F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EBB4CFB4171FADE9006DAF2F /* HomePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
@@ -417,6 +417,8 @@
 		4634B28E1744BE3F00402239 /* artworks */ = {
 			isa = PBXGroup;
 			children = (
+				46958A8417535F0B0008B9FB /* Default@2x.png */,
+				46958A8217535F000008B9FB /* Default.png */,
 				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
 				EB86951F173B9201004C9092 /* icon@2x.png */,
 				EB86951D173B91FB004C9092 /* icon.png */,
@@ -488,8 +490,7 @@
 		EBB4CF90171FADE9006DAF2F = {
 			isa = PBXGroup;
 			children = (
-				46958A8417535F0B0008B9FB /* Default@2x.png */,
-				46958A8217535F000008B9FB /* Default.png */,
+				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
 				4690D948174F528C009B9B17 /* MBProgressHUD.h */,
 				4690D949174F528C009B9B17 /* MBProgressHUD.m */,
 				EBB4D096172120F3006DAF2F /* Localizable.strings */,
@@ -563,7 +564,6 @@
 			children = (
 				EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */,
 				EBB4CFA8171FADE9006DAF2F /* main.m */,
-				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
