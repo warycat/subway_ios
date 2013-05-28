@@ -39,6 +39,7 @@
 		EB2141071741DDAD009983BA /* home_event@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2141061741DDAD009983BA /* home_event@2x.png */; };
 		EB239FD217278344006AD619 /* DatabaseMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = EB239FD117278344006AD619 /* DatabaseMethod.m */; };
 		EB239FD51727DEA4006AD619 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */; };
+		EB51D62717549E3900685703 /* logo_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB51D62617549E3800685703 /* logo_plus@2x.png */; };
 		EB5E7C65174DC66800EF328D /* background_iphone5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C64174DC66800EF328D /* background_iphone5@2x.jpg */; };
 		EB5E7C67174DC67700EF328D /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C66174DC67700EF328D /* background@2x.jpg */; };
 		EB5E7C6B174DC74600EF328D /* coupon_reversed-640.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5E7C69174DC74600EF328D /* coupon_reversed-640.png */; };
@@ -216,6 +217,7 @@
 		EB239FD017278344006AD619 /* DatabaseMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMethod.h; sourceTree = "<group>"; };
 		EB239FD117278344006AD619 /* DatabaseMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethod.m; sourceTree = "<group>"; };
 		EB239FD41727DEA4006AD619 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EB51D62617549E3800685703 /* logo_plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_plus@2x.png"; sourceTree = "<group>"; };
 		EB5E7C64174DC66800EF328D /* background_iphone5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background_iphone5@2x.jpg"; sourceTree = "<group>"; };
 		EB5E7C66174DC67700EF328D /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
 		EB5E7C69174DC74600EF328D /* coupon_reversed-640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_reversed-640.png"; sourceTree = "<group>"; };
@@ -357,7 +359,7 @@
 		EBB4D08D1720F6B2006DAF2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EBB4D08F1720F6B8006DAF2F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EBB4D09117211207006DAF2F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EBB4D096172120F3006DAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Subway/Localizable.strings; sourceTree = "<group>"; };
+		EBB4D096172120F3006DAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EBB4D09817212F47006DAF2F /* UIColorCov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorCov.h; sourceTree = "<group>"; };
 		EBB4D09917212F47006DAF2F /* UIColorCov.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorCov.m; sourceTree = "<group>"; };
 		EBB4D09B17212F7F006DAF2F /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -493,7 +495,6 @@
 				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
 				4690D948174F528C009B9B17 /* MBProgressHUD.h */,
 				4690D949174F528C009B9B17 /* MBProgressHUD.m */,
-				EBB4D096172120F3006DAF2F /* Localizable.strings */,
 				4634B28E1744BE3F00402239 /* artworks */,
 				4634B28D1744BE1C00402239 /* weibo */,
 				EBB4CFA2171FADE9006DAF2F /* Subway */,
@@ -564,6 +565,11 @@
 			children = (
 				EBB4CFA4171FADE9006DAF2F /* Subway-Info.plist */,
 				EBB4CFA8171FADE9006DAF2F /* main.m */,
+<<<<<<< HEAD
+				EBB4D096172120F3006DAF2F /* Localizable.strings */,
+				EBB4CFAA171FADE9006DAF2F /* Subway-Prefix.pch */,
+=======
+>>>>>>> origin/larry
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -619,6 +625,7 @@
 				EBB4CFD0171FBB5C006DAF2F /* logo_suboftheday@2x.png */,
 				EBB4CFD1171FBB5C006DAF2F /* logo_subway@2x.png */,
 				EBB4CFD2171FBB5C006DAF2F /* logo_weibo@2x.png */,
+				EB51D62617549E3800685703 /* logo_plus@2x.png */,
 				EBB4CFD3171FBB5C006DAF2F /* separator@2x.png */,
 			);
 			path = general;
@@ -923,6 +930,7 @@
 				EB5E7C6C174DC74600EF328D /* coupon_reversed-720.png in Resources */,
 				46958A8317535F000008B9FB /* Default.png in Resources */,
 				46958A8517535F0B0008B9FB /* Default@2x.png in Resources */,
+				EB51D62717549E3900685703 /* logo_plus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,8 +1000,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1025,8 +1033,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1046,8 +1054,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1071,8 +1079,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (6P2HDNY932)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1085,7 +1093,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74B46EAA-6AE8-4842-A332-BE216830737F";
+				PROVISIONING_PROFILE = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
 				WRAPPER_EXTENSION = app;
 			};

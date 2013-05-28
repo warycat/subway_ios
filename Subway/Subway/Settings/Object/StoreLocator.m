@@ -80,6 +80,7 @@ static StoreLocator * store;
         else NSLog(@"status error %d",status.intValue);
         
     }];
+    
 }
 
 

@@ -52,7 +52,7 @@
     // ----------------- SCROLL VIEW
     
     cateringScrollView = [[UIScrollView alloc] init ];
-    cateringScrollView.frame = CGRectMake(0, 115, screenWidth, screenHeight - 130);
+    cateringScrollView.frame = CGRectMake(0, 119, screenWidth, screenHeight - 131);
     cateringScrollView.backgroundColor = [UIColor clearColor];
     cateringScrollView.maximumZoomScale = 1.0;
     cateringScrollView.minimumZoomScale = 1.0;
@@ -64,7 +64,7 @@
     [self.view addSubview:cateringScrollView];
     
     
-    CustomLabel *title1 = [[CustomLabel alloc] initWithFrame:CGRectMake(20, 15, screenWidth - 40, 25)];
+    CustomLabel *title1 = [[CustomLabel alloc] initWithFrame:CGRectMake(20, 20, screenWidth - 40, 25)];
     [title1 setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:20.0]];
     title1.text = @" Sandwich and Wraps";
     [title1 setDrawOutline:YES];
