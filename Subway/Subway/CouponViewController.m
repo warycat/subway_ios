@@ -208,7 +208,13 @@
         stamped.center = CGPointMake(imageView.center.x + 20, imageView.center.y + 20);
         stamped.transform = CGAffineTransformMakeRotation(- M_PI_4 * 0.5);
         [self.scrollView addSubview:stamped];
-        
+        coupon[@"stamped"] = stamped;
+        NSString *checkinable = coupon[@"checkinable"];
+        if ([checkinable isEqualToString:@"on"]) {
+            stamped.hidden = YES;
+        }else{
+            stamped.hidden = NO;
+        }
         
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [indicator startAnimating];
@@ -574,6 +580,22 @@
             
             NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"%@",dict);
+            NSDictionary *err = dict[@"err"];
+            if (err) {
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = NSLocalizedString(err[@"msg"], nil);
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    // Do something...
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                });
+            }else{
+                UIView *stamped = coupon[@"stamped"];
+                stamped.hidden = NO;
+            }
 
         }];
 
