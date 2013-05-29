@@ -1400,47 +1400,60 @@
 
 
 -(void)shareToWeibo:(id)sender {
-    
-    int position = [sender tag];
-
-        
-        if(NSClassFromString(@"SLComposeViewController") != nil)
-        {
-            NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
-            NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];
-            
-            NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
-            
-                        
-            SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
-            [mySLComposerSheet setInitialText:combineMessage];
-            [mySLComposerSheet addImage:[settingMethod getImagePath:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
-            [mySLComposerSheet addURL:[NSURL URLWithString:SubwayUrlLink]];
-            [self presentViewController:mySLComposerSheet animated:YES completion:nil];
-            
-            
-        }else
-        {
-            
-            
-//            if ([settingMethod weiboIsConnected]) {
-//                
-//                [self sendToSina:position];
-//                
-//                
-//            }else {
-//                
-//                
-//                [BlockSinaWeibo loginWithHandler:^{
-//
-//                    [self sendToSina:position];
-//                    
-//                }];
-//                
-//            }
-            
+    if ([settingMethod weiboIsConnected]) {
+        NSInteger currentIndex = [sender tag];
+        NSDictionary *currentProduct = currentProductsArray[currentIndex];
+        UIImage *pic = [settingMethod getImagePath:currentProduct[@"media"][0][@"filename"]];
+        NSString *titleProduct = currentProduct[@"title"];
+        NSString *descriptionProduct = currentProduct[@"description"];
+        NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
+        NSString *status = combineMessage;
+        if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
+            NSLog(@"%@",pic);
+            [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
+                                       withParams:@{@"status":status,@"pic":pic}
+                                      withHandler:^(id result) {
+                                          NSLog(@"%@",result);
+                                          if (result[@"error"]) {
+                                              MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                              hud.mode = MBProgressHUDModeText;
+                                              hud.labelText = NSLocalizedString(result[@"error"], nil);
+                                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+                                              dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                                                  // Do something...
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                  });
+                                              });
+                                          }else if(result[@"text"]) {
+                                              MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                              hud.mode = MBProgressHUDModeText;
+                                              hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(titleProduct, nil)];
+                                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+                                              dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                                                  // Do something...
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                  });
+                                              });
+                                          }
+                                      }];
         }
-    
+    }else{
+//        [self weiboAction];
+    }
+
+//    NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
+//    NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];
+//    
+//    NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
+//    
+//    
+//    SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+//    [mySLComposerSheet setInitialText:combineMessage];
+//    [mySLComposerSheet addImage:[settingMethod getImagePath:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
+    //[mySLComposerSheet addURL:[NSURL URLWithString:SubwayUrlLink]];
+     
 }
 
 
