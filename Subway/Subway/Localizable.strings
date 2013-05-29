@@ -77,11 +77,11 @@
 "kSandwichBuild" = "sandwichbuild";
 "kLowFat" = "low fat";
 
-"kTasty" = " Tasty:";
-"kEnergy" = " Energy:";
-"kBuild" = " Build:";
-"kHealth" = " Health:";
-"kOptions" = " Options:";
+"kTasty" = " Tasty";
+"kEnergy" = " Energy";
+"kBuild" = " Build";
+"kHealth" = " Health";
+"kOptions" = " Options";
 "kOptionsTxt" = " Options";
 
 
