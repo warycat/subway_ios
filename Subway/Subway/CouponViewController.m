@@ -210,7 +210,7 @@
         [self.scrollView addSubview:stamped];
         coupon[@"stamped"] = stamped;
         NSString *checkinable = coupon[@"checkinable"];
-        if ([checkinable isEqualToString:@"on"]) {
+        if ([checkinable isEqualToString:@"on"]||!checkinable) {
             stamped.hidden = YES;
         }else{
             stamped.hidden = NO;

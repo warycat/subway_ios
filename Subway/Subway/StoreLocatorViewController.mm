@@ -319,10 +319,13 @@
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
         
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
-            
+            NSLog(@"%@",responseDict);
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = sharecontent;
+            if (responseDict[@"error"]) {
+                hud.labelText = responseDict[@"error"];
+            }
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                 // Do something...

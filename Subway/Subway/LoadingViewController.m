@@ -12,8 +12,8 @@
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 
-//#define delta 1296000
-#define delta 100
+#define delta 1296000
+//#define delta 100
 
 @interface LoadingViewController ()
 
@@ -37,7 +37,7 @@
     // GET VERSION
     NSArray *versions = [databaseMethod getVersions];
     NSDictionary *version = [versions lastObject];
-    NSString *then = [version objectForKey:@"timestamp"];
+    NSNumber *then = [version objectForKey:@"timestamp"];
     NSInteger lastTimestamp = then.integerValue;
     NSNumber *now = [NSNumber numberWithFloat:[[NSDate date] timeIntervalSince1970]];
     NSInteger currentTimestamp = now.integerValue;
@@ -47,7 +47,7 @@
     // Update the files if the timestamp is updated
     if (currentTimestamp - lastTimestamp > delta) {
         
-        [self updateWith:now.stringValue and:[settingMethod getUserLanguage]];
+        [self updateWith:then.integerValue and:[settingMethod getUserLanguage]];
         
     }else{
         
@@ -81,10 +81,10 @@
 #pragma mark ---------------
 #pragma mark --------------- UPDATE Function
 
-- (void)updateWith:(NSString *)timestamp and:(NSString *)locale
+- (void)updateWith:(NSInteger )timestamp and:(NSString *)locale
 {
     
-    NSString *upgrade_url = [NSString stringWithFormat:@"%@upgrade?ts=%d&locale=%@&screen_size=%@",ADRESS, timestamp.integerValue, locale, @"640"];    
+    NSString *upgrade_url = [NSString stringWithFormat:@"%@upgrade?ts=%d&locale=%@&screen_size=%@",ADRESS, timestamp, locale, @"640"];
     NSLog(@"%@",upgrade_url);
     
     NSURLRequest *upgradeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:upgrade_url]];
@@ -132,7 +132,9 @@
                         
                         HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
                         [self.navigationController setViewControllers:@[hvc] animated:YES];
-                        
+                        NSNumber *now = [NSNumber numberWithFloat:[[NSDate date] timeIntervalSince1970]];
+                        NSInteger currentTimestamp = now.integerValue;
+                        [databaseMethod addVersion:currentTimestamp :locale];
                     }
                     
                     
