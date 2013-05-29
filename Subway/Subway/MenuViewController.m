@@ -415,7 +415,7 @@
     
     
     // ----------------- OPTIONS btn
-    UIImage *optionImgON = [UIImage imageNamed:@"logo_plus@2x"];
+    UIImage *optionImgON = [UIImage imageNamed:@"menu_options_icon@2x"];
     
     hasOptions = NO;
     
@@ -690,7 +690,7 @@
                                              constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
                         
                         
-                        CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 40, descSize.height)];
+                        CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 40, 100)];
                         [factLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.0]];
                         factLbl.text = myText;
                         [factLbl setDrawOutline:NO];
@@ -706,26 +706,26 @@
                     if (z == 0) {
                         
                         UIImageView *indicatorPushImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_push@2x"]];
-                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, ((infoScrollSubOfTheDay.frame.size.height-15)/2) + 20, 12, 15);
                         [infoScrollSubOfTheDay addSubview:indicatorPushImg];
                         [indicatorPushImg release];
                         
                     }else if (z == [[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] count]-1) {
                         
                         UIImageView *indicatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
-                        indicatorImg.frame = CGRectMake(10 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        indicatorImg.frame = CGRectMake(8 + xPosFacts, ((infoScrollSubOfTheDay.frame.size.height-15)/2) + 20, 12, 15);
                         [infoScrollSubOfTheDay addSubview:indicatorImg];
                         [indicatorImg release];
                         
                     }else {
                         
                         UIImageView *indicatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
-                        indicatorImg.frame = CGRectMake(10 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        indicatorImg.frame = CGRectMake(8 + xPosFacts, ((infoScrollSubOfTheDay.frame.size.height-15)/2) + 20, 12, 15);
                         [infoScrollSubOfTheDay addSubview:indicatorImg];
                         [indicatorImg release];
                         
                         UIImageView *indicatorPushImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_push@2x"]];
-                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, (infoScrollSubOfTheDay.frame.size.height-15)/2, 12, 15);
+                        indicatorPushImg.frame = CGRectMake(infoScrollSubOfTheDay.frame.size.width-20 + xPosFacts, ((infoScrollSubOfTheDay.frame.size.height-15)/2) + 20, 12, 15);
                         [infoScrollSubOfTheDay addSubview:indicatorPushImg];
                         [indicatorPushImg release];
                     }

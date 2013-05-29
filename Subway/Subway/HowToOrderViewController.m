@@ -176,27 +176,27 @@
         if (i == 0) {
             titleLbl.text = NSLocalizedString(@"kOrder1Title", nil); 
             stepLbl.text = NSLocalizedString(@"kOrder1Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder2Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ", NSLocalizedString(@"kOrder2Title", nil)];
         }else if (i == 1) {
             titleLbl.text = NSLocalizedString(@"kOrder2Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder2Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder3Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ",  NSLocalizedString(@"kOrder3Title", nil)];
         }else if (i == 2) {
             titleLbl.text = NSLocalizedString(@"kOrder3Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder3Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder4Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ",  NSLocalizedString(@"kOrder4Title", nil)];
         }else if (i == 3) {
             titleLbl.text = NSLocalizedString(@"kOrder4Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder4Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder5Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ",  NSLocalizedString(@"kOrder5Title", nil)];
         }else if (i == 4) {
             titleLbl.text = NSLocalizedString(@"kOrder5Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder5Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder6Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ", NSLocalizedString(@"kOrder6Title", nil)];
         }else if (i == 5) {
             titleLbl.text = NSLocalizedString(@"kOrder6Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder6Desc", nil);
-            btn1Lbl.text = NSLocalizedString(@"kOrder7Title", nil);
+            btn1Lbl.text = [NSString stringWithFormat:@"%@ ", NSLocalizedString(@"kOrder7Title", nil)];
         }else if (i == 6) {
             titleLbl.text = NSLocalizedString(@"kOrder7Title", nil);
             stepLbl.text = NSLocalizedString(@"kOrder7Desc", nil);
