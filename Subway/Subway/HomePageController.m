@@ -486,9 +486,14 @@
                 mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
                 
                 CGRect mysubFrame = mysub.frame;
-                mysubFrame.origin.x = mysubFrame.origin.x - 6;
-                [mysub setFrame:mysubFrame];
                 
+                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                int myValue = [myString intValue];
+                if (myValue != 32-6) {
+                    mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                    [mysub setFrame:mysubFrame];
+                }
+ 
             }
             
             if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
@@ -496,8 +501,14 @@
                 UIImageView *mysub = (UIImageView *)sub;
                 
                 CGRect mysubFrame = mysub.frame;
-                mysubFrame.origin.x = mysubFrame.origin.x - 6;
-                [mysub setFrame:mysubFrame];
+                
+                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                int myValue = [myString intValue];
+                if (myValue != 14-6) {
+                    CGRect mysubFrame = mysub.frame;
+                    mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                    [mysub setFrame:mysubFrame];
+                }
                 
             }
             
