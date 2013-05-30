@@ -185,17 +185,23 @@ static SettingMethod * setting;
     messageLabel.numberOfLines = 0;
     messageLabel.text = theMessage;
     
-    if ( myIconName == nil ) {
-        
-        layoutView.frame = CGRectMake(0, 0, size.width, size.height);
-        icon.frame = CGRectMake(0, 0, 0, 0);
-        messageLabel.frame = CGRectMake(0, 0, size.width, size.height);
-    }
-    else if ( [myIconName isEqualToString:HUD_ICON_NO_CONNEXION] ) {
+    if ( [myIconName isEqualToString:HUD_ICON_NO_CONNEXION] ) {
         
         layoutView.frame = CGRectMake(0, 0, size.width, size.height+44+15);
         icon.frame = CGRectMake((size.width-134)/2, 0, 134, 44);
         messageLabel.frame = CGRectMake(0, 44+15, size.width, size.height);
+        
+    }else if ([myIconName isEqualToString:HUD_ICON_WEIXIN]) { 
+        
+        layoutView.frame = CGRectMake(0, 0, size.width, size.height+43+15);
+        icon.frame = CGRectMake((size.width-43)/2, 0, 43, 43);
+        messageLabel.frame = CGRectMake(0, 43+15, size.width, size.height);
+        
+    }else {
+        
+        layoutView.frame = CGRectMake(0, 0, size.width, size.height);
+        icon.frame = CGRectMake(0, 0, 0, 0);
+        messageLabel.frame = CGRectMake(0, 0, size.width, size.height);
     }
     
     

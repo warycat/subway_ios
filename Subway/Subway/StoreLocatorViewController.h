@@ -22,6 +22,7 @@
     MKAnnotationView *tempAnnotation;
     NSMutableArray *allStores;
     BOOL firstLoad;
+
     
     //Detail
     UIView *detailsView;
@@ -40,6 +41,7 @@
     
     //From Catering / How To Order / Menu View
     BOOL fromOtherView;
+    BOOL firstLoading;
 }
 
 //Weibo Btn

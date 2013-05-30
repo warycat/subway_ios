@@ -18,6 +18,7 @@
     UIView *subOfTheDayView;
     UIView *subOfTheDayViewInfo;
     BOOL viewIsFlipped;
+    BOOL firstLoading;
     
     
 }

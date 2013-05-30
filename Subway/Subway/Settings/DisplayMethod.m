@@ -129,10 +129,11 @@ static DisplayMethod * display;
 
             UIImageView *logoweiboImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_weibo@2x"]];
             logoweiboImg.frame = CGRectMake(14.5, (myLeftBtn.frame.size.height-17)/2, 19, 17);
+            logoweiboImg.tag = 100;
             [myLeftBtn addSubview:logoweiboImg];
             [logoweiboImg release];
             
-            CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 48, myLeftBtn.frame.size.height)];
+            CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 50, myLeftBtn.frame.size.height)];
             [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
             weiboLbl.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
             [weiboLbl setDrawOutline:YES];
@@ -184,10 +185,11 @@ static DisplayMethod * display;
             
             UIImageView *logoweiboImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_weibo@2x"]];
             logoweiboImg.frame = CGRectMake(14.5, (myLeftBtn.frame.size.height-17)/2, 19, 17);
+            logoweiboImg.tag = 100;
             [myLeftBtn addSubview:logoweiboImg];
             [logoweiboImg release];
             
-            CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 48, myLeftBtn.frame.size.height)];
+            CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 50, myLeftBtn.frame.size.height)];
             [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
             weiboLbl.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
             [weiboLbl setDrawOutline:YES];

@@ -30,7 +30,10 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    [self changeWeiboLogDesign];
+//    if (firstLoading) {
+        [self changeWeiboLogDesign];
+//    }else { firstLoading = NO; };
+    
     [super viewDidAppear:YES];
 }
 
@@ -38,7 +41,6 @@
 {
     [super viewDidLoad];
 	viewIsFlipped = YES;
-    
     
     // ----------------- GENERATE BACKGROUND
     [displayMethod createBackground:self.view viewName:@""];
@@ -55,7 +57,12 @@
     [storeLocatorBtn addTarget:self action:@selector(pushStoreLocatorView) forControlEvents:UIControlEventTouchDown];
     [storeLocatorBtn release];
     
-    
+    if ([settingMethod weiboIsConnected]) {
+        firstLoading = YES;
+    }else {
+        firstLoading = NO;
+    }
+
     
     // ----------------- GENERATE BOTTOM BAR
     
@@ -448,30 +455,50 @@
     
     [BlockSinaWeibo loginWithHandler:^{
         [self changeWeiboLogDesign];
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
     }];
     
 }
 
+
 -(void)weiboLogOutAction {
     
-    
+    [BlockSinaWeibo logout];
+    [self changeWeiboLogDesign];
+    [settingMethod HUDMessage:@"kDisconnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
 }
 
 
 -(void)changeWeiboLogDesign {
     
+    
     if ([settingMethod weiboIsConnected]) {
         
         // Change weibo Action
-        [weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-        [weiboBtn addTarget:self action:@selector(weiboLogOutAction) forControlEvents:UIControlEventTouchDown];
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboLogOutAction) forControlEvents:UIControlEventTouchDown];
         
         // Change weibo title Btn
-        for (UIView * sub in [weiboBtn subviews]) {
+        for (UIView * sub in [self.weiboBtn subviews]) {
             
             if ([sub isKindOfClass:[CustomLabel class]]) {
                 CustomLabel *mysub = (CustomLabel *)sub;
                 mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
             }
             
         }
@@ -479,15 +506,39 @@
     }else {
         
         // Change weibo Action
-        [weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-        [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
         
         // Change weibo title Btn
-        for (UIView * sub in [weiboBtn subviews]) {
+        for (UIView * sub in [self.weiboBtn subviews]) {
             
             if ([sub isKindOfClass:[CustomLabel class]]) {
                 CustomLabel *mysub = (CustomLabel *)sub;
                 mysub.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                
+                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                int myValue = [myString intValue];
+                if (myValue != 32) {
+                    mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                    [mysub setFrame:mysubFrame];
+                }
+
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                int myValue = [myString intValue];
+                if (myValue != 14) {
+                    mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                    [mysub setFrame:mysubFrame];
+                }
+                
             }
             
         }

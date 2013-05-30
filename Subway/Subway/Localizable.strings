@@ -102,6 +102,7 @@
 "kNow" = "NOW";
 "kFrom" = "FROM";
 "kUntil" = "UNTIL";
+"kShareCoupon" = "Check out this great Promotion on the Subway Application : ";
 
 
 // ------------------ HOW TO ORDER
@@ -137,14 +138,8 @@
 
 "kNoConnection" = "The Internet connection appears to be offline.";
 "kNoEventAvailable" = "No events available yet!!";
-"kConnectedToWeibo" = " You are now connected to weibo";
+"kConnectedToWeibo" = " You are now connected to your Weibo";
+"kDisconnectedToWeibo" = "You have just been disconnected to Weibo";
 "kNoConnectedToWeibo" = "You need weibo connection";
 
-"kSubway" = "SUBWAY";
-"kView" = "VIEW";
-"kAvailable" = "AVAILABLE";
-"kNow" = "NOW";
-"kFrom" = "FROM";
-"kUntil" = "UNTIL";
-"kShareCoupon" = "Check out this great Promotion on the Subway Application : ";
 "kWait" = "Please wait";

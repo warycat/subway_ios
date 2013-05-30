@@ -123,7 +123,7 @@
 #define HUD_INTERSPACE 10.0f
 
 #define HUD_ICON_NO_CONNEXION @"no_connexion.png"
-
+#define HUD_ICON_WEIXIN @"icon_weibo@2x"
 
 
 

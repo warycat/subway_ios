@@ -31,6 +31,7 @@
 @synthesize weiboBtn;
 @synthesize phoneDetailsBtn, phoneDetailsLbl, mailDetailsBtn, fromOtherView;
 
+
 -(void)viewWillAppear:(BOOL)animated {
 	
 	self.navigationController.navigationBar.hidden = YES;
@@ -38,6 +39,14 @@
 	
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+    if (firstLoading) {
+        [self changeWeiboLogDesign];
+    }else { firstLoading = NO; };
+    
+    [super viewDidAppear:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -150,24 +159,19 @@
     
     
     UIButton *homeBtn =  [[UIButton alloc] init];
+    weiboBtn =  [[UIButton alloc] init];
     
-    if ([settingMethod weiboIsConnected]) {
-        
-        [displayMethod createTopBar:self.view viewName:@"storeLocator" leftBtn:nil rightBtn:homeBtn otherBtn:nil];
-        
-    }else {
-        
-        weiboBtn =  [[UIButton alloc] init];
-        
-        [displayMethod createTopBar:self.view viewName:@"storeLocator" leftBtn:weiboBtn rightBtn:homeBtn otherBtn:nil];
-        
-        [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
-        
-    }
-
+    [displayMethod createTopBar:self.view viewName:@"storeLocator" leftBtn:weiboBtn rightBtn:homeBtn otherBtn:nil];
+    
+    [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
     [homeBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     [homeBtn release];
     
+    if ([settingMethod weiboIsConnected]) {
+        firstLoading = YES;
+    }else {
+        firstLoading = NO;
+    }
     
     
     // ----------------- GENERATE BOTTOM BAR
@@ -294,6 +298,7 @@
     [detailsView addSubview:weiboLbl];
 }
 
+
 - (void)shareStore:(id)sender
 {
     if ([settingMethod weiboIsConnected]) {
@@ -319,20 +324,26 @@
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
         
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
+            
             NSLog(@"%@",responseDict);
+            
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = sharecontent;
+            
             if (responseDict[@"error"]) {
                 hud.labelText = responseDict[@"error"];
             }
+            
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                // Do something...
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                 });
+                
             });
+            
             
         }];
         
@@ -444,15 +455,92 @@
     
     [BlockSinaWeibo loginWithHandler:^{
         
-        weiboBtn.alpha = 0.0;
-        weiboBtn.hidden = YES;
-        weiboBtn.enabled = NO;
-        
-        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:@"icon_weibo@2x" delay:2.0 offset:CGPointMake(0, 0)];
+        [self changeWeiboLogDesign];
+        [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
         
     }];
 
 }
+
+
+-(void)weiboLogOutAction {
+    
+    [BlockSinaWeibo logout];
+    [self changeWeiboLogDesign];
+    [settingMethod HUDMessage:@"kDisconnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+    
+}
+
+
+-(void)changeWeiboLogDesign {
+    
+    if ([settingMethod weiboIsConnected]) {
+        
+        // Change weibo Action
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboLogOutAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [self.weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+        }
+        
+    }else {
+        
+        // Change weibo Action
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [self.weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                [mysub setFrame:mysubFrame];
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+        }
+        
+    }
+    
+    
+}
+
+
 
 -(void)backAction {
     

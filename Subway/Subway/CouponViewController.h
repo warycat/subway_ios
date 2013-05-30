@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DDPageControl.h"
 
-@interface CouponViewController : UIViewController < UIScrollViewDelegate,UIGestureRecognizerDelegate>
+@interface CouponViewController : UIViewController < UIScrollViewDelegate,UIGestureRecognizerDelegate> {
+    
+    BOOL firstLoading;
+    
+}
 
 @end

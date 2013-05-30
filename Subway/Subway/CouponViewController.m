@@ -22,7 +22,16 @@
 @implementation CouponViewController
 @synthesize pageControl;
 
+
 -(void)backAction {  [self.navigationController popViewControllerAnimated:YES]; }
+-(void)viewDidAppear:(BOOL)animated {
+    
+    if (firstLoading) {
+        [self changeWeiboLogDesign];
+    }else { firstLoading = NO; };
+    
+    [super viewDidAppear:YES];
+}
 
 
 - (void)viewDidLoad
@@ -36,24 +45,19 @@
     // ----------------- GENERATE TOP BAR
     
     UIButton *homeBtn =  [[UIButton alloc] init];
+    self.weiboBtn =  [[UIButton alloc] init];
     
-    if ([settingMethod weiboIsConnected]) {
-        
-        [displayMethod createTopBar:self.view viewName:@"coupon" leftBtn:nil rightBtn:homeBtn otherBtn:nil];
-        
-    }else {
-        
-        self.weiboBtn =  [[UIButton alloc] init];
-        
-        [displayMethod createTopBar:self.view viewName:@"coupon" leftBtn:self.weiboBtn rightBtn:homeBtn otherBtn:nil];
-        
-        [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
-        
-    }
+    [displayMethod createTopBar:self.view viewName:@"coupon" leftBtn:self.weiboBtn rightBtn:homeBtn otherBtn:nil];
     
+    [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
     [homeBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     [homeBtn release];
     
+    if ([settingMethod weiboIsConnected]) {
+        firstLoading = YES;
+    }else {
+        firstLoading = NO;
+    }
     
     // ----------------- GENERATE BOTTOM BAR
     
@@ -161,24 +165,23 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
+    
     if ([settingMethod weiboIsConnected]) {
+        
         NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
         [self loadCouponWith:wid];
+        
     }else{
+        
         [self loadCoupon];
+        
     }
-}
-
-- (void) clearView:(UIView *)view
-{
-    for (UIView *subview in view.subviews) {
-        [self clearView:subview];
-        [subview removeFromSuperview];
-    }
+    
 }
 
 - (void)loadScrollView
 {
+
     self.scrollView.contentSize = CGSizeMake(self.coupons.count *320, screenHeight- 230);
     int i = 0;
     self.pageControl.numberOfPages = self.coupons.count;
@@ -284,7 +287,9 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
         NSDate *sdate = (coupon[@"sdate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"sdate"]]:nil;
         NSDate *edate = (coupon[@"edate"] != [NSNull null])?[dateFormatter dateFromString:coupon[@"edate"]]:nil;
+        
         if (sdate && edate) {
+            
             NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
             sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
             CustomLabel *sdateLabel = [[CustomLabel alloc]init];
@@ -314,7 +319,9 @@
             edateLabel.frame = CGRectMake(0, 0, 120, 20);
             edateLabel.center = CGPointMake(160, 190);
             [backView addSubview:edateLabel];
+            
         }else if (sdate) {
+            
             NSString *sdateString = [NSDateFormatter localizedStringFromDate:sdate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
             sdateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kFrom", nil),sdateString];
             CustomLabel *sdateLabel = [[CustomLabel alloc]init];
@@ -329,7 +336,9 @@
             sdateLabel.frame = CGRectMake(0, 0, 120, 20);
             sdateLabel.center = CGPointMake(160, 180);
             [backView addSubview:sdateLabel];
+            
         }else if (edate){
+            
             NSString *edateString = [NSDateFormatter localizedStringFromDate:edate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
             edateString = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"kUntil", nil),edateString];
             CustomLabel *edateLabel = [[CustomLabel alloc]init];
@@ -344,7 +353,9 @@
             edateLabel.frame = CGRectMake(0, 0, 120, 20);
             edateLabel.center = CGPointMake(160, 180);
             [backView addSubview:edateLabel];
+            
         }else{
+            
             NSString *nowString = NSLocalizedString(@"kNow", nil);
             CustomLabel *nowLabel = [[CustomLabel alloc]init];
             nowLabel.drawOutline = YES;
@@ -383,17 +394,31 @@
         [backView addSubview:viewLabel];
         
         if (!coupon[@"data"]) {
+            
             [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                
                 [coupon setObject:data forKey:@"data"];
                 UIImage *image = [UIImage imageWithData:data];
                 imageView.image = image;
                 [indicator stopAnimating];
+                
             }];
         }
         i++;
     }
     
 }
+
+
+- (void) clearView:(UIView *)view
+{
+    for (UIView *subview in view.subviews) {
+        [self clearView:subview];
+        [subview removeFromSuperview];
+    }
+    
+}
+
 
 - (void)loadCouponWith:(NSString *)wid
 {
@@ -415,6 +440,7 @@
         NSLog(@"%@",coupons);
         self.coupons = coupons;
         [self loadScrollView];
+        
     }];
     
 }
@@ -443,6 +469,14 @@
     }];
 
 }
+
+
+
+#pragma mark ---------------
+#pragma mark ---------------
+#pragma mark --------------- ANIMATION COUPONS
+#pragma mark ---------------
+#pragma mark ---------------
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([touch.view isKindOfClass:[UIButton class]]) {
@@ -527,44 +561,37 @@
     } completion:^(BOOL finished) { }];
 }
 
--(void)weiboAction {
-    
-    [BlockSinaWeibo loginWithHandler:^{
-        
-        self.weiboBtn.alpha = 0.0;
-        self.weiboBtn.hidden = YES;
-        self.weiboBtn.enabled = NO;
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = NSLocalizedString(@"kConnectedToWeibo", nil);
-        
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            // Do something...
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
-                [self loadCouponWith:wid];
-            });
-        });
-    }];
-}
+
+
+#pragma mark ---------------
+#pragma mark ---------------
+#pragma mark ---------------  WEIBO + CHECKIN Action
+#pragma mark ---------------
+#pragma mark ---------------
+
 
 - (void)checkIn
 {
+    
     if (![settingMethod weiboIsConnected]) {
+        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = NSLocalizedString(@"kNoConnectedToWeibo", nil);
+        
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            // Do something...
+            
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
             });
+            
         });
+        
     }else{
+        
         NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
         NSInteger currentCoupon = self.pageControl.currentPage;
         NSMutableDictionary *coupon = self.coupons[currentCoupon];
@@ -580,21 +607,28 @@
             
             NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"%@",dict);
+            
             NSDictionary *err = dict[@"err"];
             if (err) {
+                
                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = NSLocalizedString(err[@"msg"], nil);
+                
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
                 dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    // Do something...
+                   
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
+                    
                 });
+                
             }else{
+                
                 UIView *stamped = coupon[@"stamped"];
                 stamped.hidden = NO;
+                
             }
 
         }];
@@ -604,67 +638,194 @@
 
 - (void)shareCouponToWeibo
 {
+    
     if ([settingMethod weiboIsConnected]) {
+        
         NSInteger currentCoupon = self.pageControl.currentPage;
         NSMutableDictionary *coupon = self.coupons[currentCoupon];
         NSData *data = coupon[@"data"];
         UIImage *pic = [UIImage imageWithData:data];
         NSString *title = coupon[@"title"];
         NSString *status = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"kShareCoupon", nil),title];
+        
         if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
+            
             NSLog(@"%@",pic);
+            
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.labelText = NSLocalizedString(@"kWait", nil);
-        [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
+            [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
                                    withParams:@{@"status":status,@"pic":pic}
                                   withHandler:^(id result) {
             NSLog(@"%@",result);
+                                      
             if (result[@"error"]) {
+                
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = NSLocalizedString(result[@"error"], nil);
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
                 dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    // Do something...
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
+                    
                 });
+                
             }else if(result[@"text"]) {
+                
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(title, nil)];
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+
                 dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         // Do something...
                     dispatch_async(dispatch_get_main_queue(), ^{
                             [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
+                    
                 });
+                
             }
+                                      
             }];
         }
+        
     }else{
         [self weiboAction];
     }
 }
 
-// ========================== SCROLL VIEW METHODS ============================
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+#pragma mark ---------------
+#pragma mark ---------------
+#pragma mark --------------- TOP PART
+#pragma mark ---------------
+#pragma mark ---------------
+
+
+-(void)weiboAction {
     
-	CGFloat pageWidth = self.scrollView.bounds.size.width;
-    float fractionalPage = self.scrollView.contentOffset.x / pageWidth ;
-	NSInteger nearestNumber = lround(fractionalPage) ;
-	
-	if (pageControl.currentPage != nearestNumber)
-	{
-		pageControl.currentPage = nearestNumber ;
-		
-		// if we are dragging, we want to update the page control directly during the drag
-		if (aScrollView.dragging)
-			[pageControl updateCurrentPageDisplay] ;
-	}
+    [BlockSinaWeibo loginWithHandler:^{
+        
+            [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+                [self loadCouponWith:wid];
+                [self changeWeiboLogDesign];
+                
+            });
+
+    }];
+    
+//    [BlockSinaWeibo loginWithHandler:^{
+//                
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = NSLocalizedString(@"kConnectedToWeibo", nil);
+//        
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+//        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//            
+//        
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+//                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+//                [self loadCouponWith:wid];
+//                
+//            });
+//            
+//        });
+//        
+//    }];
+    
 }
+
+
+
+
+-(void)weiboLogOutAction {
+    
+    [BlockSinaWeibo logout];
+    [self changeWeiboLogDesign];
+    [settingMethod HUDMessage:@"kDisconnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+    
+}
+
+
+-(void)changeWeiboLogDesign {
+    
+    if ([settingMethod weiboIsConnected]) {
+        
+        // Change weibo Action
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboLogOutAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [self.weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+        }
+        
+    }else {
+        
+        // Change weibo Action
+        [self.weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [self.weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [self.weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                [mysub setFrame:mysubFrame];
+            }
+            
+            if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
+                
+                UIImageView *mysub = (UIImageView *)sub;
+                
+                CGRect mysubFrame = mysub.frame;
+                mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                [mysub setFrame:mysubFrame];
+                
+            }
+            
+        }
+        
+    }
+    
+    
+}
+
+
 
 
 #pragma mark ---------------
@@ -692,6 +853,29 @@
     [storeViewCtrl release];
     
 }
+
+
+
+
+// ========================== SCROLL VIEW METHODS ============================
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+    
+	CGFloat pageWidth = self.scrollView.bounds.size.width;
+    float fractionalPage = self.scrollView.contentOffset.x / pageWidth ;
+	NSInteger nearestNumber = lround(fractionalPage) ;
+	
+	if (pageControl.currentPage != nearestNumber)
+	{
+		pageControl.currentPage = nearestNumber ;
+		
+		// if we are dragging, we want to update the page control directly during the drag
+		if (aScrollView.dragging)
+			[pageControl updateCurrentPageDisplay] ;
+	}
+}
+
 
 
 
