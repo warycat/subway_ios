@@ -18,4 +18,7 @@
 
 + (void)loginWithHandler:(void(^)())handler;
 
++ (void)logout;
+
+
 @end
