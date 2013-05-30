@@ -13,6 +13,7 @@
 // ------------------ Top View
 // ----------
 "weibo_login_btn_txt" = " LOGIN";
+"weibo_logout_btn_txt" = " LOGOUT";
 "store_btn_txt" = " STORE";
 "locator_btn_txt" = " LOCATOR";
 "home_btn_txt" = " HOME";

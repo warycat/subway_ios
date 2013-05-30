@@ -30,13 +30,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    if ([settingMethod weiboIsConnected]) {
-        
-        weiboBtn.alpha = 0.0;
-        weiboBtn.hidden = YES;
-        weiboBtn.enabled = NO;
-        
-    }
+    [self changeWeiboLogDesign];
     [super viewDidAppear:YES];
 }
 
@@ -53,21 +47,11 @@
     // ----------------- GENERATE TOP BAR
     
     UIButton *storeLocatorBtn =  [[UIButton alloc] init];
-    
-     if ([settingMethod weiboIsConnected]) {
-         
-         [displayMethod createTopBar:self.view viewName:@"home" leftBtn:nil rightBtn:storeLocatorBtn otherBtn:nil];
-         
-     }else {
-         
-         weiboBtn =  [[UIButton alloc] init];
-         
-         [displayMethod createTopBar:self.view viewName:@"home" leftBtn:weiboBtn rightBtn:storeLocatorBtn otherBtn:nil];
-         
-         [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
-         
-     }
-    
+    weiboBtn =  [[UIButton alloc] init];
+     
+    [displayMethod createTopBar:self.view viewName:@"home" leftBtn:weiboBtn rightBtn:storeLocatorBtn otherBtn:nil];
+     
+    [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
     [storeLocatorBtn addTarget:self action:@selector(pushStoreLocatorView) forControlEvents:UIControlEventTouchDown];
     [storeLocatorBtn release];
     
@@ -463,10 +447,52 @@
 -(void)weiboAction {
     
     [BlockSinaWeibo loginWithHandler:^{
-        weiboBtn.alpha = 0.0;
-        weiboBtn.hidden = YES;
-        weiboBtn.enabled = NO;
+        [self changeWeiboLogDesign];
     }];
+    
+}
+
+-(void)weiboLogOutAction {
+    
+    
+}
+
+
+-(void)changeWeiboLogDesign {
+    
+    if ([settingMethod weiboIsConnected]) {
+        
+        // Change weibo Action
+        [weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [weiboBtn addTarget:self action:@selector(weiboLogOutAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
+            }
+            
+        }
+        
+    }else {
+        
+        // Change weibo Action
+        [weiboBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [weiboBtn addTarget:self action:@selector(weiboAction) forControlEvents:UIControlEventTouchDown];
+        
+        // Change weibo title Btn
+        for (UIView * sub in [weiboBtn subviews]) {
+            
+            if ([sub isKindOfClass:[CustomLabel class]]) {
+                CustomLabel *mysub = (CustomLabel *)sub;
+                mysub.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
+            }
+            
+        }
+        
+    }
     
 }
 

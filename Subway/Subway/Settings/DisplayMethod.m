@@ -322,8 +322,6 @@ static DisplayMethod * display;
         
     }
 
-
-    
     
 }
 
