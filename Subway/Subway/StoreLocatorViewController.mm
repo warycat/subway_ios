@@ -312,7 +312,8 @@
 
 - (void)sendToSina
 {
-
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = NSLocalizedString(@"kWait", nil);
     [storeMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
         
         NSLog(@"%@",responseDict);
@@ -322,12 +323,11 @@
         NSString *sharecontent = [data objectForKey:@"sharecontent"];
         NSString *image = [data objectForKey:@"image"];
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
-        
+
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
             
             NSLog(@"%@",responseDict);
             
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = sharecontent;
             
