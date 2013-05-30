@@ -613,12 +613,13 @@
         NSString *status = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"kShareCoupon", nil),title];
         if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
             NSLog(@"%@",pic);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = NSLocalizedString(@"kWait", nil);
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
                                    withParams:@{@"status":status,@"pic":pic}
                                   withHandler:^(id result) {
             NSLog(@"%@",result);
             if (result[@"error"]) {
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = NSLocalizedString(result[@"error"], nil);
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
@@ -629,7 +630,6 @@
                     });
                 });
             }else if(result[@"text"]) {
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(title, nil)];
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);

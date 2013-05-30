@@ -73,6 +73,11 @@
     [[BlockSinaWeibo sharedClient].sinaWeibo logIn];
 }
 
++ (void)logout
+{
+    [[BlockSinaWeibo sharedClient].sinaWeibo logOut];
+}
+
 #pragma mark - SinaWeibo Delegate
 
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo

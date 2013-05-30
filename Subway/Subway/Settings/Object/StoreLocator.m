@@ -92,14 +92,20 @@ static StoreLocator * store;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestDict options:NSJSONWritingPrettyPrinted error:nil];
-    
+    NSError *error = nil;
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestDict options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+    }
+    NSLog(@"%@",URL);
+    NSLog(@"%@",[NSString stringWithCString:request.HTTPBody.bytes encoding:NSUTF8StringEncoding]);
+
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
         NSNumber *status = [dict objectForKey:@"status"];
-        
+        //NSLog(@"%@",dict);
         if(status.intValue == 1)successBlock(dict);
         else NSLog(@"status error %d",status.intValue);
         
