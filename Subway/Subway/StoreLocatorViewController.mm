@@ -614,6 +614,7 @@
         
         mailDetailsBtn.enabled = NO;
         mailDetailsBtn.alpha = 0.0;
+        
     }
     
     
