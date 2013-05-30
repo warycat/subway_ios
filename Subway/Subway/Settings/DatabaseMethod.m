@@ -58,7 +58,6 @@ static DatabaseMethod * DBmethod;
 
 
 #define GET_VERSION_QUERY @"SELECT * FROM versioning WHERE locale='cn' ORDER BY timestamp DESC limit 0,1"
-#define QUERY1
 #define QUERY2
 
 
@@ -71,11 +70,19 @@ static DatabaseMethod * DBmethod;
 -(NSArray *)getVersions
 {
     NSArray *results = [self executeSql:GET_VERSION_QUERY];
+    NSLog(@"get %@",results);
     return results;
 }
 
 
-
+-(NSArray *)addVersion:(NSInteger)timestamp :(NSString *)locale
+{
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO versioning (timestamp,locale) VALUES('%d','%@')", timestamp, locale];
+    NSLog(@"%@",sql);
+    NSArray *results = [self executeSql:sql];
+    NSLog(@"insert %@",results);
+    return results;
+}
 
 
 

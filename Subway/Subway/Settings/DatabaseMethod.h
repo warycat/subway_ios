@@ -26,6 +26,7 @@
 
 - (NSArray *)getVersions;
 
+- (NSArray *)addVersion:(NSInteger)timestamp :(NSString *)locale;
 
 
 
