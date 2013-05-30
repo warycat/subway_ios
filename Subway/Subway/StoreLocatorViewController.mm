@@ -353,7 +353,7 @@
     CLLocation *myLocation = [settingMethod myLocation];
     [self zoomTo:myLocation.coordinate];
     
-    [storeMethod getStoreLocationsWith:@{@"locale":[settingMethod getUserLanguage]} onSuccess:^(NSDictionary *responseDict) {
+    [storeMethod getStoreLocationsWith:@{@"locale":[settingMethod getUserLanguage],@"map":@"google"} onSuccess:^(NSDictionary *responseDict) {
 
         NSArray *stores = responseDict[@"data"];
         
@@ -387,6 +387,7 @@
             tempCoordinate.longitude = [store[@"longitude"] floatValue];
             newMapAnnotation.coordinate = tempCoordinate;
             newMapAnnotation.title = store[@"address"];
+            //NSLog(@"%@ %@ %@ %@",store[@"ref"],store[@"latitude"],store[@"longitude"],store[@"address"]);
             [myMapView addAnnotation:newMapAnnotation];
             [annotations addObject:newMapAnnotation];
             
