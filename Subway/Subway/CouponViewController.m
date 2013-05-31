@@ -201,12 +201,20 @@
         imageView.tag = 2 * (i+1);
         [self.scrollView addSubview:imageView];
         
-        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+        NSDateFormatter *checkindateFormatter = [[NSDateFormatter alloc] init];
+        [checkindateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        NSDate *checkinDate = (coupon[@"checkintime"] != [NSNull null])?[checkindateFormatter dateFromString:coupon[@"checkintime"]]:[NSDate date];
+        NSString *stampString = [NSDateFormatter localizedStringFromDate:checkinDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+
+        
+        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+        stamped.numberOfLines = 2;
         stamped.drawOutline = YES;
         stamped.outlineSize = 3;
         stamped.outlineColor = [UIColorCov colorWithHexString:GRAY_TEXT];
+        stamped.textAlignment = UITextAlignmentCenter;
         stamped.textColor = [UIColor redColor];
-        stamped.text = @"STAMPED";
+        stamped.text = [NSString stringWithFormat:@"STAMPED\n%@",stampString];
         stamped.backgroundColor = [UIColor clearColor];
         stamped.center = CGPointMake(imageView.center.x + 20, imageView.center.y + 20);
         stamped.transform = CGAffineTransformMakeRotation(- M_PI_4 * 0.5);
@@ -627,6 +635,7 @@
             }else{
                 
                 UIView *stamped = coupon[@"stamped"];
+                
                 stamped.hidden = NO;
                 
             }

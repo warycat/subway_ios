@@ -312,7 +312,8 @@
 
 - (void)sendToSina
 {
-
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = NSLocalizedString(@"kWait", nil);
     [storeMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
         
         NSLog(@"%@",responseDict);
@@ -322,12 +323,11 @@
         NSString *sharecontent = [data objectForKey:@"sharecontent"];
         NSString *image = [data objectForKey:@"image"];
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
-        
+
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
             
             NSLog(@"%@",responseDict);
             
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = sharecontent;
             
@@ -844,7 +844,6 @@
 
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    
     if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
         NSLog(@"select pin");
         return;
@@ -891,12 +890,47 @@
         [UIView commitAnimations];
         
         view.centerOffset = CGPointMake(0, -146/2/2);
+    
+        CGRect detailFrame = CGRectInset(view.bounds, 20, 20);
+        UIButton *detailButton = [[UIButton alloc]initWithFrame:detailFrame];
+        detailButton.tag = 1;
+//        detailButton.backgroundColor = [UIColor greenColor];
+        [detailButton addTarget:self action:@selector(detailClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:detailButton];
+        
+        CGRect exitFrame = CGRectMake(view.bounds.size.width - 20, 0, 20, 20);
+        UIButton *exitButton = [[UIButton alloc]initWithFrame:exitFrame];
+        exitButton.tag = 2;
+//        exitButton.backgroundColor = [UIColor blueColor];
+        [exitButton addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [view addSubview:exitButton];
         
         return;
     }
 }
 
+- (void)exitClicked:(UIButton *)sender
+{
+    NSLog(@"exit");
+    MKAnnotationView *view = (MKAnnotationView *)sender.superview;
+//    NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
+    [self.myMapView deselectAnnotation:view.annotation animated:YES];
+}
+
+- (void)detailClicked:(UIButton *)sender
+{
+    NSLog(@"touch");
+    MKAnnotationView *view = (MKAnnotationView *)sender.superview;
+    NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
+    //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
+    [self displayStore:index];
+}
+
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
+    [[view viewWithTag:1] removeFromSuperview];
+    [[view viewWithTag:2] removeFromSuperview];
     
     if ([view isKindOfClass:[SVPulsingAnnotationView class]]) {
         NSLog(@"deselect pin");
@@ -969,13 +1003,15 @@
         [annotationView setEnabled:YES];
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
-        NSString *version = [UIDevice currentDevice].systemVersion;
-        if ([version compare:@"6.0"] == NSOrderedAscending) {
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-            [annotationView addGestureRecognizer:tap];
-        tap.delegate = self;
-
-        }
+        
+//        UIButton *
+//        NSString *version = [UIDevice currentDevice].systemVersion;
+//        if ([version compare:@"6.0"] == NSOrderedAscending) {
+//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+//            [annotationView addGestureRecognizer:tap];
+//        tap.delegate = self;
+//
+//        }
         return (MKAnnotationView *)annotationView;
     }
     
