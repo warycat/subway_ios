@@ -140,6 +140,6 @@
 "kNoEventAvailable" = "No events available yet!!";
 "kConnectedToWeibo" = " You are now connected to your Weibo";
 "kDisconnectedToWeibo" = "You have just been disconnected to Weibo";
-"kNoConnectedToWeibo" = "You need weibo connection";
+"kNoConnectedToWeibo" = "You must be connected to weibo to CheckIn";
 
 "kWait" = "Please wait";

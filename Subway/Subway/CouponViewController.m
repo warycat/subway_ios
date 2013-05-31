@@ -663,6 +663,7 @@
             
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.labelText = NSLocalizedString(@"kWait", nil);
+            
             [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
                                    withParams:@{@"status":status,@"pic":pic}
                                   withHandler:^(id result) {
