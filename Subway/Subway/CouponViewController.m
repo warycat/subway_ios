@@ -762,7 +762,7 @@
     [BlockSinaWeibo logout];
     [self changeWeiboLogDesign];
     [settingMethod HUDMessage:@"kDisconnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
-    
+    [self loadCoupon];
 }
 
 
