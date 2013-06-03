@@ -146,7 +146,6 @@ static SettingMethod * setting;
         return YES;
     }else {
         
-        [self HUDMessage:@"kNoConnection" typeOfIcon:HUD_ICON_NO_CONNEXION delay:3.5 offset:CGPointMake(0, 0)];
         return NO;
     }
     //return (isReachable && !needsConnection)?YES:NO;

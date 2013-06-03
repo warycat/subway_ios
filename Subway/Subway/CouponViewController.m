@@ -26,9 +26,9 @@
 -(void)backAction {  [self.navigationController popViewControllerAnimated:YES]; }
 -(void)viewDidAppear:(BOOL)animated {
     
-    if (firstLoading) {
-        [self changeWeiboLogDesign];
-    }else { firstLoading = NO; };
+//    if (firstLoading) {
+//        [self changeWeiboLogDesign];
+//    }else { firstLoading = NO; };
     
     [super viewDidAppear:YES];
 }
@@ -57,6 +57,10 @@
         firstLoading = YES;
     }else {
         firstLoading = NO;
+    }
+    
+    if ([settingMethod weiboIsConnected]) {
+        [self changeWeiboLogDesign];
     }
     
     // ----------------- GENERATE BOTTOM BAR
@@ -166,16 +170,26 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
     
-    if ([settingMethod weiboIsConnected]) {
+    if ([settingMethod connectedToNetwork]) {
         
-        NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
-        [self loadCouponWith:wid];
+        if ([settingMethod weiboIsConnected]) {
+            
+            NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+            [self loadCouponWith:wid];
+            
+        }else{
+            
+            [self loadCoupon];
+            
+        }
         
-    }else{
+    }else {
         
-        [self loadCoupon];
+        [settingMethod HUDMessage:@"kNoConnection" typeOfIcon:HUD_ICON_NO_CONNEXION delay:3.5 offset:CGPointMake(0, 0)];
         
     }
+    
+
     
 }
 
@@ -415,6 +429,7 @@
         i++;
     }
     
+    
 }
 
 
@@ -448,6 +463,7 @@
         NSLog(@"%@",coupons);
         self.coupons = coupons;
         [self loadScrollView];
+    
         
     }];
     
@@ -583,22 +599,12 @@
     
     if (![settingMethod weiboIsConnected]) {
         
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = NSLocalizedString(@"kNoConnectedToWeibo", nil);
-        
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
-            });
-            
-        });
+        [settingMethod HUDMessage:@"kNoConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
         
     }else{
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = NSLocalizedString(@"kWait", nil);
         
         NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
         NSInteger currentCoupon = self.pageControl.currentPage;
@@ -615,6 +621,8 @@
             
             NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"%@",dict);
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSDictionary *err = dict[@"err"];
             if (err) {
@@ -634,8 +642,20 @@
                 
             }else{
                 
-                UIView *stamped = coupon[@"stamped"];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"You just check in inside a store";
                 
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    
+                });
+                
+                UIView *stamped = coupon[@"stamped"];
                 stamped.hidden = NO;
                 
             }
@@ -649,6 +669,7 @@
 {
     
     if ([settingMethod weiboIsConnected]) {
+        
         
         NSInteger currentCoupon = self.pageControl.currentPage;
         NSMutableDictionary *coupon = self.coupons[currentCoupon];
@@ -702,6 +723,7 @@
         }
         
     }else{
+        shareCouponAfterLogIn = YES;
         [self weiboAction];
     }
 }
@@ -717,8 +739,27 @@
 
 -(void)weiboAction {
     
-    [BlockSinaWeibo loginWithHandler:^{
+    if (shareCouponAfterLogIn) {
+        shareCouponAfterLogIn = NO;
         
+        [BlockSinaWeibo loginWithHandler:^{
+                        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
+                [self loadCouponWith:wid];
+                [self changeWeiboLogDesign];
+                [self shareCouponToWeibo];
+                
+            });
+            
+        }];
+        
+        
+    }else {
+        
+        [BlockSinaWeibo loginWithHandler:^{
+            
             [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -728,30 +769,12 @@
                 [self changeWeiboLogDesign];
                 
             });
-
-    }];
+            
+        }];
+        
+    }
     
-//    [BlockSinaWeibo loginWithHandler:^{
-//                
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        hud.mode = MBProgressHUDModeText;
-//        hud.labelText = NSLocalizedString(@"kConnectedToWeibo", nil);
-//        
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-//        dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//            
-//        
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                NSString *wid = [BlockSinaWeibo sharedClient].sinaWeibo.userID;
-//                [self loadCouponWith:wid];
-//                
-//            });
-//            
-//        });
-//        
-//    }];
+
     
 }
 

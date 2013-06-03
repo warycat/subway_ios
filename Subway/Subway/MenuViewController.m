@@ -615,8 +615,8 @@
                 
                 
                 // yuan Label
-                CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
-                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+                CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
+                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
                 yuanLbl.text = @"¥";
                 [yuanLbl setDrawOutline:NO];
                 yuanLbl.textColor = [UIColor blackColor];
@@ -626,7 +626,7 @@
                 [yuanLbl release];
                 
                 // price label
-                CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+                CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
                 [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
                 priceLbl.text = @"15" ;
                 [priceLbl setDrawOutline:NO];
@@ -1151,8 +1151,8 @@
             
             
             // yuan Label
-            CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
-            [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+            CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
+            [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
             yuanLbl.text = @"¥";
             [yuanLbl setDrawOutline:NO];
             yuanLbl.textColor = [UIColor blackColor];
@@ -1162,7 +1162,7 @@
             [yuanLbl release];
             
             // price label
-            CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+            CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
             [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
             priceLbl.text = @"15" ;
             [priceLbl setDrawOutline:NO];
@@ -1400,24 +1400,36 @@
 
 
 -(void)shareToWeibo:(id)sender {
+    
+    NSInteger currentIndex = [sender tag];
+    
     if ([settingMethod weiboIsConnected]) {
-        NSInteger currentIndex = [sender tag];
+        
         NSDictionary *currentProduct = currentProductsArray[currentIndex];
         UIImage *pic = [settingMethod getImagePath:currentProduct[@"media"][0][@"filename"]];
         NSString *titleProduct = currentProduct[@"title"];
         NSString *descriptionProduct = currentProduct[@"description"];
         NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
         NSString *status = combineMessage;
+        
         if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
-            NSLog(@"%@",pic);
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = NSLocalizedString(@"kWait", nil);
+            
             [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
                                        withParams:@{@"status":status,@"pic":pic}
                                       withHandler:^(id result) {
-                                          NSLog(@"%@",result);
+                                       
+                                              [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                        
+                                          
                                           if (result[@"error"]) {
+                                              
                                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                                               hud.mode = MBProgressHUDModeText;
-                                              hud.labelText = NSLocalizedString(result[@"error"], nil);
+                                              hud.labelText = hud.labelText = NSLocalizedString(result[@"error"], nil);
+                                              
                                               dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
                                               dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                                                   // Do something...
@@ -1425,10 +1437,13 @@
                                                       [MBProgressHUD hideHUDForView:self.view animated:YES];
                                                   });
                                               });
+                                              
                                           }else if(result[@"text"]) {
+                                              
                                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                                               hud.mode = MBProgressHUDModeText;
-                                              hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(titleProduct, nil)];
+                                              hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"kSaringMenu", nil), NSLocalizedString(titleProduct, nil)];
+                                              
                                               dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
                                               dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                                                   // Do something...
@@ -1436,28 +1451,84 @@
                                                       [MBProgressHUD hideHUDForView:self.view animated:YES];
                                                   });
                                               });
+                                              
                                           }
+                                          
                                       }];
+            
         }
+        
     }else{
-//        [self weiboAction];
+
+        [BlockSinaWeibo loginWithHandler:^{
+            [self sharingInfoToWeibo:currentIndex];
+        }];
+        
     }
 
-//    NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
-//    NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];
-//    
-//    NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
-//    
-//    
-//    SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
-//    [mySLComposerSheet setInitialText:combineMessage];
-//    [mySLComposerSheet addImage:[settingMethod getImagePath:[[[[currentProductsArray objectAtIndex:position] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
-    //[mySLComposerSheet addURL:[NSURL URLWithString:SubwayUrlLink]];
-     
+}
+
+-(void)sharingInfoToWeibo:(int)currentIndex {
+    
+    
+    NSDictionary *currentProduct = currentProductsArray[currentIndex];
+    UIImage *pic = [settingMethod getImagePath:currentProduct[@"media"][0][@"filename"]];
+    NSString *titleProduct = currentProduct[@"title"];
+    NSString *descriptionProduct = currentProduct[@"description"];
+    NSString *combineMessage = [NSString stringWithFormat:@"%@ - %@", titleProduct, descriptionProduct];
+    NSString *status = combineMessage;
+    
+    if ([BlockSinaWeibo sharedClient].sinaWeibo.isAuthValid) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = NSLocalizedString(@"kWait", nil);
+        
+        [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload.json"
+                                   withParams:@{@"status":status,@"pic":pic}
+                                  withHandler:^(id result) {
+                                      
+                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                      
+                                      
+                                      if (result[@"error"]) {
+                                          
+                                          MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                          hud.mode = MBProgressHUDModeText;
+                                          hud.labelText = NSLocalizedString(result[@"error"], nil);
+                                          
+                                          dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+                                          dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                                              // Do something...
+                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                              });
+                                          });
+                                          
+                                      }else if(result[@"text"]) {
+                                          
+                                          MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                          hud.mode = MBProgressHUDModeText;
+                                          hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"kSaringMenu", nil), NSLocalizedString(titleProduct, nil)];
+                                          
+                                          dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+                                          dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                                              // Do something...
+                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                              });
+                                              
+                                          });
+                                          
+                                      }
+                                      
+                                  }];
+
+    }
+    
 }
 
 
-- (void)sendToSina:(int)position 
+- (void)sendToSina:(int)position
 {
     NSString *titleProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"title"];
     NSString *descriptionProduct = [[currentProductsArray objectAtIndex:position] objectForKey:@"description"];

@@ -25,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+        
     CABasicAnimation *rotation;
     rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     rotation.fromValue = [NSNumber numberWithFloat:0];
@@ -43,18 +45,19 @@
     NSInteger currentTimestamp = now.integerValue;
     
     self.progressLabel.hidden = YES;
-    
-    // Update the files if the timestamp is updated
-    if (currentTimestamp - lastTimestamp > delta) {
         
-        [self updateWith:then.integerValue and:[settingMethod getUserLanguage]];
+        // Update the files if the timestamp is updated
+        if (currentTimestamp - lastTimestamp > delta) {
+            
+            [self updateWith:then.integerValue and:[settingMethod getUserLanguage]];
+            
+        }else{
+            
+            HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
+            [self.navigationController setViewControllers:@[hvc] animated:YES];
+            
+        }
         
-    }else{
-        
-        HomePageController *hvc = [[[HomePageController alloc]initWithNibName:@"HomePageController" bundle:nil]autorelease];
-        [self.navigationController setViewControllers:@[hvc] animated:YES];
-        
-    }
     
 }
 

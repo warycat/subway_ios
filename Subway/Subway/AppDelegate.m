@@ -43,11 +43,27 @@
     [settingMethod doLocation];
     
 
-    LoadingViewController *lvc = [[[LoadingViewController alloc] init] autorelease];
-    UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];
-    myNavigationController.navigationBarHidden = YES;
-    self.window.rootViewController = myNavigationController;
-    [self.window makeKeyAndVisible];
+    if ([settingMethod connectedToNetwork]) {
+        
+        LoadingViewController *lvc = [[[LoadingViewController alloc] init] autorelease];
+        UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];
+        myNavigationController.navigationBarHidden = YES;
+        self.window.rootViewController = myNavigationController;
+        [self.window makeKeyAndVisible];
+        
+        
+    }else {
+        
+        HomePageController *lvc = [[[HomePageController alloc] initWithNibName:@"HomePageController" bundle:nil]autorelease];
+        UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:lvc] autorelease];
+        myNavigationController.navigationBarHidden = YES;
+        self.window.rootViewController = myNavigationController;
+        [self.window makeKeyAndVisible];
+        
+        [settingMethod HUDMessage:@"kNoConnection" typeOfIcon:HUD_ICON_NO_CONNEXION delay:3.5 offset:CGPointMake(0, 0)];
+        
+    }
+
     
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -87,8 +103,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:token_url]];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@",dict);
+        
+        if ([data length] > 0) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            NSLog(@"%@",dict);
+        }
+        
     }];
     
 }

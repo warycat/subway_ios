@@ -274,8 +274,8 @@ static DisplayMethod * display;
         
     }else if ([myViewName isEqualToString:@"order"] || [myViewName isEqualToString:@"catering"]) {
                     
-        UIImageView *logoHomeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"store_footer_down_icon@2x"]];
-        logoHomeImg.frame = CGRectMake(14, (myLeftBtn.frame.size.height-16.5)/2, 17, 17);
+        UIImageView *logoHomeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_back@2x"]];
+        logoHomeImg.frame = CGRectMake(14, (myLeftBtn.frame.size.height-15.5)/2, 12, 15);
         [myLeftBtn addSubview:logoHomeImg];
         [logoHomeImg release];
         

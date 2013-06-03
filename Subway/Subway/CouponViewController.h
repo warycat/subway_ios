@@ -12,6 +12,7 @@
 @interface CouponViewController : UIViewController < UIScrollViewDelegate,UIGestureRecognizerDelegate> {
     
     BOOL firstLoading;
+    BOOL shareCouponAfterLogIn;
     
 }
 

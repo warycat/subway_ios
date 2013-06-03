@@ -256,8 +256,8 @@
                 [logoDay release];
                 
                 // yuan Label
-                CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
-                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+                CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
+                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
                 yuanLbl.text = @"¥";
                 [yuanLbl setDrawOutline:NO];
                 yuanLbl.textColor = [UIColor blackColor];
@@ -267,7 +267,7 @@
                 [yuanLbl release];
                 
                 // price label
-                CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+                CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
                 [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
                 priceLbl.text = @"15" ;
                 [priceLbl setDrawOutline:NO];
@@ -315,8 +315,8 @@
                 
                 
                 // yuan Label
-                CustomLabel *yuanLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 10, 20)];
-                [yuanLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:14.0]];
+                CustomLabel *yuanLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
+                [yuanLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
                 yuanLbl1.text = @"¥";
                 [yuanLbl1 setDrawOutline:NO];
                 yuanLbl1.textColor = [UIColor blackColor];
@@ -326,7 +326,7 @@
                 [yuanLbl1 release];
                 
                 // price label
-                CustomLabel *priceLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 1, 16, 30, 35)];
+                CustomLabel *priceLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
                 [priceLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
                 priceLbl1.text = @"15" ;
                 [priceLbl1 setDrawOutline:NO];

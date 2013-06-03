@@ -60,6 +60,7 @@
 "email_btn_txt" = " EMAIL";
 
 "kNoStoresAround" = "No Store Around";
+"kItinerary" = "Itinerary";
 
 
 // ------------------ MEAL
@@ -90,13 +91,15 @@
 "kCheckIn" = "check in";
 
 "learnMore_btn_txt" = " LEARN MORE";
+"kSaringMenu" = "You just shared %@";
+"kCannotShareSameContent" = "You can't share the same content";
 
 
 
 // ------------------ COUPONS
 // ----------
 
-"kSubway" = "SUBWAY";
+"kSubway" = " SUBWAY";
 "kView" = "VIEW";
 "kAvailable" = "AVAILABLE";
 "kNow" = "NOW";

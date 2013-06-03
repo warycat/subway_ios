@@ -41,10 +41,6 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    if (firstLoading) {
-        [self changeWeiboLogDesign];
-    }else { firstLoading = NO; };
-    
     [super viewDidAppear:YES];
 }
 
@@ -173,6 +169,10 @@
         firstLoading = NO;
     }
     
+    if ([settingMethod weiboIsConnected]) {
+        [self changeWeiboLogDesign];
+    }
+    
     
     // ----------------- GENERATE BOTTOM BAR
 
@@ -259,6 +259,8 @@
         [self loadData];
     }else {
         
+        [settingMethod HUDMessage:@"kNoConnection" typeOfIcon:HUD_ICON_NO_CONNEXION delay:3.5 offset:CGPointMake(0, 0)];
+        
         CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(31, 121);
         MKCoordinateRegion adjustedRegion = [self.myMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
         [self.myMapView  setRegion:adjustedRegion animated:YES];
@@ -296,6 +298,59 @@
     weiboLbl.backgroundColor = [UIColor clearColor];
     [detailsView addSubview:weiboShareBtn];
     [detailsView addSubview:weiboLbl];
+    
+    
+    UIButton *itinaryBtn =  [[UIButton alloc] init];
+    [itinaryBtn  setFrame:CGRectMake(250, weiboShareBtn.frame.origin.y + weiboShareBtn.frame.size.height + 15, 43, 43)];
+    itinaryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    itinaryBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [itinaryBtn setImage:[UIImage imageNamed:@"icon_weibo@2x"] forState:UIControlStateNormal];
+    [itinaryBtn addTarget:self action:@selector(showItinerary) forControlEvents:UIControlEventTouchDown];
+    
+    CustomLabel *itinaryLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, itinaryBtn.frame.size.height + itinaryBtn.frame.origin.y - 1, 48, 10)];
+    [itinaryLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    itinaryLbl.text = NSLocalizedString(@"kItinerary", nil);
+    [itinaryLbl setDrawOutline:YES];
+    [itinaryLbl setOutlineSize:strokeSize];
+    [itinaryLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+    itinaryLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+    itinaryLbl.textAlignment = UITextAlignmentCenter;
+    itinaryLbl.backgroundColor = [UIColor clearColor];
+    [detailsView addSubview:itinaryBtn];
+    [detailsView addSubview:itinaryLbl];
+    
+}
+
+
+-(void)showItinerary {
+    
+
+        
+    CLLocationCoordinate2D tempCoordinate;
+    tempCoordinate.latitude  = [[self.currentStore objectForKey:@"latitude"] floatValue];
+    tempCoordinate.longitude = [[self.currentStore objectForKey:@"longitude"] floatValue];
+    
+    //create MKMapItem out of coordinates
+    MKPlacemark* placeMark = [[MKPlacemark alloc] initWithCoordinate:tempCoordinate addressDictionary:nil];
+    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    
+    if([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)])
+    {
+        //using iOS6 native maps app
+        [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
+    }
+    else
+    {
+        //using iOS 5 which has the Google Maps application
+        NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", [[self.currentStore objectForKey:@"latitude"] floatValue], [[self.currentStore objectForKey:@"longitude"] floatValue]];
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+        
+    }
+    
+    [placeMark release];
+    [destination release];
+    
+    
 }
 
 
@@ -305,6 +360,7 @@
         [self sendToSina];
     }else{
         [BlockSinaWeibo loginWithHandler:^{
+            [self changeWeiboLogDesign];
             [self sendToSina];
         }];
     }
@@ -314,6 +370,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"kWait", nil);
+    
     [storeMethod getShareStoreMessageWith:@{@"locale":[settingMethod getUserLanguage],@"sid":[self.currentStore objectForKey:@"sid"],@"weiboid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} onSuccess:^(NSDictionary *responseDict) {
         
         NSLog(@"%@",responseDict);
@@ -325,14 +382,14 @@
         NSString *text = [NSString stringWithFormat:@"%@ %@",baidumap, sharecontent];
 
         [BlockSinaWeiboRequest POSTrequestAPI:@"statuses/upload_url_text.json" withParams:@{@"status":text,@"url":image} withHandler:^(id responseDict) {
-            
+                        
             NSLog(@"%@",responseDict);
             
             hud.mode = MBProgressHUDModeText;
-            hud.labelText = sharecontent;
+            hud.labelText = @"Subway share on Weibo";// sharecontent
             
             if (responseDict[@"error"]) {
-                hud.labelText = responseDict[@"error"];
+                hud.labelText = NSLocalizedString(@"kCannotShareSameContent", nil); //responseDict[@"error"];
             }
             
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
@@ -398,7 +455,6 @@
             tempCoordinate.longitude = [store[@"longitude"] floatValue];
             newMapAnnotation.coordinate = tempCoordinate;
             newMapAnnotation.title = store[@"address"];
-            //NSLog(@"%@ %@ %@ %@",store[@"ref"],store[@"latitude"],store[@"longitude"],store[@"address"]);
             [myMapView addAnnotation:newMapAnnotation];
             [annotations addObject:newMapAnnotation];
             
@@ -850,61 +906,60 @@
     }
     if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
         NSLog(@"select store");
-        UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
-        CGSize sizeForDesc = {108,50.0f};
-        NSString *myText = [NSString stringWithFormat:@"%@",view.annotation.title];
-        CGSize adressSize = [myText sizeWithFont:fontSD
-                               constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
         
-        
-        CustomLabel *tempAdressLbl = [[CustomLabel alloc] init];
-        [tempAdressLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:10.0]];
-        
-        if (adressSize.height > 22) {
-            [tempAdressLbl setFrame:CGRectMake(14, 25, 108, adressSize.height)];
-        }else {
-            [tempAdressLbl setFrame:CGRectMake(14, 30, 108, adressSize.height)];
-        }
-        
-        tempAdressLbl.text = myText;
-        [tempAdressLbl setDrawOutline:NO];
-        tempAdressLbl.tag = 1000 + view.tag;
-        tempAdressLbl.numberOfLines = 0;
-        tempAdressLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-        tempAdressLbl.textAlignment = UITextAlignmentCenter;
-        tempAdressLbl.backgroundColor = [UIColor clearColor];
-        tempAdressLbl.alpha = 0.0;
-        [view addSubview:tempAdressLbl];
-        [tempAdressLbl release];
-        
-        CGRect startFrame = view.frame;
-        CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
-        view.image = [UIImage imageNamed:@"map_pin_open"];
-        view.frame = startFrame;
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.45f];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        view.frame = endFrame;
-        tempAdressLbl.alpha = 1.0;
-        [UIView commitAnimations];
-        
-        view.centerOffset = CGPointMake(0, -146/2/2);
-    
-        CGRect detailFrame = CGRectInset(view.bounds, 20, 20);
-        UIButton *detailButton = [[UIButton alloc]initWithFrame:detailFrame];
-        detailButton.tag = 1;
-//        detailButton.backgroundColor = [UIColor greenColor];
-        [detailButton addTarget:self action:@selector(detailClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:detailButton];
-        
-        CGRect exitFrame = CGRectMake(view.bounds.size.width - 20, 0, 20, 20);
-        UIButton *exitButton = [[UIButton alloc]initWithFrame:exitFrame];
-        exitButton.tag = 2;
-//        exitButton.backgroundColor = [UIColor blueColor];
-        [exitButton addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [view addSubview:exitButton];
+//        UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
+//        CGSize sizeForDesc = {108,50.0f};
+//        NSString *myText = [NSString stringWithFormat:@"%@",view.annotation.title];
+//        CGSize adressSize = [myText sizeWithFont:fontSD
+//                               constrainedToSize:sizeForDesc lineBreakMode:UILineBreakModeWordWrap];
+//        
+//        
+//        CustomLabel *tempAdressLbl = [[CustomLabel alloc] init];
+//        [tempAdressLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:10.0]];
+//        
+//        if (adressSize.height > 22) {
+//            [tempAdressLbl setFrame:CGRectMake(14, 25, 108, adressSize.height)];
+//        }else {
+//            [tempAdressLbl setFrame:CGRectMake(14, 30, 108, adressSize.height)];
+//        }
+//        
+//        tempAdressLbl.text = myText;
+//        [tempAdressLbl setDrawOutline:NO];
+//        tempAdressLbl.tag = 1000 + view.tag;
+//        tempAdressLbl.numberOfLines = 0;
+//        tempAdressLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+//        tempAdressLbl.textAlignment = UITextAlignmentCenter;
+//        tempAdressLbl.backgroundColor = [UIColor clearColor];
+//        tempAdressLbl.alpha = 0.0;
+//        [view addSubview:tempAdressLbl];
+//        [tempAdressLbl release];
+//        
+//        CGRect startFrame = view.frame;
+//        CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
+//        view.image = [UIImage imageNamed:@"map_pin_open"];
+//        view.frame = startFrame;
+//        
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:0.45f];
+//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//        view.frame = endFrame;
+//        tempAdressLbl.alpha = 1.0;
+//        [UIView commitAnimations];
+//        
+//        view.centerOffset = CGPointMake(0, -146/2/2);
+//    
+//        CGRect detailFrame = CGRectInset(view.bounds, 20, 20);
+//        UIButton *detailButton = [[UIButton alloc]initWithFrame:detailFrame];
+//        detailButton.tag = 1;
+//        [detailButton addTarget:self action:@selector(detailClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        [view addSubview:detailButton];
+//        
+//        CGRect exitFrame = CGRectMake(view.bounds.size.width - 20, 0, 20, 20);
+//        UIButton *exitButton = [[UIButton alloc]initWithFrame:exitFrame];
+//        exitButton.tag = 2;
+//        [exitButton addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [view addSubview:exitButton];
         
         return;
     }
@@ -914,7 +969,6 @@
 {
     NSLog(@"exit");
     MKAnnotationView *view = (MKAnnotationView *)sender.superview;
-//    NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
     [self.myMapView deselectAnnotation:view.annotation animated:YES];
 }
 
@@ -923,7 +977,6 @@
     NSLog(@"touch");
     MKAnnotationView *view = (MKAnnotationView *)sender.superview;
     NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
-    //[self.myMapView deselectAnnotation:selectedAnnotation animated:NO];
     [self displayStore:index];
 }
 
@@ -938,26 +991,27 @@
     }
     
     if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
-        for (UIView *sub in [view subviews]) {
-            if ([sub isKindOfClass:[CustomLabel class]]) {
-                [sub removeFromSuperview];
-            }
-        }
         
-        NSLog(@"deselect store");
-        CGRect startFrame = view.frame;
-        CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
-        view.image =[UIImage imageNamed:@"map_pin"];
-        view.frame = startFrame;
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.45f];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        view.frame = endFrame;
-        NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
-        [UIView commitAnimations];
-        
-        view.centerOffset = CGPointMake(0, -58/2/2);
+//        for (UIView *sub in [view subviews]) {
+//            if ([sub isKindOfClass:[CustomLabel class]]) {
+//                [sub removeFromSuperview];
+//            }
+//        }
+//        
+//        NSLog(@"deselect store");
+//        CGRect startFrame = view.frame;
+//        CGRect endFrame = CGRectMake(view.frame.origin.x + 40, view.frame.origin.y + 44, 58, 29);
+//        view.image =[UIImage imageNamed:@"map_pin"];
+//        view.frame = startFrame;
+//        
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:0.45f];
+//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//        view.frame = endFrame;
+//        NSLog(@"%@",[NSValue valueWithCGRect:view.frame]);
+//        [UIView commitAnimations];
+//        
+//        view.centerOffset = CGPointMake(0, -58/2/2);
         
         return;
     }
@@ -1004,14 +1058,6 @@
         [annotationView setCanShowCallout:NO];
         annotationView.canShowCallout = NO;
         
-//        UIButton *
-//        NSString *version = [UIDevice currentDevice].systemVersion;
-//        if ([version compare:@"6.0"] == NSOrderedAscending) {
-//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-//            [annotationView addGestureRecognizer:tap];
-//        tap.delegate = self;
-//
-//        }
         return (MKAnnotationView *)annotationView;
     }
     
