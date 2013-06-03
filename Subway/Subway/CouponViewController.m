@@ -166,6 +166,7 @@
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 150, 320, screenHeight- 230)];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
+    self.scrollView.clipsToBounds = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
@@ -221,20 +222,23 @@
         NSString *stampString = [NSDateFormatter localizedStringFromDate:checkinDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
 
         
-        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
+        [stamped setFont:[UIFont fontWithName:APEX_BOLD size:22.0]];
         stamped.numberOfLines = 2;
-        stamped.drawOutline = YES;
-        stamped.outlineSize = 3;
-        stamped.outlineColor = [UIColorCov colorWithHexString:GRAY_TEXT];
+        [stamped setDrawOutline:YES];
+        [stamped setOutlineSize:3];
+        [stamped setOutlineColor:[UIColorCov colorWithHexString:GRAY_TEXT]];
         stamped.textAlignment = UITextAlignmentCenter;
         stamped.textColor = [UIColor redColor];
         stamped.text = [NSString stringWithFormat:@"STAMPED\n%@",stampString];
         stamped.backgroundColor = [UIColor clearColor];
-        stamped.center = CGPointMake(imageView.center.x + 20, imageView.center.y + 20);
+        stamped.center = CGPointMake(imageView.center.x + 50, imageView.center.y + 100);
         stamped.transform = CGAffineTransformMakeRotation(- M_PI_4 * 0.5);
         [self.scrollView addSubview:stamped];
+        
         coupon[@"stamped"] = stamped;
         NSString *checkinable = coupon[@"checkinable"];
+        
         if ([checkinable isEqualToString:@"on"]||!checkinable) {
             stamped.hidden = YES;
         }else{
@@ -627,33 +631,13 @@
             NSDictionary *err = dict[@"err"];
             if (err) {
                 
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = NSLocalizedString(err[@"msg"], nil);
+                [settingMethod HUDMessage:err[@"msg"] typeOfIcon:HUD_ICON_CHECKIN delay:4.0 offset:CGPointMake(0, 0)];
                 
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                   
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    });
-                    
-                });
                 
             }else{
                 
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = @"You just check in inside a store";
+                [settingMethod HUDMessage:@"kCheckInForCoupon" typeOfIcon:HUD_ICON_CHECKIN delay:3.0 offset:CGPointMake(0, 0)];
                 
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    });
-                    
-                });
                 
                 UIView *stamped = coupon[@"stamped"];
                 stamped.hidden = NO;
@@ -689,33 +673,19 @@
                                    withParams:@{@"status":status,@"pic":pic}
                                   withHandler:^(id result) {
             NSLog(@"%@",result);
+                  
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
                                       
             if (result[@"error"]) {
                 
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = NSLocalizedString(result[@"error"], nil);
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    });
-                    
-                });
+                [settingMethod HUDMessage:result[@"error"] typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+                
                 
             }else if(result[@"text"]) {
                 
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = [NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(title, nil)];
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-
-                dispatch_after(popTime, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                        // Do something...
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    });
-                    
-                });
+                
+                [settingMethod HUDMessage:[NSString stringWithFormat:@"%@ %@",@"Share", NSLocalizedString(title, nil)] typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+                
                 
             }
                                       

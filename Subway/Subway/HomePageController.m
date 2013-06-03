@@ -208,7 +208,7 @@
     
     NSData *menuFromSetting = [[NSUserDefaults standardUserDefaults] objectForKey:@"products"];
     NSMutableArray *menuArray = [NSKeyedUnarchiver unarchiveObjectWithData:menuFromSetting];
-    
+        
     for (int i = 0; i < [menuArray count]; i++) {
         
         NSMutableArray *productsArray = [[menuArray objectAtIndex:i] objectForKey:@"products"];
@@ -366,7 +366,7 @@
                 if (requestSOD != 0 ) {
                     
                     requestSOD = requestSOD - 1;
-                                        
+                    
                     CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake((requestSOD*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
                     [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
                     weekLbl.text = myWeekDay;
@@ -395,9 +395,18 @@
                     UIImageView *mainImgSubOfTheDay = [[UIImageView alloc] initWithImage:[settingMethod getImagePath:[[[[productsArray objectAtIndex:y] objectForKey:@"media"] objectAtIndex:0] objectForKey:@"filename"]]];
                     mainImgSubOfTheDay.frame = CGRectMake(requestSOD*infoScrollSubOfTheDay.frame.size.width, infoScrollSubOfTheDay.frame.size.height - 160, 320, 125);
                     mainImgSubOfTheDay.contentMode = UIViewContentModeScaleToFill;
+                    mainImgSubOfTheDay.userInteractionEnabled = YES;
                     [infoScrollSubOfTheDay addSubview:mainImgSubOfTheDay];
                     [mainImgSubOfTheDay release];
                     
+                    
+                    UIButton *pushToWeekSubBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                    pushToWeekSubBtn.frame = CGRectMake(0, 0, 320, 125);
+                    pushToWeekSubBtn.backgroundColor = [UIColor clearColor];
+                    pushToWeekSubBtn.tag = SODId;
+                    pushToWeekSubBtn.userInteractionEnabled = YES;
+                    [pushToWeekSubBtn addTarget:self action:@selector(pushToMenuViewFromSODForAllWeek:) forControlEvents:UIControlEventTouchUpInside];
+                    [mainImgSubOfTheDay addSubview:pushToWeekSubBtn];
                     
                 }
 
@@ -580,6 +589,45 @@
     
     MenuViewController *menuViewCtrl = [[MenuViewController alloc] init];
     menuViewCtrl.fromSubOfTheDay = YES;
+    menuViewCtrl.productId = myTag;
+    menuViewCtrl.fromSubOfTheDayAllWeek = NO;
+    [self.navigationController pushViewController:menuViewCtrl animated:YES];
+    [menuViewCtrl release];
+    
+}
+
+-(void)pushToMenuViewFromSODForAllWeek:(id)sender {
+    
+    int myTag = [sender tag];
+    
+    
+    NSData *menuFromSetting = [[NSUserDefaults standardUserDefaults] objectForKey:@"products"];
+    NSMutableArray *menuArray = [NSKeyedUnarchiver unarchiveObjectWithData:menuFromSetting];
+    
+    int myCurrentCatID = 0;
+    
+    
+    
+    for (int i = 0; i < [menuArray count]; i++) {
+
+        for (int y = 0; y < [[[menuArray objectAtIndex:i] objectForKey:@"products"] count]; y++) {
+            
+                
+                if ([[[[[menuArray objectAtIndex:i] objectForKey:@"products"] objectAtIndex:y] objectForKey:@"pid"] intValue] == myTag) {
+                    myCurrentCatID = [[[menuArray objectAtIndex:i] objectForKey:@"tid"] intValue];
+                    break;
+                }
+            
+        }            
+        
+    }
+
+    
+    
+    MenuViewController *menuViewCtrl = [[MenuViewController alloc] init];
+    menuViewCtrl.fromSubOfTheDay = YES;
+    menuViewCtrl.fromSubOfTheDayAllWeek = YES;
+    menuViewCtrl.myCurrentCatID = myCurrentCatID;
     menuViewCtrl.productId = myTag;
     [self.navigationController pushViewController:menuViewCtrl animated:YES];
     [menuViewCtrl release];

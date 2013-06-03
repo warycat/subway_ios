@@ -51,7 +51,10 @@
     CustomLabel *factDescriptionLbl;
     
     BOOL fromSubOfTheDay;
+    BOOL fromSubOfTheDayAllWeek;
+    
     int productId;
+    int myCurrentCatID;
     
 }
     
@@ -91,7 +94,9 @@
 @property (nonatomic, strong) CustomLabel *factDescriptionLbl;
 
 @property (assign, nonatomic) BOOL fromSubOfTheDay;
+@property (assign, nonatomic) BOOL fromSubOfTheDayAllWeek;
 @property (assign, nonatomic) int productId;
+@property (assign, nonatomic) int myCurrentCatID;
 
 -(void)LaunchProduct:(int)idProduct;
 

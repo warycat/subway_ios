@@ -25,7 +25,7 @@
 @synthesize subOfTheDayView, subOfTheDayContainer, subOfTheDayViewInfo;
 @synthesize productsView, menuArray, currentProductsArray, productsScroll, pageControl;
 @synthesize weiboShareBtn, healthShareBtn, tastyShareBtn, energyShareBtn, buildShareBtn, popupInfo, factIconImgForPopup, factTitleLbl, factDescriptionLbl, menuTempHolderImg;
-@synthesize healthLbl, tastyLbl, energyLbl, buildLbl, fromSubOfTheDay, productId;
+@synthesize healthLbl, tastyLbl, energyLbl, buildLbl, fromSubOfTheDay, productId, myCurrentCatID, fromSubOfTheDayAllWeek;
 @synthesize optionsProductBtn, optionsDesc;
 
 
@@ -507,6 +507,9 @@
     UIImage *BtnImgOFF = nil;
     
     int XposInside = 0;
+    
+    
+    
     for (int i = 0; i < [menuArray count]; i++) {
         
         
@@ -787,7 +790,13 @@
 	[UIView commitAnimations];
     
     if (fromSubOfTheDay == YES) {
-        [self LaunchProduct:SODId];
+        
+        if (fromSubOfTheDayAllWeek == YES) {
+            [self LaunchProduct:myCurrentCatID];
+        }else {
+            [self LaunchProduct:SODId];
+        }
+    
         
     }
     
@@ -1062,6 +1071,32 @@
     
     int positionOfTheScroll = 0;
     
+    //---
+    // ADD TEMP IMG ON CATEGORY
+    //---
+    if (fromSubOfTheDayAllWeek) {
+        fromSubOfTheDayAllWeek = NO;
+        
+        for (UIView *sub in menuScroll.subviews) {
+            
+            if ([sub isKindOfClass:[UIButton class]]) {
+                
+                UIButton *myButton = (UIButton *)sub;
+                
+                if (sub.tag == myCurrentCatID) {
+                    
+                    menuTempHolderImg.frame = CGRectMake(myButton.frame.origin.x, myButton.frame.origin.y, 90, 90);
+                    [menuScroll addSubview:menuTempHolderImg];
+                    menuTempHolderImg.hidden = NO;
+                    
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
 
     for (int i = 0; i < [menuArray count]; i++) {
         
@@ -1081,11 +1116,14 @@
                 
                 if (fromSubOfTheDay == YES) {
                     
+                    
                     if ([[[[[menuArray objectAtIndex:i] objectForKey:@"products"] objectAtIndex:y] objectForKey:@"pid"] intValue] == productId) {
                         
                         positionOfTheScroll = y;
+                            
                         
                     }
+ 
                     
                 }
             }

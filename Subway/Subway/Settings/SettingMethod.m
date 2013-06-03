@@ -190,7 +190,7 @@ static SettingMethod * setting;
         icon.frame = CGRectMake((size.width-134)/2, 0, 134, 44);
         messageLabel.frame = CGRectMake(0, 44+15, size.width, size.height);
         
-    }else if ([myIconName isEqualToString:HUD_ICON_WEIXIN]) { 
+    }else if ([myIconName isEqualToString:HUD_ICON_WEIXIN] || [myIconName isEqualToString:HUD_ICON_CHECKIN]) {
         
         layoutView.frame = CGRectMake(0, 0, size.width, size.height+43+15);
         icon.frame = CGRectMake((size.width-43)/2, 0, 43, 43);

@@ -19,7 +19,7 @@
     UIView *subOfTheDayViewInfo;
     BOOL viewIsFlipped;
     BOOL firstLoading;
-    
+        
     
 }
 //Weibo Btn

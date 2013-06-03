@@ -109,6 +109,7 @@
 "kFrom" = "FROM";
 "kUntil" = "UNTIL";
 "kShareCoupon" = "Check out this great Promotion on the Subway Application : ";
+"kCheckInForCoupon" = "Check In you can use your coupon";
 
 
 // ------------------ HOW TO ORDER
