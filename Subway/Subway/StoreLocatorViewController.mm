@@ -304,7 +304,7 @@
     [itinaryBtn  setFrame:CGRectMake(250, weiboShareBtn.frame.origin.y + weiboShareBtn.frame.size.height + 15, 43, 43)];
     itinaryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     itinaryBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [itinaryBtn setImage:[UIImage imageNamed:@"icon_weibo@2x"] forState:UIControlStateNormal];
+    [itinaryBtn setImage:[UIImage imageNamed:@"btn_itinerary@2x"] forState:UIControlStateNormal];
     [itinaryBtn addTarget:self action:@selector(showItinerary) forControlEvents:UIControlEventTouchDown];
     
     CustomLabel *itinaryLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, itinaryBtn.frame.size.height + itinaryBtn.frame.origin.y - 1, 48, 10)];
@@ -323,36 +323,57 @@
 
 
 -(void)showItinerary {
-    
 
-        
-    CLLocationCoordinate2D tempCoordinate;
-    tempCoordinate.latitude  = [[self.currentStore objectForKey:@"latitude"] floatValue];
-    tempCoordinate.longitude = [[self.currentStore objectForKey:@"longitude"] floatValue];
     
-    //create MKMapItem out of coordinates
-    MKPlacemark* placeMark = [[MKPlacemark alloc] initWithCoordinate:tempCoordinate addressDictionary:nil];
-    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
-    
-    if([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)])
-    {
-        //using iOS6 native maps app
-        [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
-    }
-    else
-    {
-        //using iOS 5 which has the Google Maps application
-        NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", [[self.currentStore objectForKey:@"latitude"] floatValue], [[self.currentStore objectForKey:@"longitude"] floatValue]];
-        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
-        
-    }
-    
-    [placeMark release];
-    [destination release];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"kItinerary", nil) message:NSLocalizedString(@"kLaunchMap", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"kCancel", nil) otherButtonTitles:NSLocalizedString(@"kYes", nil), nil];
+    [alert show];
+    [alert release];
     
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	
+	
+        
+        if (buttonIndex == 1) {
+            
+            
+            CLLocationCoordinate2D tempCoordinate;
+            tempCoordinate.latitude  = [[self.currentStore objectForKey:@"latitude"] floatValue];
+            tempCoordinate.longitude = [[self.currentStore objectForKey:@"longitude"] floatValue];
+            
+            //create MKMapItem out of coordinates
+            MKPlacemark* placeMark = [[MKPlacemark alloc] initWithCoordinate:tempCoordinate addressDictionary:nil];
+            MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+            
+            if([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)])
+            {
+                //using iOS6 native maps app
+                [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
+            }
+            else
+            {
+                //using iOS 5 which has the Google Maps application
+                NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", [[self.currentStore objectForKey:@"latitude"] floatValue], [[self.currentStore objectForKey:@"longitude"] floatValue]];
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+                
+            }
+            
+            [placeMark release];
+            [destination release];
+            
+
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            
+        }else {
+            
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        }
+        
+}
+    
+    
 
 - (void)shareStore:(id)sender
 {
@@ -906,6 +927,46 @@
     }
     if ([view isKindOfClass:[ViewMapAnnotationView class]]) {
         NSLog(@"select store");
+    
+        
+        for (id <MKAnnotation> pin in myMapView.annotations) {
+            
+            MKAnnotationView * viewAnnotation = [myMapView viewForAnnotation:pin];
+            
+            if ([viewAnnotation isKindOfClass:[MKUserLocation class]] || [viewAnnotation isKindOfClass:[SVPulsingAnnotationView class]] )
+            {
+                
+            }
+            else
+            {
+                viewAnnotation.image = [UIImage imageNamed:@"map_pin"];
+            }
+            
+        }
+        
+        
+//        for(MKAnnotationView* myAnnotation in myMapView.annotations) {
+//           
+//            
+//            if (![myAnnotation isKindOfClass:[SVPulsingAnnotationView class]] && ![myAnnotation isKindOfClass:[MKUserLocation class]]) {
+//                                
+//                myAnnotation.image = [UIImage imageNamed:@"map_pin"];
+//                
+//                //                MapPlace * myMapAnnot = (MapPlace*)currentAnnotation;
+//                //                int myTag = [myMapAnnot.idPlace intValue];
+//                //
+//                //
+//                //                    if (myTag!= view.tag) {
+//                //                        NSLog(@"annot");
+//                //                        currentAnnotation.image = [UIImage imageNamed:@"map_pin"];
+//                //                    }
+//                
+//            }
+//            
+//            
+//        }
+        
+        
         
 //        UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
 //        CGSize sizeForDesc = {108,50.0f};
@@ -934,20 +995,21 @@
 //        [view addSubview:tempAdressLbl];
 //        [tempAdressLbl release];
 //        
-//        CGRect startFrame = view.frame;
-//        CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
-//        view.image = [UIImage imageNamed:@"map_pin_open"];
+//         CGRect startFrame = view.frame;
+//         CGRect endFrame = CGRectMake(view.frame.origin.x-40, view.frame.origin.y - 44, 138, 73);
+//
+//
 //        view.frame = startFrame;
-//        
+//
 //        [UIView beginAnimations:nil context:nil];
 //        [UIView setAnimationDuration:0.45f];
 //        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 //        view.frame = endFrame;
 //        tempAdressLbl.alpha = 1.0;
 //        [UIView commitAnimations];
-//        
-//        view.centerOffset = CGPointMake(0, -146/2/2);
-//    
+//
+//          view.centerOffset = CGPointMake(0, -146/2/2);
+//
 //        CGRect detailFrame = CGRectInset(view.bounds, 20, 20);
 //        UIButton *detailButton = [[UIButton alloc]initWithFrame:detailFrame];
 //        detailButton.tag = 1;
@@ -960,6 +1022,13 @@
 //        [exitButton addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
 //        
 //        [view addSubview:exitButton];
+        
+        
+        view.image = [UIImage imageNamed:@"map_pin_selected"];
+        
+        
+        NSInteger index = [self.allAnnotations indexOfObjectIdenticalTo:view.annotation];
+        [self displayStore:index];
         
         return;
     }

@@ -61,6 +61,9 @@
 
 "kNoStoresAround" = "No Store Around";
 "kItinerary" = "Itinerary";
+"kLaunchMap" = "Do you want to launch the itinerary on your Map ?";
+"kCancel" = "Cancel";
+"kYes" = "Launch";
 
 
 // ------------------ MEAL
