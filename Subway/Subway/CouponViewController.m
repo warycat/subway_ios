@@ -229,7 +229,7 @@
         NSString *stampString = [NSDateFormatter localizedStringFromDate:checkinDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
         
         CustomLabel *stampedLabel = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
-        [stampedLabel setFont:[UIFont fontWithName:APEX_BOLD size:40]];
+        [stampedLabel setFont:[UIFont fontWithName:APEX_BOLD size:30]];
         stampedLabel.numberOfLines = 2;
         [stampedLabel setDrawOutline:YES];
         [stampedLabel setOutlineSize:3];
