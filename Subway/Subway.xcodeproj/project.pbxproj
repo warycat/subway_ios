@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46056C5017603A82007E5FF0 /* coupon_validated-640.png in Resources */ = {isa = PBXBuildFile; fileRef = 46056C4F17603A82007E5FF0 /* coupon_validated-640.png */; };
 		4634B28C1744AE1F00402239 /* subway.db in Resources */ = {isa = PBXBuildFile; fileRef = 4634B28B1744AE1F00402239 /* subway.db */; };
 		4634B2921744BEBE00402239 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4634B2901744BEBE00402239 /* LoadingViewController.m */; };
 		4634B2931744BEBE00402239 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634B2911744BEBE00402239 /* LoadingViewController.xib */; };
@@ -175,6 +176,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46056C4F17603A82007E5FF0 /* coupon_validated-640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_validated-640.png"; sourceTree = "<group>"; };
 		4634B28B1744AE1F00402239 /* subway.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = subway.db; sourceTree = "<group>"; };
 		4634B28F1744BEBE00402239 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		4634B2901744BEBE00402239 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 		4634B28E1744BE3F00402239 /* artworks */ = {
 			isa = PBXGroup;
 			children = (
+				46056C4F17603A82007E5FF0 /* coupon_validated-640.png */,
 				46958A8417535F0B0008B9FB /* Default@2x.png */,
 				46958A8217535F000008B9FB /* Default.png */,
 				EB86952B173B94D2004C9092 /* Default-568h@2x.png */,
@@ -944,6 +947,7 @@
 				EB1600D91755A23400DAA181 /* store_footer_down_icon@2x.png in Resources */,
 				EB915489175C3D1B0084905A /* btn_itinerary@2x.png in Resources */,
 				EB91548B175C3D200084905A /* map_pin_selected@2x.png in Resources */,
+				46056C5017603A82007E5FF0 /* coupon_validated-640.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
