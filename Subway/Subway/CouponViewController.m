@@ -209,40 +209,50 @@
         
         NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.frame = CGRectMake(i * 320, 0, 320, 250);
+        imageView.frame = CGRectMake(i * 320, 0, 320, screenHeight- 230);
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.userInteractionEnabled = YES;
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(flipRight:)]];
         imageView.tag = 2 * (i+1);
         [self.scrollView addSubview:imageView];
         
+        UIImageView *stampedImageView = [[UIImageView alloc]initWithFrame:imageView.bounds];
+        stampedImageView.image = [UIImage imageNamed:@"coupon_validated-640"];
+        stampedImageView.frame = imageView.frame;
+        stampedImageView.center = CGPointMake(imageView.center.x - 1, imageView.center.y -1);
+        stampedImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.scrollView addSubview:stampedImageView];
+        
         NSDateFormatter *checkindateFormatter = [[NSDateFormatter alloc] init];
         [checkindateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
         NSDate *checkinDate = (coupon[@"checkintime"] != [NSNull null])?[checkindateFormatter dateFromString:coupon[@"checkintime"]]:[NSDate date];
         NSString *stampString = [NSDateFormatter localizedStringFromDate:checkinDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+        
+        CustomLabel *stampedLabel = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
+        [stampedLabel setFont:[UIFont fontWithName:APEX_BOLD size:40]];
+        stampedLabel.numberOfLines = 2;
+        [stampedLabel setDrawOutline:YES];
+        [stampedLabel setOutlineSize:3];
+        [stampedLabel setOutlineColor:[UIColorCov colorWithHexString:GRAY_TEXT]];
+        stampedLabel.textAlignment = UITextAlignmentCenter;
+        stampedLabel.textColor = [UIColor whiteColor];
+        stampedLabel.text = [NSString stringWithFormat:@"%@",stampString];
+        stampedLabel.backgroundColor = [UIColor clearColor];
+        stampedLabel.center = CGPointMake(imageView.center.x, imageView.center.y + 50);
+        [self.scrollView addSubview:stampedLabel];
+        
 
         
-        CustomLabel *stamped = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
-        [stamped setFont:[UIFont fontWithName:APEX_BOLD size:22.0]];
-        stamped.numberOfLines = 2;
-        [stamped setDrawOutline:YES];
-        [stamped setOutlineSize:3];
-        [stamped setOutlineColor:[UIColorCov colorWithHexString:GRAY_TEXT]];
-        stamped.textAlignment = UITextAlignmentCenter;
-        stamped.textColor = [UIColor redColor];
-        stamped.text = [NSString stringWithFormat:@"STAMPED\n%@",stampString];
-        stamped.backgroundColor = [UIColor clearColor];
-        stamped.center = CGPointMake(imageView.center.x + 50, imageView.center.y + 100);
-        stamped.transform = CGAffineTransformMakeRotation(- M_PI_4 * 0.5);
-        [self.scrollView addSubview:stamped];
-        
-        coupon[@"stamped"] = stamped;
+        coupon[@"stampedLabel"] = stampedLabel;
+        coupon[@"stampedImage"] = stampedImageView;
         NSString *checkinable = coupon[@"checkinable"];
         
         if ([checkinable isEqualToString:@"on"]||!checkinable) {
-            stamped.hidden = YES;
+            stampedLabel.hidden = YES;
+            stampedImageView.hidden = YES;
         }else{
-            stamped.hidden = NO;
+            stampedLabel.hidden = NO;
+            stampedImageView.hidden = NO;
         }
         
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -257,7 +267,7 @@
         UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"coupon_reversed-%@", backgroundCouponSize]];
         UIImageView *backView = [[UIImageView alloc] initWithImage:back];
         backView.contentMode = UIViewContentModeScaleAspectFit;
-        backView.frame = CGRectMake(i * 320, 0, 320, 250);
+        backView.frame = CGRectMake(i * 320, 0, 320, screenHeight- 230);
         backView.userInteractionEnabled = YES;
         backView.tag = 2 * (i+1) + 1;
         backView.hidden = YES;
@@ -639,8 +649,10 @@
                 [settingMethod HUDMessage:@"kCheckInForCoupon" typeOfIcon:HUD_ICON_CHECKIN delay:3.0 offset:CGPointMake(0, 0)];
                 
                 
-                UIView *stamped = coupon[@"stamped"];
-                stamped.hidden = NO;
+                UIView *stampedLabel = coupon[@"stampedLabel"];
+                UIView *stampedImage = coupon[@"stampedImage"];
+                stampedLabel.hidden = NO;
+                stampedImage.hidden = NO;
                 
             }
 
