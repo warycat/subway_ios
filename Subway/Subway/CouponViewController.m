@@ -132,8 +132,14 @@
 
     
     CustomLabel *specialOffers = [[CustomLabel alloc]initWithFrame:CGRectMake(100, 70, 100, 70)];
-    specialOffers.text = @"SPECIAL\nOFFERS";
-    specialOffers.numberOfLines = 2;
+    if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+        specialOffers.text = @"SPECIAL\nOFFERS";
+        specialOffers.numberOfLines = 2;
+    }else{
+        specialOffers.text = @"特价优惠";
+        specialOffers.numberOfLines = 1;
+    }
+
     specialOffers.center = CGPointMake(160, specialOffers.center.y);
     specialOffers.font = [UIFont fontWithName:APEX_BOLD_ITALIC size:20];
     specialOffers.drawOutline = YES;

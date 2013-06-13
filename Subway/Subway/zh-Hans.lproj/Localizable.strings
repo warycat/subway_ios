@@ -1,0 +1,152 @@
+/* 
+ Localizable.strings
+ 
+ ******************************* ENGLISH ******************************* 
+ 
+ SUBWAY
+ Created by ludo on 4/18/13.
+ Copyright (c) 2013 C3O. All rights reserved.
+ */
+
+
+
+// ------------------ Top View
+// ----------
+"weibo_login_btn_txt" = " 登录";
+"weibo_logout_btn_txt" = " 登出";
+"store_btn_txt" = " 分店";
+"locator_btn_txt" = " 定位";
+"home_btn_txt" = " 首页";
+"back_btn_txt" = " 返回";
+
+
+// ------------------ Bottom View
+// ----------
+"discover_menu_btn_txt" = " 查看菜单";
+"coupon_btn_txt" = " 优惠券";
+"storeList_btn_txt" = " 分店列表";
+"catering_btn_txt" = " 聚会经典系列";
+"options_btn_txt" = " 选择";
+"howTo_btn_txt" = " 如何";
+"order_btn_txt" = " 点餐";
+
+
+
+
+
+
+// ------------------ HOME
+// ----------
+
+"allWeek_btn_txt" = " 一周";
+"kSunday" = " 周日";
+"kMonday" = " 周一";
+"kTuesday" = " 周二";
+"kWednesday" = " 周三";
+"kThursday" = " 周四";
+"kFriday" = " 周五";
+"kSaturday" = " 周六";
+
+
+
+// ------------------ STORE LOCATOR
+// ----------
+
+"kDistance" = "距离 :";
+"kMeters" = "米";
+"kKms" = "千米";
+
+"aroundMe_btn_txt" = " 周围";
+"email_btn_txt" = " 邮箱";
+
+"kNoStoresAround" = "周围没有分店";
+"kItinerary" = "路线";
+"kLaunchMap" = "想要使用地图显示路线吗?";
+"kCancel" = "取消";
+"kYes" = "显示";
+
+
+// ------------------ MEAL
+// ----------
+
+//Menu
+"kMenuValue" = "价格";
+"kMenuClassic" = "经典";
+"kMenuPremium" = "优质";
+"kMenuDrink" = "饮料";
+"kMenuSalad" = "沙拉";
+"kMenuWrap" = "面卷";
+
+"kTastyFlavor" = "口感";
+"kEnergyBoost" = "能量";
+"kSandwichBuild" = "配料";
+"kLowFat" = "低脂";
+
+"kTasty" = " 美味";
+"kEnergy" = " 能量";
+"kBuild" = " 配料";
+"kHealth" = " 健康";
+"kOptions" = " 选择";
+"kOptionsTxt" = " 选择";
+
+
+"kShareOnWeibo" = "分享";
+"kCheckIn" = "签到";
+
+"learnMore_btn_txt" = " 了解更多";
+"kSaringMenu" = "你刚分享了%@";
+"kCannotShareSameContent" = "你不能重复分享相同内容";
+
+
+
+// ------------------ COUPONS
+// ----------
+
+"kSubway" = " 赛百味";
+"kView" = "查看";
+"kAvailable" = "有效";
+"kNow" = "现在";
+"kFrom" = "开始";
+"kUntil" = "结束";
+"kShareCoupon" = "用赛百味应用了解这个促销活动";
+"kCheckInForCoupon" = "你可以使用这个优惠券";
+
+
+// ------------------ HOW TO ORDER
+// ----------
+
+"kOrder1Title" = " 三明治、沙拉还是百味卷?";
+"kOrder1Desc" = "您想要三明治、百味卷还是沙拉？一旦您决定了用我们美味的配料制成何种食品，即可继续执行下一步。";
+
+"kOrder2Title" = " 选择哪种面包？";
+"kOrder2Desc" = "这可是道难题。我们提供了当日烘培的各式风味面包任您挑选，包括意大利白面包(Italian)、全麦面包(Wheat)、香奶酪面包(Parmesan Oregano)和蜂蜜燕麦面包(Honey Oat)";
+
+"kOrder3Title" = " 选择多大尺寸的面包？";
+"kOrder3Desc" = "您是否感觉非常饥饿？您自己一个人用餐还是和朋友一起用餐？您在选择6英寸三明治还是选择闻名遐迩的12英寸三明治而左右为难的时候，这些都是该提的问题。";
+
+"kOrder4Title" = " 需要哪些配料？";
+"kOrder4Desc" = "现在尽情体验点餐乐趣吧！完全按照自己的喜好制作您的三明治。在这一步，您可以要双份肉，加奶酪等，让您的三明治口味更加出众。您是否希望加入更多配料？尝尝新鲜美味的香烤三明治吧！";
+
+"kOrder5Title" = " 需要哪些蔬菜？";
+"kOrder5Desc" = "铺上蔬菜。自选的清脆蔬菜，满满当当，鲜香四溢。从经典系列蔬菜（如生菜、西红柿和黄瓜）到异国风味的蔬菜。";
+
+"kOrder6Title" = " 需要哪种调味酱？";
+"kOrder6Desc" = "谈到配料，调味酱当然是必不可少的。浇上您喜欢的调味酱，如香葱酱、蜜汁芥末酱或西南酱等、让您的美食鲜香四溢。";
+
+"kOrder7Title" = " 是否搭配成套餐？";
+"kOrder7Desc" = "除了单点自己喜爱的三明治、沙拉或百味卷外，更优惠的是，您可以选择其他的美食及饮料搭配成套餐。";
+
+
+
+
+
+// ------------------ HUD
+// ----------
+
+"kNoConnection" = "可能没有连接到英特网";
+"kNoEventAvailable" = "没有活动";
+"kConnectedToWeibo" = " 微博已经连接";
+"kDisconnectedToWeibo" = "微博断开连接";
+"kNoConnectedToWeibo" = "必须连接微博才能签到";
+
+"kWait" = "请稍候";
