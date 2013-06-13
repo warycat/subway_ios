@@ -138,6 +138,7 @@
                         NSNumber *now = [NSNumber numberWithFloat:[[NSDate date] timeIntervalSince1970]];
                         NSInteger currentTimestamp = now.integerValue;
                         [databaseMethod addVersion:currentTimestamp :locale];
+                        
                     }
                     
                     
