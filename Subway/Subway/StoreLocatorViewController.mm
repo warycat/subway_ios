@@ -197,7 +197,7 @@
     UIButton *actualiserbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 130, 0, 130, 40);
     
-    if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+    if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
         actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 90, 0, 90, 40);
     }
     

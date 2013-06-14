@@ -132,12 +132,13 @@
 
     
     CustomLabel *specialOffers = [[CustomLabel alloc]initWithFrame:CGRectMake(100, 70, 100, 70)];
-    if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
-        specialOffers.text = @"SPECIAL\nOFFERS";
-        specialOffers.numberOfLines = 2;
-    }else{
+    
+    if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
         specialOffers.text = @"特价优惠";
         specialOffers.numberOfLines = 1;
+    }else{
+        specialOffers.text = @"SPECIAL\nOFFERS";
+        specialOffers.numberOfLines = 2;
     }
 
     specialOffers.center = CGPointMake(160, specialOffers.center.y);

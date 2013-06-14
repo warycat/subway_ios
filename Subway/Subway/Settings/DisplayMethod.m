@@ -152,7 +152,7 @@ static DisplayMethod * display;
         [myRightBtn addSubview:logoLocatorImg];
         [logoLocatorImg release];
         
-        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
             
             logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
             
@@ -267,7 +267,7 @@ static DisplayMethod * display;
         [logoLocatorImg release];
         
         
-        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
             
             logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
             
@@ -506,7 +506,7 @@ static DisplayMethod * display;
             rightBtnImgOFF = [UIImage imageNamed:@"footer_options_off@2x"];
             
             
-            if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+            if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
                 
                 btn2Lbl.textAlignment = UITextAlignmentCenter;
                 btn2Lbl.frame = CGRectMake(0, 5, myBtn2.frame.size.width, 45);

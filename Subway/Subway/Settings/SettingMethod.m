@@ -262,35 +262,17 @@ static SettingMethod * setting;
 
 -(void)setLanguage {
     
-<<<<<<< HEAD
-    NSString *myLanguage = @"";
-    NSArray* preferredLangs = [NSLocale preferredLanguages];
-    myLanguage = [preferredLangs objectAtIndex:0];
-    myLanguage = [myLanguage substringWithRange: NSMakeRange(0, 2)];
-    
-    NSLog(@"myLanguage : %@", myLanguage);
-    
-    NSString *lang = @"";
-    
-    if ([myLanguage isEqualToString:@"cn"] || [myLanguage isEqualToString:@"zh"]) {
-        
-        lang = @"cn";
-        
-    }else {
-        
-        lang = @"en";
-        
-    }
-    
-=======
     NSString *lang = [NSLocale preferredLanguages][0];
+    
     NSLog(@"%@ %@",lang,[NSLocale preferredLanguages]);
+    
     if ([lang isEqualToString:@"zh-Hans"]||[lang isEqualToString:@"zh-Hant"]||[lang isEqualToString:@"cn"]) {
         lang = @"cn";
     }else{
         lang = @"en";
     }
->>>>>>> origin/working
+
+    
     [[NSUserDefaults standardUserDefaults] setObject:lang forKey:@"userLanguage"];
     [[NSUserDefaults standardUserDefaults]synchronize];
           
