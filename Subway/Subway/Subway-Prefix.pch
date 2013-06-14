@@ -71,7 +71,7 @@
 // ---------------------
 
 #define APEX_BOLD @"ApexNew-Bold"
-#define APEX_BOLD_ITALIC @"ApexNew-BoldItalic"
+#define APEX_BOLD_ITALIC  @"ApexNew-BoldItalic"
 
 #define APEX_BOOK @"ApexNew-Book"
 #define APEX_BOOK_ITALIC @"ApexNew-BookItalic"
@@ -91,6 +91,13 @@
 #define APEX_ULTRA @"ApexNew-Ultra"
 #define APEX_UTRA_ITALIC @"ApexNew-UltraItalic"
 
+
+//chinese
+
+#define CN_HEAVY @"FZChaoCuHei-M10S"
+#define CN_BOLD @"FZDahei-B02S"
+#define CN_REGULAR @"FZHei-B01S"
+#define CN_LIGHT @"FZXiHei I-Z08S"
 
 // ---------------------
 // --------------------- COLOR

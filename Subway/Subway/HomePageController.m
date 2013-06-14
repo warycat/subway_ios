@@ -142,7 +142,7 @@
     
     
     CustomLabel *backLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, backInfobtn.frame.size.width, backInfobtn.frame.size.height)];
-    [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+    [backLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
     backLbl.text = NSLocalizedString(@"back_btn_txt", nil);
     [backLbl setDrawOutline:YES];
     [backLbl setOutlineSize:strokeSize];
@@ -180,7 +180,7 @@
     
     
     CustomLabel *learnLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, showMOreInfobtn.frame.size.width, showMOreInfobtn.frame.size.height)];
-    [learnLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+    [learnLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
     learnLbl.text = NSLocalizedString(@"allWeek_btn_txt", nil);
     [learnLbl setDrawOutline:YES];
     [learnLbl setOutlineSize:strokeSize];
@@ -231,7 +231,7 @@
             if (requestSOD == today) {
                 
                 CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, subOfTheDayView.frame.size.height - 44, subOfTheDayView.frame.size.width - 145, 40)];
-                [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:19.0]];
+                [titleProductLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:19.0]];
                 titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductLbl setDrawOutline:YES];
                 [titleProductLbl setOutlineSize:strokeSize];
@@ -257,7 +257,7 @@
                 
                 // yuan Label
                 CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
-                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
+                [yuanLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:16.0]];
                 yuanLbl.text = @"¥";
                 [yuanLbl setDrawOutline:NO];
                 yuanLbl.textColor = [UIColor blackColor];
@@ -268,7 +268,7 @@
                 
                 // price label
                 CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
-                [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+                [priceLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:24.0]];
                 priceLbl.text = @"15" ;
                 [priceLbl setDrawOutline:NO];
                 priceLbl.textColor = [UIColor blackColor];
@@ -290,7 +290,7 @@
                 //-------- Put the sub on the ALL WEEK subday
                 
                 CustomLabel *titleProductForAllWeekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 20, infoScrollSubOfTheDay.frame.size.height - 44, infoScrollSubOfTheDay.frame.size.width - 145, 40)];
-                [titleProductForAllWeekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:17.0]];
+                [titleProductForAllWeekLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:17.0]];
                 titleProductForAllWeekLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductForAllWeekLbl setDrawOutline:YES];
                 [titleProductForAllWeekLbl setOutlineSize:strokeSize];
@@ -316,7 +316,7 @@
                 
                 // yuan Label
                 CustomLabel *yuanLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
-                [yuanLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
+                [yuanLbl1 setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:16.0]];
                 yuanLbl1.text = @"¥";
                 [yuanLbl1 setDrawOutline:NO];
                 yuanLbl1.textColor = [UIColor blackColor];
@@ -327,7 +327,7 @@
                 
                 // price label
                 CustomLabel *priceLbl1 = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
-                [priceLbl1 setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+                [priceLbl1 setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:24.0]];
                 priceLbl1.text = @"15" ;
                 [priceLbl1 setDrawOutline:NO];
                 priceLbl1.textColor = [UIColor blackColor];
@@ -339,7 +339,7 @@
                 
                 
                 CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(((requestSOD-1)*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
-                [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
+                [weekLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:22.0]];
                 weekLbl.text = myWeekDay;
                 [weekLbl setDrawOutline:YES];
                 [weekLbl setOutlineSize:strokeSize];
@@ -368,7 +368,7 @@
                     requestSOD = requestSOD - 1;
                     
                     CustomLabel *weekLbl = [[CustomLabel alloc] initWithFrame:CGRectMake((requestSOD*infoScrollSubOfTheDay.frame.size.width) + 15, 5, infoScrollSubOfTheDay.frame.size.width, 30)];
-                    [weekLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
+                    [weekLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:22.0]];
                     weekLbl.text = myWeekDay;
                     [weekLbl setDrawOutline:YES];
                     [weekLbl setOutlineSize:strokeSize];
@@ -381,7 +381,7 @@
                     
                     
                     CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake((requestSOD*infoScrollSubOfTheDay.frame.size.width) + 20, infoScrollSubOfTheDay.frame.size.height - 44, infoScrollSubOfTheDay.frame.size.width - 145, 40)];
-                    [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:17.0]];
+                    [titleProductLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:17.0]];
                     titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                     [titleProductLbl setDrawOutline:YES];
                     [titleProductLbl setOutlineSize:strokeSize];

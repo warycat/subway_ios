@@ -134,7 +134,7 @@ static DisplayMethod * display;
             [logoweiboImg release];
             
             CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 50, myLeftBtn.frame.size.height)];
-            [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            [weiboLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
             weiboLbl.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
             [weiboLbl setDrawOutline:YES];
             [weiboLbl setOutlineSize:strokeSize];
@@ -152,10 +152,26 @@ static DisplayMethod * display;
         [myRightBtn addSubview:logoLocatorImg];
         [logoLocatorImg release];
         
-        if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+            
+            logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
+            
+            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x -2, 1, 50, myLeftBtn.frame.size.height)];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
+            storeLbl.text = @"  定位";
+            [storeLbl setDrawOutline:YES];
+            [storeLbl setOutlineSize:strokeSize];
+            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            storeLbl.textAlignment = UITextAlignmentLeft;
+            storeLbl.backgroundColor = [UIColor clearColor];
+            [myRightBtn addSubview:storeLbl];
+            [storeLbl release];
+            
+        }else{
             
             CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 15.0)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
             storeLbl.text = NSLocalizedString(@"store_btn_txt", nil);
             [storeLbl setDrawOutline:YES];
             [storeLbl setOutlineSize:strokeSize];
@@ -167,7 +183,7 @@ static DisplayMethod * display;
             [storeLbl release];
             
             CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, storeLbl.frame.size.height + logoLocatorImg.frame.origin.y - 3.5, 48, 11.0)];
-            [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+            [locatorLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.5]];
             locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
             [locatorLbl setDrawOutline:YES];
             [locatorLbl setOutlineSize:strokeSize];
@@ -177,46 +193,10 @@ static DisplayMethod * display;
             locatorLbl.backgroundColor = [UIColor clearColor];
             [myRightBtn addSubview:locatorLbl];
             [locatorLbl release];
-        }else{
-            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 1, 50, myLeftBtn.frame.size.height)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-            storeLbl.text = @"  定位";
-            [storeLbl setDrawOutline:YES];
-            [storeLbl setOutlineSize:strokeSize];
-            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-            storeLbl.textAlignment = UITextAlignmentLeft;
-            storeLbl.backgroundColor = [UIColor clearColor];
-            [myRightBtn addSubview:storeLbl];
-            [storeLbl release];
+            
         }
         
-//        CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 15.0)];
-//        [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-//        storeLbl.text = NSLocalizedString(@"store_btn_txt", nil);
-//        [storeLbl setDrawOutline:YES];
-//        [storeLbl setOutlineSize:strokeSize];
-//        [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-//        storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//        storeLbl.textAlignment = UITextAlignmentLeft;
-//        storeLbl.backgroundColor = [UIColor clearColor];
-//        [myRightBtn addSubview:storeLbl];
-//        [storeLbl release];
-//        
-//        CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, storeLbl.frame.size.height + logoLocatorImg.frame.origin.y - 3.5, 48, 11.0)];
-//        [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
-//        locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
-//        [locatorLbl setDrawOutline:YES];
-//        [locatorLbl setOutlineSize:strokeSize];
-//        [locatorLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-//        locatorLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//        locatorLbl.textAlignment = UITextAlignmentLeft;
-//        locatorLbl.backgroundColor = [UIColor clearColor];
-//        [myRightBtn addSubview:locatorLbl];
-//        [locatorLbl release];
-        
-        
-        
+    
     }else if ([myViewName isEqualToString:@"storeLocator"]||[myViewName isEqualToString:@"coupon"]) {
         
         if (myLeftBtn != nil) {
@@ -228,7 +208,7 @@ static DisplayMethod * display;
             [logoweiboImg release];
             
             CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoweiboImg.frame.size.width + logoweiboImg.frame.origin.x - 2, 1, 50, myLeftBtn.frame.size.height)];
-            [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            [weiboLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
             weiboLbl.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
             [weiboLbl setDrawOutline:YES];
             [weiboLbl setOutlineSize:strokeSize];
@@ -247,7 +227,7 @@ static DisplayMethod * display;
         [logoHomeImg release];
         
         CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x - 1, 1, 48, myRightBtn.frame.size.height)];
-        [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+        [homeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
         homeLbl.text = NSLocalizedString(@"home_btn_txt", nil);
         [homeLbl setDrawOutline:YES];
         [homeLbl setOutlineSize:strokeSize];
@@ -269,7 +249,7 @@ static DisplayMethod * display;
         
         
         CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x - 1, 1, 48, myLeftBtn.frame.size.height)];
-        [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+        [homeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
         homeLbl.text = NSLocalizedString(@"home_btn_txt", nil);
         [homeLbl setDrawOutline:YES];
         [homeLbl setOutlineSize:strokeSize];
@@ -286,10 +266,27 @@ static DisplayMethod * display;
         [myRightBtn addSubview:logoLocatorImg];
         [logoLocatorImg release];
         
-        if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+        
+        if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+            
+            logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
+            
+            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 25.0)];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
+            storeLbl.text = @"  定位";
+            [storeLbl setDrawOutline:YES];
+            [storeLbl setOutlineSize:strokeSize];
+            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            storeLbl.textAlignment = UITextAlignmentLeft;
+            storeLbl.backgroundColor = [UIColor clearColor];
+            [myRightBtn addSubview:storeLbl];
+            [storeLbl release];
+            
+        }else{
             
             CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 15.0)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
             storeLbl.text = NSLocalizedString(@"store_btn_txt", nil);
             [storeLbl setDrawOutline:YES];
             [storeLbl setOutlineSize:strokeSize];
@@ -301,7 +298,7 @@ static DisplayMethod * display;
             [storeLbl release];
             
             CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, storeLbl.frame.size.height + logoLocatorImg.frame.origin.y - 3.5, 48, 11.0)];
-            [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+            [locatorLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.5]];
             locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
             [locatorLbl setDrawOutline:YES];
             [locatorLbl setOutlineSize:strokeSize];
@@ -311,22 +308,7 @@ static DisplayMethod * display;
             locatorLbl.backgroundColor = [UIColor clearColor];
             [myRightBtn addSubview:locatorLbl];
             [locatorLbl release];
-            
-        }else{
-            
-            logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
-            
-            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 25.0)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-            storeLbl.text = @"  定位";
-            [storeLbl setDrawOutline:YES];
-            [storeLbl setOutlineSize:strokeSize];
-            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-            storeLbl.textAlignment = UITextAlignmentLeft;
-            storeLbl.backgroundColor = [UIColor clearColor];
-            [myRightBtn addSubview:storeLbl];
-            [storeLbl release];
+
         }
         
 
@@ -340,7 +322,7 @@ static DisplayMethod * display;
         
         
         CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 1, 48, myLeftBtn.frame.size.height)];
-        [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+        [homeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
         homeLbl.text = NSLocalizedString(@"back_btn_txt", nil);
         [homeLbl setDrawOutline:YES];
         [homeLbl setOutlineSize:strokeSize];
@@ -357,10 +339,29 @@ static DisplayMethod * display;
         [myRightBtn addSubview:logoLocatorImg];
         [logoLocatorImg release];
         
-        if ([[settingMethod getUserLanguage]isEqualToString:@"en"]) {
+        if ([[settingMethod getUserLanguage]isEqualToString:@"cn"] || [[settingMethod getUserLanguage]isEqualToString:@"zh"]) {
+            
+            logoHomeImg.frame = CGRectMake(17, (myLeftBtn.frame.size.height-15.5)/2, 12, 15);
+            homeLbl.frame = CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 1, 48, myLeftBtn.frame.size.height);
+            
+            logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
+            
+            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 25)];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
+            storeLbl.text = @"  定位";
+            [storeLbl setDrawOutline:YES];
+            [storeLbl setOutlineSize:strokeSize];
+            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
+            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
+            storeLbl.textAlignment = UITextAlignmentLeft;
+            storeLbl.backgroundColor = [UIColor clearColor];
+            [myRightBtn addSubview:storeLbl];
+            [storeLbl release];
+            
+        }else{
             
             CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 15.0)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            [storeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
             storeLbl.text = NSLocalizedString(@"store_btn_txt", nil);
             [storeLbl setDrawOutline:YES];
             [storeLbl setOutlineSize:strokeSize];
@@ -372,7 +373,7 @@ static DisplayMethod * display;
             [storeLbl release];
             
             CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, storeLbl.frame.size.height + logoLocatorImg.frame.origin.y - 3.5, 48, 11.0)];
-            [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+            [locatorLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.5]];
             locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
             [locatorLbl setDrawOutline:YES];
             [locatorLbl setOutlineSize:strokeSize];
@@ -383,22 +384,6 @@ static DisplayMethod * display;
             [myRightBtn addSubview:locatorLbl];
             [locatorLbl release];
             
-        }else{
-            
-            logoHomeImg.frame = CGRectMake(16, (myLeftBtn.frame.size.height-15.5)/2, 12, 15);
-            logoLocatorImg.frame = CGRectMake(16, (myRightBtn.frame.size.height-22)/2, 19, 22);
-            
-            CustomLabel *storeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocatorImg.frame.size.width + logoLocatorImg.frame.origin.x - 2, 10, 48, 25)];
-            [storeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-            storeLbl.text = @"  定位";
-            [storeLbl setDrawOutline:YES];
-            [storeLbl setOutlineSize:strokeSize];
-            [storeLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-            storeLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-            storeLbl.textAlignment = UITextAlignmentLeft;
-            storeLbl.backgroundColor = [UIColor clearColor];
-            [myRightBtn addSubview:storeLbl];
-            [storeLbl release];
         }
         
 
@@ -438,7 +423,7 @@ static DisplayMethod * display;
          [bt1IconImg release];
          
          CustomLabel *btn1Lbl = [[CustomLabel alloc] init];
-         [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+         [btn1Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
          [btn1Lbl setDrawOutline:YES];
          [btn1Lbl setOutlineSize:strokeSize];
          [btn1Lbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
@@ -501,7 +486,7 @@ static DisplayMethod * display;
         [bt2IconImg release];
         
         CustomLabel *btn2Lbl = [[CustomLabel alloc] init];
-        [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+        [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
         [btn2Lbl setDrawOutline:YES];
         [btn2Lbl setOutlineSize:strokeSize];
         [btn2Lbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
@@ -519,14 +504,25 @@ static DisplayMethod * display;
             [myBtn2  setFrame:CGRectMake(myBtn1.frame.size.width, 0, 110, 45)];
             rightBtnImgON = [UIImage imageNamed:@"footer_options_on@2x"];
             rightBtnImgOFF = [UIImage imageNamed:@"footer_options_off@2x"];
-            if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+            
+            
+            if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
+                
+                btn2Lbl.textAlignment = UITextAlignmentCenter;
+                btn2Lbl.frame = CGRectMake(0, 5, myBtn2.frame.size.width, 45);
+                btn2Lbl.text = @"如何点餐";
+                [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
+                
+                
+            }else{
+                
                 btn2Lbl.textAlignment = UITextAlignmentCenter;
                 btn2Lbl.frame = CGRectMake(0, 15, myBtn2.frame.size.width, 13.0);
                 btn2Lbl.text = NSLocalizedString(@"howTo_btn_txt", nil);
-                [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+                [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.5]];
                 
                 CustomLabel *btn3LblBottom = [[CustomLabel alloc] initWithFrame:CGRectMake(0, btn2Lbl.frame.size.height + btn2Lbl.frame.origin.y - 3.5, myBtn2.frame.size.width, 15.0)];
-                [btn3LblBottom setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+                [btn3LblBottom setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
                 btn3LblBottom.text = NSLocalizedString(@"order_btn_txt", nil);
                 [btn3LblBottom setDrawOutline:YES];
                 [btn3LblBottom setOutlineSize:strokeSize];
@@ -536,30 +532,9 @@ static DisplayMethod * display;
                 btn3LblBottom.backgroundColor = [UIColor clearColor];
                 [myBtn2 addSubview:btn3LblBottom];
                 [btn3LblBottom release];
-            }else{
-                btn2Lbl.textAlignment = UITextAlignmentCenter;
-                btn2Lbl.frame = CGRectMake(0, 5, myBtn2.frame.size.width, 45);
-                btn2Lbl.text = @"如何点餐";
-                [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+                
             }
-//            btn2Lbl.textAlignment = UITextAlignmentCenter;
-//            btn2Lbl.frame = CGRectMake(0, 15, myBtn2.frame.size.width, 13.0);
-//            btn2Lbl.text = NSLocalizedString(@"howTo_btn_txt", nil);
-//            [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
-//            
-//            CustomLabel *btn3LblBottom = [[CustomLabel alloc] initWithFrame:CGRectMake(0, btn2Lbl.frame.size.height + btn2Lbl.frame.origin.y - 3.5, myBtn2.frame.size.width, 15.0)];
-//            [btn3LblBottom setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
-//            btn3LblBottom.text = NSLocalizedString(@"order_btn_txt", nil);
-//            [btn3LblBottom setDrawOutline:YES];
-//            [btn3LblBottom setOutlineSize:strokeSize];
-//            [btn3LblBottom setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
-//            btn3LblBottom.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
-//            btn3LblBottom.textAlignment = UITextAlignmentCenter;
-//            btn3LblBottom.backgroundColor = [UIColor clearColor];
-//            [myBtn2 addSubview:btn3LblBottom];
-//            [btn3LblBottom release];
-            
-            
+
             
         }else if ([myViewName isEqualToString:@"home"]) {
             
@@ -573,14 +548,21 @@ static DisplayMethod * display;
             bt2IconImg.image = [UIImage imageNamed:@"logo_storelocator@2x"];
             bt2IconImg.frame = CGRectMake(19, 17, 19, 22);
             
-            if ([[settingMethod getUserLanguage]isEqualToString:@"en"]) {
-                [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+            if ([[settingMethod getUserLanguage]isEqualToString:@"cn"] || [[settingMethod getUserLanguage]isEqualToString:@"zh"]) {
+                
+                [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
+                btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, 16.0,  48, 25);
+                btn2Lbl.text = @"  定位";
+                
+            }else{
+                
+                [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
                 btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, 16.0,  48, 15.0);
                 btn2Lbl.text = NSLocalizedString(@"store_btn_txt", nil);
                 
                 
                 CustomLabel *locatorLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, btn2Lbl.frame.size.height + bt2IconImg.frame.origin.y - 3.5, 48, 11.0)];
-                [locatorLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.5]];
+                [locatorLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.5]];
                 locatorLbl.text = NSLocalizedString(@"locator_btn_txt", nil);
                 [locatorLbl setDrawOutline:YES];
                 [locatorLbl setOutlineSize:strokeSize];
@@ -590,10 +572,6 @@ static DisplayMethod * display;
                 locatorLbl.backgroundColor = [UIColor clearColor];
                 [myBtn2 addSubview:locatorLbl];
                 [locatorLbl release];
-            }else{
-                [btn2Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
-                btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, 16.0,  48, 25);
-                btn2Lbl.text = @"  定位";
             }
         }
         
@@ -630,7 +608,7 @@ static DisplayMethod * display;
         bt3IconImg.frame = CGRectMake(10, 18, 17, 17);
         
         CustomLabel *btn3Lbl = [[CustomLabel alloc] init];
-        [btn3Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+        [btn3Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
         btn3Lbl.frame = CGRectMake(bt3IconImg.frame.size.width + bt3IconImg.frame.origin.x + 1, 5.5,  myBtn3.frame.size.width, myBtn3.frame.size.height);
         btn3Lbl.text = NSLocalizedString(@"coupon_btn_txt", nil);
         [btn3Lbl setDrawOutline:YES];

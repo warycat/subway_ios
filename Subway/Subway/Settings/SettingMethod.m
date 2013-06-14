@@ -271,17 +271,16 @@ static SettingMethod * setting;
     
     NSString *lang = @"";
     
-    if ([myLanguage isEqualToString:@"en"]) {
-        
-        lang = @"en";
-        
-    }else {
+    if ([myLanguage isEqualToString:@"cn"] || [myLanguage isEqualToString:@"zh"]) {
         
         lang = @"cn";
         
+    }else {
+        
+        lang = @"en";
+        
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:lang, nil] forKey:@"AppleLanguages"];
     [[NSUserDefaults standardUserDefaults] setObject:lang forKey:@"userLanguage"];
           
 }
@@ -420,6 +419,37 @@ static SettingMethod * setting;
 	[fileManager release];
 	return image;
 	
+}
+
+// =================GET THE FONT =================
+
+-(NSString *)checkFont:(NSString *)myFont {
+    
+    
+    if ([[self getUserLanguage] isEqualToString:@"cn"]) {
+        
+        if ([myFont isEqualToString:APEX_BOLD] || [myFont isEqualToString:APEX_BOLD_ITALIC ]) {
+            return CN_BOLD;
+        }else if ([myFont isEqualToString:APEX_HEAVY] || [myFont isEqualToString:APEX_HEAVY_ITALIC]) {
+            return CN_HEAVY;
+        }else if ([myFont isEqualToString:APEX_LIGHT] || [myFont isEqualToString:APEX_LIGHT_ITALIC]) {
+            return CN_LIGHT;
+        }else if ([myFont isEqualToString:APEX_MEDIUM] || [myFont isEqualToString:APEX_MEDIUM_ITALIC]) {
+            return CN_REGULAR;
+        }else if ([myFont isEqualToString:APEX_THIN] || [myFont isEqualToString:APEX_THIN_ITALIC]) {
+            return CN_REGULAR;
+        }else if ([myFont isEqualToString:APEX_ULTRA] || [myFont isEqualToString:APEX_UTRA_ITALIC]) {
+            return CN_HEAVY;
+        }else {
+            return CN_BOLD;
+        }
+        
+    }else {
+        
+        return myFont;
+    }
+    
+    
 }
 
 

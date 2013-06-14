@@ -92,7 +92,7 @@
     
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, 120, 48, 10)];
     weiboLbl.center = CGPointMake(weiboLbl.center.x, weiboLbl.center.y);
-    [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [weiboLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
@@ -119,7 +119,7 @@
     
     CustomLabel *checkInLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(250, 120, 48, 10)];
     checkInLbl.center = CGPointMake(checkInBtn.center.x, checkInLbl.center.y);
-    [checkInLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [checkInLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     checkInLbl.text = NSLocalizedString(@"kCheckIn", nil);
     [checkInLbl setDrawOutline:YES];
     [checkInLbl setOutlineSize:strokeSize];
@@ -141,7 +141,7 @@
     }
 
     specialOffers.center = CGPointMake(160, specialOffers.center.y);
-    specialOffers.font = [UIFont fontWithName:APEX_BOLD_ITALIC size:20];
+    specialOffers.font = [UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:20];
     specialOffers.drawOutline = YES;
     specialOffers.outlineSize = 5;
     specialOffers.outlineColor = [UIColorCov colorWithHexString:GRAY_STROKE];
@@ -235,7 +235,7 @@
         NSString *stampString = [NSDateFormatter localizedStringFromDate:checkinDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
         
         CustomLabel *stampedLabel = [[CustomLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
-        [stampedLabel setFont:[UIFont fontWithName:APEX_BOLD size:30]];
+        [stampedLabel setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:30]];
         stampedLabel.numberOfLines = 2;
         [stampedLabel setDrawOutline:YES];
         [stampedLabel setOutlineSize:3];
@@ -426,7 +426,7 @@
         viewLabel.textAlignment = UITextAlignmentCenter;
         viewLabel.frame = CGRectMake(0, 0, 100, 15);
         viewLabel.center = CGPointMake(160 , 212);
-        [viewLabel setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+        [viewLabel setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:13.0]];
         viewLabel.text = NSLocalizedString(@"kView", nil);
         [viewLabel setDrawOutline:YES];
         [viewLabel setOutlineSize:strokeSize];

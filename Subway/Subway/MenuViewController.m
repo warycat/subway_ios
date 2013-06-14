@@ -104,7 +104,7 @@
     
     
     CustomLabel *backLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 3, backInfobtn.frame.size.width, backInfobtn.frame.size.height)];
-    [backLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+    [backLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
     backLbl.text = NSLocalizedString(@"back_btn_txt", nil);
     [backLbl setDrawOutline:YES];
     [backLbl setOutlineSize:strokeSize];
@@ -157,7 +157,7 @@
     
     
     CustomLabel *learnLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoPLus.frame.size.width + logoPLus.frame.origin.x - 1, 3, 100, showMOreInfobtn.frame.size.height)];
-    [learnLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.5]];
+    [learnLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
     learnLbl.text = NSLocalizedString(@"learnMore_btn_txt", nil);
     [learnLbl setDrawOutline:YES];
     [learnLbl setOutlineSize:strokeSize];
@@ -244,7 +244,7 @@
     
     // Fasts Title
     factTitleLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 45, popupInfo.frame.size.width, 20)];
-    [factTitleLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:18.0]];
+    [factTitleLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:18.0]];
     factTitleLbl.text = @"";
     [factTitleLbl setDrawOutline:YES];
     [factTitleLbl setOutlineSize:strokeSize];
@@ -262,7 +262,7 @@
     
     // Facts Description
     factDescriptionLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 60, popupInfo.frame.size.width - 10, 100)];
-    [factDescriptionLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    [factDescriptionLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:13.0]];
     factDescriptionLbl.text = @"";
     [factDescriptionLbl setDrawOutline:YES];
     [factDescriptionLbl setOutlineSize:strokeSize];
@@ -305,7 +305,7 @@
     [weiboShareBtn release];
     
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
-    [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [weiboLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
@@ -335,7 +335,7 @@
     [productsView  addSubview:healthShareBtn];
     
     healthLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(healthShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
-    [healthLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [healthLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     healthLbl.text = NSLocalizedString(@"kLowFat", nil);
     [healthLbl setDrawOutline:YES];
     [healthLbl setOutlineSize:strokeSize];
@@ -357,7 +357,7 @@
     [productsView  addSubview:tastyShareBtn];
     
     tastyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(tastyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
-    [tastyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [tastyLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     tastyLbl.text = NSLocalizedString(@"kTastyFlavor", nil);
     [tastyLbl setDrawOutline:YES];
     [tastyLbl setOutlineSize:strokeSize];
@@ -380,7 +380,7 @@
     [productsView  addSubview:energyShareBtn];
     
     energyLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(energyShareBtn.frame.origin.x - 5, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
-    [energyLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [energyLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     energyLbl.text = NSLocalizedString(@"kEnergyBoost", nil);
     [energyLbl setDrawOutline:YES];
     [energyLbl setOutlineSize:strokeSize];
@@ -403,7 +403,7 @@
     [productsView  addSubview:buildShareBtn];
     
     buildLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(buildShareBtn.frame.origin.x - 6, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 52, 10)];
-    [buildLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [buildLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     buildLbl.text = NSLocalizedString(@"kSandwichBuild", nil);
     [buildLbl setDrawOutline:YES];
     [buildLbl setOutlineSize:strokeSize];
@@ -514,7 +514,7 @@
         
         
         CustomLabel *btn1Lbl = [[CustomLabel alloc] initWithFrame:CGRectMake(5, 90 - 31, 80, 25)];
-        [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:11]];
+        [btn1Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:11]];
         [btn1Lbl setDrawOutline:NO];
         btn1Lbl.textColor = [UIColorCov colorWithHexString:GREEN_TEXT];
         btn1Lbl.textAlignment = UITextAlignmentCenter;
@@ -590,7 +590,7 @@
                 hasBeenDisplay = YES;
                 
                 CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 10, subOfTheDayView.frame.size.width, 50)];
-                [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:29.0]];
+                [titleProductLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:29.0]];
                 titleProductLbl.text = [[productsArray objectAtIndex:y] objectForKey:@"title"];
                 [titleProductLbl setDrawOutline:YES];
                 [titleProductLbl setOutlineSize:strokeSize];
@@ -619,7 +619,7 @@
                 
                 // yuan Label
                 CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
-                [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
+                [yuanLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:16.0]];
                 yuanLbl.text = @"¥";
                 [yuanLbl setDrawOutline:NO];
                 yuanLbl.textColor = [UIColor blackColor];
@@ -630,7 +630,7 @@
                 
                 // price label
                 CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
-                [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+                [priceLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:24.0]];
                 priceLbl.text = @"15" ;
                 [priceLbl setDrawOutline:NO];
                 priceLbl.textColor = [UIColor blackColor];
@@ -673,7 +673,7 @@
                         [factIconImg release];
                         
                         CustomLabel *factTitleImg = [[CustomLabel alloc] initWithFrame:CGRectMake(factIconImg.frame.origin.x - 6, factIconImg.frame.size.height + factIconImg.frame.origin.y - 1, 54, 10)];
-                        [factTitleImg setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+                        [factTitleImg setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
                         factTitleImg.text = factName;
                         [factTitleImg setDrawOutline:YES];
                         [factTitleImg setOutlineSize:strokeSize];
@@ -685,7 +685,7 @@
                         [factTitleImg release];
                         
                         
-                        UIFont *fontSD = [UIFont fontWithName:APEX_BOLD_ITALIC size:15.0];
+                        UIFont *fontSD = [UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.0];
                         CGSize sizeForDesc = {infoScrollSubOfTheDay.frame.size.width - 40,300.0f};
                         
                         NSString *myText = [[[[productsArray objectAtIndex:y] objectForKey:@"product_facts"] objectAtIndex:z] objectForKey:@"description"];
@@ -694,7 +694,7 @@
                         
                         
                         CustomLabel *factLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, factIconImg.frame.size.height + factIconImg.frame.origin.y + 15, infoScrollSubOfTheDay.frame.size.width - 40, 100)];
-                        [factLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:15.0]];
+                        [factLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.0]];
                         factLbl.text = myText;
                         [factLbl setDrawOutline:NO];
                         factLbl.textColor = [UIColorCov colorWithHexString:WHITE_TEXT];
@@ -737,7 +737,7 @@
                         if ([factType isEqualToString:@"O"]) {
                             
                             CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(20 + xPosFacts, 20, infoScrollSubOfTheDay.frame.size.width - 40, 37)];
-                            [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:29.0]];
+                            [titleProductLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:29.0]];
                             titleProductLbl.text = NSLocalizedString(@"kOptionsTxt", nil);
                             [titleProductLbl setDrawOutline:YES];
                             [titleProductLbl setOutlineSize:strokeSize];
@@ -1166,7 +1166,7 @@
         [ImageProduct release];
     
         CustomLabel *titleProductLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(XPosImage, 5, 300, 40)];
-        [titleProductLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:22.0]];
+        [titleProductLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:22.0]];
         titleProductLbl.text = [[currentProductsArray objectAtIndex:i] objectForKey:@"title"];
         [titleProductLbl setDrawOutline:YES];
         [titleProductLbl setOutlineSize:strokeSize];
@@ -1190,7 +1190,7 @@
             
             // yuan Label
             CustomLabel *yuanLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoDay.frame.size.width - 53, 28, 12, 20)];
-            [yuanLbl setFont:[UIFont fontWithName:APEX_BOLD size:16.0]];
+            [yuanLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:16.0]];
             yuanLbl.text = @"¥";
             [yuanLbl setDrawOutline:NO];
             yuanLbl.textColor = [UIColor blackColor];
@@ -1201,7 +1201,7 @@
             
             // price label
             CustomLabel *priceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(yuanLbl.frame.size.width + yuanLbl.frame.origin.x - 5, 16, 30, 35)];
-            [priceLbl setFont:[UIFont fontWithName:APEX_BOLD size:24.0]];
+            [priceLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:24.0]];
             priceLbl.text = @"15" ;
             [priceLbl setDrawOutline:NO];
             priceLbl.textColor = [UIColor blackColor];

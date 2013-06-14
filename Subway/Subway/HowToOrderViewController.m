@@ -159,7 +159,7 @@
         [bt1IconImg release];
         
         CustomLabel *btn1Lbl = [[CustomLabel alloc] init];
-        [btn1Lbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:9.0]];
+        [btn1Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:9.0]];
         [btn1Lbl setDrawOutline:YES];
         [btn1Lbl setOutlineSize:strokeSize];
         [btn1Lbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];

@@ -66,7 +66,7 @@
     
     
     adressdetailsLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 40, detailsView.frame.size.width, 20)];
-    [adressdetailsLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:14.0]];
+    [adressdetailsLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:14.0]];
     adressdetailsLbl.text = @"";
     [adressdetailsLbl setDrawOutline:NO];
     adressdetailsLbl.numberOfLines = 0;
@@ -75,7 +75,7 @@
     [detailsView addSubview:adressdetailsLbl];
     
     adressdetailsLblSecondLine = [[CustomLabel alloc] initWithFrame:CGRectMake(0, adressdetailsLbl.frame.size.height + adressdetailsLbl.frame.origin.y, detailsView.frame.size.width, 20)];
-    [adressdetailsLblSecondLine setFont:[UIFont fontWithName:APEX_MEDIUM size:14.0]];
+    [adressdetailsLblSecondLine setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:14.0]];
     adressdetailsLblSecondLine.text = @"";
     [adressdetailsLblSecondLine setDrawOutline:NO];
     adressdetailsLblSecondLine.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
@@ -83,7 +83,7 @@
     [detailsView addSubview:adressdetailsLblSecondLine];
     
     distancedetailsLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, adressdetailsLblSecondLine.frame.size.height + adressdetailsLblSecondLine.frame.origin.y + 5, detailsView.frame.size.width, 20)];
-    [distancedetailsLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:12.0]];
+    [distancedetailsLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:12.0]];
     distancedetailsLbl.text = @"";
     [distancedetailsLbl setDrawOutline:NO];
     distancedetailsLbl.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
@@ -112,7 +112,7 @@
     
     
     phoneDetailsLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoPhone.frame.size.width + logoPhone.frame.origin.x, 3, 120, phoneDetailsBtn.frame.size.height)];
-    [phoneDetailsLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    [phoneDetailsLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:13.0]];
     phoneDetailsLbl.text = @"";
     [phoneDetailsLbl setDrawOutline:YES];
     [phoneDetailsLbl setOutlineSize:strokeSize];
@@ -140,7 +140,7 @@
     
     
     CustomLabel *mailDetailsLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoMail.frame.size.width + logoMail.frame.origin.x +2, 3, 120, mailDetailsBtn.frame.size.height)];
-    [mailDetailsLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    [mailDetailsLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:13.0]];
     mailDetailsLbl.text = NSLocalizedString(@"email_btn_txt", nil);
     [mailDetailsLbl setDrawOutline:YES];
     [mailDetailsLbl setOutlineSize:strokeSize];
@@ -197,7 +197,7 @@
     UIButton *actualiserbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 130, 0, 130, 40);
     
-    if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+    if ([[settingMethod getUserLanguage] isEqualToString:@"cn"] || [[settingMethod getUserLanguage] isEqualToString:@"zh"]) {
         actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 90, 0, 90, 40);
     }
     
@@ -215,7 +215,7 @@
     
     
     CustomLabel *homeLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(logoLocator.frame.size.width + logoLocator.frame.origin.x - 1, 3, 90, actualiserbutton.frame.size.height)];
-    [homeLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:13.0]];
+    [homeLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:13.0]];
     homeLbl.text = NSLocalizedString(@"aroundMe_btn_txt", nil);
     [homeLbl setDrawOutline:YES];
     [homeLbl setOutlineSize:strokeSize];
@@ -293,7 +293,7 @@
     [weiboShareBtn addTarget:self action:@selector(shareStore:) forControlEvents:UIControlEventTouchDown];
     
     CustomLabel *weiboLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, weiboShareBtn.frame.size.height + weiboShareBtn.frame.origin.y - 1, 48, 10)];
-    [weiboLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [weiboLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     weiboLbl.text = NSLocalizedString(@"kShareOnWeibo", nil);
     [weiboLbl setDrawOutline:YES];
     [weiboLbl setOutlineSize:strokeSize];
@@ -313,7 +313,7 @@
     [itinaryBtn addTarget:self action:@selector(showItinerary) forControlEvents:UIControlEventTouchDown];
     
     CustomLabel *itinaryLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(245, itinaryBtn.frame.size.height + itinaryBtn.frame.origin.y - 1, 48, 10)];
-    [itinaryLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:8.0]];
+    [itinaryLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:8.0]];
     itinaryLbl.text = NSLocalizedString(@"kItinerary", nil);
     [itinaryLbl setDrawOutline:YES];
     [itinaryLbl setOutlineSize:strokeSize];
@@ -715,7 +715,7 @@
     
     
     CustomLabel *adressLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(15, myLogoImg.frame.size.height + myLogoImg.frame.origin.y - 5, screenWidth - 35, 30)];
-    [adressLbl setFont:[UIFont fontWithName:APEX_BOLD size:12.0]];
+    [adressLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD] size:12.0]];
     adressLbl.text = [NSString stringWithFormat:@" %@",[[allStores objectAtIndex:indexPath.row] objectForKey:@"address"]];
     [adressLbl setDrawOutline:NO];
     adressLbl.textColor = [UIColorCov colorWithHexString:GRAY_TEXT];
@@ -727,7 +727,7 @@
     
     
     CustomLabel *distanceLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(15, adressLbl.frame.size.height + adressLbl.frame.origin.y - 10, screenWidth - 30, 20)];
-    [distanceLbl setFont:[UIFont fontWithName:APEX_BOLD_ITALIC size:12.0]];
+    [distanceLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:12.0]];
     
     if (myKmDistance < 0.999) {
         distanceLbl.text = [NSString stringWithFormat:@"%.0f %@", myKmDistance*1000, NSLocalizedString(@"kMeters", nil)];;
@@ -794,7 +794,7 @@
     
     
     //Change Adress first Line
-    UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:14.0];
+    UIFont *fontSD = [UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:14.0];
     CGSize sizeForDesc = {detailsView.frame.size.width - 100,100.0f};
     
     NSString *myText = [NSString stringWithFormat:@"%@",[[allStores objectAtIndex:index] objectForKey:@"address"]];
@@ -973,7 +973,7 @@
         
         
         
-//        UIFont *fontSD = [UIFont fontWithName:APEX_MEDIUM size:10.0];
+//        UIFont *fontSD = [UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:10.0];
 //        CGSize sizeForDesc = {108,50.0f};
 //        NSString *myText = [NSString stringWithFormat:@"%@",view.annotation.title];
 //        CGSize adressSize = [myText sizeWithFont:fontSD
@@ -981,7 +981,7 @@
 //        
 //        
 //        CustomLabel *tempAdressLbl = [[CustomLabel alloc] init];
-//        [tempAdressLbl setFont:[UIFont fontWithName:APEX_MEDIUM size:10.0]];
+//        [tempAdressLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_MEDIUM] size:10.0]];
 //        
 //        if (adressSize.height > 22) {
 //            [tempAdressLbl setFrame:CGRectMake(14, 25, 108, adressSize.height)];

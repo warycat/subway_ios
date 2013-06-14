@@ -64,6 +64,9 @@
 // ----------------- GET IMAGE PATH
 - (UIImage *)getImagePath:(NSString *)imageName ;
 
+// ----------------- GET THE FONT 
+-(NSString *)checkFont:(NSString *)myFont;
+
 
 @end
 

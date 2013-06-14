@@ -64,6 +64,11 @@
 		<string>ApexNew-ThinItalic.otf</string>
 		<string>ApexNew-Ultra.otf</string>
 		<string>ApexNew-UltraItalic.otf</string>
+		<string>FZChaoCuHei-M10S.ttf</string>
+		<string>FZDahei-B02S.ttf</string>
+		<string>FZHei-B01S.ttf</string>
+		<string>FZXiHei I-Z08S.ttf</string>
+		<string>FZZongYi-M05S.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
