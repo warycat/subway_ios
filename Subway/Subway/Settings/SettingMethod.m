@@ -280,7 +280,8 @@ static SettingMethod * setting;
         lang = @"cn";
         
     }
-            
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:lang, nil] forKey:@"AppleLanguages"];
     [[NSUserDefaults standardUserDefaults] setObject:lang forKey:@"userLanguage"];
           
 }

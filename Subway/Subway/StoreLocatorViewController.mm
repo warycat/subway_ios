@@ -196,6 +196,11 @@
     
     UIButton *actualiserbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 130, 0, 130, 40);
+    
+    if ([[settingMethod getUserLanguage] isEqualToString:@"en"]) {
+        actualiserbutton.frame = CGRectMake(self.myMapView.frame.size.width - 90, 0, 90, 40);
+    }
+    
     actualiserbutton.userInteractionEnabled = YES;
     [actualiserbutton setBackgroundImage:myLocationImageOn forState:UIControlStateNormal];
     [actualiserbutton setBackgroundImage:myLocationImageOff forState:UIControlStateSelected];

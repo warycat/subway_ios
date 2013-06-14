@@ -23,6 +23,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    //Set Language For app.
+    [settingMethod setLanguage];
+    
     //Register device for notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeAlert|
@@ -35,9 +38,6 @@
     
     //Test Flight
     [TestFlight takeOff:@"9c7d0d95-9fb2-49df-9f70-601eeec1eb4b"];
-    
-    //Set Language For app.
-    [settingMethod setLanguage];
     
     //Get User Location
     [settingMethod doLocation];

@@ -202,7 +202,7 @@
 		4690D949174F528C009B9B17 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		46958A8217535F000008B9FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		46958A8417535F0B0008B9FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		46974CE517697573006DE6E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		46974CE517697573006DE6E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		46974CE81769781D006DE6E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		469AF6FB174085B90082CC2D /* HowToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToOrderViewController.h; sourceTree = "<group>"; };
 		469AF6FC174085B90082CC2D /* HowToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToOrderViewController.m; sourceTree = "<group>"; };
@@ -1043,8 +1043,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "25DA82FB-2249-47E4-89BC-BF92693B12E3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25DA82FB-2249-47E4-89BC-BF92693B12E3";
+				PROVISIONING_PROFILE = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1069,8 +1069,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "25DA82FB-2249-47E4-89BC-BF92693B12E3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25DA82FB-2249-47E4-89BC-BF92693B12E3";
+				PROVISIONING_PROFILE = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1081,8 +1081,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1095,8 +1095,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
+				PROVISIONING_PROFILE = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1106,8 +1106,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: xia yinchu (T8T56LMUSD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xia yinchu (T8T56LMUSD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ludovic BACQUE (3D7553JEQ8)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subway/Subway-Prefix.pch";
@@ -1120,8 +1120,8 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEEC9135-53C7-4A32-BB17-AC37ADE4CCC3";
+				PROVISIONING_PROFILE = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F76BE32-1696-424B-A8C2-05133F5BF6B3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
