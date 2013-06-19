@@ -494,30 +494,40 @@
                 CustomLabel *mysub = (CustomLabel *)sub;
                 mysub.text = NSLocalizedString(@"weibo_logout_btn_txt", nil);
                 
-                CGRect mysubFrame = mysub.frame;
-                
-                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
-                int myValue = [myString intValue];
-                if (myValue != 32-6) {
-                    mysubFrame.origin.x = mysubFrame.origin.x - 6;
-                    [mysub setFrame:mysubFrame];
+                if (![[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
+                    
+                    CGRect mysubFrame = mysub.frame;
+                    
+                    NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                    int myValue = [myString intValue];
+                    if (myValue != 32-6) {
+                        mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                        [mysub setFrame:mysubFrame];
+                    }
+                    
                 }
+
  
             }
             
             if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
                 
+                if (![[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
+                    
                 UIImageView *mysub = (UIImageView *)sub;
                 
-                CGRect mysubFrame = mysub.frame;
-                
-                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
-                int myValue = [myString intValue];
-                if (myValue != 14-6) {
                     CGRect mysubFrame = mysub.frame;
-                    mysubFrame.origin.x = mysubFrame.origin.x - 6;
-                    [mysub setFrame:mysubFrame];
+                    
+                    NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                    int myValue = [myString intValue];
+                    if (myValue != 14-6) {
+                        CGRect mysubFrame = mysub.frame;
+                        mysubFrame.origin.x = mysubFrame.origin.x - 6;
+                        [mysub setFrame:mysubFrame];
+                    }
+                    
                 }
+
                 
             }
             
@@ -536,28 +546,38 @@
                 CustomLabel *mysub = (CustomLabel *)sub;
                 mysub.text = NSLocalizedString(@"weibo_login_btn_txt", nil);
                 
-                CGRect mysubFrame = mysub.frame;
-                
-                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
-                int myValue = [myString intValue];
-                if (myValue != 32) {
-                    mysubFrame.origin.x = mysubFrame.origin.x + 6;
-                    [mysub setFrame:mysubFrame];
+                if (![[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
+                    
+                    CGRect mysubFrame = mysub.frame;
+                    
+                    NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                    int myValue = [myString intValue];
+                    if (myValue != 32) {
+                        mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                        [mysub setFrame:mysubFrame];
+                    }
+                    
                 }
+
 
             }
             
             if ([sub isKindOfClass:[UIImageView class]] && sub.tag == 100) {
                 
-                UIImageView *mysub = (UIImageView *)sub;
-                
-                CGRect mysubFrame = mysub.frame;
-                NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
-                int myValue = [myString intValue];
-                if (myValue != 14) {
-                    mysubFrame.origin.x = mysubFrame.origin.x + 6;
-                    [mysub setFrame:mysubFrame];
+                if (![[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
+                    
+                    UIImageView *mysub = (UIImageView *)sub;
+                    
+                    CGRect mysubFrame = mysub.frame;
+                    NSString *myString = [NSString stringWithFormat:@"%.0f", mysubFrame.origin.x];
+                    int myValue = [myString intValue];
+                    if (myValue != 14) {
+                        mysubFrame.origin.x = mysubFrame.origin.x + 6;
+                        [mysub setFrame:mysubFrame];
+                    }
+                    
                 }
+
                 
             }
             

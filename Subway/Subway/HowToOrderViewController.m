@@ -54,7 +54,7 @@
     
     CustomLabel *titleLblView = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 0, BackgroundImgSub.frame.size.width, BackgroundImgSub.frame.size.height)];
     [titleLblView setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:20.0]];
-    titleLblView.text = @" HOW TO ORDER";
+    titleLblView.text = NSLocalizedString(@"kHowToOrder", nil);
     [titleLblView setDrawOutline:YES];
     [titleLblView setOutlineSize:3];
     [titleLblView setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
@@ -88,7 +88,7 @@
     
     for (int i = 0; i < myNumberOfSlides; i++) {
         
-        UIView *myBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(XposSlider + 5, YposElements, orderScrollView.frame.size.width-10, orderScrollView.frame.size.height)];
+        UIView *myBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(XposSlider + 5, YposElements, orderScrollView.frame.size.width-10, orderScrollView.frame.size.height - YposElements)];
         myBackGroundView.backgroundColor = [UIColor clearColor];
         [orderScrollView addSubview:myBackGroundView];
         [myBackGroundView release];
@@ -109,7 +109,7 @@
         
         // NUMBER
         CustomLabel *nbLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(0, 2, roundNumberImage.frame.size.width, roundNumberImage.frame.size.height)];
-        [nbLbl setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:21.0]];
+        [nbLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_HEAVY_ITALIC] size:21.0]];
         nbLbl.text = [NSString stringWithFormat:@"%i", i+1];
         [nbLbl setDrawOutline:YES];
         [nbLbl setOutlineSize:3];
@@ -122,7 +122,7 @@
         
         // TITLE ORDER
         CustomLabel *titleLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(roundNumberImage.frame.size.width + roundNumberImage.frame.origin.x, 10 + YposElements, 220, 50)];
-        [titleLbl setFont:[UIFont fontWithName:APEX_HEAVY_ITALIC size:20.0]];
+        [titleLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_HEAVY_ITALIC] size:20.0]];
         [titleLbl setDrawOutline:YES];
         [titleLbl setOutlineSize:3];
         [titleLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
@@ -141,7 +141,7 @@
 
         
         CustomLabel *stepLbl = [[CustomLabel alloc] initWithFrame:CGRectMake(30, 205 + YposElements, myBackGroundView.frame.size.width - 70, 100)];
-        [stepLbl setFont:[UIFont fontWithName:APEX_HEAVY size:13.0]];
+        [stepLbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_HEAVY] size:13.0]];
         [stepLbl setDrawOutline:YES];
         [stepLbl setOutlineSize:3];
         [stepLbl setOutlineColor:[UIColorCov colorWithHexString:GRAY_STROKE]];
@@ -169,8 +169,8 @@
         [myBackGroundView addSubview:btn1Lbl];
         [btn1Lbl release];
         
-        bt1IconImg.frame = CGRectMake(screenWidth-40, orderScrollView.frame.size.height - 38, 17, 17);
-        btn1Lbl.frame = CGRectMake(screenWidth-243, orderScrollView.frame.size.height - 38,  200, 20);
+        bt1IconImg.frame = CGRectMake(screenWidth-40, orderScrollView.frame.size.height - 38 - YposElements, 17, 17);
+        btn1Lbl.frame = CGRectMake(screenWidth-243, orderScrollView.frame.size.height - 38 - YposElements,  200, 20);
         
         
         if (i == 0) {

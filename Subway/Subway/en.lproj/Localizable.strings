@@ -115,6 +115,8 @@
 // ------------------ HOW TO ORDER
 // ----------
 
+"kHowToOrder" = "HOW TO ORDER";
+
 "kOrder1Title" = " Sub, salad or wrap?";
 "kOrder1Desc" = "First thing's, first. Are you feeling like a sub, a wrap, or a salad? Once you've figured out what form you want our tasty ingredients to come in, you're ready to move on.";
 

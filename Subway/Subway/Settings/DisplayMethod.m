@@ -339,7 +339,7 @@ static DisplayMethod * display;
         [myRightBtn addSubview:logoLocatorImg];
         [logoLocatorImg release];
         
-        if ([[settingMethod getUserLanguage]isEqualToString:@"cn"] || [[settingMethod getUserLanguage]isEqualToString:@"zh"]) {
+        if ([[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
             
             logoHomeImg.frame = CGRectMake(17, (myLeftBtn.frame.size.height-15.5)/2, 12, 15);
             homeLbl.frame = CGRectMake(logoHomeImg.frame.size.width + logoHomeImg.frame.origin.x + 2, 1, 48, myLeftBtn.frame.size.height);
@@ -548,7 +548,7 @@ static DisplayMethod * display;
             bt2IconImg.image = [UIImage imageNamed:@"logo_storelocator@2x"];
             bt2IconImg.frame = CGRectMake(19, 17, 19, 22);
             
-            if ([[settingMethod getUserLanguage]isEqualToString:@"cn"] || [[settingMethod getUserLanguage]isEqualToString:@"zh"]) {
+            if ([[settingMethod getUserLanguage]isEqualToString:@"cn"]) {
                 
                 [btn2Lbl setFont:[UIFont fontWithName:[settingMethod checkFont:APEX_BOLD_ITALIC]  size:15.5]];
                 btn2Lbl.frame = CGRectMake(bt2IconImg.frame.size.width + bt2IconImg.frame.origin.x - 2, 16.0,  48, 25);

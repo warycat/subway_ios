@@ -144,6 +144,11 @@
         
     UIButton *showMOreInfobtn = [UIButton buttonWithType:UIButtonTypeCustom];
     showMOreInfobtn.frame = CGRectMake((screenWidth-135)/2, subOfTheDayView.frame.size.height - 55, 140, 40);
+    
+    if ([[settingMethod getUserLanguage] isEqualToString:@"cn"]) {
+        showMOreInfobtn.frame = CGRectMake((screenWidth-115)/2, subOfTheDayView.frame.size.height - 55, 120, 40);
+    }
+    
     showMOreInfobtn.userInteractionEnabled = YES;
     [showMOreInfobtn setBackgroundImage:myLocationImageOn forState:UIControlStateNormal];
     [showMOreInfobtn setBackgroundImage:myLocationImageOff forState:UIControlStateSelected];
