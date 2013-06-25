@@ -26,7 +26,7 @@
         params = [NSMutableDictionary dictionary];
     }
     SinaWeibo *sinaWeibo = [BlockSinaWeibo sharedClient].sinaWeibo;
-    [[BlockSinaWeibo sharedClient].requests addObject:blockSinaWeiboRequest];
+//    [[BlockSinaWeibo sharedClient].requests addObject:blockSinaWeiboRequest];
     if (sinaWeibo.isAuthValid) {
         NSLog(@"isAuthValid");
         NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:API];
