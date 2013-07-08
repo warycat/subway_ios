@@ -465,6 +465,30 @@
     [BlockSinaWeibo loginWithHandler:^{
         [self changeWeiboLogDesign];
         [settingMethod HUDMessage:@"kConnectedToWeibo" typeOfIcon:HUD_ICON_WEIXIN delay:2.5 offset:CGPointMake(0, 0)];
+        [BlockSinaWeiboRequest GETrequestAPI:@"users/show.json" withParams:@{@"uid":[BlockSinaWeibo sharedClient].sinaWeibo.userID} withHandler:^(id dict) {
+            NSLog(@"login %@",dict);
+            NSString *body = [NSString stringWithFormat:@"name=%@&weiboid=%@&region=%@", dict[@"screen_name"],dict[@"id"],dict[@"location"]];
+            NSString *register_url = [NSString stringWithFormat:@"%@user/register",ADRESS];
+            NSLog(@"%@",body);
+            NSURL *URL = [NSURL URLWithString:register_url];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                
+                NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSLog(@"%@",dict);
+                
+                
+                NSDictionary *err = dict[@"err"];
+                if (err) {
+                    
+                }else{
+                    
+                }
+            }];
+
+        }];
     }];
     
 }
