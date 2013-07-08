@@ -830,11 +830,13 @@
 -(void)pushStoreLocatorView {
     
     StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
-    storeViewCtrl.fromOtherView = YES;
+    storeViewCtrl.fromOtherView = NO;
     [self.navigationController pushViewController:storeViewCtrl animated:YES];
     [storeViewCtrl release];
     
 }
+
+-(void)backToHomeView { [self.navigationController popToRootViewControllerAnimated:YES]; }
 
 -(void)backAction { [self.navigationController popViewControllerAnimated:YES]; }
 
@@ -849,6 +851,7 @@
 
 
     CateringViewController *cateringView = [[CateringViewController alloc] init];
+    cateringView.MenuViewControllerNavigation = self.navigationController;
     UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:cateringView] autorelease];
     [self presentModalViewController:myNavigationController animated:YES];
     [cateringView release];
@@ -866,6 +869,7 @@
 -(void)pushHowToView {
 
     HowToOrderViewController *howToOrderView = [[HowToOrderViewController alloc] init];
+    howToOrderView.MenuViewControllerNavigation = self.navigationController;
     UINavigationController *myNavigationController = [[[UINavigationController alloc] initWithRootViewController:howToOrderView] autorelease];
     [self presentModalViewController:myNavigationController animated:YES];
     [howToOrderView release];

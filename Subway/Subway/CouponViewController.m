@@ -887,7 +887,7 @@
     
 
     StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
-    storeViewCtrl.fromOtherView = YES;
+    storeViewCtrl.fromOtherView = NO;
     [self.navigationController pushViewController:storeViewCtrl animated:YES];
     [storeViewCtrl release];
     

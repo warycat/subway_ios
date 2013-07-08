@@ -11,9 +11,10 @@
 @interface CateringViewController : UIViewController <UIScrollViewDelegate> {
     
     UIScrollView *cateringScrollView;
-    
+    UINavigationController *MenuViewControllerNavigation;
 }
 
 @property (assign, nonatomic) UIScrollView *cateringScrollView;
+@property (assign, nonatomic) UINavigationController *MenuViewControllerNavigation;
 
 @end

@@ -15,7 +15,11 @@
     int myNumberOfSlides;
     DDPageControl *pageControl;
     
+    UINavigationController *MenuViewControllerNavigation;
 }
+
+@property (assign, nonatomic) UINavigationController *MenuViewControllerNavigation;
+
 
 @property (assign, nonatomic) UIScrollView *orderScrollView;
 @property (assign, nonatomic) DDPageControl *pageControl;

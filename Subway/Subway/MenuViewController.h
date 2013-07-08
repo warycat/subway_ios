@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DDPageControl.h"
+#import "StoreLocatorViewController.h"
+
 
 @interface MenuViewController : UIViewController <UIScrollViewDelegate> {
     
@@ -57,7 +59,6 @@
     int myCurrentCatID;
     
 }
-    
 
 @property (nonatomic, strong) UIScrollView *menuScroll;
 @property (nonatomic, strong) NSMutableArray *menuArray;

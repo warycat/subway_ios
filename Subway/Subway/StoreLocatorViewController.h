@@ -12,7 +12,14 @@
 #import "UIViewController+KNSemiModal.h"
 
 
+@protocol StoreLocatorDelegate
+@optional
+-(void)backToHomeView;
+@end
+
 @interface StoreLocatorViewController : UIViewController < CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate, UIAlertViewDelegate> {
+    
+    UINavigationController *MenuViewControllerNavigation;
     
     //Weibo Btn
     UIButton *weiboBtn;
@@ -42,7 +49,14 @@
     //From Catering / How To Order / Menu View
     BOOL fromOtherView;
     BOOL firstLoading;
+
+    id<StoreLocatorDelegate> _delegate;
 }
+
+@property (retain, nonatomic)UINavigationController *MenuViewControllerNavigation;
+
+@property (nonatomic, assign) id<StoreLocatorDelegate> delegate;
+
 
 //Weibo Btn
 @property (retain, nonatomic) UIButton *weiboBtn;

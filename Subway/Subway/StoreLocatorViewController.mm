@@ -15,7 +15,7 @@
 #import <Social/Social.h>
 #import "BlockSinaWeiboRequest.h"
 #import <Accounts/Accounts.h>
-
+#import "AppDelegate.h"
 
 @interface StoreLocatorViewController ()
 @property (strong, nonatomic)NSArray *allAnnotations;
@@ -30,6 +30,8 @@
 @synthesize adressdetailsLbl, distancedetailsLbl, adressdetailsLblSecondLine;
 @synthesize weiboBtn;
 @synthesize phoneDetailsBtn, phoneDetailsLbl, mailDetailsBtn, fromOtherView;
+@synthesize delegate = _delegate;
+@synthesize MenuViewControllerNavigation;
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -42,6 +44,17 @@
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:YES];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:YES];
+    
+    if (fromOtherView == YES) {
+        [MenuViewControllerNavigation popViewControllerAnimated:YES];
+    }
+    
+    
 }
 
 - (void)viewDidLoad
@@ -646,11 +659,11 @@
     
     if (fromOtherView == YES) {
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
         
     }else {
         
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
     }
     

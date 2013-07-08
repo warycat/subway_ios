@@ -15,7 +15,7 @@
 @end
 
 @implementation CateringViewController
-@synthesize cateringScrollView;
+@synthesize cateringScrollView, MenuViewControllerNavigation;
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -589,6 +589,7 @@
     
     StoreLocatorViewController *storeViewCtrl = [[StoreLocatorViewController alloc] init];
     storeViewCtrl.fromOtherView = YES;
+    storeViewCtrl.MenuViewControllerNavigation = MenuViewControllerNavigation;
     [self.navigationController pushViewController:storeViewCtrl animated:YES];
     [storeViewCtrl release];
     
